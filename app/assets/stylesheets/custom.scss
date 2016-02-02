@@ -51,7 +51,7 @@ nav .brand-logo {
   color: #fff;
   margin-left: 20px;
   font-family: 'Rokkitt', serif;
-  font-size: 20px;
+  font-size: 30px;
 }
 
 nav .nav-wrapper {
@@ -125,17 +125,18 @@ nav ul a:hover {
 
 .landing-buttons {
   position: relative;
+  top: 200px;
 }
 
-.btn-landing-page.index-button {
-  background-color: $base-purple-blue !important;
-  height: 70px!important;
-  padding: 0px;
+.index-button {
+  background-color: $base-purple-blue;
+  height: 70px;
+  padding: 0;
   opacity: 0.9;
 }
 
-.btn-landing-page:hover.index-button {
-  background-color: $base-light-blue-light !important;
+.index-button:hover {
+  background-color: $base-light-blue-light;
 }
 
 .index-button a {
@@ -149,43 +150,32 @@ nav ul a:hover {
   color: $base-purple-blue;
 }
 
-.btn {
-  margin: 3px;
-  background-color: #6C8672!important;
-  color: #C4D4AF
-}
-
-.btn:hover {
-  background-color: #C4D4AF!important;
-  color: #6C8672;
-}
-
 .btn-edit {
-  background-color: rgba(115, 127, 149, 1)!important;
+  background-color: rgba(115, 127, 149, 1);
 }
 
 .btn-edit:hover {
-  background-color: rgba(115, 127, 149, 0.8)!important;
+  background-color: rgba(115, 127, 149, 0.8);
 }
 
 .btn-delete {
-  background-color: rgba(104, 168, 173,1)!important;
+  background-color: rgba(104, 168, 173,1);
 }
 
 .btn-delete:hover {
-  background-color: rgba(104, 168, 173,0.8)!important;
+  background-color: rgba(104, 168, 173,0.8);
 }
 
-#browse-poster-button {
+.browse-poster-button {
   width: 215px;
 }
 
-#browse-cat-button {
+.browse-cat-button {
   width: 215px;
 }
 
-#create-acct-button,
-#log-in-button {
+.create-acct-button,
+.log-in-button {
   margin-top: 5px;
   width: 435px;
 }
@@ -335,16 +325,17 @@ select {
 /***** SIDE NAV ******/
 
 .side-nav {
-  background-color: $base-purple-blue-dark !important;
+  background-color: $base-purple-blue-dark;
   opacity: 0.8;
   li {
     border-bottom: 1px solid #303F46;
   }
   a {
-    color: white !important;
+    color: white;
     font-size: 15.5px;
     &:hover {
-      background-color: darken($base-purple-blue-dark, 15%) !important;
+      color: white;
+      background-color: darken($base-purple-blue-dark, 15%);
     }
   }
 }
@@ -356,14 +347,14 @@ select {
 }
 
 .user-action-links .action-box a {
-  color: #C4D4AF !important;
+  color: #C4D4AF;
   display: block;
   padding: 20px;
   background-color: #6C8672
 }
 
 .user-action-links .action-box a:hover {
-  color: #6C8672 !important;
+  color: #6C8672;
   background-color: #C4D4AF;
 }
 
@@ -393,14 +384,14 @@ select {
     font-size: 64px;
   }
 
-  #create-acct-button,
-  #log-in-button {
+  .create-acct-button,
+  .log-in-button {
     width: 213px;
   }
 
-  #browse-poster-button,
-  #browse-cat-button,
-  #create-acct-button {
+  .browse-poster-button,
+  .browse-cat-button,
+  .create-acct-button {
     margin-bottom: 20px;
   }
 }
@@ -413,14 +404,14 @@ select {
     font-size: 48px;
   }
 
-  #create-acct-button,
-  #log-in-button {
+  .create-acct-button,
+  .log-in-button {
     width: 213px;
   }
 
-  #browse-poster-button,
-  #browse-cat-button,
-  #create-acct-button {
+  .browse-poster-button,
+  .browse-cat-button,
+  .create-acct-button {
     margin-bottom: 20px;
   }
 
@@ -452,11 +443,11 @@ select {
 }
 
 @media only screen and (max-width: 500px) and (orientation: landscape) {
-  #browse-poster-button,
-  #browse-cat-button,
-  #create-acct-button,
-  #log-in-button {
-    height: 50px !important;
+  .browse-poster-button,
+  .browse-cat-button,
+  .create-acct-button,
+  .log-in-button {
+    height: 50px;
     line-height: 11px;
   }
 }
