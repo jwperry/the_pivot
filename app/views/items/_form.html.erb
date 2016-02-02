@@ -1,4 +1,4 @@
-<%= form_for [current_user, @item], :html => {class: "profile_form", multipart: true} do |f| %>
+<%= form_for [current_user, @item], :html => {class: "profile-form", multipart: true} do |f| %>
   <%= f.label :title %>
   <%= f.text_field :title %>
   <br>
@@ -9,7 +9,7 @@
 
   <%= f.label :file_upload %>
   <br><br>
-  <%= f.file_field :file_upload, class: "upload_file grey-text" %>
+  <%= f.file_field :file_upload, class: "upload-file grey-text" %>
   <br><br>
 
   <%= f.label :price %>

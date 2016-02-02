@@ -33,12 +33,12 @@ $(document).ready(function () {
     });
   });
 
-  $('#order_status').on('change', function () {
-    var currentStatus = $('#order_status :selected').text();
+  $('#order-status').on('change', function () {
+    var currentStatus = $('#order-status :selected').text();
 
     $orders.each(function (index, order) {
       var $order = $(order);
-      var $orderStatus = $order.find('.order_status').text();
+      var $orderStatus = $order.find('.order-status').text();
 
       if ($orderStatus === currentStatus || currentStatus === 'all') {
         $order.show();

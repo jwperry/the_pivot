@@ -1,15 +1,18 @@
-<div class = "landing_buttons">
-  <h1 class = "home_title">RoughSketch</h1>
-  <div class="btn btn_landing_page index_button" id="browse_artist_button">
-    <%= link_to "Browse by Artist", artists_path, class: "waves-effect waves-light" %>
-  </div>
+<div class="landing-buttons center-align">
+  <h1 class = "home-title">Freelancer</h1>
 
-  <div class="btn btn_landing_page index_button" id="browse_cat_button">
-    <%= link_to "Browse by Category", categories_path, class: "waves-effect waves-light" %>
-  </div>
-  <br>
+  <% unless current_user %>
+    <div class="btn index-button create-acct-button">
+      <%= link_to "Create Account", sign_up_path, class: "waves-effect waves-light" %>
+    </div>
 
-  <div class="btn btn_landing_page index_button" id="create_acct_button">
-    <%= link_to "Create Account", new_user_path, class: "waves-effect waves-light" %>
+    <div class="btn index-button log-in-button">
+      <%= link_to "Log In", login_path, class: "waves-effect waves-light" %>
+    </div>
+  <% end %>
+
+  <div class="category-dropdown">
+    <h3 class="choose-category-title">Choose a Category</h3>
+    <%= select_tag :categories, options_for_select(%w(culinary carpentry electrical sewing home_repair writing data_entry web_development graphic_design photography)), class: "category-select" %>
   </div>
 </div>

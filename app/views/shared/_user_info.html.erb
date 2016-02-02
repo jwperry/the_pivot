@@ -45,16 +45,16 @@
 
   <div class="col s12 m6">
     <div class="card">
-      <div class="card-action user_action_links">
-        <div class="action_box"><%= link_to "View Past Orders", user_orders_path(current_user.slug) %></div>
+      <div class="card-action user-action-links">
+        <div class="action-box"><%= link_to "View Past Orders", user_orders_path(current_user.slug) %></div>
 
         <% if current_admin? %>
-          <div class="action_box"><%= link_to "Create Item", new_admin_item_path %></div>
-          <div class="action_box"><%= link_to "View Items", admin_items_path %></div>
-          <div class="action_box"><%= link_to "View Orders", admin_orders_path %></div>
+          <div class="action-box"><%= link_to "Create Item", new_admin_item_path %></div>
+          <div class="action-box"><%= link_to "View Items", admin_items_path %></div>
+          <div class="action-box"><%= link_to "View Orders", admin_orders_path %></div>
         <% elsif current_artist? %>
-          <div class="action_box"><%= link_to "View My Items", artist_path(current_user) %></div>
-          <div class="action_box"><%= link_to "Add New Item", new_user_item_path(current_user) %></div>
+          <div class="action-box"><%= link_to "View My Items", artist_path(current_user) %></div>
+          <div class="action-box"><%= link_to "Add New Item", new_user_item_path(current_user) %></div>
         <% end %>
       </div>
     </div>

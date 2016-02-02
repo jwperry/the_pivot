@@ -14,26 +14,26 @@
 
     <% if current_admin? %>
       <% if @item.active? %>
-        <p class="active_status_text text-accent-4 larger-text">Status: <%= @item.status %></p>
+        <p class="active-status-text text-accent-4 larger-text">Status: <%= @item.status %></p>
       <% else %>
-        <p class="inactive_status_text larger-text">Status: <%= @item.status %></p>
+        <p class="inactive-status-text larger-text">Status: <%= @item.status %></p>
       <% end %>
 
       <br>
-      <%= link_to "Edit", edit_admin_item_path(@item), class: "btn waves-effect waves-light btn_edit"%>
-      <%= link_to "Delete", admin_item_path(@item), method: :delete,  class: "btn waves-effect waves-light btn_delete"%>
+      <%= link_to "Edit", edit_admin_item_path(@item), class: "btn waves-effect waves-light btn-edit"%>
+      <%= link_to "Delete", admin_item_path(@item), method: :delete,  class: "btn waves-effect waves-light btn-delete"%>
 
     <% elsif current_artist? && artist_owns_item?(@item) %>
       <% if @item.active? %>
-        <p class="active_status_text active_status_text larger-text">Status: <%= @item.status %></p>
+        <p class="active-status-text active-status-text larger-text">Status: <%= @item.status %></p>
       <% else %>
-        <p class="inactive_status_text larger-text">Status: <%= @item.status %></p>
+        <p class="inactive-status-text larger-text">Status: <%= @item.status %></p>
       <% end %>
 
       <br>
-      <%= link_to "Edit", edit_user_item_path(current_user, @item), class: "btn waves-effect waves-light btn_edit"%>
+      <%= link_to "Edit", edit_user_item_path(current_user, @item), class: "btn waves-effect waves-light btn-edit"%>
       <br>
-      <%= link_to "Delete", item_path(@item), method: :delete,  class: "btn waves-effect waves-light btn_delete"%>
+      <%= link_to "Delete", item_path(@item), method: :delete,  class: "btn waves-effect waves-light btn-delete"%>
     <% end %>
 
     <% if @item.active? %>
@@ -41,7 +41,7 @@
     <% elsif @item.default_image? %>
       <p class="red-text">This item is inactive. <br> Please upload an image to change status.</p>
     <% else %>
-      <p class="pink_error_text">This item is inactive.</p>
+      <p class="pink-error-text">This item is inactive.</p>
     <% end %>
   </div>
 </div>

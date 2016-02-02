@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20160119183846) do
     t.integer  "status",                   default: 1
     t.string   "file_upload_file_name"
     t.string   "file_upload_content_type"
-    t.integer  "file_upload_file_size"
+    t.integer  "file_upload-file_size"
     t.datetime "file_upload_updated_at"
   end
 
@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 20160119183846) do
     t.string   "slug"
     t.string   "file_upload_file_name"
     t.string   "file_upload_content_type"
-    t.integer  "file_upload_file_size"
+    t.integer  "file_upload-file_size"
     t.datetime "file_upload_updated_at"
   end
 

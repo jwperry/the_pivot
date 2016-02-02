@@ -13,7 +13,7 @@ class UserLogInTest < ActionDispatch::IntegrationTest
 
     assert_equal "/dashboard", current_path
     within(".nav-wrapper") do
-      assert page.has_content?("Logged in as #{user.first_name}")
+      assert page.has_content?("My Dashboard (contractor)")
     end
 
     refute page.has_content?("Login")
