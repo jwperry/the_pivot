@@ -2,7 +2,7 @@
       <%= image_tag @artist.file_upload.url(:thumb), class: "artist_thumb circle"%>
     <% end %><%= @artist.full_name %> </h2>
 
-<div class="grid">
+<div>
   <% @artist.items.each do |item| %>
     <%= render partial: "shared/item_card", locals: { item: item } %>
   <% end %>

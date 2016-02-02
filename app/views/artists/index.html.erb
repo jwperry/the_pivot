@@ -11,7 +11,7 @@
       <% end %>
       <span><%= link_to artist.full_name, artist_path(artist) %></span>
     </h2>
-    <div id="<%= artist.username %>" class="grid">
+    <div id="<%= artist.username %>">
       <% artist.items.each do |item| %>
         <%= render partial: 'shared/item_card', locals: { item: item } %>
       <% end %>
