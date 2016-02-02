@@ -27,28 +27,11 @@
         <% else %>
           <li><%= link_to "Login", login_path %></li>
         <% end %>
-
-        <% if current_admin? %>
-          <li><%= link_to "Browse by Poster", artists_path %></li>
-          <li><%= link_to "Browse by Category", categories_path %></li>
-        <% else %>
-          <li><%= link_to "Browse by Poster", artists_path %></li>
-          <li><%= link_to "Browse by Category", categories_path %></li>
-        <% end %>
       </ul>
 
       <!-- MOBILE NAV -->
       <ul class="side-nav" id="mobile-demo">
         <li><strong><%= link_to "Freelancer", root_path %></strong></li>
-
-        <% if current_admin? %>
-          <li><%= link_to "Browse by Poster", artists_path %></li>
-          <li><%= link_to "Browse by Category", categories_path %></li>
-        <% else %>
-          <li><%= link_to "Browse by Poster", artists_path %></li>
-          <li><%= link_to "Browse by Category", categories_path %></li>
-        <% end %>
-
         <% if current_admin? %>
           <li>
             <%= link_to "Dashboard (#{current_user.first_name}: admin)", admin_dashboard_path(current_user.slug) , class: "login-confirm"%>

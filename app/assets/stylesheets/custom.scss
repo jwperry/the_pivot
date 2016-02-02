@@ -7,6 +7,27 @@ button.stripe-button-el span {
 
 /* END OF STRIPE -- DO NOT DELETE!!!! */
 
+/* HOMEPAGE */
+
+.category-dropdown {
+  background-color: $base-purple-blue;
+  opacity: 0.8;
+  padding-bottom: 20px;
+  max-width: 475px;
+  margin: 0 auto;
+}
+
+.choose-category-title {
+  font-size: 26px;
+  color: white;
+  padding-top: 10px;
+  text-transform: uppercase;
+  font-weight: 100;
+}
+
+.category-select {
+  color: black;
+}
 
 /* MAIN STYLES */
 
@@ -33,12 +54,8 @@ h2 {
   font-family: 'Amatic SC', cursive;
 }
 
-h3  {
-  font-weight: 100;
-}
-
 a {
-  color: #6C8672
+  color: #6C8672;
 }
 
 a:hover {
@@ -124,6 +141,7 @@ nav ul a:hover {
   height: 70px;
   opacity: 0.9;
   padding: 0;
+  margin: 0 10px;
   &:hover {
     background-color: $base-light-blue-light;
   }
@@ -132,6 +150,7 @@ nav ul a:hover {
     height: 100%;
     padding: 20px;
     color: white;
+    font-size: 17px;
     &:hover {
       color: $base-purple-blue;
     }
@@ -152,18 +171,10 @@ nav ul a:hover {
   }
 }
 
-.browse-poster-button {
-  width: 215px;
-}
-
-.browse-cat-button {
-  width: 215px;
-}
-
 .create-acct-button,
 .log-in-button {
   margin-top: 5px;
-  width: 435px;
+  width: 225px;
 }
 
 .active-status-text {
@@ -366,15 +377,12 @@ select {
     font-size: 64px;
   }
 
-  .create-acct-button,
-  .log-in-button {
-    width: 213px;
+  .category-dropdown {
+    max-width: 300px;
   }
 
-  .browse-poster-button,
-  .browse-cat-button,
-  .create-acct-button {
-    margin-bottom: 20px;
+  .category-select {
+    width: 250px;
   }
 }
 
@@ -382,17 +390,11 @@ select {
   h2 {
     font-size: 40px;
   }
+
   .home-title {
     font-size: 48px;
   }
 
-  .create-acct-button,
-  .log-in-button {
-    width: 213px;
-  }
-
-  .browse-poster-button,
-  .browse-cat-button,
   .create-acct-button {
     margin-bottom: 20px;
   }
@@ -425,8 +427,6 @@ select {
 }
 
 @media only screen and (max-width: 500px) and (orientation: landscape) {
-  .browse-poster-button,
-  .browse-cat-button,
   .create-acct-button,
   .log-in-button {
     height: 50px;
