@@ -80,7 +80,7 @@ nav ul a:hover {
   color: black;
 }
 
-#order-status {
+.order-status {
   width: 200px;
   margin: 5px auto 20px auto;
 }
@@ -106,15 +106,6 @@ nav ul a:hover {
   background-color: white;
 }
 
-#price {
-  padding-top: 25px;
-}
-
-#remove {
-  padding-left: 10px;
-  padding-top: 10px;
-}
-
 .container {
   padding-top: 20px;
 }
@@ -133,37 +124,32 @@ nav ul a:hover {
   height: 70px;
   opacity: 0.9;
   padding: 0;
-}
-
-.index-button:hover {
-  background-color: $base-light-blue-light;
-}
-
-.index-button a {
-  display: block;
-  height: 100%;
-  padding: 20px;
-  color: white;
-}
-
-.index-button a:hover {
-  color: $base-purple-blue;
+  &:hover {
+    background-color: $base-light-blue-light;
+  }
+  a {
+    display: block;
+    height: 100%;
+    padding: 20px;
+    color: white;
+    &:hover {
+      color: $base-purple-blue;
+    }
+  }
 }
 
 .btn-edit {
   background-color: rgba(115, 127, 149, 1);
-}
-
-.btn-edit:hover {
-  background-color: rgba(115, 127, 149, 0.8);
+  &:hover {
+    background-color: rgba(115, 127, 149, 0.8);
+  }
 }
 
 .btn-delete {
   background-color: rgba(104, 168, 173,1);
-}
-
-.btn-delete:hover {
-  background-color: rgba(104, 168, 173,0.8);
+  &:hover {
+    background-color: rgba(104, 168, 173,0.8);
+  }
 }
 
 .browse-poster-button {
@@ -251,15 +237,13 @@ font-size: 40px
 .order-data {
   text-align: left;
   font-size: 17px;
-}
-
-.order-data a {
-  font-size: 20px;
-  color: rgb(64, 136, 171);
-}
-
-.order-data a:hover {
-    color: #0EAF15;
+  a {
+    font-size: 20px;
+    color: rgb(64, 136, 171);
+    &:hover {
+        color: #0EAF15;
+    }
+  }
 }
 
 .card-panel {
@@ -344,18 +328,16 @@ select {
 
 .user-action-links .action-box {
   margin-bottom: 10px;
-}
-
-.user-action-links .action-box a {
-  color: #C4D4AF;
-  display: block;
-  padding: 20px;
-  background-color: #6C8672
-}
-
-.user-action-links .action-box a:hover {
-  color: #6C8672;
-  background-color: #C4D4AF;
+  a {
+    color: #C4D4AF;
+    display: block;
+    padding: 20px;
+    background-color: #6C8672;
+    &:hover {
+      color: #6C8672;
+      background-color: #C4D4AF;
+    }
+  }
 }
 
 .larger-text {

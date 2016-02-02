@@ -38,7 +38,7 @@
           <tr id="order_<%= order.id %>" class="order">
             <td><%= link_to order.id, user_order_path(order.user, order) %></td>
             <td><%= order.user.username  %></td>
-            <td class="status_<%=order.status%> order-status"><%= order.status %></td>
+            <td class="status-<%=order.status%> order-status"><%= order.status %></td>
             <td><%= order.date %></td>
             <td>
               <% if order.ordered? %>
