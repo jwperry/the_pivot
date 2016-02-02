@@ -1,3 +1,4 @@
+@import "colors";
 /* STRIPE -- DO NOT DELETE!!!! */
 
 button.stripe-button-el span {
@@ -5,12 +6,6 @@ button.stripe-button-el span {
 }
 
 /* END OF STRIPE -- DO NOT DELETE!!!! */
-
-/* DARKER GREEN #6C8672
- LIGHTER GREEN #C4D4AF
- BLUEISH #68A8AD
-PURPLY #737495
- PINK #F17D80 */
 
 
 /* MAIN STYLES */
@@ -26,7 +21,6 @@ img {
 h1.home_title {
   font-family: 'Rokkitt', serif;
   position: relative;
-  top: -85px;
   letter-spacing: 1.0rem;
   color: #fff;
   text-shadow: 3px 5px 15px #000000;
@@ -61,16 +55,11 @@ nav .brand-logo {
 }
 
 nav .nav-wrapper {
-  background-color: #494856;
-}
-
-nav ul a {
-  color: #C4D4AF;
+  background-color: $base-green;
 }
 
 nav ul a:hover {
-  background-color: rgba(0,0,0,0.1);
-  color: #ddd;
+  color: $base-yellow;
 }
 
 /* ORDERS */
@@ -114,7 +103,7 @@ nav ul a:hover {
 }
 
 .login_confirm {
-  color: #F17D80;
+  color: $base-light-blue-light;
 }
 
 .img-small {
@@ -144,28 +133,28 @@ nav ul a:hover {
 
 .landing_buttons {
   position: relative;
-  top: 200px;
 }
 
 .btn_landing_page.index_button {
-  background-color: rgba(73, 72, 86, 0.8)!important;
+  background-color: $base-purple-blue !important;
   height: 70px!important;
   padding: 0px;
+  opacity: 0.9;
 }
 
 .btn_landing_page:hover.index_button {
-  background-color: rgba(104, 168, 173, 0.9)!important
+  background-color: $base-light-blue-light !important;
 }
 
 .index_button a {
   display: block;
   height: 100%;
   padding: 20px;
-  color: #fff;
+  color: white;
 }
 
 .index_button a:hover {
-  color: #C4D4AF;
+  color: $base-purple-blue;
 }
 
 .btn {
@@ -491,15 +480,6 @@ select {
 }
 
 @media only screen and (max-width: 500px) and (orientation: landscape) {
-  h1.home_title {
-    font-size: 15px;
-    margin-bottom: -60px;
-  }
-
-  .landing_buttons {
-    top: 100px;
-  }
-
   #browse_artist_button,
   #browse_cat_button,
   #create_acct_button,
@@ -512,10 +492,5 @@ select {
 @media screen and (max-width: 410px) {
   h1.home_title {
     font-size: 30px;
-    margin-bottom: -40px;
-  }
-
-  .landing_buttons {
-    top: 180px;
   }
 }
