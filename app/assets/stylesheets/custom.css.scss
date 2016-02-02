@@ -353,24 +353,18 @@ select {
 /***** SIDE NAV ******/
 
 .side-nav {
-  background-color: rgba(0,0,0,0.7);
-}
-
-.side-nav a {
-  color: #7E8D94;
-  font-size: 15.5px;
-}
-
-.side-nav a:hover {
-  background-color: transparent;
-  color: #fff;
-}
-.side-nav li {
-  border-bottom: 1px solid #303F46;
-}
-
-.side-nav li:hover {
-  background-color: rgba(89, 107, 115, 0.62);
+  background-color: $base-purple-blue-dark !important;
+  opacity: 0.8;
+  li {
+    border-bottom: 1px solid #303F46;
+  }
+  a {
+    color: white !important;
+    font-size: 15.5px;
+    &:hover {
+      background-color: darken($base-purple-blue-dark, 15%) !important;
+    }
+  }
 }
 
 /***** USERS SHOW PAGE *****/
