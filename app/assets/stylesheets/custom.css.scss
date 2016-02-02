@@ -184,7 +184,7 @@ nav ul a:hover {
   background-color: rgba(104, 168, 173,0.8)!important;
 }
 
-#browse_artist_button {
+#browse_poster_button {
   width: 215px;
 }
 
@@ -406,7 +406,7 @@ select {
     width: 213px;
   }
 
-  #browse_artist_button,
+  #browse_poster_button,
   #browse_cat_button,
   #create_acct_button {
     margin-bottom: 20px;
@@ -426,7 +426,7 @@ select {
     width: 213px;
   }
 
-  #browse_artist_button,
+  #browse_poster_button,
   #browse_cat_button,
   #create_acct_button {
     margin-bottom: 20px;
@@ -464,7 +464,7 @@ select {
 }
 
 @media only screen and (max-width: 500px) and (orientation: landscape) {
-  #browse_artist_button,
+  #browse_poster_button,
   #browse_cat_button,
   #create_acct_button,
   #log_in_button {
