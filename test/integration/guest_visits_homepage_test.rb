@@ -1,7 +1,7 @@
 require "test_helper"
 
-class UserSeesBrowseButtonOnLandingPageTest < ActionDispatch::IntegrationTest
-  test "user can visit landing page and see browse buttons" do
+class GuestVisitsHomepageTest < ActionDispatch::IntegrationTest
+  test "sees company name and main links" do
     visit "/"
 
     assert page.has_css?("h1", text: "Freelancer")
