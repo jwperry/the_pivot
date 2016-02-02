@@ -6,7 +6,7 @@
 <% @artists.each do |artist| %>
   <div class="artist">
     <h2>
-      <% if artist.file_upload-file_name %>
+      <% if artist.file_upload_file_name %>
         <%= image_tag artist.file_upload.url(:thumb), class: "artist-thumb circle"%>
       <% end %>
       <span><%= link_to artist.full_name, artist_path(artist) %></span>

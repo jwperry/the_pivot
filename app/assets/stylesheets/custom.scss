@@ -18,7 +18,7 @@ img {
   max-width: 100%;
 }
 
-h1.home-title {
+.home-title {
   color: #fff;
   font-family: 'Rokkitt', serif;
   font-size: 100px;
@@ -68,15 +68,15 @@ nav ul a:hover {
   color: #ffa000;
 }
 
-.status-paid{
+.status-paid {
   color: green;
 }
 
-.status-cancelled{
+.status-cancelled {
   color: red;
 }
 
-.status-completed{
+.status-completed {
   color: black;
 }
 
@@ -131,8 +131,8 @@ nav ul a:hover {
 .index-button {
   background-color: $base-purple-blue;
   height: 70px;
-  padding: 0;
   opacity: 0.9;
+  padding: 0;
 }
 
 .index-button:hover {
@@ -199,7 +199,7 @@ nav ul a:hover {
 .card-title {
   opacity: 0.8;
 }
-.title-links{
+.title-links {
 font-family: 'Amatic SC', cursive;
 font-size: 40px
 }
@@ -242,7 +242,7 @@ font-size: 40px
   border-bottom: 1px dashed #607D8B;
 }
 
-span.order-heading {
+.order-heading {
   font-weight: 700;
   text-decoration: underline;
   margin-right: 10px;
@@ -267,7 +267,7 @@ span.order-heading {
 }
 
 /* FORM STYLING */
-form.profile-form {
+.profile-form {
   width: 80%;
   margin: 0 auto;
   box-shadow: 1px 1px 53px #C5C5C5;
@@ -380,7 +380,7 @@ select {
 }
 
 @media screen and (max-width: 730px) {
-  h1.home-title {
+  .home-title {
     font-size: 64px;
   }
 
@@ -400,7 +400,7 @@ select {
   h2 {
     font-size: 40px;
   }
-  h1.home-title {
+  .home-title {
     font-size: 48px;
   }
 
@@ -453,7 +453,7 @@ select {
 }
 
 @media screen and (max-width: 410px) {
-  h1.home-title {
+  .home-title {
     font-size: 30px;
   }
 }

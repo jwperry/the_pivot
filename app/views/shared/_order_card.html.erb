@@ -14,9 +14,9 @@
             <% order.items.each do |item| %>
               <div class="row">
                 <div class="order-image col s12 m5">
-                  <% if item.file_upload-file_name.nil? %>
+                  <% if item.file_upload_file_name.nil? %>
                     <%= image_tag item.image_path, class: "img-small" %>
-                  <% elsif item.file_upload-file_name %>
+                  <% elsif item.file_upload_file_name %>
                     <%= image_tag item.file_upload.url(:medium) %>
                   <% end %>
                 </div>

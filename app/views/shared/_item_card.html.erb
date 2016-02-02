@@ -1,9 +1,9 @@
 <div>
   <div class="card" id="item_<%= item.id %>">
     <a href="/items/<%= item.id %>" class="card-image">
-      <% if item.file_upload-file_name.nil? %>
+      <% if item.file_upload_file_name.nil? %>
         <%= image_tag item.image_path %>
-      <% elsif item.file_upload-file_name %>
+      <% elsif item.file_upload_file_name %>
         <%= image_tag item.file_upload.url(:large) %>
       <% end %>
     </a>

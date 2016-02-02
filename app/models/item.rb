@@ -40,7 +40,7 @@ class Item < ActiveRecord::Base
   def check_image_path
     self.image_path = default_image if image_path_is_empty_or_nil
 
-    if default_image? && file_upload-file_name
+    if default_image? && file_upload_file_name
       self.image_path = ""
       self.status = "active" unless status == "inactive"
     elsif default_image?
