@@ -24,12 +24,13 @@ img {
 }
 
 h1.home_title {
-  font-family: 'Rock Salt', cursive;
+  font-family: 'Rokkitt', serif;
   position: relative;
   top: -85px;
-  letter-spacing: 1.2rem;
+  letter-spacing: 1.0rem;
   color: #fff;
-  text-shadow: 3px 5px 10px #000000;
+  text-shadow: 3px 5px 15px #000000;
+  font-size: 100px;
 }
 
 h2 {
@@ -55,7 +56,7 @@ a:hover {
 nav .brand-logo {
   color: #fff;
   margin-left: 20px;
-  font-family: 'Rock Salt', curisve;
+  font-family: 'Rokkitt', serif;
   font-size: 20px;
 }
 
@@ -424,7 +425,7 @@ select {
 
 @media screen and (max-width: 730px) {
   h1.home_title {
-    font-size: 36px;
+    font-size: 64px;
   }
 
   #create_acct_button,
@@ -433,7 +434,8 @@ select {
   }
 
   #browse_artist_button,
-  #browse_cat_button {
+  #browse_cat_button,
+  #create_acct_button {
     margin-bottom: 20px;
   }
 }
@@ -443,7 +445,7 @@ select {
     font-size: 40px;
   }
   h1.home_title {
-    font-size: 20px;
+    font-size: 48px;
   }
 
   #create_acct_button,
@@ -452,7 +454,8 @@ select {
   }
 
   #browse_artist_button,
-  #browse_cat_button {
+  #browse_cat_button,
+  #create_acct_button {
     margin-bottom: 20px;
   }
 
@@ -487,17 +490,9 @@ select {
   }
 }
 
-@media screen and (max-width: 475px) {
-  h1.home_title {
-    position: relative;
-    left: -12px;
-  }
-}
-
 @media only screen and (max-width: 500px) and (orientation: landscape) {
   h1.home_title {
     font-size: 15px;
-    left: 10px;
     margin-bottom: -60px;
   }
 
@@ -516,8 +511,7 @@ select {
 
 @media screen and (max-width: 410px) {
   h1.home_title {
-    font-size: 15px;
-    left: -18px;
+    font-size: 30px;
     margin-bottom: -40px;
   }
 
