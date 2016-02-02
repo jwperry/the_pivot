@@ -1,21 +1,21 @@
-<div class="landing_buttons center-align">
-  <h1 class = "home_title">Freelancer</h1>
-  <div class="btn btn_landing_page index_button" id="browse_poster_button">
+<div class="landing-buttons center-align">
+  <h1 class = "home-title">Freelancer</h1>
+  <div class="btn btn-landing-page index-button" id="browse-poster-button">
     <%= link_to "Browse by Poster", artists_path, class: "waves-effect waves-light" %>
   </div>
 
-  <div class="btn btn_landing_page index_button" id="browse_cat_button">
+  <div class="btn btn-landing-page index-button" id="browse-cat-button">
     <%= link_to "Browse by Category", categories_path, class: "waves-effect waves-light" %>
   </div>
   <br>
 
   <% unless current_user %>
-    <div class="btn btn_landing_page index_button" id="create_acct_button">
+    <div class="btn btn-landing-page index-button" id="create-acct-button">
       <%= link_to "Create Account", sign_up_path, class: "waves-effect waves-light" %>
     </div>
     <br>
 
-    <div class="btn btn_landing_page index_button" id="log_in_button">
+    <div class="btn btn-landing-page index-button" id="log-in-button">
       <%= link_to "Log In", login_path, class: "waves-effect waves-light" %>
     </div>
   <% end %>

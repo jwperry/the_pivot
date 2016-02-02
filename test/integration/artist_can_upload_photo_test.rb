@@ -21,11 +21,11 @@ class ArtistCanUploadPhotoTest < ActionDispatch::IntegrationTest
     item = Item.last
     assert_equal artist, item.user
     assert_equal item_path(item), current_path
-    assert page.has_css?("img[src*='#{item.file_upload_file_name}']")
+    assert page.has_css?("img[src*='#{item.file_upload-file_name}']")
     assert page.has_content? item.user.full_name
 
     visit items_path
-    assert page.has_css?("img[src*='#{item.file_upload_file_name}']")
+    assert page.has_css?("img[src*='#{item.file_upload-file_name}']")
   end
 
   def fixture_image_path

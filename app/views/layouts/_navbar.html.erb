@@ -9,15 +9,15 @@
 
         <% if current_admin? %>
           <li class="right-align">
-            <%= link_to "My Dashboard (admin)", admin_dashboard_path(current_user.slug) , class: "login_confirm"%>
+            <%= link_to "My Dashboard (admin)", admin_dashboard_path(current_user.slug) , class: "login-confirm"%>
           </li>
         <% elsif current_artist? %>
           <li class="right-align">
-            <%= link_to "My Dashboard (poster)", dashboard_path(current_user.slug) , class: "login_confirm"%>
+            <%= link_to "My Dashboard (poster)", dashboard_path(current_user.slug) , class: "login-confirm"%>
           </li>
         <% elsif current_user %>
           <li class="right-align">
-            <%= link_to "My Dashboard (contractor)", dashboard_path(current_user.slug) , class: "login_confirm"%>
+            <%= link_to "My Dashboard (contractor)", dashboard_path(current_user.slug) , class: "login-confirm"%>
           </li>
         <% end %>
 
@@ -51,11 +51,11 @@
 
         <% if current_admin? %>
           <li>
-            <%= link_to "Dashboard (#{current_user.first_name}: admin)", admin_dashboard_path(current_user.slug) , class: "login_confirm"%>
+            <%= link_to "Dashboard (#{current_user.first_name}: admin)", admin_dashboard_path(current_user.slug) , class: "login-confirm"%>
           </li>
         <% elsif current_user %>
           <li>
-            <%= link_to "Dashboard (#{current_user.first_name})", dashboard_path(current_user.slug) , class: "login_confirm"%>
+            <%= link_to "Dashboard (#{current_user.first_name})", dashboard_path(current_user.slug) , class: "login-confirm"%>
           </li>
         <% end %>
 

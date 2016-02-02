@@ -1,4 +1,4 @@
-<%= form_for @user, :html => {class: "profile_form"} do |f| %>
+<%= form_for @user, :html => {class: "profile-form"} do |f| %>
   <%= render partial: 'shared/errors', locals: {target: @user} %>
 
   <%= f.label :first_name %>
@@ -13,7 +13,7 @@
     <% if current_artist? %>
     <%= f.label "Upload Profile Picture" %>
     <br><br>
-    <%= f.file_field :file_upload, class: "upload_file grey-text" %>
+    <%= f.file_field :file_upload, class: "upload-file grey-text" %>
     <% end %>
   </div>
 
