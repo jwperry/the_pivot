@@ -202,7 +202,8 @@ nav ul a:hover {
   width: 215px;
 }
 
-#create_acct_button {
+#create_acct_button,
+#log_in_button {
   margin-top: 5px;
   width: 435px;
 }
@@ -426,7 +427,8 @@ select {
     font-size: 36px;
   }
 
-  #create_acct_button {
+  #create_acct_button,
+  #log_in_button {
     width: 213px;
   }
 
@@ -444,7 +446,8 @@ select {
     font-size: 20px;
   }
 
-  #create_acct_button {
+  #create_acct_button,
+  #log_in_button {
     width: 213px;
   }
 
@@ -504,7 +507,8 @@ select {
 
   #browse_artist_button,
   #browse_cat_button,
-  #create_acct_button {
+  #create_acct_button,
+  #log_in_button {
     height: 50px !important;
     line-height: 11px;
   }

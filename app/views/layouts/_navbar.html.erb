@@ -1,6 +1,6 @@
 <nav>
   <div class="nav-wrapper" >
-    <%= link_to "RoughSketch", root_path, class: "brand-logo" %>
+    <%= link_to "Freelancer", root_path, class: "brand-logo" %>
     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
 
     <!-- DESKTOP NAV -->
@@ -8,24 +8,18 @@
 
       <% if current_admin? %>
         <li class="right-align">
-          <%= link_to "Logged in as #{current_user.first_name} (admin)", admin_dashboard_path(current_user.slug) , class: "login_confirm"%>
+          <%= link_to "My Dashboard (admin)", admin_dashboard_path(current_user.slug) , class: "login_confirm"%>
         </li>
       <% elsif current_artist? %>
         <li class="right-align">
-          <%= link_to "Logged in as #{current_user.first_name} (artist)", dashboard_path(current_user.slug) , class: "login_confirm"%>
+          <%= link_to "My Dashboard (poster)", dashboard_path(current_user.slug) , class: "login_confirm"%>
         </li>
       <% elsif current_user %>
         <li class="right-align">
-          <%= link_to "Logged in as #{current_user.first_name}", dashboard_path(current_user.slug) , class: "login_confirm"%>
+          <%= link_to "My Dashboard (contractor)", dashboard_path(current_user.slug) , class: "login_confirm"%>
         </li>
       <% end %>
 
-      <li>
-        <a href="/cart" id="shopping_cart">
-          <i class="material-icons left">shopping_cart</i>
-          <span><%= @cart.count %></span>
-        </a>
-      </li>
 
       <% if session[:user_id] %>
         <li><%= link_to "Logout", logout_path %></li>
@@ -34,31 +28,25 @@
       <% end %>
 
       <% if current_admin? %>
-        <li><%= link_to "View All Items", admin_items_path %></li>
-        <li><%= link_to "Browse by Artist", artists_path %></li>
+        <li><%= link_to "Browse by Poster", artists_path %></li>
         <li><%= link_to "Browse by Category", categories_path %></li>
       <% else %>
-        <li><%= link_to "View All Items", items_path %></li>
-        <li><%= link_to "Browse by Artist", artists_path %></li>
+        <li><%= link_to "Browse by Poster", artists_path %></li>
         <li><%= link_to "Browse by Category", categories_path %></li>
       <% end %>
     </ul>
 
     <!-- MOBILE NAV -->
     <ul class="side-nav" id="mobile-demo">
-      <li><strong><%= link_to "RoughSketch", root_path %></strong></li>
+      <li><strong><%= link_to "Freelancer", root_path %></strong></li>
 
       <% if current_admin? %>
-        <li><%= link_to "View All Items", admin_items_path %></li>
-        <li><%= link_to "Browse by Artist", artists_path %></li>
+        <li><%= link_to "Browse by Poster", artists_path %></li>
         <li><%= link_to "Browse by Category", categories_path %></li>
       <% else %>
-        <li><%= link_to "View All Items", items_path %></li>
-        <li><%= link_to "Browse by Artist", artists_path %></li>
+        <li><%= link_to "Browse by Poster", artists_path %></li>
         <li><%= link_to "Browse by Category", categories_path %></li>
       <% end %>
-
-      <li><%= link_to "View Cart", cart_path %></li>
 
       <% if current_admin? %>
         <li>
