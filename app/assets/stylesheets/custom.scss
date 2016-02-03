@@ -7,7 +7,7 @@ button.stripe-button-el span {
 
 /* END OF STRIPE -- DO NOT DELETE!!!! */
 
-/* HOMEPAGE */
+// ------HOMEPAGE------
 
 .category-dropdown {
   background-color: $base-purple-blue;
@@ -19,17 +19,87 @@ button.stripe-button-el span {
 
 .choose-category-title {
   font-size: 26px;
-  color: white;
+  color: $white;
   padding-top: 10px;
   text-transform: uppercase;
   font-weight: 100;
 }
 
 .category-select {
-  color: black;
+  color: $black;
 }
 
-/* MAIN STYLES */
+// -----CATEGORY SHOW-----
+.category-list {
+  background-color: $white;
+}
+
+.category-list-item {
+  box-sizing: border-box;
+  color: $black;
+  font-size: 26px;
+  padding: 20px 0;
+
+  &:hover {
+    background-color: $base-light-blue-light;
+  }
+
+  &:last-child {
+    padding-bottom: 20px;
+  }
+
+  a {
+    color: $base-purple-blue-dark;
+  }
+}
+
+.mobile-category-dropdown {
+  display: none;
+}
+
+.job-partial {
+  border-bottom: 0.5px solid $black;
+  margin: 0 70px 40px 0;
+}
+
+.duration-estimate-medium {
+  background-color: $orange;
+  width: 100px;
+}
+
+.job-info {
+  border-right: 0.5px solid $black;
+  color: $base-green-dark;
+  font-size: 17px;
+
+  &:last-child {
+    border: 0;
+  }
+
+}
+
+.no-bottom-margin {
+  margin-bottom: 0;
+}
+
+.job-title-link {
+  color: $base-purple-blue-dark;
+
+  &:hover {
+    color: $base-purple-blue;
+  }
+
+}
+
+.job-lister-name {
+  margin-top: 0;
+}
+
+.job-lister-image {
+  margin: 20px 0 0;
+}
+
+// -----MAIN STYLES-----
 
 p {
   font-size: 18px;
@@ -55,11 +125,7 @@ h2 {
 }
 
 a {
-  color: #6C8672;
-}
-
-a:hover {
-  color: #C4D4AF;
+  color: $white;
 }
 
 /* NAVBAR */
@@ -94,7 +160,7 @@ nav ul a:hover {
 }
 
 .status-completed {
-  color: black;
+  color: $black;
 }
 
 .order-status {
@@ -120,7 +186,7 @@ nav ul a:hover {
 }
 
 .highlight tbody tr:hover td, .table-hover tbody tr:hover th {
-  background-color: white;
+  background-color: $white;
 }
 
 .container {
@@ -142,33 +208,42 @@ nav ul a:hover {
   opacity: 0.9;
   padding: 0;
   margin: 0 10px;
+
   &:hover {
     background-color: $base-light-blue-light;
   }
+
   a {
     display: block;
     height: 100%;
     padding: 20px;
-    color: white;
+    color: $white;
     font-size: 17px;
+
     &:hover {
       color: $base-purple-blue;
     }
+
   }
+
 }
 
 .btn-edit {
   background-color: rgba(115, 127, 149, 1);
+
   &:hover {
     background-color: rgba(115, 127, 149, 0.8);
   }
+
 }
 
 .btn-delete {
   background-color: rgba(104, 168, 173,1);
+
   &:hover {
     background-color: rgba(104, 168, 173,0.8);
   }
+
 }
 
 .create-acct-button,
@@ -196,9 +271,10 @@ nav ul a:hover {
 .card-title {
   opacity: 0.8;
 }
+
 .title-links {
-font-family: 'Amatic SC', cursive;
-font-size: 40px
+  font-family: 'Amatic SC', cursive;
+  font-size: 40px;
 }
 
 .card .card-action a:not(.btn):not(.btn-large):not(.btn-floating) {
@@ -248,13 +324,17 @@ font-size: 40px
 .order-data {
   text-align: left;
   font-size: 17px;
+
   a {
     font-size: 20px;
     color: rgb(64, 136, 171);
+
     &:hover {
         color: #0EAF15;
     }
+
   }
+
 }
 
 .card-panel {
@@ -316,39 +396,47 @@ select {
   margin: 0 auto;
 }
 
-
 /***** SIDE NAV ******/
 
 .side-nav {
   background-color: $base-purple-blue-dark;
   opacity: 0.8;
+
   li {
     border-bottom: 1px solid #303F46;
   }
+
   a {
-    color: white;
+    color: $white;
     font-size: 15.5px;
+
     &:hover {
-      color: white;
       background-color: darken($base-purple-blue-dark, 15%);
+      color: $white;
     }
+
   }
+
 }
 
 /***** USERS SHOW PAGE *****/
 
 .user-action-links .action-box {
   margin-bottom: 10px;
+
   a {
     color: #C4D4AF;
     display: block;
     padding: 20px;
     background-color: #6C8672;
+
     &:hover {
       color: #6C8672;
       background-color: #C4D4AF;
     }
+
   }
+
 }
 
 .larger-text {
@@ -367,12 +455,15 @@ select {
 
 /* MEDIA QUERIES */
 @media screen and (max-width: 990px) {
+
   .brand-logo {
     margin: 0 auto;
   }
+
 }
 
 @media screen and (max-width: 730px) {
+
   .home-title {
     font-size: 64px;
   }
@@ -384,9 +475,28 @@ select {
   .category-select {
     width: 250px;
   }
+
+}
+
+@media screen and (max-width: 600px) {
+
+  .category-list {
+    display: none;
+  }
+
+  .mobile-category-dropdown {
+    background-color: $base-light-blue-light;
+    display: block;
+    .choose-category-title {
+      color: $base-purple-blue-dark;
+    }
+
+  }
+
 }
 
 @media screen and (max-width: 550px) {
+
   h2 {
     font-size: 40px;
   }
@@ -424,18 +534,23 @@ select {
   table tr {
     font-size: 14px;
   }
+
 }
 
 @media only screen and (max-width: 500px) and (orientation: landscape) {
+
   .create-acct-button,
   .log-in-button {
     height: 50px;
     line-height: 11px;
   }
+
 }
 
 @media screen and (max-width: 410px) {
+
   .home-title {
     font-size: 30px;
   }
+
 }
