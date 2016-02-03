@@ -21,11 +21,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    if current_user
-      @user = User.find_by_slug(params[:slug])
-    else
-      render file: "public/404"
-    end
+    @user = User.find_by_slug(params[:slug])
   end
 
   def edit

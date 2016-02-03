@@ -1,2 +1,84 @@
-<h2><%= current_user.first_name %>'s Profile</h2>
-<%= render partial: "shared/user_info" %>
+<div class="container">
+  <div class="row">
+    <div class="col s12 m4 l4">
+      <div class="row job-lister-image">
+        <%= image_tag "http://placehold.it/300x300", class: "circle" %>
+      </div>
+    </div>
+    <div class="col s12 m8 l8">
+      <div class="row">
+        <h2>Toni Rib</h2>
+      </div>
+      <div class="row">
+        <a href="mailto:toni@example.com">toni@example.com</a>
+      </div>
+      <div class="row">
+        <div class="col s6 m6 l6">
+          <h4>Denver, CO</h4>
+        </div>
+        <div class="col s6 m6 l6">
+          <h4>4.2 / 5.0</h4>
+        </div>
+      </div>
+      <div class="row">
+        <p class="bio">
+          Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum"
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <h3>Comments</h3>
+  </div>
+  <div class="row tab-border">
+    <div class="col s12">
+      <ul class="tabs">
+        <li class="tab col s3"><a class="active profile-tab" href="#previous-jobs">Previous Jobs</a></li>
+        <li class="tab col s3"><a href="#previous-listings">Previous Listings</a></li>
+      </ul>
+    </div>
+    <!-- Start of My Bids Tab -->
+    <div id="previous-jobs" class="col s12 tab-content">
+    <!-- Start of card -->
+      <div class="row">
+        <div class="col s12 m12 l12">
+          <div class="card">
+            <div class="card-content">
+              <div class="row">
+                <div class="col s12 m12 l12">
+                  <span class="card-title center-float">Building a Dining Room Table</span>
+                  <span class="duration-tag duration-estimate-medium right-float">Medium</span>
+                </div>
+              </div>
+              <p class="comment-text">
+                I am a very simple card. I am good at containing small bits of information.
+                I am convenient because I require little markup to use effectively.I am a very simple card. I am good at containing small bits of information.
+                I am convenient because I require little markup to use effectively.I am a very simple card. I am good at containing small bits of information.
+                I am convenient because I require little markup to use effectively.
+              </p>
+            </div>
+            <div class="card-action">
+              <div class="row">
+                <div class="col s3 m3 l3">
+                  <p>$300</p>
+                </div>
+                <div class="col s3 m3 l3">
+                  <p>3 January, 2016</p>
+                </div>
+                <div class="col s3 m3 l3">
+                  <p>5 / 5</p>
+                </div>
+                <div class="col s3 m3 l3">
+                  <%= link_to "Dan Winter", "#" %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <!-- End of card -->
+    </div>
+    <!--  End of My Listings Tab -->
+    <div id="previous-listings" class="col s12">
+    </div>
+  </div>
+</div>

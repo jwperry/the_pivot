@@ -284,6 +284,7 @@ nav ul a:hover {
 
 .bio {
   margin-right: 15px;
+  text-align: justify;
 }
 
 .status-pending {
@@ -316,6 +317,16 @@ nav ul a:hover {
 
 .tab-content {
   backgroud-color: $base-light-blue-light;
+}
+
+// -----USER PROFILE-----
+
+.right-float {
+  float: right; 
+}
+
+.comment-text {
+  text-align: justify;
 }
 
 /* ORDERS */
