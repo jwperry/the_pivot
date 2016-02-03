@@ -261,6 +261,63 @@ nav ul a:hover {
   color: $base-light-blue-light;
 }
 
+// -----DASHBOARD-----
+
+.user-action-links {
+  margin: 10px auto;
+  max-width: 200px;
+
+  a {
+    color: $white;
+    display: block;
+    padding: 20px;
+    background-color: $base-purple-blue-dark;
+
+    &:hover {
+      color: $base-purple-blue-dark;
+      background-color: $base-light-blue-light;
+    }
+
+  }
+
+}
+
+.bio {
+  margin-right: 15px;
+}
+
+.status-pending {
+  color: $orange;
+}
+
+.status-accepted {
+  color: $base-green-dark;
+}
+
+.status-rejected {
+  color: $red;
+}
+
+.container {
+  margin-bottom: 10%;
+}
+
+.filter {
+  margin-top: 40px;
+}
+
+.tabs .tab a {
+  color: $base-purple-blue-dark;
+}
+
+.tab-border {
+  border: 0.5px solid black;
+}
+
+.tab-content {
+  backgroud-color: $base-light-blue-light;
+}
+
 /* ORDERS */
 
 .status-ordered {
@@ -488,23 +545,7 @@ select {
 
 /***** USERS SHOW PAGE *****/
 
-.user-action-links .action-box {
-  margin-bottom: 10px;
 
-  a {
-    color: #C4D4AF;
-    display: block;
-    padding: 20px;
-    background-color: #6C8672;
-
-    &:hover {
-      color: #6C8672;
-      background-color: #C4D4AF;
-    }
-
-  }
-
-}
 
 .larger-text {
   font-size: 18px;

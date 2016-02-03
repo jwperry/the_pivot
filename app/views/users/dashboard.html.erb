@@ -1,0 +1,160 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col s12">
+      <h2>My Dashboard</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col s12 m12 l12">
+      <div class="card">
+        <div class="row valign-wrapper">
+          <div class="col s12 m6 l6">
+            <div class="row job-lister-image">
+              <%= image_tag "http://placehold.it/200x200", class: "circle" %>
+            </div>
+            <div class="row">
+              <h4>Dan Winter</h4>
+            </div>
+            <div class="row">
+              <p>
+                dan.j.winter@example.com
+              </p>
+            </div>
+            <div class="row">
+              <p>
+                1510 Blake St. Denver, CO 80225
+              </p>
+            </div>
+          </div>
+          <div class="col s12 m6 l6">
+            <div class="row valign">
+              <div class="col s12">
+                <p class="bio">
+                  Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum"
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s4 m4 l4">
+        <div class="user-action-links">
+          <%= link_to "Create Job", "#" %>
+        </div>
+      </div>
+      <div class="col s4 m4 l4">
+        <div class="user-action-links">
+          <%= link_to "Edit Profile", "#" %>
+        </div>
+      </div>
+      <div class="col s4 m4 l4">
+        <div class="user-action-links">
+          <%= link_to "Public Profile", "#" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<div class="row tab-border">
+    <div class="col s12">
+      <ul class="tabs">
+        <li class="tab col s3"><a class="active dashboard-tab" href="#my-bids">My Bids</a></li>
+        <li class="tab col s3"><a href="#my-listings">My Listings</a></li>
+      </ul>
+    </div>
+    <!-- Start of My Bids Tab -->
+    <div id="my-bids" class="col s12 tab-content">
+      <div class="row">
+        <div class="filter">
+          <label>Filter By Bid Status:</label>
+          <%= select_tag :bid_status, options_for_select(%w(all accepted pending rejected)) %>
+        </div>
+      </div>
+      <table class="bordered">
+        <thead>
+          <tr>
+            <th>Job ID</th>
+            <th>Name</th>
+            <th>Bid Status</th>
+            <th>Job Listing Expiration Date</th>
+            <th>Bid Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="bid">
+            <td><%= link_to "12433", "#" %></td>
+            <td><%= link_to "Build a Dining Room Table", "#" %></td>
+            <td class="bid-status status-pending">pending</td>
+            <td>February 13, 2016 5:00 PM</td>
+            <td>$500</td>
+          </tr>
+          <tr class="bid">
+            <td><%= link_to "12433", "#" %></td>
+            <td><%= link_to "Build a Dining Room Table", "#" %></td>
+            <td class="bid-status status-accepted">accepted</td>
+            <td>February 13, 2016 7:00 PM</td>
+            <td>$2500</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+    <!--  End of My Listings Tab -->
+
+    <div id="my-listings" class="col s12">
+      <div class="row">
+        <div class="filter">
+          <label>Filter By Job Status:</label>
+          <%= select_tag :job_status, options_for_select(["all",
+                                                          "bidding open",
+                                                          "bidding closed",
+                                                          "in progress",
+                                                          "completed",
+                                                          "cancelled"]) %>
+        </div>
+      </div>
+      <table class="bordered">
+        <thead>
+          <tr>
+            <th>Job ID</th>
+            <th>Name</th>
+            <th>Job Status</th>
+            <th>Listing Expiration Date</th>
+            <th>Bids</th>
+            <th>Bid Range</th>
+            <th>Actions</th>
+            <th>Contractor Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="job">
+            <td><%= link_to "12433", "#" %></td>
+            <td><%= link_to "Build a Dining Room Table", "#" %></td>
+            <td class="job-status status-pending">bidding open</td>
+            <td>February 13, 2016 5:00 PM</td>
+            <td>13</td>
+            <td>$200-$450</td>
+            <td>Cancel</td>
+            <td></td>
+          </tr>
+          <tr class="job">
+            <td><%= link_to "12433", "#" %></td>
+            <td><%= link_to "Build a Dining Room Table", "#" %></td>
+            <td class="job-status status-accepted">completed</td>
+            <td>February 13, 2016 7:00 PM</td>
+            <td>13</td>
+            <td>$200-$450</td>
+            <td>Leave Feedback</td>
+            <td>Toni Rib</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
