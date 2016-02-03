@@ -294,6 +294,26 @@ nav ul a:hover {
   color: $red;
 }
 
+.container {
+  margin-bottom: 10%;
+}
+
+.filter {
+  margin-top: 40px;
+}
+
+.tabs .tab a {
+  color: $base-purple-blue-dark;
+}
+
+.tab-border {
+  border: 0.5px solid black;
+}
+
+.tab-content {
+  backgroud-color: $base-light-blue-light;
+}
+
 /* ORDERS */
 
 .status-ordered {

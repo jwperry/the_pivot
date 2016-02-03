@@ -60,15 +60,15 @@
 
 
 
-<div class="row">
+<div class="row tab-border">
     <div class="col s12">
       <ul class="tabs">
-        <li class="tab col s3"><a class="active" href="#my-bids">My Bids</a></li>
+        <li class="tab col s3"><a class="active dashboard-tab" href="#my-bids">My Bids</a></li>
         <li class="tab col s3"><a href="#my-listings">My Listings</a></li>
       </ul>
     </div>
     <!-- Start of My Bids Tab -->
-    <div id="my-bids" class="col s12">
+    <div id="my-bids" class="col s12 tab-content">
       <div class="row">
         <div class="filter">
           <label>Filter By Bid Status:</label>
@@ -106,7 +106,55 @@
     </div>
     <!--  End of My Listings Tab -->
 
-    <div id="my-listings" class="col s12">Test 2</div>
+    <div id="my-listings" class="col s12">
+      <div class="row">
+        <div class="filter">
+          <label>Filter By Job Status:</label>
+          <%= select_tag :job_status, options_for_select(["all",
+                                                          "bidding open",
+                                                          "bidding closed",
+                                                          "in progress",
+                                                          "completed",
+                                                          "cancelled"]) %>
+        </div>
+      </div>
+      <table class="bordered">
+        <thead>
+          <tr>
+            <th>Job ID</th>
+            <th>Name</th>
+            <th>Job Status</th>
+            <th>Listing Expiration Date</th>
+            <th>Bids</th>
+            <th>Bid Range</th>
+            <th>Actions</th>
+            <th>Contractor Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="job">
+            <td><%= link_to "12433", "#" %></td>
+            <td><%= link_to "Build a Dining Room Table", "#" %></td>
+            <td class="job-status status-pending">bidding open</td>
+            <td>February 13, 2016 5:00 PM</td>
+            <td>13</td>
+            <td>$200-$450</td>
+            <td>Cancel</td>
+            <td></td>
+          </tr>
+          <tr class="job">
+            <td><%= link_to "12433", "#" %></td>
+            <td><%= link_to "Build a Dining Room Table", "#" %></td>
+            <td class="job-status status-accepted">completed</td>
+            <td>February 13, 2016 7:00 PM</td>
+            <td>13</td>
+            <td>$200-$450</td>
+            <td>Leave Feedback</td>
+            <td>Toni Rib</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
   </div>
 </div>
