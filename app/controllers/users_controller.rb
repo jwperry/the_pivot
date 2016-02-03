@@ -45,6 +45,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def dashboard
+
+  end
+
   private
 
   def set_user

@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :bids, only: [:create]
 
   namespace :admin do
-    get "/dashboard", to: "users#show"
+    get "/dashboard", to: "users#dashboard"
     resources :items
     resources :orders, only: [:index, :update]
   end
@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"
   get "/logout", to: "sessions#destroy"
-  get "/dashboard", to: "users#show"
+  get "/dashboard", to: "users#dashboard"
   get "/sign_up", to: "users#new"
 
   root "home#index"
