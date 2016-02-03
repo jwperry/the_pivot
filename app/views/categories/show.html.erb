@@ -1,7 +1,61 @@
-<h2> <%= @category.name %> </h2>
-
-<div>
-  <% @category.items.each do |item| %>
-    <%= render partial: "shared/item_card", locals: { item: item }%>
-  <% end %>
+<div class="row">
+  <header class="row">
+    <div class="col s12 m12 l12">
+      <h3><%= @category.name %></h3>
+    </div>
+  </header>
+  <aside class="col s12 m3 l3">
+    <div class="category-dropdown mobile-category-dropdown">
+      <h3 class="choose-category-title">Choose a Category</h3>
+      <%= select_tag :categories, options_for_select(%w(culinary carpentry electrical sewing home_repair writing data_entry web_development graphic_design photography)), class: "category-select" %>
+    </div>
+    <ul class="category-list">
+      <% @category_names.each do |name| %>
+        <a href="/categories/<%= name.downcase %>">
+          <li class="category-list-item"><%= name %></li>
+        </a>
+      <% end %>
+    </ul>
+  </aside>
+  <section class="col s12 m9 l9 left-align">
+    <!-- Start of Partial -->
+    <article class="row job-partial">
+      <div class="row valign-wrapper no-bottom-margin">
+        <h5 class="col s10 m10 l10">
+          <a href="#" class="job-title-link">Build A Dining Room Table</a>
+        </h5>
+        <div class="col s2 m2 l2 center-align duration-estimate-medium valign">
+          Medium
+        </div>
+      </div>
+      <div class="row">
+        <p class="col s12 m10 l10">
+          Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum"
+        </p>
+        <div class="col s12 m2 l2 center-align">
+          <div class="row job-lister-image">
+            <%= image_tag "http://placehold.it/100x100", class: "circle" %>
+          </div>
+          <p class="row job-lister-name">
+            Dan Winter
+          </p>
+        </div>
+      </div>
+      <div class="row center-align">
+        <div class="col s12 m2 l2 job-info">
+          5 bids
+        </div>
+        <div class="col s12 m2 l2 job-info">
+          Denver, CO
+        </div>
+        <div class="col s12 m4 l4 job-info">
+          Bid Range: $500 - $700
+        </div>
+        <div class="col s12 m4 l4 job-info">
+          Bidding Ends: March 8, 2016 5:00pm
+        </div>
+      </div>
+    </article>
+    <!-- End of Partial -->
+  </section>
 </div>
