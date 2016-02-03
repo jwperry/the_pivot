@@ -1,14 +1,13 @@
 Rails.application.routes.draw do
-  resources :items, only: [:index, :show, :destroy]
+  resources :items, only: [:index, :destroy]
   resources :categories, only: [:show], param: :slug
-  resources :cart_items, only: [:create, :destroy, :update]
 
   resources :users,
             only: [:new, :create, :show, :edit, :update],
             param: :slug do
-    resources :orders, only: [:index, :create, :show]
-    resources :items, only: [:new, :create, :edit, :update]
+    resources :jobs, only: [:show]
   end
+  resources :bids, only: [:create]
 
   namespace :admin do
     get "/dashboard", to: "users#show"
