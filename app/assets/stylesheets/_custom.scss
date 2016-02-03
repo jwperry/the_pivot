@@ -257,6 +257,43 @@ nav ul a:hover {
   color: $base-light-blue-light;
 }
 
+// -----DASHBOARD-----
+
+.user-action-links {
+  margin: 10px auto;
+  max-width: 200px;
+
+  a {
+    color: $white;
+    display: block;
+    padding: 20px;
+    background-color: $base-purple-blue-dark;
+
+    &:hover {
+      color: $base-purple-blue-dark;
+      background-color: $base-light-blue-light;
+    }
+
+  }
+
+}
+
+.bio {
+  margin-right: 15px;
+}
+
+.status-pending {
+  color: $orange;
+}
+
+.status-accepted {
+  color: $base-green-dark;
+}
+
+.status-rejected {
+  color: $red;
+}
+
 /* ORDERS */
 
 .status-ordered {
@@ -484,23 +521,7 @@ select {
 
 /***** USERS SHOW PAGE *****/
 
-.user-action-links .action-box {
-  margin-bottom: 10px;
 
-  a {
-    color: #C4D4AF;
-    display: block;
-    padding: 20px;
-    background-color: #6C8672;
-
-    &:hover {
-      color: #6C8672;
-      background-color: #C4D4AF;
-    }
-
-  }
-
-}
 
 .larger-text {
   font-size: 18px;

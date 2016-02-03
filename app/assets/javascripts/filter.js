@@ -1,7 +1,7 @@
 $(document).ready(function () {
   var $artists = $('.artist');
   var $categories = $('.category');
-  var $orders = $('.order');
+  var $bids = $('.bid');
 
   $('#artist_filter_name').on('keypress', function () {
     var currentName = this.value.toLowerCase();
@@ -33,17 +33,17 @@ $(document).ready(function () {
     });
   });
 
-  $('#order-status').on('change', function () {
-    var currentStatus = $('#order-status :selected').text();
+  $('#bid_status').on('change', function () {
+    var currentStatus = $('#bid_status :selected').text();
 
-    $orders.each(function (index, order) {
-      var $order = $(order);
-      var $orderStatus = $order.find('.order-status').text();
+    $bids.each(function (index, bid) {
+      var $bid = $(bid);
+      var $bidStatus = $bid.find('.bid-status').text();
 
-      if ($orderStatus === currentStatus || currentStatus === 'all') {
-        $order.show();
+      if ($bidStatus === currentStatus || currentStatus === 'all') {
+        $bid.show();
       } else {
-        $order.hide();
+        $bid.hide();
       }
     });
   });
