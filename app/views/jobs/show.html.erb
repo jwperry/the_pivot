@@ -43,10 +43,11 @@
   </section>
   <div class="row left-align">
    <div class="col s12 m12 l12">
-     <div class="card">
-       <div class="card-content">
-         <span class="card-title">Place A Bid</span>
-         <div class="row no-bottom-margin">
+     <div id="accordion">
+      <h3>Place A Bid</h3>
+      <div>
+        <!-- INSIDE THE ACCORDION -->
+        <div class="row no-bottom-margin bid-accordion">
            <%= form_for(:bid, url: bids_path) do |f| %>
             <div class="row valign-wrapper">
               <div class="col s12 m4 valign">
@@ -73,8 +74,9 @@
             </div>
            <% end %>
          </div>
-       </div>
-     </div>
+        <!-- INSIDE THE ACCORDION -->
+      </div>
+    </div>
    </div>
  </div>
   <section class="row">
@@ -96,8 +98,8 @@
           <td>2 weeks</td>
           <td>I can totally build this table because I am super awesome!</td>
           <td>
-            <a href=# class="action-link">Edit</a> |
-            <a href=# class="action-link">Delete</a>
+            <a href="#" class="action-link">Edit</a> |
+            <a href="#" class="action-link">Delete</a>
           </td>
         </tr>
         <tr>
@@ -136,3 +138,17 @@
     </div>
   </section>
 </div>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+<script type="text/javascript">
+  $( "#accordion" ).accordion({
+    animate: 200,
+    active: false,
+    collapsible: true,
+    heightStyle: "content",
+    autoHeight: false
+  });
+</script>
