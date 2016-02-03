@@ -80,11 +80,12 @@ button.stripe-button-el span {
 
 .category-list {
   background-color: $white;
+  margin-left: 20px;
 }
 
 .category-list-item {
   box-sizing: border-box;
-  color: $black;
+  color: $base-dark-blue;
   font-size: 26px;
   padding: 20px 0;
 
@@ -110,14 +111,9 @@ button.stripe-button-el span {
   margin: 0 70px 40px 0;
 }
 
-.duration-estimate-medium {
-  background-color: $orange;
-  width: 100px;
-}
-
 .job-info {
   border-right: 0.5px solid $black;
-  color: $base-green-dark;
+  color: $base-purple-blue-dark;
   font-size: 17px;
 
   &:last-child {
@@ -153,10 +149,35 @@ button.stripe-button-el span {
   width: 100px;
 }
 
+// -----DURATION TAGS-----
+
+.duration-tag {
+  width: 110px;
+  margin: 0 auto;
+  border-radius: 5px;
+}
+
+.duration-estimate-short {
+  background-color: $base-green-light;
+}
+
+.duration-estimate-medium {
+  background-color: $orange;
+}
+
+.duration-estimate-long {
+  background-color: $light-red;
+}
+
+.duration-estimate-event {
+  background-color: $base-light-blue;
+}
+
 // -----MAIN STYLES-----
 
 body {
   font-family: 'Hind', sans-serif;
+  font-weight: 300;
 }
 
 p {
@@ -168,9 +189,9 @@ img {
 }
 
 h2 {
-  font-size: 5rem;
-  letter-spacing: 1.1rem;
-  font-family: 'Amatic SC', cursive;
+  font-size: 60px;
+  letter-spacing: 0.7rem;
+  font-family: 'Rokkitt', serif;
 }
 
 a {
