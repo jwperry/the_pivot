@@ -1,7 +1,7 @@
 <div class="row">
   <header class="row">
     <div class="col s12 m12 l12">
-      <h3><%= @category.name %></h3>
+      <h2><%= @category.name %></h2>
     </div>
   </header>
   <aside class="col s12 m3 l3">
@@ -24,8 +24,8 @@
         <h5 class="col s10 m10 l10">
           <a href="#" class="job-title-link">Build A Dining Room Table</a>
         </h5>
-        <div class="col s2 m2 l2 center-align duration-estimate-medium valign">
-          Medium
+        <div class="col s2 m2 l2 center-align valign">
+          <div class="duration-tag duration-estimate-medium">Medium</div>
         </div>
       </div>
       <div class="row">
@@ -37,7 +37,7 @@
             <%= image_tag "http://placehold.it/100x100", class: "circle" %>
           </div>
           <p class="row job-lister-name">
-            Dan Winter
+            <%= link_to "Dan Winter", root_path, class: "job-lister-name-link" %>
           </p>
         </div>
       </div>

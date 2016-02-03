@@ -1,4 +1,5 @@
 @import "colors";
+@import "mixins";
 /* STRIPE -- DO NOT DELETE!!!! */
 
 button.stripe-button-el span {
@@ -11,10 +12,10 @@ button.stripe-button-el span {
 
 .category-dropdown {
   background-color: $base-purple-blue;
-  opacity: 0.8;
-  padding-bottom: 20px;
-  max-width: 475px;
   margin: 0 auto;
+  max-width: 475px;
+  opacity: 0.9;
+  padding-bottom: 20px;
 }
 
 .choose-category-title {
@@ -27,16 +28,65 @@ button.stripe-button-el span {
 
 .category-select {
   color: $black;
+  font-size: 18px;
+  height: 35px;
+}
+
+.home-title {
+  color: $white;
+  font-family: 'Rokkitt', serif;
+  font-size: 100px;
+  letter-spacing: 1rem;
+  position: relative;
+  text-shadow: 3px 5px 15px $black;
+}
+
+.landing-buttons {
+  position: relative;
+  top: 160px;
+}
+
+.index-button {
+  background-color: $base-purple-blue;
+  height: 70px;
+  margin: 0 10px;
+  opacity: 0.9;
+  padding: 0;
+
+  &:hover {
+    background-color: $base-light-blue-light;
+  }
+
+  a {
+    color: $white;
+    display: block;
+    font-size: 17px;
+    height: 100%;
+    padding: 20px;
+
+    &:hover {
+      color: $base-purple-blue;
+    }
+
+  }
+
+}
+
+.active-status-text {
+  color: #6C8672;
+  font-weight: 100;
 }
 
 // -----CATEGORY SHOW-----
+
 .category-list {
   background-color: $white;
+  margin-left: 20px;
 }
 
 .category-list-item {
   box-sizing: border-box;
-  color: $black;
+  color: $base-dark-blue;
   font-size: 26px;
   padding: 20px 0;
 
@@ -51,6 +101,7 @@ button.stripe-button-el span {
   a {
     color: $base-purple-blue-dark;
   }
+
 }
 
 .mobile-category-dropdown {
@@ -62,18 +113,13 @@ button.stripe-button-el span {
   margin: 0 70px 40px 0;
 }
 
-.duration-estimate-medium {
-  background-color: $orange;
-  width: 100px;
-}
-
 .job-info {
   border-right: 0.5px solid $black;
-  color: $base-green-dark;
+  color: $highlight-cyan;
   font-size: 17px;
 
   &:last-child {
-    border: 0;
+    border-right: 0;
   }
 
 }
@@ -83,23 +129,94 @@ button.stripe-button-el span {
 }
 
 .job-title-link {
-  color: $base-purple-blue-dark;
-
-  &:hover {
-    color: $base-purple-blue;
-  }
-
+  @include main-link;
 }
 
 .job-lister-name {
   margin-top: 0;
 }
 
+.job-lister-name-link {
+  @include main-link;
+}
+
 .job-lister-image {
   margin: 20px 0 0;
 }
 
+// -----JOB SHOW-----
+
+.time-interval-select {
+  margin-bottom: 13px;
+  width: 100px;
+}
+
+.back-to-category-link {
+  @include main-link;
+  font-size: 20px;
+}
+
+.job-title {
+  color: $base-dark-blue;
+}
+
+.bidder-name {
+  padding-left: 20px;
+}
+
+.bid-comment {
+  font-size: 18px;
+  height: 60px;
+  margin-left: 20px;
+}
+
+.job-lister-details {
+  margin: 35px 0;
+}
+
+.action-link {
+  @include main-link;
+}
+
+.submit-bid-btn {
+  background-color: $base-green;
+
+  &:hover {
+    background-color: $base-green-light;
+  }
+
+}
+
+// -----DURATION TAGS-----
+
+.duration-tag {
+  border-radius: 5px;
+  margin: 0 auto;
+  width: 110px;
+}
+
+.duration-estimate-short {
+  background-color: $base-green-light;
+}
+
+.duration-estimate-medium {
+  background-color: $orange;
+}
+
+.duration-estimate-long {
+  background-color: $light-red;
+}
+
+.duration-estimate-event {
+  background-color: $base-light-blue;
+}
+
 // -----MAIN STYLES-----
+
+body {
+  font-family: 'Hind', sans-serif;
+  font-weight: 300;
+}
 
 p {
   font-size: 18px;
@@ -109,26 +226,13 @@ img {
   max-width: 100%;
 }
 
-.home-title {
-  color: #fff;
-  font-family: 'Rokkitt', serif;
-  font-size: 100px;
-  letter-spacing: 1rem;
-  position: relative;
-  text-shadow: 3px 5px 15px #000000;
-}
-
 h2 {
-  font-size: 5rem;
-  letter-spacing: 1.1rem;
-  font-family: 'Amatic SC', cursive;
+  font-family: 'Rokkitt', serif;
+  font-size: 60px;
+  letter-spacing: 0.7rem;
 }
 
-a {
-  color: $white;
-}
-
-/* NAVBAR */
+// -----NAVBAR-----
 
 nav .brand-logo {
   color: #fff;
@@ -141,8 +245,16 @@ nav .nav-wrapper {
   background-color: $base-green;
 }
 
+nav a {
+  color: $white;
+}
+
 nav ul a:hover {
   color: $base-yellow;
+}
+
+.login-confirm {
+  color: $base-light-blue-light;
 }
 
 /* ORDERS */
@@ -177,10 +289,6 @@ nav ul a:hover {
   left: 150px;
 }
 
-.login-confirm {
-  color: $base-light-blue-light;
-}
-
 .img-small {
   max-width: 100%;
 }
@@ -195,37 +303,6 @@ nav ul a:hover {
 
 .error {
   color: rgba(196, 42, 32, 0.8);
-}
-
-.landing-buttons {
-  position: relative;
-  top: 200px;
-}
-
-.index-button {
-  background-color: $base-purple-blue;
-  height: 70px;
-  opacity: 0.9;
-  padding: 0;
-  margin: 0 10px;
-
-  &:hover {
-    background-color: $base-light-blue-light;
-  }
-
-  a {
-    display: block;
-    height: 100%;
-    padding: 20px;
-    color: $white;
-    font-size: 17px;
-
-    &:hover {
-      color: $base-purple-blue;
-    }
-
-  }
-
 }
 
 .btn-edit {
@@ -252,11 +329,6 @@ nav ul a:hover {
   width: 225px;
 }
 
-.active-status-text {
-  color: #6C8672;
-  font-weight: 100;
-}
-
 .inactive-status-text {
   color: #C4D4AF;
   font-weight: 100;
@@ -267,15 +339,6 @@ nav ul a:hover {
 }
 
 /* CARDS */
-
-.card-title {
-  opacity: 0.8;
-}
-
-.title-links {
-  font-family: 'Amatic SC', cursive;
-  font-size: 40px;
-}
 
 .card .card-action a:not(.btn):not(.btn-large):not(.btn-floating) {
   margin-right: 0;
@@ -396,7 +459,7 @@ select {
   margin: 0 auto;
 }
 
-/***** SIDE NAV ******/
+// -----SIDE NAV-----
 
 .side-nav {
   background-color: $base-purple-blue-dark;
@@ -443,7 +506,7 @@ select {
   font-size: 18px;
 }
 
-/***** SLIDER *****/
+// -----SLIDER-----
 
 .slider.fullscreen {
   margin-top: 62px;
@@ -451,106 +514,4 @@ select {
 
 .slider .slides li .caption {
   top: -10%;
-}
-
-/* MEDIA QUERIES */
-@media screen and (max-width: 990px) {
-
-  .brand-logo {
-    margin: 0 auto;
-  }
-
-}
-
-@media screen and (max-width: 730px) {
-
-  .home-title {
-    font-size: 64px;
-  }
-
-  .category-dropdown {
-    max-width: 300px;
-  }
-
-  .category-select {
-    width: 250px;
-  }
-
-}
-
-@media screen and (max-width: 600px) {
-
-  .category-list {
-    display: none;
-  }
-
-  .mobile-category-dropdown {
-    background-color: $base-light-blue-light;
-    display: block;
-    .choose-category-title {
-      color: $base-purple-blue-dark;
-    }
-
-  }
-
-}
-
-@media screen and (max-width: 550px) {
-
-  h2 {
-    font-size: 40px;
-  }
-
-  .home-title {
-    font-size: 48px;
-  }
-
-  .create-acct-button {
-    margin-bottom: 20px;
-  }
-
-  select {
-    width: 190px;
-    font-size: 16px;
-  }
-
-  input {
-    font-size: 16px;
-  }
-
-  .artist-thumb {
-    float: left;
-  }
-
-  .upload-file {
-    padding-left: 0;
-  }
-
-  h5 {
-    font-size: 16px;
-  }
-
-  table a,
-  table tr {
-    font-size: 14px;
-  }
-
-}
-
-@media only screen and (max-width: 500px) and (orientation: landscape) {
-
-  .create-acct-button,
-  .log-in-button {
-    height: 50px;
-    line-height: 11px;
-  }
-
-}
-
-@media screen and (max-width: 410px) {
-
-  .home-title {
-    font-size: 30px;
-  }
-
 }

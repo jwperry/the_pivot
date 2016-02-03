@@ -1,0 +1,8 @@
+@mixin main-link {
+  color: $base-purple-blue-dark;
+
+  &:hover {
+    color: $base-purple-blue;
+  }
+
+}
