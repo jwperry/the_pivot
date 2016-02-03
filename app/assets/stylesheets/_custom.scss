@@ -1,4 +1,5 @@
 @import "colors";
+@import "mixins";
 /* STRIPE -- DO NOT DELETE!!!! */
 
 button.stripe-button-el span {
@@ -11,10 +12,10 @@ button.stripe-button-el span {
 
 .category-dropdown {
   background-color: $base-purple-blue;
-  opacity: 0.8;
-  padding-bottom: 20px;
-  max-width: 475px;
   margin: 0 auto;
+  max-width: 475px;
+  opacity: 0.9;
+  padding-bottom: 20px;
 }
 
 .choose-category-title {
@@ -27,17 +28,17 @@ button.stripe-button-el span {
 
 .category-select {
   color: $black;
-  height: 35px;
   font-size: 18px;
+  height: 35px;
 }
 
 .home-title {
-  color: #fff;
+  color: $white;
   font-family: 'Rokkitt', serif;
   font-size: 100px;
   letter-spacing: 1rem;
   position: relative;
-  text-shadow: 3px 5px 15px #000000;
+  text-shadow: 3px 5px 15px $black;
 }
 
 .landing-buttons {
@@ -48,20 +49,20 @@ button.stripe-button-el span {
 .index-button {
   background-color: $base-purple-blue;
   height: 70px;
+  margin: 0 10px;
   opacity: 0.9;
   padding: 0;
-  margin: 0 10px;
 
   &:hover {
     background-color: $base-light-blue-light;
   }
 
   a {
+    color: $white;
     display: block;
+    font-size: 17px;
     height: 100%;
     padding: 20px;
-    color: $white;
-    font-size: 17px;
 
     &:hover {
       color: $base-purple-blue;
@@ -100,6 +101,7 @@ button.stripe-button-el span {
   a {
     color: $base-purple-blue-dark;
   }
+
 }
 
 .mobile-category-dropdown {
@@ -113,7 +115,7 @@ button.stripe-button-el span {
 
 .job-info {
   border-right: 0.5px solid $black;
-  color: $base-purple-blue-dark;
+  color: $highlight-cyan;
   font-size: 17px;
 
   &:last-child {
@@ -127,16 +129,15 @@ button.stripe-button-el span {
 }
 
 .job-title-link {
-  color: $base-purple-blue-dark;
-
-  &:hover {
-    color: $base-purple-blue;
-  }
-
+  @include main-link;
 }
 
 .job-lister-name {
   margin-top: 0;
+}
+
+.job-lister-name-link {
+  @include main-link;
 }
 
 .job-lister-image {
@@ -146,15 +147,52 @@ button.stripe-button-el span {
 // -----JOB SHOW-----
 
 .time-interval-select {
+  margin-bottom: 13px;
   width: 100px;
+}
+
+.back-to-category-link {
+  @include main-link;
+  font-size: 20px;
+}
+
+.job-title {
+  color: $base-dark-blue;
+}
+
+.bidder-name {
+  padding-left: 20px;
+}
+
+.bid-comment {
+  font-size: 18px;
+  height: 60px;
+  margin-left: 20px;
+}
+
+.job-lister-details {
+  margin: 35px 0;
+}
+
+.action-link {
+  @include main-link;
+}
+
+.submit-bid-btn {
+  background-color: $base-green;
+
+  &:hover {
+    background-color: $base-green-light;
+  }
+
 }
 
 // -----DURATION TAGS-----
 
 .duration-tag {
-  width: 110px;
-  margin: 0 auto;
   border-radius: 5px;
+  margin: 0 auto;
+  width: 110px;
 }
 
 .duration-estimate-short {
@@ -189,13 +227,9 @@ img {
 }
 
 h2 {
+  font-family: 'Rokkitt', serif;
   font-size: 60px;
   letter-spacing: 0.7rem;
-  font-family: 'Rokkitt', serif;
-}
-
-a {
-  color: $white;
 }
 
 // -----NAVBAR-----
@@ -209,6 +243,10 @@ nav .brand-logo {
 
 nav .nav-wrapper {
   background-color: $base-green;
+}
+
+nav a {
+  color: $white;
 }
 
 nav ul a:hover {
@@ -301,15 +339,6 @@ nav ul a:hover {
 }
 
 /* CARDS */
-
-.card-title {
-  opacity: 0.8;
-}
-
-.title-links {
-  font-family: 'Amatic SC', cursive;
-  font-size: 40px;
-}
 
 .card .card-action a:not(.btn):not(.btn-large):not(.btn-floating) {
   margin-right: 0;
@@ -430,7 +459,7 @@ select {
   margin: 0 auto;
 }
 
-/***** SIDE NAV ******/
+// -----SIDE NAV-----
 
 .side-nav {
   background-color: $base-purple-blue-dark;
@@ -477,7 +506,7 @@ select {
   font-size: 18px;
 }
 
-/***** SLIDER *****/
+// -----SLIDER-----
 
 .slider.fullscreen {
   margin-top: 62px;
@@ -485,106 +514,4 @@ select {
 
 .slider .slides li .caption {
   top: -10%;
-}
-
-/* MEDIA QUERIES */
-@media screen and (max-width: 990px) {
-
-  .brand-logo {
-    margin: 0 auto;
-  }
-
-}
-
-@media screen and (max-width: 730px) {
-
-  .home-title {
-    font-size: 64px;
-  }
-
-  .category-dropdown {
-    max-width: 300px;
-  }
-
-  .category-select {
-    width: 250px;
-  }
-
-}
-
-@media screen and (max-width: 600px) {
-
-  .category-list {
-    display: none;
-  }
-
-  .mobile-category-dropdown {
-    background-color: $base-light-blue-light;
-    display: block;
-    .choose-category-title {
-      color: $base-purple-blue-dark;
-    }
-
-  }
-
-}
-
-@media screen and (max-width: 550px) {
-
-  h2 {
-    font-size: 40px;
-  }
-
-  .home-title {
-    font-size: 48px;
-  }
-
-  .create-acct-button {
-    margin-bottom: 20px;
-  }
-
-  select {
-    width: 190px;
-    font-size: 16px;
-  }
-
-  input {
-    font-size: 16px;
-  }
-
-  .artist-thumb {
-    float: left;
-  }
-
-  .upload-file {
-    padding-left: 0;
-  }
-
-  h5 {
-    font-size: 16px;
-  }
-
-  table a,
-  table tr {
-    font-size: 14px;
-  }
-
-}
-
-@media only screen and (max-width: 500px) and (orientation: landscape) {
-
-  .create-acct-button,
-  .log-in-button {
-    height: 50px;
-    line-height: 11px;
-  }
-
-}
-
-@media screen and (max-width: 410px) {
-
-  .home-title {
-    font-size: 30px;
-  }
-
 }
