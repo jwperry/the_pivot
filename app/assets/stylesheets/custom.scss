@@ -27,9 +27,57 @@ button.stripe-button-el span {
 
 .category-select {
   color: $black;
+  height: 35px;
+  font-size: 18px;
+}
+
+.home-title {
+  color: #fff;
+  font-family: 'Rokkitt', serif;
+  font-size: 100px;
+  letter-spacing: 1rem;
+  position: relative;
+  text-shadow: 3px 5px 15px #000000;
+}
+
+.landing-buttons {
+  position: relative;
+  top: 160px;
+}
+
+.index-button {
+  background-color: $base-purple-blue;
+  height: 70px;
+  opacity: 0.9;
+  padding: 0;
+  margin: 0 10px;
+
+  &:hover {
+    background-color: $base-light-blue-light;
+  }
+
+  a {
+    display: block;
+    height: 100%;
+    padding: 20px;
+    color: $white;
+    font-size: 17px;
+
+    &:hover {
+      color: $base-purple-blue;
+    }
+
+  }
+
+}
+
+.active-status-text {
+  color: #6C8672;
+  font-weight: 100;
 }
 
 // -----CATEGORY SHOW-----
+
 .category-list {
   background-color: $white;
 }
@@ -107,21 +155,16 @@ button.stripe-button-el span {
 
 // -----MAIN STYLES-----
 
+body {
+  font-family: 'Hind', sans-serif;
+}
+
 p {
   font-size: 18px;
 }
 
 img {
   max-width: 100%;
-}
-
-.home-title {
-  color: #fff;
-  font-family: 'Rokkitt', serif;
-  font-size: 100px;
-  letter-spacing: 1rem;
-  position: relative;
-  text-shadow: 3px 5px 15px #000000;
 }
 
 h2 {
@@ -134,7 +177,7 @@ a {
   color: $white;
 }
 
-/* NAVBAR */
+// -----NAVBAR-----
 
 nav .brand-logo {
   color: #fff;
@@ -149,6 +192,10 @@ nav .nav-wrapper {
 
 nav ul a:hover {
   color: $base-yellow;
+}
+
+.login-confirm {
+  color: $base-light-blue-light;
 }
 
 /* ORDERS */
@@ -183,10 +230,6 @@ nav ul a:hover {
   left: 150px;
 }
 
-.login-confirm {
-  color: $base-light-blue-light;
-}
-
 .img-small {
   max-width: 100%;
 }
@@ -201,37 +244,6 @@ nav ul a:hover {
 
 .error {
   color: rgba(196, 42, 32, 0.8);
-}
-
-.landing-buttons {
-  position: relative;
-  top: 200px;
-}
-
-.index-button {
-  background-color: $base-purple-blue;
-  height: 70px;
-  opacity: 0.9;
-  padding: 0;
-  margin: 0 10px;
-
-  &:hover {
-    background-color: $base-light-blue-light;
-  }
-
-  a {
-    display: block;
-    height: 100%;
-    padding: 20px;
-    color: $white;
-    font-size: 17px;
-
-    &:hover {
-      color: $base-purple-blue;
-    }
-
-  }
-
 }
 
 .btn-edit {
@@ -256,11 +268,6 @@ nav ul a:hover {
 .log-in-button {
   margin-top: 5px;
   width: 225px;
-}
-
-.active-status-text {
-  color: #6C8672;
-  font-weight: 100;
 }
 
 .inactive-status-text {
