@@ -2,12 +2,14 @@ Rails.application.routes.draw do
   resources :items, only: [:index, :destroy]
   resources :categories, only: [:show], param: :slug
 
-  resources :users,
-            only: [:new, :create, :show, :edit, :update],
-            param: :slug do
-    resources :jobs, only: [:show]
+  scope module: "user" do
+    resources :users,
+              only: [:new, :create, :show, :edit, :update],
+              param: :slug do
+      resources :jobs, only: [:show]
+    end
+    resources :bids, only: [:create]
   end
-  resources :bids, only: [:create]
 
   namespace :admin do
     get "/dashboard", to: "users#dashboard"
@@ -20,7 +22,7 @@ Rails.application.routes.draw do
   get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"
   get "/logout", to: "sessions#destroy"
-  get "/dashboard", to: "users#dashboard"
+  get "/dashboard", to: "user/users#dashboard"
   get "/sign_up", to: "users#new"
 
   root "home#index"
