@@ -7,12 +7,12 @@
   <aside class="col s12 m3 l3">
     <div class="category-dropdown mobile-category-dropdown">
       <h3 class="choose-category-title">Choose a Category</h3>
-      <%= select_tag :categories, options_for_select(%w(culinary carpentry electrical sewing home_repair writing data_entry web_development graphic_design photography)), class: "category-select" %>
+      <%= select_tag :categories, options_from_collection_for_select(@categories, "id", "name", selected: @category.id), class: "category-select" %>
     </div>
     <ul class="category-list">
-      <% @category_names.each do |name| %>
-        <a href="/categories/<%= name.downcase %>">
-          <li class="category-list-item"><%= name %></li>
+      <% @categories.each do |category| %>
+        <a href="/categories/<%= category.slug %>">
+          <li class="category-list-item"><%= category.name %></li>
         </a>
       <% end %>
     </ul>
@@ -59,3 +59,18 @@
     <!-- End of Partial -->
   </section>
 </div>
+
+<script>
+  $(function(){
+    $('#categories').bind('change', function () {
+      var selection = $('#categories :selected').text().toLowerCase();
+      selection = selection.replace(/ /g, '-');
+
+      var url = "/categories/" + selection;
+      if (url) {
+        window.location.href = url;
+      }
+      return false;
+    });
+  });
+</script>
