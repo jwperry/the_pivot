@@ -13,7 +13,7 @@ class GuestVisitsHomepageTest < ActionDispatch::IntegrationTest
       assert page.has_link?("Log In", href: login_path)
     end
 
-    category_names = Category.all.pluck(:name)
+    category_names = Category.pluck(:name)
 
     within first(:div, ".category-dropdown") do
       assert page.has_select?("categories", options: category_names)

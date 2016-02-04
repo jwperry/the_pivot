@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-    @category_names = Category.all.pluck(:name)
+    @categories = Category.all
     render layout: "home"
   end
 end
