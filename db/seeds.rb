@@ -9,23 +9,26 @@ class Seed
   end
 
   def create_categories
-    categories = %w(Painting Digital Photography)
+    categories = ["Carpentry",
+                  "Photography",
+                  "Web Design",
+                  "Electrical",
+                  "Landscaping",
+                  "Writing",
+                  "Catering",
+                  "Marketing",
+                  "Business Services",
+                  "Housework"]
 
-    categories.each do |name|
-      Category.create!(name: name)
-    end
-
-    @painting = Category.find_by(name: categories[0])
-    @digital = Category.find_by(name: categories[1])
-    @photography = Category.find_by(name: categories[2])
+    categories.each { |name| Category.create!(name: name) }
   end
 
   def create_users
-    artists = ["Brenna Martenson",
-               "Taylor Moore",
-               "Toni Rib"]
+    users = ["Joseph Perry",
+             "Dan Winter",
+             "Toni Rib"]
 
-    artists.each do |full_name|
+    users.each do |full_name|
       first_name = full_name.split.first
       last_name = full_name.split.last
 
