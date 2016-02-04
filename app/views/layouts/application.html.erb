@@ -9,11 +9,11 @@
       <%= content_tag :div, sanitize(message), class: "flash-#{type}" %>
     <% end %>
 
+  <%= render partial: "layouts/javascripts" %>
+
   <div class="center-align">
     <%= yield %>
   </div>
-
-  <%= render partial: "layouts/javascripts" %>
 
   <script type="text/javascript">
     $( document ).ready(function(){
