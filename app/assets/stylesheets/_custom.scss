@@ -82,13 +82,18 @@ button.stripe-button-el span {
 .category-list {
   background-color: $white;
   margin-left: 20px;
+  margin-top: 40px;
+}
+
+.col.s12.m9.l9.category-content {
+  padding-right: 100px;
 }
 
 .category-list-item {
   box-sizing: border-box;
   color: $base-dark-blue;
   font-size: 26px;
-  padding: 20px 0;
+  padding: 15px 0;
 
   &:hover {
     background-color: $base-light-blue-light;
@@ -110,7 +115,7 @@ button.stripe-button-el span {
 
 .job-partial {
   border-bottom: 0.5px solid $black;
-  margin: 0 70px 40px 0;
+  margin: 0 0 40px 0;
 }
 
 .job-info {

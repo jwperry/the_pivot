@@ -19,7 +19,7 @@
 
 <script>
   $(function(){
-    $('#categories').bind('change', function () {
+    $('#categories').on('change', function () {
       var selection = $('#categories :selected').text().toLowerCase();
       selection = selection.replace(/ /g, '-');
 
