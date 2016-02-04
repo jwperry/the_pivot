@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"
   get "/logout", to: "sessions#destroy"
-  get "/dashboard", to: "users#dashboard"
+  get "/dashboard", to: "user/users#dashboard"
   get "/sign_up", to: "users#new"
 
   root "home#index"
