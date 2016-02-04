@@ -2,12 +2,14 @@ Rails.application.routes.draw do
   resources :items, only: [:index, :destroy]
   resources :categories, only: [:show], param: :slug
 
-  resources :users,
-            only: [:new, :create, :show, :edit, :update],
-            param: :slug do
-    resources :jobs, only: [:show]
+  scope module: "user" do
+    resources :users,
+              only: [:new, :create, :show, :edit, :update],
+              param: :slug do
+      resources :jobs, only: [:show]
+    end
+    resources :bids, only: [:create]
   end
-  resources :bids, only: [:create]
 
   namespace :admin do
     get "/dashboard", to: "users#dashboard"
