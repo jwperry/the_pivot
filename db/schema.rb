@@ -11,56 +11,63 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160119183846) do
+ActiveRecord::Schema.define(version: 20160204000408) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "bids", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "job_id"
+    t.integer "price"
+    t.integer "duration_estimate"
+    t.text    "details"
+    t.string  "status"
+  end
+
+  add_index "bids", ["job_id"], name: "index_bids_on_job_id", using: :btree
+  add_index "bids", ["user_id"], name: "index_bids_on_user_id", using: :btree
+
   create_table "categories", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.string   "slug"
+    t.text     "description"
   end
 
-  create_table "items", force: :cascade do |t|
+  create_table "comments", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "recipient_id"
+    t.text     "text"
+    t.integer  "rating"
+    t.integer  "job_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "comments", ["job_id"], name: "index_comments_on_job_id", using: :btree
+  add_index "comments", ["recipient_id"], name: "index_comments_on_recipient_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
+  create_table "jobs", force: :cascade do |t|
     t.string   "title"
-    t.string   "image_path"
     t.integer  "category_id"
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
-    t.integer  "price"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.text     "description"
     t.integer  "user_id"
-    t.integer  "status",                   default: 1
-    t.string   "file_upload_file_name"
-    t.string   "file_upload_content_type"
-    t.integer  "file_upload-file_size"
-    t.datetime "file_upload_updated_at"
+    t.integer  "status",                default: 1
+    t.string   "city"
+    t.string   "state"
+    t.integer  "zipcode"
+    t.datetime "bidding_close_date"
+    t.datetime "must_complete_by_date"
+    t.integer  "duration_estimate"
   end
 
-  add_index "items", ["category_id"], name: "index_items_on_category_id", using: :btree
-  add_index "items", ["user_id"], name: "index_items_on_user_id", using: :btree
-
-  create_table "order_items", force: :cascade do |t|
-    t.integer  "order_id"
-    t.integer  "item_id"
-    t.integer  "quantity"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "order_items", ["item_id"], name: "index_order_items_on_item_id", using: :btree
-  add_index "order_items", ["order_id"], name: "index_order_items_on_order_id", using: :btree
-
-  create_table "orders", force: :cascade do |t|
-    t.integer  "user_id"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.integer  "status",     default: 0
-  end
-
-  add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
+  add_index "jobs", ["category_id"], name: "index_jobs_on_category_id", using: :btree
+  add_index "jobs", ["user_id"], name: "index_jobs_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
@@ -78,13 +85,15 @@ ActiveRecord::Schema.define(version: 20160119183846) do
     t.string   "slug"
     t.string   "file_upload_file_name"
     t.string   "file_upload_content_type"
-    t.integer  "file_upload-file_size"
+    t.integer  "file_upload_file_size"
     t.datetime "file_upload_updated_at"
+    t.text     "bio"
   end
 
-  add_foreign_key "items", "categories"
-  add_foreign_key "items", "users"
-  add_foreign_key "order_items", "items"
-  add_foreign_key "order_items", "orders"
-  add_foreign_key "orders", "users"
+  add_foreign_key "bids", "jobs"
+  add_foreign_key "bids", "users"
+  add_foreign_key "comments", "jobs"
+  add_foreign_key "comments", "users"
+  add_foreign_key "jobs", "categories"
+  add_foreign_key "jobs", "users"
 end

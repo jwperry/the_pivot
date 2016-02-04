@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   validates :zipcode, presence: true
   has_many :orders
   has_many :items
+  has_many :comments
 
   has_attached_file :file_upload,
                     styles: { medium: "300x300>", thumb: "100x100>" },
