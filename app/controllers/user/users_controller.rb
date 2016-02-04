@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class User::UsersController < ApplicationController
   require "states_helper"
   before_action :set_user, only: [:edit, :update]
 
