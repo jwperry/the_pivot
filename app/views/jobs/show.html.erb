@@ -15,10 +15,10 @@
     </div>
     <div class="col s12 m12 l8 box-b main-job-information">
       <div class="row valign-wrapper no-bottom-margin">
-        <h5 class="col s12 m10 l10 left-align job-title">
-          Build A Dining Room Table
-        </h5>
-        <div class="col s12 m2 l2 center-align valign">
+        <div class="col s12 m10 l10 left-align">
+          <h5 class="job-show-title">Build A Dining Room Table</h5>
+        </div>
+        <div class="col s12 m2 l2 valign">
           <div class="duration-tag duration-estimate-medium">Medium</div>
         </div>
       </div>
@@ -47,7 +47,7 @@
   <div class="row left-align">
    <div class="col s12 m12 l12">
      <div id="accordion">
-      <h3>Place A Bid</h3>
+      <h3><i class="material-icons arrow-icon">navigation</i>Place A Bid<i class="material-icons arrow-icon">navigation</i></h3>
       <div>
         <!-- INSIDE THE ACCORDION -->
         <div class="row no-bottom-margin bid-accordion">
@@ -82,7 +82,8 @@
     </div>
    </div>
  </div>
-  <section class="row">
+  <section class="row" style="display:none;">
+    <!-- ^^^ REMOVE DISPLAY NONE FROM HERE IN THE FUTURE ^^^ -->
     <h4 class="bids-table-title">Current Bids</h4>
     <table class="striped">
       <thead>
@@ -116,6 +117,12 @@
     </table>
   </section>
   <section class="row left-align job-lister-details card">
+    <div class="row card-title">
+      <div class="col s12 m12 l12">
+        <h4 class="job-lister-title">Job Lister</h4>
+        <hr>
+      </div>
+    </div>
     <div class="col s2">
       <%= image_tag "http://placehold.it/100x100", class: "circle" %>
     </div>
