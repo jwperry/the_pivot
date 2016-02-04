@@ -357,7 +357,9 @@ table a {
 }
 
 .dashboard-table-headers {
-  color: $base-dark-blue;
+  background: $light-grey;
+  color: $black;
+  letter-spacing: 0.1em;
 
   th {
     vertical-align: bottom;
@@ -410,7 +412,7 @@ table a {
 }
 
 .tab-border {
-  border: 0.5px dotted $black;
+  border: 0.5px solid $light-grey;
 }
 
 .dashboard-email {
@@ -449,9 +451,15 @@ table a {
   }
 }
 
-
 .profile-bio {
   margin-left: 30px;
+}
+
+.comments-label {
+  color: $grey;
+  font-weight: 100;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
 }
 
 /* ORDERS */
