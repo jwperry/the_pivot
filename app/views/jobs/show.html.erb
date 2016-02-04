@@ -1,7 +1,7 @@
 <div class="container">
   <header class="row">
     <div class="col s12 m12 l12 left-align">
-      <%= link_to "« Back to Carpentry", root_path, class: "back-to-category-link" %>
+      <%= link_to "« Back to Carpentry", category_path("carpentry"), class: "back-to-category-link" %>
     </div>
   </header>
   <section class="row flex-s">
@@ -115,8 +115,7 @@
       </tbody>
     </table>
   </section>
-  <hr>
-  <section class="row left-align job-lister-details">
+  <section class="row left-align job-lister-details card">
     <div class="col s2">
       <%= image_tag "http://placehold.it/100x100", class: "circle" %>
     </div>
@@ -124,7 +123,9 @@
       <div class="row">
         <div class="col s12">
           <h5><%= link_to "Dan Winter", root_path,
-                  class: "job-lister-name-link" %></h5>
+                  class: "job-lister-name-link" %>
+              <span class="lister-rating">(5 / 5)</span>
+          </h5>
         </div>
       </div>
       <div class="row lister-info">
