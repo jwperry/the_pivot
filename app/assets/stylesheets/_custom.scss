@@ -229,6 +229,7 @@ h3#ui-id-1 {
   color: white;
   font-size: 26px;
   letter-spacing: 0.5em;
+  padding: 5px 0;
   text-align: center;
   text-transform: uppercase;
 
@@ -252,15 +253,19 @@ span.ui-accordion-header-icon.ui-icon.ui-icon-triangle-1-s {
 }
 
 .job-lister-title {
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
   font-weight: 100;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
 }
 
 .arrow-icon {
-  transform: rotate(180deg);
-  margin: 0 10px;
   color: $base-green-light;
+  margin: 0 10px;
+  transform: rotate(180deg);
+}
+
+.col.s12.m12.l8.box-b.main-job-information p {
+  text-align: justify;
 }
 
 // -----DURATION TAGS-----

@@ -91,7 +91,30 @@
     border-right: none;
   }
 
-  .category-name {
+  .category-name,
+  .job-show-title {
+    text-align: center;
+  }
+
+  .col.s12.m12.l8.box-b.main-job-information {
+    padding-left: 20px;
+  }
+
+  .bid-comment {
+    margin-left: 0;
+  }
+
+  .bidder-name {
+    display: block;
+    padding-left: 0;
+    text-align: center;
+  }
+
+  .submit-bid-btn {
+    margin-top: 10px;
+  }
+
+  .job-lister-details {
     text-align: center;
   }
 
@@ -135,6 +158,15 @@
   table a,
   table tr {
     font-size: 14px;
+  }
+
+  h3#ui-id-1 {
+    font-size: 18px;
+    padding: 5px 0;
+  }
+
+  .job-location {
+    font-size: 18px;
   }
 
 }
