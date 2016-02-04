@@ -360,12 +360,35 @@ table a {
 
 // -----USER PROFILE-----
 
-.right-float {
-  float: right;
-}
-
 .comment-text {
   text-align: justify;
+}
+
+.card .comment-card {
+  padding: 0;
+
+  a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating) {
+    @include main-link;
+  }
+
+}
+
+.no-top-margin {
+  margin-top: 0;
+}
+
+.profile-email {
+  margin: -20px;
+
+  a {
+    @include main-link;
+    font-size: 22px;
+  }
+}
+
+
+.profile-bio {
+  margin-left: 30px;
 }
 
 /* ORDERS */

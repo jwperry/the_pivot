@@ -1,18 +1,18 @@
 <div class="container">
-  <div class="row">
-    <div class="col s12 m4 l4">
-      <div class="row job-lister-image">
+  <div class="row valign-wrapper">
+    <div class="col s12 m12 l4">
+      <div class="row job-lister-image valign">
         <%= image_tag "http://placehold.it/300x300", class: "circle" %>
       </div>
     </div>
-    <div class="col s12 m8 l8">
-      <div class="row">
+    <div class="col s12 m12 l8">
+      <div class="row no-bottom-margin">
         <h2>Toni Rib</h2>
       </div>
       <div class="row">
-        <a href="mailto:toni@example.com">toni@example.com</a>
+        <p class="profile-email"><a href="mailto:toni@example.com">toni@example.com</a></p>
       </div>
-      <div class="row">
+      <div class="row no-bottom-margin">
         <div class="col s6 m6 l6">
           <h4>Denver, CO</h4>
         </div>
@@ -21,12 +21,12 @@
         </div>
       </div>
       <div class="row">
-        <p class="bio">
+        <p class="bio no-top-margin profile-bio">
           Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum"
       </div>
     </div>
   </div>
-  <div class="row">
+  <div class="row no-bottom-margin">
     <h3>Comments</h3>
   </div>
   <div class="row tab-border">
@@ -34,6 +34,7 @@
       <ul class="tabs">
         <li class="tab col s3"><a class="active profile-tab" href="#previous-jobs">Previous Jobs</a></li>
         <li class="tab col s3"><a href="#previous-listings">Previous Listings</a></li>
+        <div class="indicator blue" style="z-index:1"></div>
       </ul>
     </div>
     <!-- Start of My Bids Tab -->
@@ -43,10 +44,12 @@
         <div class="col s12 m12 l12">
           <div class="card">
             <div class="card-content">
-              <div class="row">
-                <div class="col s12 m12 l12">
-                  <span class="card-title center-float">Building a Dining Room Table</span>
-                  <span class="duration-tag duration-estimate-medium right-float">Medium</span>
+              <div class="row valign-wrapper">
+                <h5 class="col s12 m8 l10 left-align job-title comment-job-title">
+                  Build A Dining Room Table
+                </h5>
+                <div class="col s12 m4 l2 center-align valign duration-block">
+                  <div class="duration-tag duration-estimate-medium">Medium</div>
                 </div>
               </div>
               <p class="comment-text">
@@ -56,19 +59,19 @@
                 I am convenient because I require little markup to use effectively.
               </p>
             </div>
-            <div class="card-action">
+            <div class="card-action comment-card">
               <div class="row">
                 <div class="col s3 m3 l3">
                   <p>$300</p>
                 </div>
                 <div class="col s3 m3 l3">
-                  <p>3 January, 2016</p>
+                  <p>April 18, 2016 2:45pm</p>
                 </div>
                 <div class="col s3 m3 l3">
                   <p>5 / 5</p>
                 </div>
                 <div class="col s3 m3 l3">
-                  <%= link_to "Dan Winter", "#" %>
+                  <p><%= link_to "Dan Winter", "#", class: "commenter-link" %></p>
                 </div>
               </div>
             </div>
@@ -79,6 +82,46 @@
     </div>
     <!--  End of My Listings Tab -->
     <div id="previous-listings" class="col s12">
+      <!-- Start of card -->
+        <div class="row">
+          <div class="col s12 m12 l12">
+            <div class="card">
+              <div class="card-content">
+                <div class="row valign-wrapper">
+                  <h5 class="col s12 m8 l10 left-align job-title comment-job-title">
+                    Build A Super Amazing Rocking Chair
+                  </h5>
+                  <div class="col s12 m4 l2 center-align valign duration-block">
+                    <div class="duration-tag duration-estimate-short">Short</div>
+                  </div>
+                </div>
+                <p class="comment-text">
+                  I am a very simple card. I am good at containing small bits of information.
+                  I am convenient because I require little markup to use effectively.I am a very simple card. I am good at containing small bits of information.
+                  I am convenient because I require little markup to use effectively.I am a very simple card. I am good at containing small bits of information.
+                  I am convenient because I require little markup to use effectively.
+                </p>
+              </div>
+              <div class="card-action comment-card">
+                <div class="row">
+                  <div class="col s3 m3 l3">
+                    <p>$500</p>
+                  </div>
+                  <div class="col s3 m3 l3">
+                    <p>April 22, 2016 6:30pm</p>
+                  </div>
+                  <div class="col s3 m3 l3">
+                    <p>4 / 5</p>
+                  </div>
+                  <div class="col s3 m3 l3">
+                    <p><%= link_to "Dan Winter", "#", class: "commenter-link" %></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <!-- End of card -->
     </div>
   </div>
 </div>
