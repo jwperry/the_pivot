@@ -15,6 +15,14 @@
     margin: 0 auto;
   }
 
+  .valign-wrapper {
+    display: block;
+  }
+
+  .bio {
+    margin-left: 55px;
+  }
+
 }
 
 @media screen and (max-width: 730px) {
@@ -47,6 +55,10 @@
       color: $base-purple-blue-dark;
     }
 
+  }
+
+  .user-action-links a {
+    padding: 5px;
   }
 
 }

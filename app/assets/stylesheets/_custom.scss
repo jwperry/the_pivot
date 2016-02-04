@@ -268,22 +268,41 @@ nav ul a:hover {
   max-width: 200px;
 
   a {
+    background-color: $base-purple-blue-dark;
     color: $white;
     display: block;
+    font-size: 18px;
     padding: 20px;
-    background-color: $base-purple-blue-dark;
+    text-transform: uppercase;
 
     &:hover {
       color: $base-purple-blue-dark;
-      background-color: $base-light-blue-light;
+      background-color: $base-light-blue;
     }
 
   }
 
 }
 
+table a {
+  @include main-link;
+}
+
+.dashboard-table-headers {
+  color: $base-dark-blue;
+
+  th {
+    vertical-align: bottom;
+  }
+
+}
+
+.dashboard-title {
+  margin-top: 30px;
+}
+
 .bio {
-  margin-right: 15px;
+  margin-right: 55px;
   text-align: justify;
 }
 
@@ -304,19 +323,34 @@ nav ul a:hover {
 }
 
 .filter {
-  margin-top: 40px;
+  margin-top: 20px;
+
+  select {
+    font-size: 16px;
+    height: 30px;
+    width: 150px;
+  }
+
+}
+
+.filter-label {
+  font-size: 16px;
 }
 
 .tabs .tab a {
-  color: $base-purple-blue-dark;
+  @include main-link;
 }
 
 .tab-border {
-  border: 0.5px solid black;
+  border: 0.5px dotted $black;
 }
 
-.tab-content {
-  backgroud-color: $base-light-blue-light;
+.dashboard-email {
+  margin: -10px;
+
+  a {
+    @include main-link;
+  }
 }
 
 // -----USER PROFILE-----

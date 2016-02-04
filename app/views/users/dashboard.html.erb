@@ -1,23 +1,23 @@
 <div class="container">
   <div class="row">
     <div class="col s12">
-      <h2>My Dashboard</h2>
+      <h2 class="dashboard-title">My Dashboard</h2>
     </div>
   </div>
   <div class="row">
     <div class="col s12 m12 l12">
       <div class="card">
         <div class="row valign-wrapper">
-          <div class="col s12 m6 l6">
+          <div class="col s12 m12 l6">
             <div class="row job-lister-image">
               <%= image_tag "http://placehold.it/200x200", class: "circle" %>
             </div>
-            <div class="row">
+            <div class="row no-bottom-margin">
               <h4>Dan Winter</h4>
             </div>
-            <div class="row">
-              <p>
-                dan.j.winter@example.com
+            <div class="row no-bottom-margin">
+              <p class="dashboard-email">
+                <a href="mail-to:example@example.com">dan.j.winter@example.com</a>
               </p>
             </div>
             <div class="row">
@@ -26,11 +26,11 @@
               </p>
             </div>
           </div>
-          <div class="col s12 m6 l6">
+          <div class="col s12 m12 l6">
             <div class="row valign">
               <div class="col s12">
                 <p class="bio">
-                  Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum"
+                  Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampd source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum"
                 </p>
               </div>
             </div>
@@ -38,44 +38,42 @@
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col s4 m4 l4">
+    <div class="row no-bottom-margin">
+      <div class="col s12 m4 l4">
         <div class="user-action-links">
           <%= link_to "Create Job", "#" %>
         </div>
       </div>
-      <div class="col s4 m4 l4">
+      <div class="col s12 m4 l4">
         <div class="user-action-links">
           <%= link_to "Edit Profile", "#" %>
         </div>
       </div>
-      <div class="col s4 m4 l4">
+      <div class="col s12 m4 l4">
         <div class="user-action-links">
           <%= link_to "Public Profile", "#" %>
         </div>
       </div>
     </div>
   </div>
-
-
-
-<div class="row tab-border">
+  <div class="row tab-border">
     <div class="col s12">
       <ul class="tabs">
         <li class="tab col s3"><a class="active dashboard-tab" href="#my-bids">My Bids</a></li>
         <li class="tab col s3"><a href="#my-listings">My Listings</a></li>
+        <div class="indicator blue" style="z-index:1"></div>
       </ul>
     </div>
     <!-- Start of My Bids Tab -->
     <div id="my-bids" class="col s12 tab-content">
       <div class="row">
         <div class="filter">
-          <label>Filter By Bid Status:</label>
+          <label class="filter-label">Filter By Bid Status</label>
           <%= select_tag :bid_status, options_for_select(%w(all accepted pending rejected)) %>
         </div>
       </div>
-      <table class="bordered">
-        <thead>
+      <table class="bordered responsive-table">
+        <thead class="dashboard-table-headers">
           <tr>
             <th>Job ID</th>
             <th>Name</th>
@@ -103,12 +101,13 @@
       </table>
 
     </div>
-    <!--  End of My Listings Tab -->
+    <!--  End of My Bids Tab -->
 
+    <!-- Start of My Listing Tab -->
     <div id="my-listings" class="col s12">
       <div class="row">
         <div class="filter">
-          <label>Filter By Job Status:</label>
+          <label class="filter-label">Filter By Job Status</label>
           <%= select_tag :job_status, options_for_select(["all",
                                                           "bidding open",
                                                           "bidding closed",
@@ -117,8 +116,8 @@
                                                           "cancelled"]) %>
         </div>
       </div>
-      <table class="bordered">
-        <thead>
+      <table class="bordered responsive-table">
+        <thead class="dashboard-table-headers">
           <tr>
             <th>Job ID</th>
             <th>Name</th>
@@ -131,7 +130,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="job">
+          <tr class="listing">
             <td><%= link_to "12433", "#" %></td>
             <td><%= link_to "Build a Dining Room Table", "#" %></td>
             <td class="job-status status-pending">bidding open</td>
@@ -141,9 +140,9 @@
             <td>Cancel</td>
             <td></td>
           </tr>
-          <tr class="job">
-            <td><%= link_to "12433", "#" %></td>
-            <td><%= link_to "Build a Dining Room Table", "#" %></td>
+          <tr class="listing">
+            <td><%= link_to "12432", "#" %></td>
+            <td><%= link_to "Build A Large Multi-Room Doghouse", "#" %></td>
             <td class="job-status status-accepted">completed</td>
             <td>February 13, 2016 7:00 PM</td>
             <td>13</td>
@@ -154,6 +153,6 @@
         </tbody>
       </table>
     </div>
-
+    <!-- End of My Listing Tab -->
   </div>
 </div>
