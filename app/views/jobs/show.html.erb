@@ -10,7 +10,7 @@
         <div id="google-map" class="google-map-job"></div>
       </div>
       <div class="row">
-        <h5>Denver, CO</h5>
+        <h5 class="job-location">Denver, CO</h5>
       </div>
     </div>
     <div class="col s12 m12 l8 box-b main-job-information">
@@ -56,22 +56,22 @@
               <div class="col s12 m4 valign">
                 <%= f.label "Joseph Perry", class: "bidder-name" %>
               </div>
-              <div class="col s4 m3 bid-input-field valign">
+              <div class="col s12 m3 bid-input-field valign">
                 <%= f.number_field :price, placeholder: :price %>
               </div>
-              <div class="col s4 m3 bid-input-field valign">
+              <div class="col s7 m3 bid-input-field valign">
                 <%= f.number_field :duration_estimate, placeholder: "Duration Estimate" %>
               </div>
-              <div class="col s4 m2 bid-input-field valign">
+              <div class="col s5 m2 bid-input-field valign">
                 <%= select_tag :time_interval, options_for_select(%w(days hours weeks)), class: "time-interval-select" %>
               </div>
             </div>
             <div class="row no-bottom-margin center-align valign-wrapper">
-              <div class="col s8 valign">
+              <div class="col s12 m8 valign">
                 <%= f.text_area :comment, placeholder: "Leave a comment for the job lister",
                                           class: "bid-comment" %>
               </div>
-              <div class="col s4 valign">
+              <div class="col s12 m4 valign">
                 <%= f.submit "Submit Bid", class: "btn submit-bid-btn" %>
               </div>
             </div>
@@ -85,7 +85,7 @@
   <section class="row" style="display:none;">
     <!-- ^^^ REMOVE DISPLAY NONE FROM HERE IN THE FUTURE ^^^ -->
     <h4 class="bids-table-title">Current Bids</h4>
-    <table class="striped">
+    <table class="striped responsive">
       <thead>
         <tr>
           <th>Bidder Name</th>
@@ -123,10 +123,10 @@
         <hr>
       </div>
     </div>
-    <div class="col s2">
+    <div class="col s12 m2">
       <%= image_tag "http://placehold.it/100x100", class: "circle" %>
     </div>
-    <div class="col s10">
+    <div class="col s12 m10">
       <div class="row">
         <div class="col s12">
           <h5><%= link_to "Dan Winter", root_path,
@@ -136,13 +136,13 @@
         </div>
       </div>
       <div class="row lister-info">
-        <div class="col s3">
+        <div class="col s12 m3">
           6 Active Jobs
         </div>
-        <div class="col s3">
+        <div class="col s12 m3">
           3 Completed Jobs
         </div>
-        <div class="col s6">
+        <div class="col s12 m6">
           Active Since June 2013
         </div>
       </div>
