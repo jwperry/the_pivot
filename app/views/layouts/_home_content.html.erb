@@ -13,6 +13,6 @@
 
   <div class="category-dropdown">
     <h3 class="choose-category-title">Choose a Category</h3>
-    <%= select_tag :categories, options_for_select(%w(culinary carpentry electrical sewing home_repair writing data_entry web_development graphic_design photography)), class: "category-select" %>
+    <%= select_tag :categories, options_for_select(@category_names), class: "category-select" %>
   </div>
 </div>
