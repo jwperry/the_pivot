@@ -23,6 +23,10 @@
     margin-left: 55px;
   }
 
+  .duration-block {
+    margin-top: 15px;
+  }
+
 }
 
 @media screen and (max-width: 730px) {
@@ -59,6 +63,15 @@
 
   .user-action-links a {
     padding: 5px;
+  }
+
+  .comment-job-title {
+    font-size: 25px;
+    text-align: center;
+  }
+
+  .duration-block {
+    margin-top: 0;
   }
 
 }

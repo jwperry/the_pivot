@@ -377,7 +377,13 @@ table a {
 
   a {
     @include main-link;
+    font-size: 22px;
   }
+}
+
+
+.profile-bio {
+  margin-left: 30px;
 }
 
 /* ORDERS */
