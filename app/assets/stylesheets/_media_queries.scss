@@ -74,7 +74,6 @@
     margin-top: 0;
   }
 
-
   .col.s12.m9.l9.category-content {
     padding-right: 0;
   }
@@ -116,6 +115,10 @@
 
   .job-lister-details {
     text-align: center;
+  }
+
+  .bio {
+    margin: 0 10px;
   }
 
 }
@@ -167,6 +170,19 @@
 
   .job-location {
     font-size: 18px;
+  }
+
+  .comments-label {
+    font-size: 30px;
+  }
+
+  .comment-card p {
+    margin: 3px;
+  }
+
+  .row.job-lister-image.valign {
+    margin: 0 auto;
+    width: 60%;
   }
 
 }
