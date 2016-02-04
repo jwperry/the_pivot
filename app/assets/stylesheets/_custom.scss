@@ -100,7 +100,7 @@ button.stripe-button-el span {
   }
 
   &:last-child {
-    padding-bottom: 20px;
+    padding-bottom: 10px;
   }
 
   a {
@@ -194,6 +194,10 @@ button.stripe-button-el span {
     background-color: $base-green-light;
   }
 
+}
+
+.lister-info {
+  font-size: 18px;
 }
 
 // -----DURATION TAGS-----
