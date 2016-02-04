@@ -74,6 +74,27 @@
     margin-top: 0;
   }
 
+
+  .col.s12.m9.l9.category-content {
+    padding-right: 0;
+  }
+
+  .job-title-link {
+    font-size: 22px;
+  }
+
+  .job-partial {
+    text-align: center;
+  }
+
+  .job-info {
+    border-right: none;
+  }
+
+  .category-name {
+    text-align: center;
+  }
+
 }
 
 @media screen and (max-width: 550px) {
@@ -132,6 +153,15 @@
 
   .home-title {
     font-size: 30px;
+  }
+
+  .category-select {
+    font-size: 16px;
+    width: 170px;
+  }
+
+  .category-name {
+    font-size: 26px;
   }
 
 }
