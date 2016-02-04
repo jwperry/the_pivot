@@ -2,9 +2,7 @@ require "test_helper"
 
 class GuestVisitsHomepageTest < ActionDispatch::IntegrationTest
   test "sees company name and main links" do
-    category_1 = create(:category)
-    category_2 = create(:category)
-    category_3 = create(:category)
+    create_list(:category, 3)
 
     visit "/"
 
@@ -14,7 +12,7 @@ class GuestVisitsHomepageTest < ActionDispatch::IntegrationTest
       assert page.has_link?("Create Account", href: sign_up_path)
       assert page.has_link?("Log In", href: login_path)
     end
-    
+
     category_names = Category.all.pluck(:name)
 
     within first(:div, ".category-dropdown") do
