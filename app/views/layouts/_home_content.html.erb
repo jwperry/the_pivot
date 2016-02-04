@@ -13,6 +13,7 @@
 
   <div class="category-dropdown">
     <h3 class="choose-category-title">Choose a Category</h3>
-    <%= select_tag :categories, options_from_collection_for_select(@categories, "id", "name"), class: "category-select" %>
+    <div class="input-field select-wrapper">
+      <%= select_tag :categories, options_from_collection_for_select(@categories, "id", "name"), class: "category-select" %>
+    </div>
   </div>
-</div>

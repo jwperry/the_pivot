@@ -1,0 +1,22 @@
+<script type="text/javascript">
+  $( document ).ready(function(){
+    $(".button-collapse").sideNav();
+    $('.slider').slider({full_width: true, indicators: false});
+    $('.caption').css({'opacity' : 1})
+  })
+</script>
+
+<script>
+  $(function(){
+    $('.category-select').on('change', function () {
+      var selection = $('#categories :selected').text().toLowerCase();
+      selection = selection.replace(/ /g, '-');
+
+      var url = "/categories/" + selection;
+      if (url) {
+        window.location.href = url;
+      }
+      return false;
+    });
+  });
+</script>

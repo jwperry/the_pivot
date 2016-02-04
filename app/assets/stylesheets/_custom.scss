@@ -153,8 +153,12 @@ button.stripe-button-el span {
 
 .google-map-job {
   height: 300px;
-  margin: 0 auto;
+  margin: 0.90rem auto 0;
   max-width: 400px;
+}
+
+.col.s12.m10.l10.left-align {
+  padding-left: 0;
 }
 
 .col.s12.m12.l8.box-b.main-job-information {
@@ -171,8 +175,9 @@ button.stripe-button-el span {
   font-size: 20px;
 }
 
-.job-title {
+.job-show-title {
   color: $base-dark-blue;
+  font-size: 40px;
 }
 
 .bidder-name {
@@ -213,6 +218,45 @@ button.stripe-button-el span {
 
 .lister-info {
   font-size: 18px;
+}
+
+h3#ui-id-1 {
+  background: $base-purple-blue-dark;
+  color: white;
+  font-size: 26px;
+  letter-spacing: 0.5em;
+  text-align: center;
+  text-transform: uppercase;
+
+  &:hover {
+    background: $base-light-blue;
+    color: $base-purple-blue-dark;
+
+    .arrow-icon {
+      color: $base-green-dark;
+    }
+  }
+
+}
+
+span.ui-accordion-header-icon.ui-icon.ui-icon-triangle-1-e {
+  display: none;
+}
+
+span.ui-accordion-header-icon.ui-icon.ui-icon-triangle-1-s {
+  display: none;
+}
+
+.job-lister-title {
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-weight: 100;
+}
+
+.arrow-icon {
+  transform: rotate(180deg);
+  margin: 0 10px;
+  color: $base-green-light;
 }
 
 // -----DURATION TAGS-----
