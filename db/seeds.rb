@@ -11,6 +11,7 @@ class Seed
     create_turing_job_lister
     create_job_listings
     create_contractor_bids
+    create_comments
   end
 
   def create_categories
@@ -126,20 +127,21 @@ class Seed
   end
 
   def create_job_listings
-      User.listers.each do |job_lister|
-        5.times do |i|
-          job_lister.jobs.create!(
-            title: Faker::Commerce.product_name,
-            category_id: rand(1..10),
-            description: Faker::Lorem.paragraph(2),
-            status: rand(0..4),
-            city: Faker::Address.city,
-            state: Faker::Address.state_abbr,
-            zipcode: Faker::Address.zip,
-            bidding_close_date: Faker::Time.forward(14, :morning),
-            must_complete_by_date: Faker::Time.between(DateTime.now + 14, DateTime.now + 21),
-            duration_estimate: rand(0..3)
-          )
+    User.listers.each do |job_lister|
+      5.times do
+        job_lister.jobs.create!(
+          title: Faker::Commerce.product_name,
+          category_id: rand(1..10),
+          description: Faker::Lorem.paragraph(2),
+          status: rand(0..4),
+          city: Faker::Address.city,
+          state: Faker::Address.state_abbr,
+          zipcode: Faker::Address.zip,
+          bidding_close_date: Faker::Time.forward(14, :morning),
+          must_complete_by_date: Faker::Time.between(DateTime.now + 14,
+                                                     DateTime.now + 21),
+          duration_estimate: rand(0..3)
+        )
         puts "Created Job Listing: #{Job.last.title} for #{Job.last.user.full_name}"
       end
     end
@@ -157,36 +159,44 @@ class Seed
         )
         puts "Created Bid by #{contractor.full_name} on job #{Bid.last.job.title}"
       end
-
     end
     update_bid_status
   end
 
   def update_bid_status
     Job.bid_selected.each do |job|
-      unless job.bids.empty?
-        job.bids.each_with_index do |bid, index|
-          if index.zero?
-            bid.update_attribute(:status, 1)
-          else
-            bid.update_attribute(:status, 2)
-          end
-        end
+      next if  job.bids.empty?
 
-        puts "Contractor #{job.bids.accepted.first.user.full_name} won job #{job.title}"
+      job.bids.each_with_index do |bid, index|
+        if index.zero?
+          bid.update_attribute(:status, 1)
+        else
+          bid.update_attribute(:status, 2)
+        end
       end
+
+      puts "Contractor #{job.bids.accepted.first.user.full_name} won job #{job.title}"
     end
   end
 
   def create_comments
+    Job.completed.each do |job|
+      job.comments.create!(
+        user_id: job.lister.id,
+        recipient_id: job.bids.accepted.first.user.id,
+        text: Faker::Lorem.sentence(2),
+        rating: rand(1..5)
+      )
 
-    # t.integer  "user_id"
-    # t.integer  "recipient_id"
-    # t.text     "text"
-    # t.integer  "rating"
-    # t.integer  "job_id"
-    # t.datetime "created_at",   null: false
-    # t.datetime "updated_at",   null: false
+      job.comments.create!(
+        user_id: job.bids.accepted.first.user.id,
+        recipient_id: job.lister.id,
+        text: Faker::Lorem.sentence(2),
+        rating: rand(1..5)
+      )
+
+      puts "Comments created for job: #{job.title}"
+    end
   end
 end
 
