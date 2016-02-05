@@ -2,7 +2,7 @@
   <div class="col s12 m6">
     <div class="card">
       <div class="card-content">
-        <% if current_artist? %>
+        <% if current_lister? %>
           <% if current_user.file_upload %>
             <%= image_tag current_user.file_upload.url(:medium) %>
           <% end %>
@@ -52,7 +52,7 @@
           <div class="action-box"><%= link_to "Create Item", new_admin_item_path %></div>
           <div class="action-box"><%= link_to "View Items", admin_items_path %></div>
           <div class="action-box"><%= link_to "View Orders", admin_orders_path %></div>
-        <% elsif current_artist? %>
+        <% elsif current_lister? %>
           <div class="action-box"><%= link_to "View My Items", artist_path(current_user) %></div>
           <div class="action-box"><%= link_to "Add New Item", new_user_item_path(current_user) %></div>
         <% end %>

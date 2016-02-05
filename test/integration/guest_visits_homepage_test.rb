@@ -6,8 +6,6 @@ class GuestVisitsHomepageTest < ActionDispatch::IntegrationTest
 
     visit "/"
 
-    byebug
-
     within first(:div, ".landing-buttons") do
       assert page.has_css?("h1", text: "Freelancer")
       assert page.has_content?("Choose a Category")

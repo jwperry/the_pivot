@@ -1,6 +1,6 @@
 require "test_helper"
 
-class GuestCanCreateAnArtistAccountTest < ActionDispatch::IntegrationTest
+class GuestCanCreateAListerAccountTest < ActionDispatch::IntegrationTest
   test "guest creates artist account" do
     visit new_user_path
 
@@ -14,14 +14,12 @@ class GuestCanCreateAnArtistAccountTest < ActionDispatch::IntegrationTest
     fill_in "Username", with: "toni_artist"
     fill_in "Password", with: "password"
     fill_in "Password confirmation", with: "password"
-    select "artist", from: "user_role"
+    select "lister", from: "user_role"
     click_on "Create User"
 
     user = User.last
-    assert_equal "artist", user.role
+    assert_equal "lister", user.role
 
     assert_equal dashboard_path, current_path
-    assert page.has_link? "View My Items", artist_path(user)
-    assert page.has_link? "Add New Item", new_user_item_path(user)
   end
 end

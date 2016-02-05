@@ -15,7 +15,7 @@ class GuestCreatesLoginWithIncorrectCreditialsTest < ActionDispatch::Integration
   end
 
   test "guest puts in name that is already created" do
-    user = create(:user)
+    user = create(:contractor)
 
     visit new_user_path
     fill_in "First name", with: "Bruce"

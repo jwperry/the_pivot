@@ -10,7 +10,7 @@
   <br>
 
   <div class="row">
-    <% if current_artist? %>
+    <% if current_lister? %>
     <%= f.label "Upload Profile Picture" %>
     <br><br>
     <%= f.file_field :file_upload, class: "upload-file grey-text" %>
@@ -51,21 +51,21 @@
   <%= f.password_field :password_confirmation %>
   <br>
 
-  <% if current_admin? %>
+  <% if current_platform_admin? %>
     <%= f.label :role %>
-    <%= f.select :role, options_for_select(["default", "artist", "admin"], selected: "admin") %>
+    <%= f.select :role, options_for_select(["contractor", "lister", "platform_admin"], selected: "platform_admin") %>
     <br>
-  <% elsif current_artist? %>
+  <% elsif current_lister? %>
     <%= f.label :role %>
-    <%= f.select :role, options_for_select(["artist"], selected: "artist") %>
+    <%= f.select :role, options_for_select(["lister"], selected: "lister") %>
     <br>
   <% elsif current_user %>
     <%= f.label :role %>
-    <%= f.select :role, options_for_select(["default", "artist"], selected: current_user.role) %>
+    <%= f.select :role, options_for_select(["contractor", "lister"], selected: current_user.role) %>
     <br>
   <% else %>
     <%= f.label :role %>
-    <%= f.select :role, options_for_select(["default", "artist"]) %>
+    <%= f.select :role, options_for_select(["contractor", "lister"]) %>
     <br>
   <% end %>
 

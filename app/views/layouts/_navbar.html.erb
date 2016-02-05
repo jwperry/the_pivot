@@ -7,11 +7,11 @@
       <!-- DESKTOP NAV -->
       <ul id="nav-mobile" class="right hide-on-med-and-down">
 
-        <% if current_admin? %>
+        <% if current_platform_admin? %>
           <li class="right-align">
             <%= link_to "My Dashboard (admin)", admin_dashboard_path(current_user.slug) , class: "login-confirm"%>
           </li>
-        <% elsif current_artist? %>
+        <% elsif current_lister? %>
           <li class="right-align">
             <%= link_to "My Dashboard (poster)", dashboard_path(current_user.slug) , class: "login-confirm"%>
           </li>
@@ -32,7 +32,7 @@
       <!-- MOBILE NAV -->
       <ul class="side-nav" id="mobile-demo">
         <li><strong><%= link_to "Freelancer", root_path %></strong></li>
-        <% if current_admin? %>
+        <% if current_platform_admin? %>
           <li>
             <%= link_to "Dashboard (#{current_user.first_name}: admin)", admin_dashboard_path(current_user.slug) , class: "login-confirm"%>
           </li>

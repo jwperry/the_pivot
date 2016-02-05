@@ -23,7 +23,7 @@
       <%= link_to "Edit", edit_admin_item_path(@item), class: "btn waves-effect waves-light btn-edit"%>
       <%= link_to "Delete", admin_item_path(@item), method: :delete,  class: "btn waves-effect waves-light btn-delete"%>
 
-    <% elsif current_artist? && artist_owns_item?(@item) %>
+    <% elsif current_lister? && artist_owns_item?(@item) %>
       <% if @item.active? %>
         <p class="active-status-text active-status-text larger-text">Status: <%= @item.status %></p>
       <% else %>

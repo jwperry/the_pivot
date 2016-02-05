@@ -2,7 +2,7 @@ require "test_helper"
 
 class UserLogInTest < ActionDispatch::IntegrationTest
   test "registered user logs in and is taken to their dashboard" do
-    user = create(:user)
+    user = create(:contractor)
     visit login_path
 
     fill_in "Username", with: user.username
@@ -35,7 +35,7 @@ class UserLogInTest < ActionDispatch::IntegrationTest
   end
 
   test "user cannot login with incorrect password" do
-    user = create(:user)
+    user = create(:contractor)
     visit login_path
 
     fill_in "Username", with: user.username
@@ -50,7 +50,7 @@ class UserLogInTest < ActionDispatch::IntegrationTest
   end
 
   test "user cannot login with incorrect username" do
-    create(:user)
+    create(:contractor)
     visit login_path
 
     fill_in "Username", with: "wrong_user"
