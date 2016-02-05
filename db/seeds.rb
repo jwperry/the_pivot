@@ -20,13 +20,17 @@ class Seed
                   "Business Services",
                   "Housework"]
 
-    categories.each { |name| Category.create!(name: name) }
+    categories.each do |name|
+      Category.create!(name: name)
+      puts "Created category: #{name}"
+    end
   end
 
   def create_users
     users = ["Joseph Perry",
              "Dan Winter",
-             "Toni Rib"]
+             "Toni Rib",
+             "Josh Mejia"]
 
     users.each do |full_name|
       first_name = full_name.split.first
@@ -37,11 +41,34 @@ class Seed
                    username: "#{first_name.downcase}_user",
                    password: "password",
                    role: 0,
-                   email_address: "#{first_name.downcase}_user@gmail.com",
-                   street_address: "123 Maple Drive",
-                   city: "Denver",
-                   state: "CO",
-                   zipcode: 80231)
+                   email_address: "#{first_name.downcase}@turing.io",
+                   street_address: Faker::Address.street_address,
+                   city: Faker::Address.city,
+                   state: Faker::Address.state,
+                   zipcode: Faker::Address.zip,
+                   bio: Faker::Lorem.sentence(3))
+    puts "Created user: #{full_name}"
+    end
+
+    100.times do |i|
+      first_name = Faker::Name.first_name
+      last_name = Faker::Name.last_name
+
+      User.create!(
+        first_name: first_name,
+        last_name: last_name,
+        username: "#{first_name.downcase}#{i}",
+        password: "password",
+        role: 0,
+        email_address: "#{first_name.downcase}#{i}@example.com",
+        street_address: Faker::Address.street_address,
+        city: Faker::Address.city,
+        state: Faker::Address.state,
+        zipcode: Faker::Address.zip,
+        bio: Faker::Lorem.sentence(3)
+      )
+
+      puts "Created user: #{first_name} #{last_name}"
     end
   end
 end
