@@ -25,7 +25,7 @@
           <h5 class="inactive-status-text">Status: <%= item.status %></h5>
         <% end %>
 
-      <% elsif current_artist? && artist_owns_item?(item) %>
+      <% elsif current_lister? && artist_owns_item?(item) %>
         <%= link_to "Edit", edit_user_item_path(current_user, item), class: "btn waves-effect waves-light btn-edit" %>
         <%= link_to "Delete", item_path(item), method: :delete,  class: "btn waves-effect waves-light btn-delete"%>
 

@@ -12,8 +12,6 @@ class User < ActiveRecord::Base
   validates :city, presence: true
   validates :state, presence: true
   validates :zipcode, presence: true
-  has_many :orders
-  has_many :items
   has_many :comments
 
   has_attached_file :file_upload,
@@ -23,9 +21,9 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :file_upload,
                                     content_type: %r{\Aimage\/.*\Z}
 
-  scope :artists, -> { where(role: 1) }
+  scope :lister, -> { where(role: 1) }
 
-  enum role: %w(default artist admin)
+  enum role: %w(contractor lister platform_admin)
 
   def full_name
     "#{first_name} #{last_name}"

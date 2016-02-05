@@ -64,7 +64,8 @@ class User::UsersController < ApplicationController
                                  :zipcode,
                                  :role,
                                  :slug,
-                                 :file_upload)
+                                 :file_upload,
+                                 :bio)
   end
 
   def user_slug_is_current_user

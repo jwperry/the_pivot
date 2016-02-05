@@ -3,6 +3,7 @@ class Category < ActiveRecord::Base
   validates :name, presence: true,
                    uniqueness: true
   before_create :generate_slug
+  has_many :jobs
 
   def to_param
     slug

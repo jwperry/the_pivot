@@ -1,27 +1,34 @@
 FactoryGirl.define do
-  factory :item do
+  factory :category do
+    name
+    description "Awesome Category"
+  end
+
+  factory :bid do
     price
-    description "This is a painting of Batman."
+    duration_estimate 24
+    details "Bid details are amaze balls"
+    status "pending"
+  end
+
+  factory :comment do
+    text "Sweet comment"
+    rating
+  end
+
+  factory :job do
     title
-    image_path "https://s-media-cache-ak0.pinimg.com/236x/ac/79/ec/ac79ecfd60f82e28cabdfb8f1dc10df4.jpg"
-    association :user, factory: :artist
+    description "Job description"
+    status "bidding open"
+    city "Denver"
+    state "CO"
+    zipcode 802_31
+    bidding_close_date
+    must_complete_by_date
     category
   end
 
-  factory :category do
-    name
-    factory :category_with_items do
-      transient do
-        item_count 2
-      end
-
-      after(:create) do |category, evaluator|
-        create_list(:item, evaluator.item_count, category: category)
-      end
-    end
-  end
-
-  factory :user do
+  factory :contractor, class: User do
     first_name
     last_name
     username
@@ -31,56 +38,34 @@ FactoryGirl.define do
     street_address "123 Maple Drive"
     city "Denver"
     state "CO"
-    zipcode 80231
+    zipcode 802_31
+    bio "This sure is a sweet bio"
 
-    factory :admin do
+    factory :lister do
       username "admin"
+      role 1
+    end
+
+    factory :platform_admin do
+      username "platform_admin"
       role 2
     end
-
-    factory :user_with_orders do
-      transient do
-        order_count 2
-      end
-
-      after(:create) do |user, evaluator|
-        create_list(:order, evaluator.order_count, user: user)
-      end
-    end
-
-    factory :artist do
-      username { generate(:artist_username) }
-      role 1
-
-      factory :artist_with_items do
-        transient do
-          item_count 2
-        end
-
-        after(:create) do |user, evaluator|
-          create_list(:item, evaluator.item_count, user: user)
-        end
-      end
-    end
   end
 
-  factory :order_item do
-    order
-    item
-    quantity 1
+  sequence :bidding_close_date do |n|
+    Time.now + n.hours
   end
 
-  factory :order do
-    user
-    status
+  sequence :must_complete_by_date do |n|
+    Time.now + n.days
   end
 
-  sequence :artist_username do |n|
-    "artist#{n}"
-  end
-
-  sequence :status, %w(ordered paid cancelled completed).cycle do |n|
+  sequence :rating, [1, 2, 3, 4, 5].cycle do |n|
     n
+  end
+
+  sequence :price do |n|
+    n * 100
   end
 
   sequence :name, %w(a b c d e f g h i).cycle do |n|
@@ -101,10 +86,6 @@ FactoryGirl.define do
 
   sequence :title do |n|
     "title#{n}"
-  end
-
-  sequence :price do |n|
-    0 + n
   end
 
   sequence :username do |n|

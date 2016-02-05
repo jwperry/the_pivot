@@ -28,13 +28,4 @@ end
 class ActionDispatch::IntegrationTest
   include Capybara::DSL
 
-  def add_items_to_cart_and_visit_shopping_cart(num_items = 1)
-    @items = create_list(:item, num_items)
-
-    @items.each do |item|
-      visit item_path(item)
-      click_button "Add to Cart"
-    end
-    find("#shopping_cart").click
-  end
 end
