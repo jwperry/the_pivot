@@ -72,4 +72,3 @@ class User::UsersController < ApplicationController
     current_user.slug == params[:slug]
   end
 end
-

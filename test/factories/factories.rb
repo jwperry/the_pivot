@@ -22,7 +22,7 @@ FactoryGirl.define do
     status "bidding open"
     city "Denver"
     state "CO"
-    zipcode 80231
+    zipcode 802_31
     bidding_close_date
     must_complete_by_date
     category
@@ -38,7 +38,7 @@ FactoryGirl.define do
     street_address "123 Maple Drive"
     city "Denver"
     state "CO"
-    zipcode 80231
+    zipcode 802_31
     bio "This sure is a sweet bio"
 
     factory :lister do
@@ -91,5 +91,4 @@ FactoryGirl.define do
   sequence :username do |n|
     "username#{n}"
   end
-
 end
