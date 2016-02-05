@@ -28,6 +28,7 @@ class Seed
 
     categories.each do |name|
       Category.create!(name: name)
+
       puts "Created category: #{name}"
     end
   end
@@ -55,7 +56,8 @@ class Seed
         zipcode: Faker::Address.zip,
         bio: Faker::Lorem.sentence(3)
       )
-    puts "Created Turing Contractor: #{full_name}"
+
+      puts "Created Turing Contractor: #{full_name}"
     end
   end
 
@@ -142,6 +144,7 @@ class Seed
                                                      DateTime.now + 21),
           duration_estimate: rand(0..3)
         )
+
         puts "Created Job Listing: #{Job.last.title} for #{Job.last.user.full_name}"
       end
     end
@@ -157,15 +160,18 @@ class Seed
           details: Faker::Lorem.paragraph(2),
           status: 0
         )
+
         puts "Created Bid by #{contractor.full_name} on job #{Bid.last.job.title}"
       end
     end
+
     update_bid_status
+    update_job_status
   end
 
   def update_bid_status
     Job.bid_selected.each do |job|
-      next if  job.bids.empty?
+      next if job.bids.empty?
 
       job.bids.each_with_index do |bid, index|
         if index.zero?
@@ -176,6 +182,14 @@ class Seed
       end
 
       puts "Contractor #{job.bids.accepted.first.user.full_name} won job #{job.title}"
+    end
+  end
+
+  def update_job_status
+    Job.bid_selected.each do |job|
+      next unless job.bids.empty?
+
+      job.update_attribute(:status, "cancelled")
     end
   end
 
