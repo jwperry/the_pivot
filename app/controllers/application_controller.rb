@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   helper_method :current_platform_admin?
   helper_method :current_lister?
+  helper_method :all_categories
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
@@ -18,5 +19,9 @@ class ApplicationController < ActionController::Base
 
   def sanitize_price(price)
     price.to_s.gsub!(/[,$]/, "").to_i
+  end
+
+  def all_categories
+    @all_categories ||= Category.all
   end
 end

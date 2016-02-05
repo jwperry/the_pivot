@@ -1,3 +1,8 @@
+<ul id="category-nav-dropdown" class="dropdown-content">
+  <% all_categories.each do |category| %>
+    <li><%= link_to category.name, category_path(category) %></li>
+  <% end %>
+</ul>
 <div class="navbar-fixed">
   <nav>
     <div class="nav-wrapper" >
@@ -27,6 +32,11 @@
         <% else %>
           <li><%= link_to "Login", login_path %></li>
         <% end %>
+
+        <!-- Dropdown Trigger -->
+        <li><a class="dropdown-button" href="#" data-activates="category-nav-dropdown">Jump to Category<i class="material-icons right">arrow_drop_down</i></a></li>
+
+
       </ul>
 
       <!-- MOBILE NAV -->
