@@ -2,7 +2,9 @@
   <aside class="col s12 m3 l3">
     <div class="category-dropdown mobile-category-dropdown">
       <h3 class="choose-category-title">Choose a Category</h3>
-      <%= select_tag :categories, options_from_collection_for_select(@categories, "id", "name", selected: @category.id), class: "category-select" %>
+      <div class="input-field">
+        <%= select_tag :categories, options_from_collection_for_select(@categories, "id", "name", selected: @category.id), class: "category-select" %>
+      </div>
     </div>
     <ul class="category-list">
       <% @categories.each do |category| %>
@@ -14,8 +16,8 @@
   </aside>
   <div class="col s12 m9 l9 category-content">
     <header class="row">
-      <div class="col s12 m12 l12 no-bottom-margin center-align">
-        <h2><%= @category.name %></h2>
+      <div class="col s12 m12 l12 no-bottom-margin">
+        <h2 class="category-name"><%= @category.name %></h2>
       </div>
     </header>
     <section class="row">
@@ -26,7 +28,7 @@
             <h5 class="col s12 m10 l10">
               <a href="/users/toni_user/jobs/1" class="job-title-link">Build A Dining Room Table</a>
             </h5>
-            <div class="col s2 m2 l2 center-align valign">
+            <div class="col s12 m2 l2 center-align valign">
               <div class="duration-tag duration-estimate-medium">Medium</div>
             </div>
           </div>
@@ -66,18 +68,3 @@
 
 
 </div>
-
-<script>
-  $(function(){
-    $('#categories').on('change', function () {
-      var selection = $('#categories :selected').text().toLowerCase();
-      selection = selection.replace(/ /g, '-');
-
-      var url = "/categories/" + selection;
-      if (url) {
-        window.location.href = url;
-      }
-      return false;
-    });
-  });
-</script>

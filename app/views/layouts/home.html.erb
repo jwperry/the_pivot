@@ -3,19 +3,14 @@
 <html>
   <%= render partial: "layouts/head" %>
   <body class="landing_page">
-    <%= render partial: "layouts/javascripts" %>
+
     <%= render partial: "layouts/navbar" %>
 
     <div class="container center-align">
       <%= yield %>
     </div>
 
-    <script type="text/javascript">
-      $( document ).ready(function(){
-        $(".button-collapse").sideNav();
-        $('.slider').slider({full_width: true, indicators: false});
-        $('.caption').css({'opacity' : 1})
-      })
-    </script>
+    <%= render partial: "layouts/javascripts" %>
+    <%= render partial: "layouts/homepage_javascript" %>
   </body>
 </html>

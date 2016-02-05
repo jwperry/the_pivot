@@ -10,15 +10,15 @@
         <div id="google-map" class="google-map-job"></div>
       </div>
       <div class="row">
-        <h5>Denver, CO</h5>
+        <h5 class="job-location">Denver, CO</h5>
       </div>
     </div>
     <div class="col s12 m12 l8 box-b main-job-information">
       <div class="row valign-wrapper no-bottom-margin">
-        <h5 class="col s12 m10 l10 left-align job-title">
-          Build A Dining Room Table
-        </h5>
-        <div class="col s12 m2 l2 center-align valign">
+        <div class="col s12 m10 l10 left-align">
+          <h5 class="job-show-title">Build A Dining Room Table</h5>
+        </div>
+        <div class="col s12 m2 l2 valign">
           <div class="duration-tag duration-estimate-medium">Medium</div>
         </div>
       </div>
@@ -47,7 +47,7 @@
   <div class="row left-align">
    <div class="col s12 m12 l12">
      <div id="accordion">
-      <h3>Place A Bid</h3>
+      <h3><i class="material-icons arrow-icon">navigation</i>Place A Bid<i class="material-icons arrow-icon">navigation</i></h3>
       <div>
         <!-- INSIDE THE ACCORDION -->
         <div class="row no-bottom-margin bid-accordion">
@@ -56,22 +56,22 @@
               <div class="col s12 m4 valign">
                 <%= f.label "Joseph Perry", class: "bidder-name" %>
               </div>
-              <div class="col s4 m3 bid-input-field valign">
+              <div class="col s12 m3 bid-input-field valign">
                 <%= f.number_field :price, placeholder: :price %>
               </div>
-              <div class="col s4 m3 bid-input-field valign">
+              <div class="col s7 m3 bid-input-field valign">
                 <%= f.number_field :duration_estimate, placeholder: "Duration Estimate" %>
               </div>
-              <div class="col s4 m2 bid-input-field valign">
+              <div class="col s5 m2 bid-input-field valign">
                 <%= select_tag :time_interval, options_for_select(%w(days hours weeks)), class: "time-interval-select" %>
               </div>
             </div>
             <div class="row no-bottom-margin center-align valign-wrapper">
-              <div class="col s8 valign">
+              <div class="col s12 m8 valign">
                 <%= f.text_area :comment, placeholder: "Leave a comment for the job lister",
                                           class: "bid-comment" %>
               </div>
-              <div class="col s4 valign">
+              <div class="col s12 m4 valign">
                 <%= f.submit "Submit Bid", class: "btn submit-bid-btn" %>
               </div>
             </div>
@@ -82,9 +82,10 @@
     </div>
    </div>
  </div>
-  <section class="row">
+  <section class="row" style="display:none;">
+    <!-- ^^^ REMOVE DISPLAY NONE FROM HERE IN THE FUTURE ^^^ -->
     <h4 class="bids-table-title">Current Bids</h4>
-    <table class="striped">
+    <table class="striped responsive">
       <thead>
         <tr>
           <th>Bidder Name</th>
@@ -116,10 +117,16 @@
     </table>
   </section>
   <section class="row left-align job-lister-details card">
-    <div class="col s2">
+    <div class="row card-title">
+      <div class="col s12 m12 l12">
+        <h4 class="job-lister-title">Job Lister</h4>
+        <hr>
+      </div>
+    </div>
+    <div class="col s12 m2">
       <%= image_tag "http://placehold.it/100x100", class: "circle" %>
     </div>
-    <div class="col s10">
+    <div class="col s12 m10">
       <div class="row">
         <div class="col s12">
           <h5><%= link_to "Dan Winter", root_path,
@@ -129,13 +136,13 @@
         </div>
       </div>
       <div class="row lister-info">
-        <div class="col s3">
+        <div class="col s12 m3">
           6 Active Jobs
         </div>
-        <div class="col s3">
+        <div class="col s12 m3">
           3 Completed Jobs
         </div>
-        <div class="col s6">
+        <div class="col s12 m6">
           Active Since June 2013
         </div>
       </div>
