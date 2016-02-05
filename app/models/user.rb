@@ -2,6 +2,10 @@ class User < ActiveRecord::Base
   before_create :generate_slug
   has_secure_password
 
+  has_many :bids
+  has_many :jobs
+  has_many :comments
+
   validates :username, presence: true,
                        uniqueness: true
   validates :first_name, presence: true
@@ -21,7 +25,8 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :file_upload,
                                     content_type: %r{\Aimage\/.*\Z}
 
-  scope :lister, -> { where(role: 1) }
+  scope :listers, -> { where(role: 1) }
+  scope :contractors, -> { where(role: 0) }
 
   enum role: %w(contractor lister platform_admin)
 

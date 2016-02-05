@@ -5,7 +5,12 @@ class Seed
 
   def generate
     create_categories
-    create_users
+    create_turing_contractors
+    create_contractors
+    create_job_listers
+    create_turing_job_lister
+    create_job_listings
+    create_contractor_bids
   end
 
   def create_categories
@@ -26,7 +31,7 @@ class Seed
     end
   end
 
-  def create_users
+  def create_turing_contractors
     users = ["Joseph Perry",
              "Dan Winter",
              "Toni Rib",
@@ -36,20 +41,24 @@ class Seed
       first_name = full_name.split.first
       last_name = full_name.split.last
 
-      User.create!(first_name: first_name,
-                   last_name: last_name,
-                   username: "#{first_name.downcase}_user",
-                   password: "password",
-                   role: 0,
-                   email_address: "#{first_name.downcase}@turing.io",
-                   street_address: Faker::Address.street_address,
-                   city: Faker::Address.city,
-                   state: Faker::Address.state,
-                   zipcode: Faker::Address.zip,
-                   bio: Faker::Lorem.sentence(3))
-    puts "Created user: #{full_name}"
+      User.create!(
+        first_name: first_name,
+        last_name: last_name,
+        username: "#{first_name.downcase}_user",
+        password: "password",
+        role: 0,
+        email_address: "#{first_name.downcase}@turing.io",
+        street_address: Faker::Address.street_address,
+        city: Faker::Address.city,
+        state: Faker::Address.state,
+        zipcode: Faker::Address.zip,
+        bio: Faker::Lorem.sentence(3)
+      )
+    puts "Created Turing Contractor: #{full_name}"
     end
+  end
 
+  def create_contractors
     100.times do |i|
       first_name = Faker::Name.first_name
       last_name = Faker::Name.last_name
@@ -68,8 +77,98 @@ class Seed
         bio: Faker::Lorem.sentence(3)
       )
 
-      puts "Created user: #{first_name} #{last_name}"
+      puts "Created Contractor: #{first_name} #{last_name}"
     end
+  end
+
+  def create_job_listers
+    20.times do |i|
+      first_name = Faker::Name.first_name
+      last_name = Faker::Name.last_name
+
+      User.create!(
+        first_name: first_name,
+        last_name: last_name,
+        username: "#{first_name.downcase}#{i}_joblister",
+        password: "password",
+        role: 1,
+        email_address: "#{first_name.downcase}#{i}_joblister@example.com",
+        street_address: Faker::Address.street_address,
+        city: Faker::Address.city,
+        state: Faker::Address.state,
+        zipcode: Faker::Address.zip,
+        bio: Faker::Lorem.sentence(3)
+      )
+
+      puts "Created Job Lister: #{first_name} #{last_name}"
+    end
+  end
+
+  def create_turing_job_lister
+    first_name = "Andrew"
+    last_name = "Carmer"
+
+    User.create!(
+      first_name: first_name,
+      last_name: last_name,
+      username: "#{first_name.downcase}_user",
+      password: "password",
+      role: 1,
+      email_address: "#{first_name.downcase}@turing.io",
+      street_address: Faker::Address.street_address,
+      city: Faker::Address.city,
+      state: Faker::Address.state,
+      zipcode: Faker::Address.zip,
+      bio: Faker::Lorem.sentence(3)
+    )
+
+    puts "Created Turing Job Lister: #{first_name} #{last_name}"
+  end
+
+  def create_job_listings
+      User.listers.each do |job_lister|
+        5.times do |i|
+          job_lister.jobs.create!(
+            title: Faker::Commerce.product_name,
+            category_id: rand(1..10),
+            description: Faker::Lorem.paragraph(2),
+            status: rand(1..5),
+            city: Faker::Address.city,
+            state: Faker::Address.state_abbr,
+            zipcode: Faker::Address.zip,
+            bidding_close_date: Faker::Time.forward(14, :morning),
+            must_complete_by_date: Faker::Time.between(DateTime.now + 14, DateTime.now + 21),
+            duration_estimate: rand(1..4)
+          )
+        puts "Created Job Listing: #{Job.last.title} for #{Job.last.user.full_name}"
+      end
+    end
+  end
+
+  def create_contractor_bids
+    User.contractors.each do |contractor|
+      10.times do |i|
+        contractor.bids.create!(
+          job_id: rand(1..100),
+          price: i * rand(1..100),
+          duration_estimate: rand(1..1000),
+          details: Faker::Lorem.paragraph(2),
+          status: 0
+        )
+        puts "Created Bid by #{contractor.full_name} on job #{Bid.last.job.title}"
+      end
+    end
+  end
+
+  def create_comments
+    
+    # t.integer  "user_id"
+    # t.integer  "recipient_id"
+    # t.text     "text"
+    # t.integer  "rating"
+    # t.integer  "job_id"
+    # t.datetime "created_at",   null: false
+    # t.datetime "updated_at",   null: false
   end
 end
 
