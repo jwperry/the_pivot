@@ -132,13 +132,13 @@ class Seed
             title: Faker::Commerce.product_name,
             category_id: rand(1..10),
             description: Faker::Lorem.paragraph(2),
-            status: rand(1..5),
+            status: rand(0..4),
             city: Faker::Address.city,
             state: Faker::Address.state_abbr,
             zipcode: Faker::Address.zip,
             bidding_close_date: Faker::Time.forward(14, :morning),
             must_complete_by_date: Faker::Time.between(DateTime.now + 14, DateTime.now + 21),
-            duration_estimate: rand(1..4)
+            duration_estimate: rand(0..3)
           )
         puts "Created Job Listing: #{Job.last.title} for #{Job.last.user.full_name}"
       end
@@ -157,11 +157,29 @@ class Seed
         )
         puts "Created Bid by #{contractor.full_name} on job #{Bid.last.job.title}"
       end
+
+    end
+    update_bid_status
+  end
+
+  def update_bid_status
+    Job.bid_selected.each do |job|
+      unless job.bids.empty?
+        job.bids.each_with_index do |bid, index|
+          if index.zero?
+            bid.update_attribute(:status, 1)
+          else
+            bid.update_attribute(:status, 2)
+          end
+        end
+
+        puts "Contractor #{job.bids.accepted.first.user.full_name} won job #{job.title}"
+      end
     end
   end
 
   def create_comments
-    
+
     # t.integer  "user_id"
     # t.integer  "recipient_id"
     # t.text     "text"
