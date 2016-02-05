@@ -19,7 +19,7 @@ FactoryGirl.define do
   factory :job do
     title
     description "Job description"
-    status "bidding open"
+    status 0
     city "Denver"
     state "CO"
     zipcode 802_31

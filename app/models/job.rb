@@ -3,6 +3,14 @@ class Job < ActiveRecord::Base
 
   belongs_to :category
   belongs_to :user
+  has_many :bids
+  has_many :comments
+
+  enum status: %w(bidding_open bidding_closed in_progress completed cancelled)
+
+  scope :completed, -> { where(status: 3) }
+  scope :in_progress, -> { where(status: 2) }
+  scope :bid_selected, -> { where(status: [2, 3]) }
 
   validates :title, presence: true
   validates :category_id, presence: true
@@ -34,6 +42,10 @@ class Job < ActiveRecord::Base
           must_complete_by_date < bidding_close_date
       errors.add(:must_complete_by_date, "can't be before bidding close date")
     end
+  end
+
+  def lister
+    user
   end
 
   private
