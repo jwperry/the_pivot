@@ -339,6 +339,40 @@ nav ul a:hover {
   color: $base-light-blue-light;
 }
 
+.dropdown-content li {
+
+  &:hover {
+    background: $light-grey;
+  }
+
+  a {
+    color: $base-purple-blue-dark;
+
+    &:hover {
+      color: $base-green;
+    }
+
+  }
+
+}
+
+.mobile-menu-dropdown li {
+  background: $base-purple-blue;
+  height: 40px;
+
+
+  a {
+    color: $white;
+    text-align: left;
+
+    &:hover {
+      color: $base-green;
+    }
+
+  }
+
+}
+
 // -----DASHBOARD-----
 
 .user-action-links {
