@@ -26,6 +26,8 @@ FactoryGirl.define do
     bidding_close_date
     must_complete_by_date
     category
+    association :user, factory: :lister
+    duration_estimate 1
   end
 
   factory :contractor, class: User do
