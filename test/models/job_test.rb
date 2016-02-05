@@ -14,20 +14,107 @@ class JobTest < ActiveSupport::TestCase
 
   test "is valid with valid parameters" do
     job = create(:job)
+
     assert job.valid?
+    assert job.user.lister?
+    assert_equal 1, Job.count
   end
 
-  test ""
-end
+  test "job cannot belong to a contractor" do
+    contractor = create(:contractor)
+    category = create(:category)
+    contractor.jobs.create(
+      title: "Title",
+      category_id: category.id,
+      description: "Description",
+      status: 1,
+      city: "Denver",
+      state: "CO",
+      zipcode: 802_10,
+      bidding_close_date: DateTime.new(2080, 2, 3),
+      must_complete_by_date: DateTime.new(2081, 2, 3),
+      duration_estimate: 0
+    )
 
-# Title is required
-# Category ID is required
-# Cannot be assigned to non-existent category
-# Only a lister can be referenced with the user id
-# Default status is 1 (is this correct?)
-# City is required
-# State is required
-# Zipcode is required
-# Bidding close date is in the future
-# Must complete by date is in the future, and further than the bidding close date
-# Duration estimate is required
+    assert_equal 0, contractor.jobs.count
+  end
+
+  test "job can belong to a platform admin" do
+    platform_admin = create(:platform_admin)
+    category = create(:category)
+    platform_admin.jobs.create(
+      title: "Title",
+      category_id: category.id,
+      description: "Description",
+      status: 1,
+      city: "Denver",
+      state: "CO",
+      zipcode: 802_10,
+      bidding_close_date: DateTime.new(2080, 2, 3),
+      must_complete_by_date: DateTime.new(2081, 2, 3),
+      duration_estimate: 0
+    )
+
+    assert_equal 1, platform_admin.jobs.count
+  end
+
+  test "is invalid with bidding close date in the past" do
+    lister = create(:lister)
+    category = create(:category)
+    job = Job.create(
+      title: "Title",
+      category_id: category.id,
+      user_id: lister.id,
+      description: "Description",
+      status: 1,
+      city: "Denver",
+      state: "CO",
+      zipcode: 802_10,
+      bidding_close_date: DateTime.new(2001, 2, 3),
+      must_complete_by_date: DateTime.new(2081, 2, 3),
+      duration_estimate: 0
+    )
+
+    refute job.valid?
+  end
+
+  test "is invalid with must complete by date in the past" do
+    lister = create(:lister)
+    category = create(:category)
+    job = Job.create(
+      title: "Title",
+      category_id: category.id,
+      user_id: lister.id,
+      description: "Description",
+      status: 1,
+      city: "Denver",
+      state: "CO",
+      zipcode: 802_10,
+      bidding_close_date: DateTime.new(2080, 2, 3),
+      must_complete_by_date: DateTime.new(2001, 2, 3),
+      duration_estimate: 0
+    )
+
+    refute job.valid?
+  end
+
+  test "is invalid with must complete by date before bidding close date" do
+    lister = create(:lister)
+    category = create(:category)
+    job = Job.create(
+      title: "Title",
+      category_id: category.id,
+      user_id: lister.id,
+      description: "Description",
+      status: 1,
+      city: "Denver",
+      state: "CO",
+      zipcode: 802_10,
+      bidding_close_date: DateTime.new(2080, 12, 3),
+      must_complete_by_date: DateTime.new(2080, 1, 1),
+      duration_estimate: 0
+    )
+
+    refute job.valid?
+  end
+end
