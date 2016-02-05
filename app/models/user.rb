@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
 
   scope :artists, -> { where(role: 1) }
 
-  enum role: %w(default artist admin)
+  enum role: %w(contractor lister platform_admin)
 
   def full_name
     "#{first_name} #{last_name}"
