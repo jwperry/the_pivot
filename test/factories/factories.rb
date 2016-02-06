@@ -19,13 +19,19 @@ FactoryGirl.define do
   factory :job do
     title
     description "Job description"
-    status "bidding open"
+    status 0
     city "Denver"
     state "CO"
     zipcode 802_31
     bidding_close_date
     must_complete_by_date
     category
+    association :user, factory: :lister
+    duration_estimate 1
+
+    factory :job_posted_by_platform_admin do
+      association :user, factory: :platform_admin
+    end
   end
 
   factory :contractor, class: User do

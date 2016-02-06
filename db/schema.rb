@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 20160205153638) do
     t.datetime "updated_at",                        null: false
     t.text     "description"
     t.integer  "user_id"
-    t.integer  "status",                default: 1
+    t.integer  "status",                default: 0
     t.string   "city"
     t.string   "state"
     t.integer  "zipcode"

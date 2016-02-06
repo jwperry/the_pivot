@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
   validates :state, presence: true
   validates :zipcode, presence: true
   has_many :comments
+  has_many :jobs
 
   has_attached_file :file_upload,
                     styles: { medium: "300x300>", thumb: "100x100>" },
