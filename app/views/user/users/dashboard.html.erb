@@ -7,22 +7,22 @@
   <div class="row">
     <div class="col s12 m12 l12">
       <div class="card">
-        <div class="row valign-wrapper">
+        <div class="row valign-wrapper user-dashboard-info">
           <div class="col s12 m12 l6">
-            <div class="row job-lister-image">
-              <%= image_tag "http://placehold.it/200x200", class: "circle" %>
+            <div class="row dashboard-user-image circle">
+              <%= image_tag @user.file_upload.url, class: "circle" %>
             </div>
             <div class="row no-bottom-margin">
-              <h4>Dan Winter</h4>
+              <h4><%= @user.full_name %></h4>
             </div>
             <div class="row no-bottom-margin">
               <p class="dashboard-email">
-                <a href="mail-to:example@example.com">dan.j.winter@example.com</a>
+                <a href="mailto:<%= @user.email_address %>"><%= @user.email_address %></a>
               </p>
             </div>
             <div class="row">
               <p>
-                1510 Blake St. Denver, CO 80225
+                <%= @user.full_address %>
               </p>
             </div>
           </div>
@@ -30,7 +30,7 @@
             <div class="row valign">
               <div class="col s12">
                 <p class="bio">
-                  Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampd source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum"
+                  <%= @user.bio %>
                 </p>
               </div>
             </div>
@@ -38,29 +38,19 @@
         </div>
       </div>
     </div>
-    <div class="row no-bottom-margin">
-      <div class="col s12 m4 l4">
-        <div class="user-action-links">
-          <%= link_to "Create Job", "#" %>
-        </div>
-      </div>
-      <div class="col s12 m4 l4">
-        <div class="user-action-links">
-          <%= link_to "Edit Profile", "#" %>
-        </div>
-      </div>
-      <div class="col s12 m4 l4">
-        <div class="user-action-links">
-          <%= link_to "Public Profile", "/users/dan_user" %>
-        </div>
-      </div>
-    </div>
+    <% if current_lister? || current_platform_admin? %>
+      <%= render "lister_dashboard_links" %>
+    <% else %>
+      <%= render "contractor_dashboard_links" %>
+    <% end %>
   </div>
   <div class="row tab-border">
     <div class="col s12">
       <ul class="tabs">
         <li class="tab col s3"><a class="active dashboard-tab" href="#my-bids">My Bids</a></li>
-        <li class="tab col s3"><a href="#my-listings">My Listings</a></li>
+        <% unless current_contractor? %>
+          <li class="tab col s3"><a href="#my-listings">My Listings</a></li>
+        <% end %>
         <div class="indicator blue" style="z-index:1"></div>
       </ul>
     </div>
@@ -104,55 +94,57 @@
     <!--  End of My Bids Tab -->
 
     <!-- Start of My Listing Tab -->
-    <div id="my-listings" class="col s12">
-      <div class="row">
-        <div class="filter">
-          <label class="filter-label">Filter By Job Status</label>
-          <%= select_tag :job_status, options_for_select(["all",
-                                                          "bidding open",
-                                                          "bidding closed",
-                                                          "in progress",
-                                                          "completed",
-                                                          "cancelled"]) %>
+    <% unless current_contractor? %>
+      <div id="my-listings" class="col s12">
+        <div class="row">
+          <div class="filter">
+            <label class="filter-label">Filter By Job Status</label>
+            <%= select_tag :job_status, options_for_select(["all",
+                                                            "bidding open",
+                                                            "bidding closed",
+                                                            "in progress",
+                                                            "completed",
+                                                            "cancelled"]) %>
+          </div>
         </div>
+        <table class="bordered responsive-table">
+          <thead class="dashboard-table-headers">
+            <tr>
+              <th>Job ID</th>
+              <th>Name</th>
+              <th>Job Status</th>
+              <th>Listing Expiration Date</th>
+              <th>Bids</th>
+              <th>Bid Range</th>
+              <th>Actions</th>
+              <th>Contractor Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="listing">
+              <td><%= link_to "12433", "#" %></td>
+              <td><%= link_to "Build a Dining Room Table", "#" %></td>
+              <td class="job-status status-pending">bidding open</td>
+              <td>February 13, 2016 5:00 PM</td>
+              <td>13</td>
+              <td>$200-$450</td>
+              <td>Cancel</td>
+              <td></td>
+            </tr>
+            <tr class="listing">
+              <td><%= link_to "12432", "#" %></td>
+              <td><%= link_to "Build A Large Multi-Room Doghouse", "#" %></td>
+              <td class="job-status status-accepted">completed</td>
+              <td>February 13, 2016 7:00 PM</td>
+              <td>13</td>
+              <td>$200-$450</td>
+              <td>Leave Feedback</td>
+              <td>Toni Rib</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-      <table class="bordered responsive-table">
-        <thead class="dashboard-table-headers">
-          <tr>
-            <th>Job ID</th>
-            <th>Name</th>
-            <th>Job Status</th>
-            <th>Listing Expiration Date</th>
-            <th>Bids</th>
-            <th>Bid Range</th>
-            <th>Actions</th>
-            <th>Contractor Name</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="listing">
-            <td><%= link_to "12433", "#" %></td>
-            <td><%= link_to "Build a Dining Room Table", "#" %></td>
-            <td class="job-status status-pending">bidding open</td>
-            <td>February 13, 2016 5:00 PM</td>
-            <td>13</td>
-            <td>$200-$450</td>
-            <td>Cancel</td>
-            <td></td>
-          </tr>
-          <tr class="listing">
-            <td><%= link_to "12432", "#" %></td>
-            <td><%= link_to "Build A Large Multi-Room Doghouse", "#" %></td>
-            <td class="job-status status-accepted">completed</td>
-            <td>February 13, 2016 7:00 PM</td>
-            <td>13</td>
-            <td>$200-$450</td>
-            <td>Leave Feedback</td>
-            <td>Toni Rib</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <% end %>
     <!-- End of My Listing Tab -->
   </div>
 </div>
