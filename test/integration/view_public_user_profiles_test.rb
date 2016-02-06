@@ -1,22 +1,27 @@
 require "test_helper"
 
 class ViewPublicUserProfilesTest < ActionDispatch::IntegrationTest
-  test "guest is redirected to login page" do
+  test "guest is redirected to login page from category show" do
     job = create(:job)
     category = job.category
 
     visit category_path(category)
 
-    save_and_open_page
+    click_on job.lister.full_name
 
-    click_on job.user.full_name
-#     As a guest,
-# When I visit "/categories/#{category.name}
-# And I click on a poster name,
-# Then I am redirected to the login path
+    assert_equal login_path, current_path
+  end
+
+  test "guest is redirected to login page if trying to visit user show" do
+    lister = create(:lister)
+
+    visit user_path(lister)
+
+    assert_equal login_path, current_path
   end
 
   test "logged in contractor can view profile" do
-
+    contractor = create(:contractor)
+    
   end
 end
