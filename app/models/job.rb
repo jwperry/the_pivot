@@ -12,6 +12,7 @@ class Job < ActiveRecord::Base
   scope :completed, -> { where(status: 3) }
   scope :in_progress, -> { where(status: 2) }
   scope :bid_selected, -> { where(status: [2, 3]) }
+  scope :bidding_open, -> { where(status: 0) }
 
   validates :title, presence: true
   validates :category_id, presence: true
