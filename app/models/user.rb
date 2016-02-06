@@ -35,6 +35,10 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
+  def full_address
+    "#{street_address} #{city}, #{state} #{zipcode}"
+  end
+
   def to_param
     slug
   end
