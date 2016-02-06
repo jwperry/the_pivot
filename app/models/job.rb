@@ -78,10 +78,6 @@ class Job < ActiveRecord::Base
     bids.where(status: 1).first
   end
 
-  def zipcode_as_string
-    zipcode.to_s
-  end
-
   private
 
   def check_user_type

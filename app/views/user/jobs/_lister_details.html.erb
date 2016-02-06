@@ -1,0 +1,32 @@
+<section class="row left-align job-lister-details card" id="lister-info">
+  <div class="row card-title">
+    <div class="col s12 m12 l12">
+      <h4 class="job-lister-title">Job Lister</h4>
+      <hr>
+    </div>
+  </div>
+  <div class="col s12 m2">
+    <%= image_tag @job.lister.file_upload.url(:thumb), class: "circle"%>
+  </div>
+  <div class="col s12 m10">
+    <div class="row">
+      <div class="col s12">
+        <h5><%= link_to @user.full_name, @user,
+                class: "job-lister-name-link" %>
+            <span class="lister-rating">(<%= @user.rating %>)</span>
+        </h5>
+      </div>
+    </div>
+    <div class="row lister-info">
+      <div class="col s12 m3">
+        <%= pluralize(@user.number_of_active_jobs, "Active Job") %>
+      </div>
+      <div class="col s12 m3">
+        <%= pluralize(@user.number_of_completed_jobs, "Completed Job") %>
+      </div>
+      <div class="col s12 m6">
+        Active Since <%= @user.account_created_date %>
+      </div>
+    </div>
+  </div>
+</section>
