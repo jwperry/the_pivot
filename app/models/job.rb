@@ -38,7 +38,7 @@ class Job < ActiveRecord::Base
 
   def must_complete_by_date_is_after_bidding_close_date
     if !must_complete_by_date.blank? &&
-       bidding_close_date.blank?     &&
+       !bidding_close_date.blank?    &&
        must_complete_by_date < bidding_close_date
       errors.add(:must_complete_by_date, "can't be before bidding close date")
     end

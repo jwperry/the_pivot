@@ -40,20 +40,8 @@ class JobTest < ActiveSupport::TestCase
   end
 
   test "job can belong to a platform admin" do
-    platform_admin = create(:platform_admin)
-    category = create(:category)
-    platform_admin.jobs.create(
-      title: "Title",
-      category_id: category.id,
-      description: "Description",
-      status: 1,
-      city: "Denver",
-      state: "CO",
-      zipcode: 802_10,
-      bidding_close_date: DateTime.new(2080, 2, 3),
-      must_complete_by_date: DateTime.new(2081, 2, 3),
-      duration_estimate: 0
-    )
+    job = create(:job_posted_by_platform_admin)
+    platform_admin = job.user
 
     assert_equal 1, platform_admin.jobs.count
   end

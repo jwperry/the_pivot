@@ -28,6 +28,10 @@ FactoryGirl.define do
     category
     association :user, factory: :lister
     duration_estimate 1
+
+    factory :job_posted_by_platform_admin do
+      association :user, factory: :platform_admin
+    end
   end
 
   factory :contractor, class: User do
