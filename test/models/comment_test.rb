@@ -28,40 +28,35 @@ class CommentTest < ActiveSupport::TestCase
 
   test "single job cannot have three comments created for it" do
     job = create(:job)
-    contractor = create(:contractor)
-    text = "Lorem ipsum dolor sit amet, ipsum amet sed mattis ligula facilisis"
-    comment_1 = job.comments.new(
-      user_id: job.user.id,
-      recipient_id: contractor.id,
-      text: text,
-      rating: 2
-    )
+    comment_1 = build(:comment, job_id: job.id)
 
     assert comment_1.valid?
     comment_1.save
     assert_equal 1, job.comments.count
 
-    comment_2 = job.comments.new(
-      user_id: contractor.id,
-      recipient_id: job.user.id,
-      text: text,
-      rating: 3
-    )
+    comment_2 = build(:comment, job_id: job.id)
 
     assert comment_2.valid?
     comment_2.save
     assert_equal 2, job.comments.count
 
-    comment_3 = job.comments.new(
-      user_id: contractor.id,
-      recipient_id: job.user.id,
-      text: text,
-      rating: 3
-    )
+    comment_3 = build(:comment, job_id: job.id)
 
     refute comment_3.valid?
     comment_3.save
+    assert_equal 2, Comment.count
     assert_equal 2, job.comments.count
+  end
+
+  test "can only leave one comment per job per person" do
+    job = create(:job)
+    comment_1 = create(:comment, job_id: job.id)
+    user_id = comment_1.user.id
+
+    comment_2 = build(:comment, job_id: job.id,
+                                user_id: user_id)
+
+    refute comment_2.valid?
   end
 
   test "is invalid with text less than 50 characters" do

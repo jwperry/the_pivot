@@ -1,5 +1,5 @@
 class Comment < ActiveRecord::Base
-  before_save   :verify_number_of_comments_on_job
+  before_save :verify_number_of_comments_on_job
 
   belongs_to :user
   belongs_to :job
@@ -7,7 +7,10 @@ class Comment < ActiveRecord::Base
              class_name: "User",
              foreign_key: :recipient_id
 
-  validates :user_id, presence: true
+  SECOND_COMMENT_MESSAGE = "Cannot leave more than one comment per job".freeze
+  validates :user_id, presence: true,
+                      uniqueness: { scope: :job_id,
+                                    message: SECOND_COMMENT_MESSAGE }
   validates :recipient_id, presence: true
   validates :text, presence: true,
                    length: { in: 50..600 }
