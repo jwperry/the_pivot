@@ -22,7 +22,7 @@
     </header>
     <section class="row">
       <div class="col s12 m12 l12 left-align">
-        <% @category.jobs.each do |job| %>
+        <% @category.jobs_open_for_bidding.each do |job| %>
           <%= render partial: "job", locals: { job: job } %>
         <% end %>
       </div>
