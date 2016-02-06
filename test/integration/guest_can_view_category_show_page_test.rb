@@ -3,7 +3,7 @@ require "test_helper"
 class GuestCanViewCategoryShowPage < ActionDispatch::IntegrationTest
   test "guest can view category show page" do
     job = create(:job)
-    visit "/categories/#{job.category.name}"
+    visit category_path(job.category.name)
     assert page.has_content?(job.category.name)
     assert page.has_content?(job.title)
     assert page.has_content?(job.description)
@@ -26,7 +26,7 @@ class GuestCanViewCategoryShowPage < ActionDispatch::IntegrationTest
     job2 = create(:job, category: category, status: 2)
     job3 = create(:job, category: category, status: 3)
     job4 = create(:job, category: category, status: 4)
-    visit "/categories/#{job1.category.name}"
+    visit category_path(job1.category.name)
     assert page.has_content?(job0.title)
     refute page.has_content?(job1.title)
     refute page.has_content?(job2.title)
