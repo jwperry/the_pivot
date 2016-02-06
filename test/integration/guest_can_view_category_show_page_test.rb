@@ -33,5 +33,4 @@ class GuestCanViewCategoryShowPage < ActionDispatch::IntegrationTest
     refute page.has_content?(job3.title)
     refute page.has_content?(job4.title)
   end
-
 end
