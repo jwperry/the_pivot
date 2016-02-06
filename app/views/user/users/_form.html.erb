@@ -13,7 +13,7 @@
     <% if current_lister? %>
     <%= f.label "Upload Profile Picture" %>
     <br><br>
-    <%= f.file_field :file_upload, class: "upload-file grey-text" %>
+    <%= f.file_field :file_upload, class: "grey-text" %>
     <% end %>
   </div>
 
@@ -37,11 +37,20 @@
   <%= f.text_field :zipcode %>
   <br>
 
+  <%= f.label :bio %>
+  <%= f.text_area :bio %>
+  <br>
+
   <% unless current_user %>
     <%= f.label :username %>
     <%= f.text_field :username  %>
   <% end %>
   <br>
+
+  <%= f.label :file_upload %>
+  <br><br>
+  <%= f.file_field :file_upload, class: "upload_file grey-text" %>
+  <br><br>
 
   <%= f.label :password %>
   <%= f.password_field :password %>

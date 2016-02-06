@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   helper_method :current_platform_admin?
   helper_method :current_lister?
+  helper_method :current_contractor?
   helper_method :all_categories
 
   def current_user
@@ -15,6 +16,10 @@ class ApplicationController < ActionController::Base
 
   def current_lister?
     current_user && current_user.lister?
+  end
+
+  def current_contractor?
+    current_user && current_user.contractor?
   end
 
   def sanitize_price(price)

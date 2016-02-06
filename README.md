@@ -1,8 +1,8 @@
-# Rough-Sketch
+# Freelancer
 ## Built with Ruby on Rails
 
 ### Authors
-[Toni Rib](http://github.com/tonirib), [Taylor Moore](https://github.com/Tman22), [Brenna Martenson](https://github.com/martensonbj)
+[Toni Rib](http://github.com/tonirib), [Dan Winter](https://github.com/danjwinter), [Joe Perry](https://github.com/jwperry)
 
 This project was created as a part of the curriculum for the [Turing School of Software & Design](http://turing.io).
 

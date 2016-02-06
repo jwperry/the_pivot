@@ -140,7 +140,7 @@ class Seed
           state: Faker::Address.state_abbr,
           zipcode: Faker::Address.zip,
           bidding_close_date: Faker::Time.forward(14, :morning),
-          must_complete_by_date: Faker::Time.between(DateTime.now + 14,
+          must_complete_by_date: Faker::Time.between(DateTime.now + 15,
                                                      DateTime.now + 21),
           duration_estimate: rand(0..3)
         )
@@ -155,7 +155,7 @@ class Seed
       10.times do |i|
         contractor.bids.create!(
           job_id: rand(1..100),
-          price: i * rand(1..100),
+          price: (i + 1) * rand(1..100),
           duration_estimate: rand(0..3),
           details: Faker::Lorem.characters(100),
           status: 0
@@ -198,14 +198,14 @@ class Seed
       job.comments.create!(
         user_id: job.lister.id,
         recipient_id: job.bids.accepted.first.user.id,
-        text: Faker::Lorem.sentence(2),
+        text: Faker::Lorem.sentence(11),
         rating: rand(1..5)
       )
 
       job.comments.create!(
         user_id: job.bids.accepted.first.user.id,
         recipient_id: job.lister.id,
-        text: Faker::Lorem.sentence(2),
+        text: Faker::Lorem.sentence(11),
         rating: rand(1..5)
       )
 

@@ -405,6 +405,16 @@ nav ul a:hover {
 
 }
 
+.dashboard-user-image {
+  height: 200px;
+  margin: 20px 0 0;
+  width: 200px;
+}
+
+.row.dashboard-user-image.circle {
+  margin: 10px auto;
+}
+
 table a {
   @include main-link;
 }
