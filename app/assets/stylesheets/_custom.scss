@@ -198,6 +198,16 @@ button.stripe-button-el span {
   height: 170px;
 }
 
+.log-in-to-bid {
+  @include button-link;
+  font-size: 32px;
+  letter-spacing: 0.5em;
+  text-align: center;
+  text-transform: uppercase;
+  height: 25px;
+  margin-bottom: 50px;
+}
+
 .job-lister-details {
   margin: 35px 0;
   padding: 15px;
@@ -371,24 +381,9 @@ nav ul a:hover {
 // -----DASHBOARD-----
 
 .user-action-links {
+  @include button-link;
   margin: 10px auto;
   max-width: 200px;
-
-  a {
-    background-color: $base-purple-blue-dark;
-    color: $white;
-    display: block;
-    font-size: 18px;
-    padding: 20px;
-    text-transform: uppercase;
-
-    &:hover {
-      color: $base-purple-blue-dark;
-      background-color: $base-light-blue;
-    }
-
-  }
-
 }
 
 .dashboard-user-image {

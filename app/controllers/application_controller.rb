@@ -5,6 +5,9 @@ class ApplicationController < ActionController::Base
   helper_method :current_lister?
   helper_method :current_contractor?
   helper_method :all_categories
+  helper_method :lister_or_platform_admin?
+  helper_method :logged_in?
+  helper_method :logged_out?
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
@@ -22,6 +25,10 @@ class ApplicationController < ActionController::Base
     current_user && current_user.contractor?
   end
 
+  def lister_or_platform_admin?
+    current_lister? || current_platform_admin?
+  end
+
   def sanitize_price(price)
     price.to_s.gsub!(/[,$]/, "").to_i
   end
@@ -32,5 +39,9 @@ class ApplicationController < ActionController::Base
 
   def logged_in?
     current_user
+  end
+
+  def logged_out?
+    !current_user
   end
 end

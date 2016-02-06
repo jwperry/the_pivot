@@ -1,6 +1,6 @@
 require "test_helper"
 
-class ViewPublicUserProfilesTest < ActionDispatch::IntegrationTest
+class UserViewsPublicUserProfilesTest < ActionDispatch::IntegrationTest
   test "guest is redirected to login page from category show" do
     job = create(:job)
     category = job.category

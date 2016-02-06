@@ -6,3 +6,22 @@
   }
 
 }
+
+@mixin button-link {
+
+  a {
+    background-color: $base-purple-blue-dark;
+    color: $white;
+    display: block;
+    font-size: 18px;
+    padding: 20px;
+    text-transform: uppercase;
+
+    &:hover {
+      color: $base-purple-blue-dark;
+      background-color: $base-light-blue;
+    }
+
+  }
+
+}

@@ -1,0 +1,32 @@
+<div id="accordion">
+  <h3><i class="material-icons arrow-icon">navigation</i>Place A Bid<i class="material-icons arrow-icon">navigation</i></h3>
+  <div>
+    <div class="row no-bottom-margin bid-accordion">
+      <%= form_for(:bid, url: bids_path) do |f| %>
+        <div class="row valign-wrapper">
+          <div class="col s12 m4 valign">
+            <%= f.label "Joseph Perry", class: "bidder-name" %>
+          </div>
+          <div class="col s12 m3 bid-input-field valign">
+            <%= f.number_field :price, min: 1, placeholder: "Price in USD" %>
+          </div>
+          <div class="col s7 m3 bid-input-field valign">
+            <%= f.number_field :duration_estimate, min: 1, placeholder: "Duration Estimate" %>
+          </div>
+          <div class="col s5 m2 bid-input-field valign">
+            <%= label_tag :days %>
+          </div>
+        </div>
+        <div class="row no-bottom-margin center-align valign-wrapper">
+          <div class="col s12 m8 valign">
+            <%= f.text_area :details, placeholder: "Leave a comment for the job lister",
+                                   class: "bid-comment" %>
+          </div>
+          <div class="col s12 m4 valign">
+            <%= f.submit "Submit Bid", class: "btn submit-bid-btn" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

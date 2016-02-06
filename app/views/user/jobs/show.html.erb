@@ -45,43 +45,16 @@
     </div>
   </section>
   <div class="row left-align">
-   <div class="col s12 m12 l12">
-     <div id="accordion">
-      <h3><i class="material-icons arrow-icon">navigation</i>Place A Bid<i class="material-icons arrow-icon">navigation</i></h3>
-      <div>
-        <!-- INSIDE THE ACCORDION -->
-        <div class="row no-bottom-margin bid-accordion">
-           <%= form_for(:bid, url: bids_path) do |f| %>
-            <div class="row valign-wrapper">
-              <div class="col s12 m4 valign">
-                <%= f.label "Joseph Perry", class: "bidder-name" %>
-              </div>
-              <div class="col s12 m3 bid-input-field valign">
-                <%= f.number_field :price, min: 1, placeholder: "Price in USD" %>
-              </div>
-              <div class="col s7 m3 bid-input-field valign">
-                <%= f.number_field :duration_estimate, min: 1, placeholder: "Duration Estimate" %>
-              </div>
-              <div class="col s5 m2 bid-input-field valign">
-                <%= label_tag :days %>
-              </div>
-            </div>
-            <div class="row no-bottom-margin center-align valign-wrapper">
-              <div class="col s12 m8 valign">
-                <%= f.text_area :details, placeholder: "Leave a comment for the job lister",
-                                          class: "bid-comment" %>
-              </div>
-              <div class="col s12 m4 valign">
-                <%= f.submit "Submit Bid", class: "btn submit-bid-btn" %>
-              </div>
-            </div>
-           <% end %>
-         </div>
-        <!-- INSIDE THE ACCORDION -->
-      </div>
+    <div class="col s12 m12 l12">
+      <% if logged_in? %>
+        <%= render partial: "bid_accordion" %>
+      <% else %>
+        <div class="log-in-to-bid">
+          <%= link_to "Log In To Place A Bid", login_path %>
+        </div>
+      <% end %>
     </div>
-   </div>
- </div>
+  </div>
   <section class="row" style="display:none;">
     <!-- ^^^ REMOVE DISPLAY NONE FROM HERE IN THE FUTURE ^^^ -->
     <h4 class="bids-table-title">Current Bids</h4>
