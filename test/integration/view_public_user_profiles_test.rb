@@ -35,9 +35,11 @@ class ViewPublicUserProfilesTest < ActionDispatch::IntegrationTest
       click_button "Login"
     end
 
-    # When I visit "/dashboard",
-    # And I click "Public Profile",
-    visit user_path(contractor)
+    assert_equal dashboard_path, current_path
+
+    click_on "Public Profile"
+
+    assert_equal user_path(contractor), current_path
 
     assert page.has_css? "h2", text: contractor.full_name
     assert page.has_link? contractor.email_address
@@ -84,9 +86,11 @@ class ViewPublicUserProfilesTest < ActionDispatch::IntegrationTest
       click_button "Login"
     end
 
-    # When I visit "/jobs/#{job.id}",
-    # And I click on a poster's name,
-    visit user_path(lister)
+    visit user_job_path(lister, listers_posted_job)
+
+    click_on lister.full_name
+
+    assert_equal user_path(lister), current_path
 
     assert page.has_css? "h2", text: lister.full_name
     assert page.has_link? lister.email_address
@@ -148,8 +152,9 @@ class ViewPublicUserProfilesTest < ActionDispatch::IntegrationTest
 
     assert_equal dashboard_path, current_path
 
-    # And I click "Public Profile",
-    visit user_path(lister)
+    click_on "Public Profile"
+
+    assert_equal user_path(lister), current_path
 
     assert page.has_css? "h2", text: lister.full_name
     assert page.has_link? lister.email_address

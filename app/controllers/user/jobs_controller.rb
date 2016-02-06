@@ -2,6 +2,8 @@ class User::JobsController < ApplicationController
   before_action :set_duration_tags, only: [:show]
 
   def show
+    @user = User.find_by_slug(params[:user_slug])
+    @job = Job.find(params[:id])
   end
 
   private
