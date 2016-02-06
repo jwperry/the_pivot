@@ -1,12 +1,12 @@
 <div class="row no-bottom-margin">
   <div class="col s12 m6 l6">
     <div class="user-action-links">
-      <%= link_to "Edit Profile", "#" %>
+      <%= link_to "Edit Profile", edit_user_path(@user) %>
     </div>
   </div>
   <div class="col s12 m6 l6">
     <div class="user-action-links">
-      <%= link_to "Public Profile", "/users/dan_user" %>
+      <%= link_to "Public Profile", @user %>
     </div>
   </div>
 </div>
