@@ -7,6 +7,7 @@ class Job < ActiveRecord::Base
   has_many :comments
 
   enum status: %w(bidding_open bidding_closed in_progress completed cancelled)
+  enum duration_estimate: %w(short medium long event)
 
   scope :completed, -> { where(status: 3) }
   scope :in_progress, -> { where(status: 2) }
@@ -46,6 +47,26 @@ class Job < ActiveRecord::Base
 
   def lister
     user
+  end
+
+  def total_bids
+    bids.count
+  end
+
+  def location
+    "#{city}, #{state}"
+  end
+
+  def lowest_bid
+    bids.minimum(:price)
+  end
+
+  def highest_bid
+    bids.maximum(:price)
+  end
+
+  def bidding_closes_on
+    bidding_close_date.strftime("%b %e, %Y at %l:%M%P")
   end
 
   private
