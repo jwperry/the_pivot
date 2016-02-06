@@ -57,17 +57,18 @@
                 <%= f.label "Joseph Perry", class: "bidder-name" %>
               </div>
               <div class="col s12 m3 bid-input-field valign">
-                <%= f.number_field :price, placeholder: :price %>
+                <%= f.number_field :price, min: 1, placeholder: "Price in USD" %>
               </div>
-              <div class="col s12 m5 bid-input-field valign center-align">
-                <%= f.label :duration_estimate, class: "duration-label" %>
-                <%= f.select :duration_estimate, options_for_select(@duration_tags), {},
-                class: "duration-select" %>
+              <div class="col s7 m3 bid-input-field valign">
+                <%= f.number_field :duration_estimate, min: 1, placeholder: "Duration Estimate" %>
+              </div>
+              <div class="col s5 m2 bid-input-field valign">
+                <%= label_tag :days %>
               </div>
             </div>
             <div class="row no-bottom-margin center-align valign-wrapper">
               <div class="col s12 m8 valign">
-                <%= f.text_area :details, placeholder: "Leave a comment for the job lister",
+                <%= f.text_area :comment, placeholder: "Leave a comment for the job lister",
                                           class: "bid-comment" %>
               </div>
               <div class="col s12 m4 valign">
