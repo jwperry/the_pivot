@@ -1,6 +1,7 @@
 class User::UsersController < ApplicationController
   require "states_helper"
   before_action :set_user, only: [:edit, :update]
+  before_action :require_logged_in_user, only: [:show]
 
   def index
   end
@@ -70,5 +71,9 @@ class User::UsersController < ApplicationController
 
   def user_slug_is_current_user
     current_user.slug == params[:slug]
+  end
+
+  def require_logged_in_user
+    redirect_to login_path unless logged_in?
   end
 end

@@ -1,5 +1,31 @@
-<article class="row">
-  <div class="col l12 m12 s12">
-    HERE IS A BUNCH OF TEST
+<article class="row job-partial">
+  <div class="row valign-wrapper no-bottom-margin">
+    <h5 class="col s12 m10 l10">
+      <a href="/users/toni_user/jobs/1" class="job-title-link"><%= job.title %></a>
+    </h5>
+    <div class="col s12 m2 l2 center-align valign">
+      <div class="duration-tag duration-estimate-<%= job.duration_estimate %>"><%= job.duration_estimate %></div>
+    </div>
+  </div>
+  <div class="row">
+    <p class="col s12 m10 l10"><%= job.description %></p>
+    <div class="col s12 m2 l2 center-align">
+      <div class="row job-lister-image">
+        <%= image_tag job.lister.file_upload.url(:thumb), class: "circle"%>
+      </div>
+      <p class="row job-lister-name">
+        <%= link_to job.lister.full_name, user_path(job.lister), class: "job-lister-name-link" %>
+      </p>
+    </div>
+  </div>
+  <div class="row center-align">
+    <div class="col s12 m2 l2 job-info"><%= pluralize(job.total_bids, "bid") %></div>
+    <div class="col s12 m3 l3 job-info"><%= job.location %></div>
+    <div class="col s12 m3 l3 job-info">
+      Bid Range: $<%= job.lowest_bid %> - $<%= job.highest_bid %>
+    </div>
+    <div class="col s12 m4 l4 job-info">
+      Bidding Ends: <%= job.bidding_closes_on %>
+    </div>
   </div>
 </article>

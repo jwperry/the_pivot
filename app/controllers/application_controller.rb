@@ -29,4 +29,8 @@ class ApplicationController < ActionController::Base
   def all_categories
     @all_categories ||= Category.all
   end
+
+  def logged_in?
+    current_user
+  end
 end

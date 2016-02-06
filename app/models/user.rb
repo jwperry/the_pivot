@@ -46,4 +46,32 @@ class User < ActiveRecord::Base
   def generate_slug
     self.slug = username.parameterize
   end
+
+  def location
+    "#{city}, #{state}"
+  end
+
+  def rating
+    if !all_received_comments.empty?
+      "#{all_received_comments.average(:rating)} / 5.0"
+    else
+      "No Rating Available"
+    end
+  end
+
+  def all_received_comments
+    Comment.where(recipient_id: id)
+  end
+
+  def received_comments_for_completed_listings
+    all_received_comments.select do |comment|
+      comment.job.lister.id == id
+    end
+  end
+
+  def received_comments_for_completed_jobs
+    all_received_comments.select do |comment|
+      comment.job.lister.id != id
+    end
+  end
 end
