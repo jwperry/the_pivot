@@ -7,13 +7,12 @@ class UserViewsJobShowPageTest < ActionDispatch::IntegrationTest
     visit user_job_path(job.lister, job)
 
     refute page.has_css? "#accordion h3", text: "Place A Bid"
-    assert page.link? "Log In To Place A Bid", login_path
+    assert page.has_link? "Log In To Place A Bid", login_path
+
+    
   end
 end
 
-
-# I do not see the "Place a Bid" accordion,
-# And I see the "Log in to Place a Bid" button in its place,
 # And I do see info for the job:
 #
 # A link back to the category show
