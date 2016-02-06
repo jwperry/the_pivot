@@ -6,7 +6,7 @@ FactoryGirl.define do
 
   factory :bid do
     price
-    duration_estimate 1
+    duration_estimate 3
     details Faker::Lorem.characters(40)
     status "pending"
     association :user, factory: :contractor

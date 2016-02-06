@@ -8,12 +8,6 @@ class BidTest < ActiveSupport::TestCase
   should validate_presence_of(:details)
   should validate_presence_of(:status)
 
-  test "default bid status is pending" do
-    bid = create(:bid)
-
-    assert_equal "pending", bid.status
-  end
-
   test "contractor can bid on a job" do
     bid = create(:bid)
 
@@ -74,6 +68,31 @@ class BidTest < ActiveSupport::TestCase
     refute bid.valid?
 
     bid.update_attribute(:price, "160,000")
+    refute bid.valid?
+  end
+
+  test "duration estimate (in days) must be a positive number" do
+    bid = create(:bid)
+
+    bid.update_attribute(:duration_estimate, 1)
+    assert bid.valid?
+
+    bid.update_attribute(:duration_estimate, 1.5)
+    refute bid.valid?
+
+    bid.update_attribute(:duration_estimate, 0)
+    refute bid.valid?
+
+    bid.update_attribute(:duration_estimate, -1)
+    refute bid.valid?
+
+    bid.update_attribute(:duration_estimate, "fff")
+    refute bid.valid?
+
+    bid.update_attribute(:duration_estimate, "$123")
+    refute bid.valid?
+
+    bid.update_attribute(:duration_estimate, "160,000")
     refute bid.valid?
   end
 end
