@@ -6,9 +6,19 @@ FactoryGirl.define do
 
   factory :bid do
     price
-    duration_estimate 24
-    details "Bid details are amaze balls"
+    duration_estimate 1
+    details "orci amet gravida amet odio mattis amet morbi pharetra nulla"
     status "pending"
+    association :user, factory: :contractor
+    job
+
+    factory :bid_placed_by_job_lister do
+      association :user, factory: :lister
+    end
+
+    factory :bid_placed_by_platform_admin do
+      association :user, factory: :platform_admin
+    end
   end
 
   factory :comment do
@@ -51,6 +61,7 @@ FactoryGirl.define do
     bio "This sure is a sweet bio"
 
     factory :lister, aliases: [:recipient] do
+      username "admin"
       role 1
     end
 

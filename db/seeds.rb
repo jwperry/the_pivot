@@ -156,8 +156,8 @@ class Seed
         contractor.bids.create!(
           job_id: rand(1..100),
           price: i * rand(1..100),
-          duration_estimate: rand(1..1000),
-          details: Faker::Lorem.paragraph(2),
+          duration_estimate: rand(0..3),
+          details: Faker::Lorem.characters(100),
           status: 0
         )
 
