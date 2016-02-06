@@ -49,7 +49,7 @@ class JobTest < ActiveSupport::TestCase
   test "is invalid with bidding close date in the past" do
     lister = create(:lister)
     category = create(:category)
-    job = Job.create(
+    job = Job.new(
       title: "Title",
       category_id: category.id,
       user_id: lister.id,
@@ -69,7 +69,7 @@ class JobTest < ActiveSupport::TestCase
   test "is invalid with must complete by date in the past" do
     lister = create(:lister)
     category = create(:category)
-    job = Job.create(
+    job = Job.new(
       title: "Title",
       category_id: category.id,
       user_id: lister.id,
@@ -89,7 +89,7 @@ class JobTest < ActiveSupport::TestCase
   test "is invalid with must complete by date before bidding close date" do
     lister = create(:lister)
     category = create(:category)
-    job = Job.create(
+    job = Job.new(
       title: "Title",
       category_id: category.id,
       user_id: lister.id,

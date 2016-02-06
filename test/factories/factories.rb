@@ -7,7 +7,7 @@ FactoryGirl.define do
   factory :bid do
     price
     duration_estimate 1
-    details "orci amet gravida amet odio mattis amet morbi pharetra nulla"
+    details Faker::Lorem.characters(40)
     status "pending"
     association :user, factory: :contractor
     job
@@ -22,8 +22,11 @@ FactoryGirl.define do
   end
 
   factory :comment do
-    text "Sweet comment"
+    association :user, factory: :contractor
+    recipient
+    text Faker::Lorem.characters(60)
     rating
+    job
   end
 
   factory :job do
@@ -57,7 +60,8 @@ FactoryGirl.define do
     zipcode 802_31
     bio "This sure is a sweet bio"
 
-    factory :lister do
+    factory :lister, aliases: [:recipient] do
+      username
       role 1
     end
 
