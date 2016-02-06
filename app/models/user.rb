@@ -42,4 +42,20 @@ class User < ActiveRecord::Base
   def generate_slug
     self.slug = username.parameterize
   end
+
+  def location
+    "#{city}, #{state}"
+  end
+
+  def rating
+    if !received_comments.empty?
+      "#{received_comments.average(:rating)} / 5.0"
+    else
+      "No Rating Available"
+    end
+  end
+
+  def received_comments
+    Comment.where(recipient_id: id)
+  end
 end

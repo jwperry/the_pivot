@@ -69,6 +69,10 @@ class Job < ActiveRecord::Base
     bidding_close_date.strftime("%b %e, %Y at %l:%M%P")
   end
 
+  def selected_bid
+    bids.where(status: 1).first
+  end
+
   private
 
   def check_user_type

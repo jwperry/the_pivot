@@ -33,6 +33,22 @@ class Comment < ActiveRecord::Base
       !job_id.blank? && Job.find(job_id).comments.count == 2
   end
 
+  def associated_job_title
+    job.title
+  end
+
+  def associated_job_duration
+    job.duration_estimate
+  end
+
+  def accepted_bid_price
+    job.selected_bid.price
+  end
+
+  def posted_at
+    created_at.strftime("%b %e, %Y %l:%M%P")
+  end
+
   private
 
   def verify_number_of_comments_on_job
