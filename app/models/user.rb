@@ -48,14 +48,26 @@ class User < ActiveRecord::Base
   end
 
   def rating
-    if !received_comments.empty?
-      "#{received_comments.average(:rating)} / 5.0"
+    if !all_received_comments.empty?
+      "#{all_received_comments.average(:rating)} / 5.0"
     else
       "No Rating Available"
     end
   end
 
-  def received_comments
+  def all_received_comments
     Comment.where(recipient_id: id)
+  end
+
+  def received_comments_for_completed_listings
+    all_received_comments.select do |comment|
+      comment.job.lister.id == id
+    end
+  end
+
+  def received_comments_for_completed_jobs
+    all_received_comments.select do |comment|
+      comment.job.lister.id != id
+    end
   end
 end
