@@ -31,15 +31,18 @@ class JobListerAcceptsBidTest < ActionDispatch::IntegrationTest
       first(:link, "Accept").click
 
       within "tbody tr:nth-child(1)" do
-        assert page.has_content? "Accepted"
+        assert page.has_css? "td", "Accepted"
+        refute page.has_css? "a", "Accept"
       end
 
       within "tbody tr:nth-child(2)" do
-        assert page.has_content? "Rejected"
+        assert page.has_css? "td", "Rejected"
+        refute page.has_css? "a", "Accept"
       end
 
       within "tbody tr:nth-child(3)" do
-        assert page.has_content? "Rejected"
+        assert page.has_css? "td", "Rejected"
+        refute page.has_css? "a", "Accept"
       end
     end
   end
