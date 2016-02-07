@@ -11,9 +11,10 @@
             <%= f.label current_user.full_name, class: "bidder-name" %>
           </div>
           <div class="col s12 m3 bid-input-field valign">
-            $<%= f.number_field :price, min: 1,
-                                        value: job.my_bid(current_user.id).price,
-                                        required: true %>
+            $  <%= f.number_field :price, min: 1,
+                                          value: job.my_bid(current_user.id).price,
+                                          required: true,
+                                          class: "price-input" %>
           </div>
           <div class="col s7 m3 bid-input-field valign">
             <%= f.number_field :duration_estimate,

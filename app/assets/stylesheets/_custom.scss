@@ -155,6 +155,10 @@ button.stripe-button-el span {
 
 // -----JOB SHOW-----
 
+#bid_price {
+  width: 160px;
+}
+
 .google-map-job {
   height: 300px;
   margin: 0.90rem auto 0;
@@ -587,29 +591,6 @@ table a {
   font-weight: 100;
   letter-spacing: 0.4em;
   text-transform: uppercase;
-}
-
-/* ORDERS */
-
-.status-ordered {
-  color: #ffa000;
-}
-
-.status-paid {
-  color: green;
-}
-
-.status-cancelled {
-  color: red;
-}
-
-.status-completed {
-  color: $black;
-}
-
-.order-status {
-  width: 200px;
-  margin: 5px auto 20px auto;
 }
 
 /* BUTTONS */

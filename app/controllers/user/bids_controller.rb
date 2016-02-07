@@ -6,31 +6,30 @@ class User::BidsController < ApplicationController
 
     if bid.save
       flash[:success] = "Bid Placed"
-      redirect_to request.referrer
     else
       flash[:error] = "Bid could not be placed"
-      redirect_to request.referrer
     end
+
+    redirect_to_job_show_page
   end
 
   def update
     if params[:status]
       update_bid_and_job_status
-      redirect_to request.referrer
     else
       if @bid.update_attributes(bid_params)
         flash[:success] = "Bid Updated"
-        redirect_to request.referrer
       else
         flash[:error] = "Bid could not be updated"
-        redirect_to request.referrer
       end
     end
+
+    redirect_to_job_show_page
   end
 
   def destroy
     @bid.destroy if current_user_placed_bid
-    redirect_to request.referrer
+    redirect_to_job_show_page
   end
 
   private
@@ -38,12 +37,15 @@ class User::BidsController < ApplicationController
   def bid_params
     params.require(:bid).permit(:price,
                                 :duration_estimate,
-                                :details,
-                                :job_id).merge(job_id: params[:job_id])
+                                :details).merge(job_id: params[:job_id])
   end
 
   def set_bid
     @bid = Bid.find(params[:id])
+  end
+
+  def redirect_to_job_show_page
+    redirect_to user_job_path(params[:user_slug], params[:job_id])
   end
 
   def current_user_placed_bid
