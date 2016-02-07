@@ -37,6 +37,13 @@ class JobPresenter < SimpleDelegator
     end
   end
 
+  def current_bids_table
+    if view.logged_in? && view.current_user_owns_current_job(id)
+      view.render(partial: "user/jobs/current_bids_table",
+                  locals: { job: self, bids: self.bids })
+    end
+  end
+
   private
 
   def logged_in_user_has_bid_for_current_bidding_open_job
