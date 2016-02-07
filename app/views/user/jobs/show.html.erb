@@ -11,31 +11,7 @@
 
   <div class="row left-align">
     <div class="col s12 m12 l12">
-      <% if logged_in? && @job.bids_include_user(current_user.id) && @job.bidding_open?  %>
-        <%= render partial: "user/jobs/my_bid_accordion" %>
-      <% elsif logged_in? && current_user_does_not_own_job(@job.id) && @job.bidding_open?   %>
-        <%= render partial: "user/jobs/place_a_bid_accordion" %>
-      <% elsif logged_out? && @job.bidding_open? %>
-        <div class="log-in-to-bid">
-          <%= link_to "Log In To Place A Bid", login_path %>
-        </div>
-      <% elsif @job.bidding_closed? %>
-        <div class="bidding-closed">
-          Bidding Is Closed For This Job
-        </div>
-      <% elsif @job.in_progress? %>
-        <div class="job-in-progress">
-          Job Is In Progress
-        </div>
-      <% elsif @job.completed? %>
-        <div class="job-completed">
-          Job Completed
-        </div>
-      <% elsif @job.cancelled? %>
-        <div class="job-cancelled">
-          Job Cancelled
-        </div>
-      <% end %>
+      <%= @job.job_status_banner_or_bid_accordion %>
     </div>
   </div>
 
