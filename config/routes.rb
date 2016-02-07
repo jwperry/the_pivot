@@ -7,7 +7,7 @@ Rails.application.routes.draw do
               param: :slug do
       resources :jobs, only: [:show, :new]
     end
-    resources :bids, only: [:create, :update]
+    resources :bids, only: [:create, :update, :destroy]
   end
 
   namespace :admin do

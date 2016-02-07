@@ -17,7 +17,7 @@ class UserViewsJobShowPageTest < ActionDispatch::IntegrationTest
     verify_lister_info(lister)
   end
 
-  test "contractor places a bid and edits that bid on job show page" do
+  test "contractor views job show page" do
     contractor = create(:contractor)
     job = create(:job)
     lister = job.lister
@@ -34,56 +34,13 @@ class UserViewsJobShowPageTest < ActionDispatch::IntegrationTest
 
     verify_job_info(job)
     verify_lister_info(lister)
-
-    within "#accordion" do
-      assert page.has_content? contractor.full_name.capitalize
-      fill_in :bid_price, with: 100
-      fill_in :bid_duration_estimate, with: 10
-      fill_in :bid_details, with: "You should hire me because I am the best"
-      click_on "Submit Bid"
-    end
-
-    assert_equal 1, job.bids.count
-    assert_equal 1, contractor.bids.count
-    assert_equal user_job_path(lister, job), current_path
-
-    assert page.has_css? "#accordion h3", text: "View My Bid"
-    assert page.has_css? "h3.my-bid"
-    assert page.has_content? "Bid Placed"
-
-    within "#accordion" do
-      assert page.has_content? contractor.full_name.capitalize
-      assert page.has_field? "bid_price", with: "100"
-      assert page.has_field? "bid_duration_estimate", with: "10"
-      assert page.has_field? "bid_details", with: "You should hire me because I am the best"
-
-      fill_in :bid_price, with: 105
-      fill_in :bid_duration_estimate, with: 15
-      fill_in :bid_details, with: "Puppies Kittens Meow Fluff Purr Meow"
-      click_on "Update Bid"
-    end
-
-    assert page.has_content? "Bid Updated"
-
-    bid = Bid.last
-    assert_equal 105, bid.price
-    assert_equal 15, bid.duration_estimate
-    assert_equal "Puppies Kittens Meow Fluff Purr Meow", bid.details
   end
 
-  test "contractor can delete an existing bid" do
+  test "lister views job show page for a job they did not list" do
     skip
   end
 
-  test "job lister can accept a bid if bidding is closed" do
-    skip
-  end
-
-  test "job lister cannot accept a bid if bidding is still open" do
-    skip
-  end
-
-  test "lister views job show page" do
+  test "lister views job show page for their own job" do
     bid = create(:bid)
     bidder = bid.user
     job = bid.job

@@ -24,7 +24,9 @@
                                       class: "bid-comment" %>
           </div>
           <div class="col s12 m4 valign">
-            <%= f.submit "Update Bid", class: "btn update-bid-btn" %>
+            <%= f.submit "Update Bid", class: "btn update-bid-btn valign" %>
+            <%= link_to "Delete Bid", bid_path(@job.my_bid(current_user.id)),
+                                      method: :delete, class: "btn btn-delete valign" %>
           </div>
         </div>
       <% end %>

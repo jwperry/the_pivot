@@ -232,12 +232,30 @@ button.stripe-button-el span {
 
 .update-bid-btn {
   background-color: $base-purple-blue;
+  margin: 5px auto;
+  width: 168px;
 
   &:hover {
     background-color: $base-purple-blue-dark;
   }
 
 }
+
+.btn-delete {
+  background-color: $red;
+  margin: 5px auto;
+  width: 168px;
+
+  &:hover {
+    background-color: $dark-red;
+  }
+
+}
+
+a.btn.btn-delete {
+  color: $white;
+}
+
 
 .lister-info {
   font-size: 18px;
@@ -593,24 +611,6 @@ table a {
 
 .error {
   color: rgba(196, 42, 32, 0.8);
-}
-
-.btn-edit {
-  background-color: rgba(115, 127, 149, 1);
-
-  &:hover {
-    background-color: rgba(115, 127, 149, 0.8);
-  }
-
-}
-
-.btn-delete {
-  background-color: rgba(104, 168, 173,1);
-
-  &:hover {
-    background-color: rgba(104, 168, 173,0.8);
-  }
-
 }
 
 .create-acct-button,
