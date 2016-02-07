@@ -10,11 +10,9 @@
   <br>
 
   <div class="row">
-    <% if current_lister? %>
-    <%= f.label "Upload Profile Picture" %>
+    <%= f.label :file_upload %>
     <br><br>
     <%= f.file_field :file_upload, class: "grey-text" %>
-    <% end %>
   </div>
 
   <%= f.label :email_address %>
@@ -46,11 +44,6 @@
     <%= f.text_field :username  %>
   <% end %>
   <br>
-
-  <%= f.label :file_upload %>
-  <br><br>
-  <%= f.file_field :file_upload, class: "upload_file grey-text" %>
-  <br><br>
 
   <%= f.label :password %>
   <%= f.password_field :password %>

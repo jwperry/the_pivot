@@ -31,7 +31,7 @@ class User::UsersController < ApplicationController
 
   def update
     if @user.update_attributes(user_params)
-      if current_user.admin?
+      if current_user.platform_admin?
         redirect_to admin_dashboard_path
       else
         redirect_to dashboard_path
