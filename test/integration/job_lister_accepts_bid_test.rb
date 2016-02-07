@@ -45,7 +45,9 @@ class JobListerAcceptsBidTest < ActionDispatch::IntegrationTest
     assert job.bids[1].rejected?
     assert job.bids[2].rejected?
 
-    assert Job.find(job.id).in_progress?
+    job.reload
+
+    assert job.in_progress?
     assert page.has_content? "Job Is In Progress"
   end
 end
