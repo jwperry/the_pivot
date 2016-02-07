@@ -9,6 +9,7 @@ class UserViewsJobShowPageTest < ActionDispatch::IntegrationTest
 
     refute page.has_css? "#accordion h3", text: "Place A Bid"
     assert page.has_link? "Log In To Place A Bid", login_path
+    refute page.has_css? "#current-bids"
 
     assert page.has_link? "« Back to #{job.category.name}", category_path(name)
 
@@ -16,7 +17,7 @@ class UserViewsJobShowPageTest < ActionDispatch::IntegrationTest
     verify_lister_info(lister)
   end
 
-  test "contractor views job show page" do
+  test "contractor places a bid and edits that bid on job show page" do
     contractor = create(:contractor)
     job = create(:job)
     lister = job.lister
@@ -27,6 +28,7 @@ class UserViewsJobShowPageTest < ActionDispatch::IntegrationTest
 
     assert page.has_css? "#accordion h3", text: "Place A Bid"
     refute page.has_link? "Log In To Place A Bid", login_path
+    refute page.has_css? "#current-bids"
 
     assert page.has_link? "« Back to #{job.category.name}", category_path(name)
 
@@ -67,6 +69,44 @@ class UserViewsJobShowPageTest < ActionDispatch::IntegrationTest
     assert_equal 105, bid.price
     assert_equal 15, bid.duration_estimate
     assert_equal "Puppies Kittens Meow Fluff Purr Meow", bid.details
+  end
+
+  test "contractor can delete an existing bid" do
+    skip
+  end
+
+  test "job lister can accept a bid if bidding is closed" do
+    skip
+  end
+
+  test "job lister cannot accept a bid if bidding is still open" do
+    skip
+  end
+
+  test "lister views job show page" do
+    bid = create(:bid)
+    bidder = bid.user
+    job = bid.job
+    lister = job.lister
+
+    ApplicationController.any_instance.stubs(:current_user).returns(lister)
+
+    visit user_job_path(lister, job)
+
+    refute page.has_css? "#accordion h3", text: "Place A Bid"
+    refute page.has_css? "#accordion h3", text: "View My Bid"
+    refute page.has_link? "Log In To Place A Bid", login_path
+
+    verify_job_info(job)
+    verify_lister_info(lister)
+
+    within "#current-bids" do
+      assert page.has_link? bidder.full_name, user_path(bidder)
+      assert page.has_content? bid.price
+      assert page.has_content? bid.duration_estimate
+      assert page.has_content? bid.details
+      assert page.has_link? "Accept"
+    end
   end
 
   def verify_job_info(job)

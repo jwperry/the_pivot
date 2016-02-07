@@ -13,49 +13,19 @@
     <div class="col s12 m12 l12">
       <% if logged_in? && @job.bids_include_user(current_user.id) %>
         <%= render partial: "my_bid_accordion" %>
-      <% elsif logged_in?  %>
+      <% elsif logged_in? && current_user_does_not_own_job(@job.id)  %>
         <%= render partial: "place_a_bid_accordion" %>
-      <% else %>
+      <% elsif logged_out? %>
         <div class="log-in-to-bid">
           <%= link_to "Log In To Place A Bid", login_path %>
         </div>
       <% end %>
     </div>
   </div>
-  <section class="row" style="display:none;">
-    <!-- ^^^ REMOVE DISPLAY NONE FROM HERE IN THE FUTURE ^^^ -->
-    <h4 class="bids-table-title">Current Bids</h4>
-    <table class="striped responsive">
-      <thead>
-        <tr>
-          <th>Bidder Name</th>
-          <th>Price</th>
-          <th>Duration Estimate</th>
-          <th>Comment</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Toni Rib</td>
-          <td>$500</td>
-          <td>2 weeks</td>
-          <td>I can totally build this table because I am super awesome!</td>
-          <td>
-            <a href="#" class="action-link">Edit</a> |
-            <a href="#" class="action-link">Delete</a>
-          </td>
-        </tr>
-        <tr>
-          <td>Aaron Greenspan</td>
-          <td>$700</td>
-          <td>1 week</td>
-          <td>I am an expert craftsman and I will build you a beautiul oak table in no time at all.</td>
-          <td><a href=# class="action-link">Accept</a></td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
+
+  <% if logged_in? && current_user_owns_current_job(@job.id) %>
+    <%= render partial: "current_bids_table", locals: { bids: @job.bids } %>
+  <% end %>
 
   <%= render partial: "lister_details" %>
 </div>

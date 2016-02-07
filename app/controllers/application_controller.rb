@@ -8,6 +8,8 @@ class ApplicationController < ActionController::Base
   helper_method :lister_or_platform_admin?
   helper_method :logged_in?
   helper_method :logged_out?
+  helper_method :current_user_does_not_own_job
+  helper_method :current_user_owns_current_job
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
@@ -27,6 +29,18 @@ class ApplicationController < ActionController::Base
 
   def lister_or_platform_admin?
     current_lister? || current_platform_admin?
+  end
+
+  def current_user_does_not_own_job(job_id)
+    current_user        &&
+      current_user.jobs &&
+      !current_user.jobs.pluck(:id).include?(job_id)
+  end
+
+  def current_user_owns_current_job(job_id)
+    current_user        &&
+      current_user.jobs &&
+      current_user.jobs.pluck(:id).include?(job_id)
   end
 
   def sanitize_price(price)
