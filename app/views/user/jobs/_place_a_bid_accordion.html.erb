@@ -2,15 +2,16 @@
   <h3><i class="material-icons arrow-icon">navigation</i>Place A Bid<i class="material-icons arrow-icon">navigation</i></h3>
   <div>
     <div class="row no-bottom-margin bid-accordion">
-      <%= form_for(:bid, url: user_job_bids_path(@job.user, @job)) do |f| %>
+      <%= form_for(:bid, url: user_job_bids_path(job.user, job)) do |f| %>
         <div class="row valign-wrapper">
           <div class="col s12 m4 valign">
             <%= f.label current_user.full_name, class: "bidder-name" %>
           </div>
           <div class="col s12 m3 bid-input-field valign">
-            $<%= f.number_field :price, min: 1,
-                                       placeholder: "Price in USD",
-                                       required: true %>
+            $  <%= f.number_field :price, min: 1,
+                                         placeholder: "Price in USD",
+                                         required: true,
+                                         class: "price-input" %>
           </div>
           <div class="col s7 m3 bid-input-field valign">
             <%= f.number_field :duration_estimate, min: 1,

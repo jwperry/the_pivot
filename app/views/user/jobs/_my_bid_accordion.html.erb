@@ -2,23 +2,24 @@
   <h3 class="my-bid"><i class="material-icons arrow-icon">navigation</i>View My Bid<i class="material-icons arrow-icon">navigation</i></h3>
   <div>
     <div class="row no-bottom-margin bid-accordion">
-      <%= form_for(:bid, url: user_job_bid_path(@job.user,
-                                                @job,
-                                                @job.my_bid(current_user.id).id),
+      <%= form_for(:bid, url: user_job_bid_path(job.user,
+                                                job,
+                                                job.my_bid(current_user.id).id),
                                                 method: :put) do |f| %>
         <div class="row valign-wrapper">
           <div class="col s12 m4 valign">
             <%= f.label current_user.full_name, class: "bidder-name" %>
           </div>
           <div class="col s12 m3 bid-input-field valign">
-            $<%= f.number_field :price, min: 1,
-                                        value: @job.my_bid(current_user.id).price,
-                                        required: true %>
+            $  <%= f.number_field :price, min: 1,
+                                          value: job.my_bid(current_user.id).price,
+                                          required: true,
+                                          class: "price-input" %>
           </div>
           <div class="col s7 m3 bid-input-field valign">
             <%= f.number_field :duration_estimate,
                                min: 1,
-                               value: @job.my_bid(current_user.id).duration_estimate,
+                               value: job.my_bid(current_user.id).duration_estimate,
                                required: true %>
           </div>
           <div class="col s5 m2 bid-input-field valign">
@@ -27,13 +28,13 @@
         </div>
         <div class="row no-bottom-margin center-align valign-wrapper">
           <div class="col s12 m8 valign">
-            <%= f.text_area :details, value: @job.my_bid(current_user.id).details,
+            <%= f.text_area :details, value: job.my_bid(current_user.id).details,
                                       class: "bid-comment",
                                       required: true, maxlength: 400, minlength: 35  %>
           </div>
           <div class="col s12 m4 valign">
             <%= f.submit "Update Bid", class: "btn update-bid-btn valign" %>
-            <%= link_to "Delete Bid", user_job_bid_path(@job.user, @job, @job.my_bid(current_user.id)),
+            <%= link_to "Delete Bid", user_job_bid_path(job.user, job, job.my_bid(current_user.id)),
                                       method: :delete, class: "btn btn-delete valign" %>
           </div>
         </div>
