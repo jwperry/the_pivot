@@ -14,7 +14,7 @@ class JobPresenter < SimpleDelegator
     elsif logged_in_user_can_place_a_bid_for_this_job
       view.render(partial: "user/jobs/place_a_bid_accordion",
                   locals: { job: self })
-    elsif view.logged_out? && bidding_open?
+    elsif user_is_logged_out_but_bidding_is_open
       view.content_tag(:div,
                        view.link_to("Log In To Place A Bid", view.login_path),
                        class: "log-in-to-bid")
@@ -40,11 +40,15 @@ class JobPresenter < SimpleDelegator
   def current_bids_table
     if view.logged_in? && view.current_user_owns_current_job(id)
       view.render(partial: "user/jobs/current_bids_table",
-                  locals: { job: self, bids: self.bids })
+                  locals: { job: self })
     end
   end
 
   private
+
+  def user_is_logged_out_but_bidding_is_open
+    view.logged_out? && bidding_open?
+  end
 
   def logged_in_user_has_bid_for_current_bidding_open_job
     view.logged_in? && bids_include_user(view.current_user.id) && bidding_open?
