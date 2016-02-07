@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class JobListerAcceptsBidTest < ActionDispatch::IntegrationTest
   test "job lister can accept a bid if bidding is closed" do

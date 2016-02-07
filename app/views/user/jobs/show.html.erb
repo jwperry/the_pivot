@@ -7,27 +7,31 @@
     </div>
   </header>
 
-  <%= render partial: "job_details" %>
+  <%= render partial: "user/jobs/job_details" %>
 
   <div class="row left-align">
     <div class="col s12 m12 l12">
-      <% if logged_in? && @job.bids_include_user(current_user.id) %>
-        <%= render partial: "my_bid_accordion" %>
-      <% elsif logged_in? && current_user_does_not_own_job(@job.id)  %>
-        <%= render partial: "place_a_bid_accordion" %>
-      <% elsif logged_out? %>
+      <% if logged_in? && @job.bids_include_user(current_user.id) && @job.bidding_open?  %>
+        <%= render partial: "user/jobs/my_bid_accordion" %>
+      <% elsif logged_in? && current_user_does_not_own_job(@job.id) && @job.bidding_open?   %>
+        <%= render partial: "user/jobs/place_a_bid_accordion" %>
+      <% elsif logged_out? && @job.bidding_open? %>
         <div class="log-in-to-bid">
           <%= link_to "Log In To Place A Bid", login_path %>
+        </div>
+      <% elsif !@job.bidding_open? %>
+        <div class="bidding-closed">
+          Bidding Is Closed For This Job
         </div>
       <% end %>
     </div>
   </div>
 
   <% if logged_in? && current_user_owns_current_job(@job.id) %>
-    <%= render partial: "current_bids_table", locals: { bids: @job.bids } %>
+    <%= render partial: "user/jobs/current_bids_table", locals: { bids: @job.bids } %>
   <% end %>
 
-  <%= render partial: "lister_details" %>
+  <%= render partial: "user/jobs/lister_details" %>
 </div>
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">

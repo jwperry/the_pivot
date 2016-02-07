@@ -208,6 +208,20 @@ button.stripe-button-el span {
   margin-bottom: 50px;
 }
 
+.bidding-closed {
+  background-color: $red;
+  border-radius: 5px;
+  color: $white;
+  display: block;
+  font-size: 20px;
+  height: 35px;
+  letter-spacing: 0.5em;
+  margin-bottom: 30px;
+  padding: 5px 0;
+  text-align: center;
+  text-transform: uppercase;
+}
+
 .job-lister-details {
   margin: 35px 0;
   padding: 15px;

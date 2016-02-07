@@ -8,6 +8,8 @@ class User::BidsController < ApplicationController
       flash[:success] = "Bid Placed"
       redirect_to request.referrer
     else
+      flash[:error] = "Bid could not be placed"
+      redirect_to request.referrer
     end
   end
 
@@ -16,6 +18,8 @@ class User::BidsController < ApplicationController
       flash[:success] = "Bid Updated"
       redirect_to request.referrer
     else
+      flash[:error] = "Bid could not be updated"
+      redirect_to request.referrer
     end
   end
 

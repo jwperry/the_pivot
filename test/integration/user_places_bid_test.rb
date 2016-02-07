@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class UserPlacesBidTest < ActionDispatch::IntegrationTest
   test "contractor places bid on a job and edits that bid" do
@@ -79,11 +79,24 @@ class UserPlacesBidTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test "contractor fills out bid incorrectly" do
-    skip
-  end
-
   test "contractor cannot see other contractor's bids" do
-    skip
+    contractor_1 = create(:contractor)
+    contractor_2 = create(:contractor)
+    job = create(:job)
+    lister = job.lister
+    bid = create(:bid, job_id: job.id, user_id: contractor_1.id)
+
+    ApplicationController.any_instance.stubs(:current_user).returns(contractor_2)
+
+    visit user_job_path(lister, job)
+
+    within "#accordion" do
+      refute page.has_content? contractor_1.full_name.capitalize
+      refute page.has_field? "bid_price", with: bid.price
+      refute page.has_field? "bid_duration_estimate", with: bid.duration_estimate
+      refute page.has_field? "bid_details", with: bid.details
+    end
+
+    refute page.has_css? "#current-bids"
   end
 end

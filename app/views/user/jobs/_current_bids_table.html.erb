@@ -18,7 +18,9 @@
           <td><%= bid.duration_estimate %> days</td>
           <td><%= bid.details %></td>
           <td>
-            <a href="#" class="action-link">Accept</a>
+            <% if @job.bidding_closed? %>
+              <a href="#" class="action-link">Accept</a>
+            <% end %>
           </td>
         </tr>
       <% end %>
