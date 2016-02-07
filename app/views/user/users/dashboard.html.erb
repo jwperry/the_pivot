@@ -100,26 +100,16 @@
               <tr class="listing-<%= listing.id %>">
                 <td><%= link_to listing.id, user_job_path(@user, listing) %></td>
                 <td><%= link_to listing.title, user_job_path(@user, listing) %></td>
-                <td class="job-status status-<%= listing.status %>"><%= listing.status %></td>
+                <td class="job-status status-<%= listing.status %>"><%= @user.sanitize_status(listing) %></td>
                 <td><%= listing.bidding_close_date %></td>
                 <td><%= listing.total_bids %></td>
                 <td><%= listing.bid_price_range %></td>
-                <td>
-
+                <td class="action-link">
+                  <%= @user.action_link(listing) %>
                 </td>
-                <td></td>
+                <td class="contractor"><%= @user.chosen_contractor(listing) %></td>
               </tr>
             <% end %>
-            <tr class="listing">
-              <td><%= link_to "12432", "#" %></td>
-              <td><%= link_to "Build A Large Multi-Room Doghouse", "#" %></td>
-              <td class="job-status status-accepted">completed</td>
-              <td>February 13, 2016 7:00 PM</td>
-              <td>13</td>
-              <td>$200-$450</td>
-              <td>Leave Feedback</td>
-              <td>Toni Rib</td>
-            </tr>
           </tbody>
         </table>
       </div>

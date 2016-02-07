@@ -6,6 +6,12 @@ class User::JobsController < ApplicationController
     @job = Job.find(params[:id])
   end
 
+  def edit
+  end
+
+  def update
+  end
+
   private
 
   def set_duration_tags

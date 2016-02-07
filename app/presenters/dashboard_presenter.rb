@@ -1,24 +1,49 @@
-class DasboardPresenter
-  attr_reader :model, :view, :user
+class DashboardPresenter < SimpleDelegator
+  attr_reader :view, :model
 
-  def initialize(model, view, user)
-    @model = model
+  def initialize(model, view)
     @view = view
-    @user = user
+    @model = model
+    super(@model)
   end
 
-  def action_link
-    case model.status
-    when "bidding open"
-      view.link_to("Cancel", user_job_path(user, model, status: 4))
-    when "bidding closed"
-link_to "Mark as Paid", admin_order_path(order, status: 1), method: :put
-    when "in progress"
-
+  def action_link(job)
+    case job.status
+    when "bidding_open"
+      cancel_link(job)
+    when "bidding_closed"
+      choose_bid_link(job) + " / " + cancel_link(job)
+    when "in_progress"
+      feedback_link(job, "Complete")
     when "completed"
-
+      feedback_link(job, "Leave Feedback")
     when "cancelled"
+      "N/A"
+    end
+  end
 
+  def choose_bid_link(job)
+    view.link_to("Choose Bid", view.user_job_path(model, job))
+  end
+
+  def cancel_link(job)
+    view.link_to("Cancel", view.user_job_path(model, job, status: 4), method: :put)
+  end
+
+  def feedback_link(job, link_text)
+    view.link_to(link_text, view.new_user_job_comment_path(model, job, status: 3), method: :put)
+  end
+
+  def sanitize_status(job)
+
+    job.status.gsub("_", " ")
+  end
+
+  def chosen_contractor(job)
+    if !job.bids.accepted.empty?
+      job.bids.accepted.first.user.full_name
+    else
+      ""
     end
   end
 end
