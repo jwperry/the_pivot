@@ -104,6 +104,7 @@ class UserCanEditProfileTest < ActionDispatch::IntegrationTest
     assert edit_user_path(contractor), current_path
 
     select "lister", from: "Role"
+
     click_on "Update User"
     contractor.reload
     assert_equal dashboard_path, current_path
