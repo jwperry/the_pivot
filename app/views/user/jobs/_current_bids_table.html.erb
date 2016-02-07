@@ -19,7 +19,7 @@
           <td><%= bid.details %></td>
           <td>
             <% if @job.bidding_closed? %>
-              <a href="#" class="action-link">Accept</a>
+              <%= link_to "Accept", user_job_bid_path(bid.user, bid.job, bid, status: 1), method: :put %>
             <% end %>
           </td>
         </tr>

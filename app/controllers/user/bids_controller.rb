@@ -14,12 +14,20 @@ class User::BidsController < ApplicationController
   end
 
   def update
-    if @bid.update_attributes(bid_params)
-      flash[:success] = "Bid Updated"
+    if params[:status]
+      @bid.update_attribute(:status, params[:status].to_i)
+      @bid.job.pending_bids.each do |bid|
+        bid.update_attribute(:status, 2)
+      end
       redirect_to request.referrer
     else
-      flash[:error] = "Bid could not be updated"
-      redirect_to request.referrer
+      if @bid.update_attributes(bid_params)
+        flash[:success] = "Bid Updated"
+        redirect_to request.referrer
+      else
+        flash[:error] = "Bid could not be updated"
+        redirect_to request.referrer
+      end
     end
   end
 
@@ -33,7 +41,8 @@ class User::BidsController < ApplicationController
   def bid_params
     params.require(:bid).permit(:price,
                                 :duration_estimate,
-                                :details).merge(job_id: params[:job_id])
+                                :details,
+                                :job_id).merge(job_id: params[:job_id])
   end
 
   def set_bid

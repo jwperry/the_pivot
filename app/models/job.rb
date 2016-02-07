@@ -78,6 +78,10 @@ class Job < ActiveRecord::Base
     bids.where(status: 1).first
   end
 
+  def pending_bids
+    bids.where(status: 0)
+  end
+
   def bids_include_user(id)
     bids.pluck(:user_id).include?(id)
   end
