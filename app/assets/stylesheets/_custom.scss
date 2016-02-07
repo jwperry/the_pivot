@@ -209,17 +209,27 @@ button.stripe-button-el span {
 }
 
 .bidding-closed {
+  @include job-status-banner;
   background-color: $red;
-  border-radius: 5px;
   color: $white;
-  display: block;
-  font-size: 20px;
-  height: 35px;
-  letter-spacing: 0.5em;
-  margin-bottom: 30px;
-  padding: 5px 0;
-  text-align: center;
-  text-transform: uppercase;
+}
+
+.job-in-progress {
+  @include job-status-banner;
+  background-color: $base-yellow;
+  color: $black;
+}
+
+.job-completed {
+  @include job-status-banner;
+  background-color: $highlight-cyan;
+  color: $white;
+}
+
+.job-cancelled {
+  @include job-status-banner;
+  background-color: $grey;
+  color: $black;
 }
 
 .job-lister-details {

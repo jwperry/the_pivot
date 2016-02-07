@@ -25,3 +25,15 @@
   }
 
 }
+
+@mixin job-status-banner {
+  border-radius: 5px;
+  display: block;
+  font-size: 20px;
+  height: 35px;
+  letter-spacing: 0.5em;
+  margin-bottom: 30px;
+  padding: 5px 0;
+  text-align: center;
+  text-transform: uppercase;
+}

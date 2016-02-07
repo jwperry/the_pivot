@@ -19,9 +19,21 @@
         <div class="log-in-to-bid">
           <%= link_to "Log In To Place A Bid", login_path %>
         </div>
-      <% elsif !@job.bidding_open? %>
+      <% elsif @job.bidding_closed? %>
         <div class="bidding-closed">
           Bidding Is Closed For This Job
+        </div>
+      <% elsif @job.in_progress? %>
+        <div class="job-in-progress">
+          Job Is In Progress
+        </div>
+      <% elsif @job.completed? %>
+        <div class="job-completed">
+          Job Completed
+        </div>
+      <% elsif @job.cancelled? %>
+        <div class="job-cancelled">
+          Job Cancelled
         </div>
       <% end %>
     </div>

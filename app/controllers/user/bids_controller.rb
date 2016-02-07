@@ -15,10 +15,7 @@ class User::BidsController < ApplicationController
 
   def update
     if params[:status]
-      @bid.update_attribute(:status, params[:status].to_i)
-      @bid.job.pending_bids.each do |bid|
-        bid.update_attribute(:status, 2)
-      end
+      update_bid_and_job_status
       redirect_to request.referrer
     else
       if @bid.update_attributes(bid_params)
@@ -51,5 +48,15 @@ class User::BidsController < ApplicationController
 
   def current_user_placed_bid
     current_user.id == @bid.user_id
+  end
+
+  def update_bid_and_job_status
+    @bid.accepted!
+
+    @bid.job.pending_bids.each do |bid|
+      bid.rejected!
+    end
+
+    @bid.job.in_progress!
   end
 end

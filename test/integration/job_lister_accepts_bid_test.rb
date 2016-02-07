@@ -7,9 +7,7 @@ class JobListerAcceptsBidTest < ActionDispatch::IntegrationTest
     job.bidding_closed!
     lister = job.lister
 
-    bids.each do |bid|
-      assert bid.pending?
-    end
+    bids.each { |bid| assert bid.pending? }
 
     ApplicationController.any_instance.stubs(:current_user).returns(lister)
 
@@ -32,18 +30,22 @@ class JobListerAcceptsBidTest < ActionDispatch::IntegrationTest
 
       within "tbody tr:nth-child(1)" do
         assert page.has_css? "td", "Accepted"
-        refute page.has_css? "a", "Accept"
       end
 
       within "tbody tr:nth-child(2)" do
         assert page.has_css? "td", "Rejected"
-        refute page.has_css? "a", "Accept"
       end
 
       within "tbody tr:nth-child(3)" do
         assert page.has_css? "td", "Rejected"
-        refute page.has_css? "a", "Accept"
       end
     end
+
+    assert job.bids[0].accepted?
+    assert job.bids[1].rejected?
+    assert job.bids[2].rejected?
+
+    assert Job.find(job.id).in_progress?
+    assert page.has_content? "Job Is In Progress"
   end
 end
