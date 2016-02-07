@@ -32,4 +32,14 @@ class UserTest < ActiveSupport::TestCase
 
     assert_equal "Job Bluth", contractor.full_name
   end
+
+  test "has bids" do
+    contractor = create(:contractor)
+
+    refute contractor.has_bids?
+
+    bid = create(:bid, user_id: contractor.id)
+
+    assert contractor.has_bids?
+  end
 end

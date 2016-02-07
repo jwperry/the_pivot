@@ -65,6 +65,10 @@ class Job < ActiveRecord::Base
     bids.maximum(:price)
   end
 
+  def bid_price_range
+    "$#{lowest_bid} - $#{highest_bid}"
+  end
+
   def bidding_closes_on
     bidding_close_date.strftime("%b %e, %Y at %l:%M%P")
   end
