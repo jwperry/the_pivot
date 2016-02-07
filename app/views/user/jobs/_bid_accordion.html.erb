@@ -5,7 +5,7 @@
       <%= form_for(:bid, url: bids_path) do |f| %>
         <div class="row valign-wrapper">
           <div class="col s12 m4 valign">
-            <%= f.label "Joseph Perry", class: "bidder-name" %>
+            <%= f.label current_user.full_name, class: "bidder-name" %>
           </div>
           <div class="col s12 m3 bid-input-field valign">
             <%= f.number_field :price, min: 1, placeholder: "Price in USD" %>

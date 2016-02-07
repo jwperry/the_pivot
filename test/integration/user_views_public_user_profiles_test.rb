@@ -27,16 +27,9 @@ class UserViewsPublicUserProfilesTest < ActionDispatch::IntegrationTest
     job = comment.job
     create(:bid, status: "accepted", job_id: job.id)
 
-    visit login_path
+    ApplicationController.any_instance.stubs(:current_user).returns(contractor)
 
-    fill_in "Username", with: contractor.username
-    fill_in "Password", with: contractor.password
-    within "form" do
-      click_button "Login"
-    end
-
-    assert_equal dashboard_path, current_path
-
+    visit dashboard_path
     click_on "Public Profile"
 
     assert_equal user_path(contractor), current_path
@@ -78,13 +71,7 @@ class UserViewsPublicUserProfilesTest < ActionDispatch::IntegrationTest
     job_performed = comment_as_contractor.job
     create(:bid, status: "accepted", job_id: job_performed.id)
 
-    visit login_path
-
-    fill_in "Username", with: contractor.username
-    fill_in "Password", with: contractor.password
-    within "form" do
-      click_button "Login"
-    end
+    ApplicationController.any_instance.stubs(:current_user).returns(contractor)
 
     visit user_job_path(lister, listers_posted_job)
 
@@ -142,16 +129,9 @@ class UserViewsPublicUserProfilesTest < ActionDispatch::IntegrationTest
     job_performed = comment_as_contractor.job
     create(:bid, status: "accepted", job_id: job_performed.id)
 
-    visit login_path
+    ApplicationController.any_instance.stubs(:current_user).returns(lister)
 
-    fill_in "Username", with: lister.username
-    fill_in "Password", with: lister.password
-    within "form" do
-      click_button "Login"
-    end
-
-    assert_equal dashboard_path, current_path
-
+    visit dashboard_path
     click_on "Public Profile"
 
     assert_equal user_path(lister), current_path

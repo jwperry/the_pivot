@@ -12,6 +12,33 @@ class UserViewsJobShowPageTest < ActionDispatch::IntegrationTest
 
     assert page.has_link? "« Back to #{job.category.name}", category_path(name)
 
+    verify_job_info(job)
+    verify_lister_info(lister)
+  end
+
+  test "contractor views job show page" do
+    contractor = create(:contractor)
+    job = create(:job)
+    lister = job.lister
+
+    ApplicationController.any_instance.stubs(:current_user).returns(contractor)
+
+    visit user_job_path(lister, job)
+
+    assert page.has_css? "#accordion h3", text: "Place A Bid"
+    refute page.has_link? "Log In To Place A Bid", login_path
+
+    assert page.has_link? "« Back to #{job.category.name}", category_path(name)
+
+    verify_job_info(job)
+    verify_lister_info(lister)
+
+    within "#accordion" do
+      assert page.has_css? "label", text: contractor.full_name
+    end
+  end
+
+  def verify_job_info(job)
     within "#job-info" do
       assert page.has_content? job.title
       assert page.has_content? job.description
@@ -29,7 +56,9 @@ class UserViewsJobShowPageTest < ActionDispatch::IntegrationTest
       assert page.has_content? job.location
       assert page.has_css? "#google-map"
     end
+  end
 
+  def verify_lister_info(lister)
     within "#lister-info" do
       assert page.has_link? lister.full_name, user_path(lister)
       assert page.has_content? lister.rating
@@ -51,3 +80,19 @@ class UserViewsJobShowPageTest < ActionDispatch::IntegrationTest
     end
   end
 end
+
+# "Place a Bid" accordion, and when I click on it I also see:
+#
+# My name
+# Price box
+# Duration estimate box
+# Time interval drop down (d/h/w)
+# Description box
+# Submit bid button When I fill these fields out and press "Submit Bid",
+# Then I see "View My Bid" accordion in different color,
+# and if I click on "View My Bid",
+# then I see: My bid information,
+# And I see the "Edit Bid Button".
+# If I click "Edit Bid"
+# then I see a flash message saying "Bid Updated"
+# and the accordion rolls up.
