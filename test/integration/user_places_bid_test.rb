@@ -30,7 +30,8 @@ class UserPlacesBidTest < ActionDispatch::IntegrationTest
       assert page.has_content? contractor.full_name.capitalize
       assert page.has_field? "bid_price", with: "100"
       assert page.has_field? "bid_duration_estimate", with: "10"
-      assert page.has_field? "bid_details", with: "You should hire me because I am the best"
+      assert page.has_field? "bid_details",
+                             with: "You should hire me because I am the best"
 
       fill_in :bid_price, with: 105
       fill_in :bid_duration_estimate, with: 15
@@ -59,7 +60,8 @@ class UserPlacesBidTest < ActionDispatch::IntegrationTest
     within "#accordion" do
       assert page.has_content? contractor.full_name.capitalize
       assert page.has_field? "bid_price", with: bid.price
-      assert page.has_field? "bid_duration_estimate", with: bid.duration_estimate
+      assert page.has_field? "bid_duration_estimate",
+                             with: bid.duration_estimate
       assert page.has_field? "bid_details", with: bid.details
 
       click_on "Delete Bid"
@@ -74,7 +76,8 @@ class UserPlacesBidTest < ActionDispatch::IntegrationTest
     within "#accordion" do
       assert page.has_content? contractor.full_name.capitalize
       refute page.has_field? "bid_price", with: bid.price
-      refute page.has_field? "bid_duration_estimate", with: bid.duration_estimate
+      refute page.has_field? "bid_duration_estimate",
+                             with: bid.duration_estimate
       refute page.has_field? "bid_details", with: bid.details
     end
   end
@@ -93,7 +96,8 @@ class UserPlacesBidTest < ActionDispatch::IntegrationTest
     within "#accordion" do
       refute page.has_content? contractor_1.full_name.capitalize
       refute page.has_field? "bid_price", with: bid.price
-      refute page.has_field? "bid_duration_estimate", with: bid.duration_estimate
+      refute page.has_field? "bid_duration_estimate",
+                             with: bid.duration_estimate
       refute page.has_field? "bid_details", with: bid.details
     end
 

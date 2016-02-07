@@ -130,7 +130,7 @@ class Seed
 
   def create_job_listings
     User.listers.each do |job_lister|
-      5.times do |i|
+      5.times do
         job_lister.jobs.create!(
           title: Faker::Commerce.product_name,
           category_id: rand(1..10),

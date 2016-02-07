@@ -53,9 +53,7 @@ class User::BidsController < ApplicationController
   def update_bid_and_job_status
     @bid.accepted!
 
-    @bid.job.pending_bids.each do |bid|
-      bid.rejected!
-    end
+    @bid.job.pending_bids.each(&:rejected!)
 
     @bid.job.in_progress!
   end

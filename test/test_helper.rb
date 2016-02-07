@@ -33,7 +33,8 @@ class ActionDispatch::IntegrationTest
       assert page.has_content? job.title
       assert page.has_content? job.description
       assert page.has_content? job.duration_estimate
-      assert page.has_content? "Bid Range: $#{job.lowest_bid} - $#{job.highest_bid}"
+      bid_range = "Bid Range: $#{job.lowest_bid} - $#{job.highest_bid}"
+      assert page.has_content? bid_range
 
       if job.total_bids == 1
         assert page.has_content? "#{job.total_bids} bid"
@@ -63,7 +64,8 @@ class ActionDispatch::IntegrationTest
       if lister.number_of_completed_jobs == 1
         assert page.has_content? "1 Completed Job"
       else
-        assert page.has_content? "#{lister.number_of_completed_jobs} Completed Jobs"
+        num_complete_jobs = "#{lister.number_of_completed_jobs} Completed Jobs"
+        assert page.has_content? num_complete_jobs
       end
 
       assert page.has_content? "Active Since #{lister.account_created_date}"

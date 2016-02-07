@@ -201,11 +201,11 @@ button.stripe-button-el span {
 .log-in-to-bid {
   @include button-link;
   font-size: 32px;
+  height: 25px;
   letter-spacing: 0.5em;
+  margin-bottom: 50px;
   text-align: center;
   text-transform: uppercase;
-  height: 25px;
-  margin-bottom: 50px;
 }
 
 .bidding-closed {
@@ -352,9 +352,9 @@ span.ui-accordion-header-icon.ui-icon.ui-icon-triangle-1-s {
 }
 
 .bids-table-title {
-  text-transform: uppercase;
   font-weight: 100;
   letter-spacing: 0.4em;
+  text-transform: uppercase;
 }
 
 // -----DURATION TAGS-----
