@@ -46,14 +46,27 @@ class UserViewsJobShowPageTest < ActionDispatch::IntegrationTest
     assert_equal user_job_path(lister, job), current_path
 
     assert page.has_css? "#accordion h3", text: "View My Bid"
+    assert page.has_css? "h3.my-bid"
+    assert page.has_content? "Bid Placed"
 
-    # Then I see "View My Bid" accordion in different color,
-    # and if I click on "View My Bid",
-    # then I see: My bid information,
-    # And I see the "Edit Bid Button".
-    # If I click "Edit Bid"
-    # then I see a flash message saying "Bid Updated"
-    # and the accordion rolls up.
+    within "#accordion" do
+      assert page.has_content? contractor.full_name.capitalize
+      assert page.has_field? "bid_price", with: "100"
+      assert page.has_field? "bid_duration_estimate", with: "10"
+      assert page.has_field? "bid_details", with: "You should hire me because I am the best"
+
+      fill_in :bid_price, with: 105
+      fill_in :bid_duration_estimate, with: 15
+      fill_in :bid_details, with: "Puppies Kittens Meow Fluff Purr Meow"
+      click_on "Update Bid"
+    end
+
+    assert page.has_content? "Bid Updated"
+
+    bid = Bid.last
+    assert_equal 105, bid.price
+    assert_equal 15, bid.duration_estimate
+    assert_equal "Puppies Kittens Meow Fluff Purr Meow", bid.details
   end
 
   def verify_job_info(job)

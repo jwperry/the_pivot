@@ -13,7 +13,7 @@ class User::BidsController < ApplicationController
     bid = Bid.find(params[:id])
 
     if bid.update_attributes(bid_params)
-      flash[:success] = "Bid Successfully Updated"
+      flash[:success] = "Bid Updated"
       redirect_to request.referrer
     else
     end

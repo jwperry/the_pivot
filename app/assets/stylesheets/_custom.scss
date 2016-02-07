@@ -230,6 +230,15 @@ button.stripe-button-el span {
 
 }
 
+.update-bid-btn {
+  background-color: $base-purple-blue;
+
+  &:hover {
+    background-color: $base-purple-blue-dark;
+  }
+
+}
+
 .lister-info {
   font-size: 18px;
 }
