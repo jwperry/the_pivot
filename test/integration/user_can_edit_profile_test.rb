@@ -1,6 +1,6 @@
 require "test_helper"
 
-class ListerCanEditProfileTest < ActionDispatch::IntegrationTest
+class UserCanEditProfileTest < ActionDispatch::IntegrationTest
   test "lister can edit profile" do
     lister = create(:lister)
     original_lister = lister.dup
@@ -60,33 +60,9 @@ class ListerCanEditProfileTest < ActionDispatch::IntegrationTest
   end
 
   test "listers editing profile may not change role" do
-    contractor = create(:contractor)
     lister = create(:lister)
     visit root_path
 
-    within "#nav-mobile" do
-      click_on "Login"
-    end
-    fill_in "Username", with: contractor.username
-    fill_in "Password", with: contractor.password
-    within ".profile-form" do
-      click_on "Login"
-    end
-
-    assert_equal dashboard_path, current_path
-    assert page.has_content?(contractor.first_name)
-    assert page.has_content?(contractor.last_name)
-    click_on "Edit Profile"
-
-    assert edit_user_path(contractor), current_path
-    within ".profile-form" do
-      assert page.has_select?("Role", options: ["contractor", "lister"])
-    end
-    within "#nav-mobile" do
-      click_on "Logout"
-    end
-
-    assert_equal root_path, current_path
     within "#nav-mobile" do
       click_on "Login"
     end
@@ -105,6 +81,33 @@ class ListerCanEditProfileTest < ActionDispatch::IntegrationTest
     within ".profile-form" do
       assert page.has_select?("Role", options: ["lister"])
     end
+  end
+
+  test "contractors editing profile may change role" do
+    contractor = create(:contractor)
+    visit root_path
+
+    within "#nav-mobile" do
+      click_on "Login"
+    end
+    fill_in "Username", with: contractor.username
+    fill_in "Password", with: contractor.password
+    within ".profile-form" do
+      click_on "Login"
+    end
+
+    assert_equal dashboard_path, current_path
+    assert page.has_content?(contractor.first_name)
+    assert page.has_content?(contractor.last_name)
+    click_on "Edit Profile"
+
+    assert edit_user_path(contractor), current_path
+
+    select "lister", from: "Role"
+    click_on "Update User"
+    contractor.reload
+    assert_equal dashboard_path, current_path
+    assert_equal "lister", contractor.role
   end
 
   def fixture_image_path
