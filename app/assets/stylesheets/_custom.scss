@@ -250,6 +250,32 @@ h3#ui-id-1 {
     .arrow-icon {
       color: $base-green-dark;
     }
+
+  }
+
+}
+
+h3#ui-id-1.my-bid {
+  background: $base-green;
+  color: $white;
+  font-size: 26px;
+  letter-spacing: 0.5em;
+  padding: 5px 0;
+  text-align: center;
+  text-transform: uppercase;
+
+  .arrow-icon {
+    color: $base-light-blue;
+  }
+
+  &:hover {
+    background: $base-light-blue;
+    color: $base-purple-blue-dark;
+
+    .arrow-icon {
+      color: $base-green-dark;
+    }
+
   }
 
 }

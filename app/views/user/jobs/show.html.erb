@@ -11,8 +11,10 @@
 
   <div class="row left-align">
     <div class="col s12 m12 l12">
-      <% if logged_in? %>
-        <%= render partial: "bid_accordion" %>
+      <% if logged_in? && @job.bids_include_user(current_user.id) %>
+        <%= render partial: "my_bid_accordion" %>
+      <% elsif logged_in?  %>
+        <%= render partial: "place_a_bid_accordion" %>
       <% else %>
         <div class="log-in-to-bid">
           <%= link_to "Log In To Place A Bid", login_path %>

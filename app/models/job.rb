@@ -78,6 +78,14 @@ class Job < ActiveRecord::Base
     bids.where(status: 1).first
   end
 
+  def bids_include_user(id)
+    bids.pluck(:user_id).include?(id)
+  end
+
+  def my_bid(id)
+    bids.find_by(user_id: id)
+  end
+
   private
 
   def check_user_type

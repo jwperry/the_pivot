@@ -34,8 +34,26 @@ class UserViewsJobShowPageTest < ActionDispatch::IntegrationTest
     verify_lister_info(lister)
 
     within "#accordion" do
-      assert page.has_css? "label", text: contractor.full_name
+      assert page.has_content? contractor.full_name.capitalize
+      fill_in :bid_price, with: 100
+      fill_in :bid_duration_estimate, with: 10
+      fill_in :bid_details, with: "You should hire me because I am the best"
+      click_on "Submit Bid"
     end
+
+    assert_equal 1, job.bids.count
+    assert_equal 1, contractor.bids.count
+    assert_equal user_job_path(lister, job), current_path
+
+    assert page.has_css? "#accordion h3", text: "View My Bid"
+
+    # Then I see "View My Bid" accordion in different color,
+    # and if I click on "View My Bid",
+    # then I see: My bid information,
+    # And I see the "Edit Bid Button".
+    # If I click "Edit Bid"
+    # then I see a flash message saying "Bid Updated"
+    # and the accordion rolls up.
   end
 
   def verify_job_info(job)
@@ -80,19 +98,3 @@ class UserViewsJobShowPageTest < ActionDispatch::IntegrationTest
     end
   end
 end
-
-# "Place a Bid" accordion, and when I click on it I also see:
-#
-# My name
-# Price box
-# Duration estimate box
-# Time interval drop down (d/h/w)
-# Description box
-# Submit bid button When I fill these fields out and press "Submit Bid",
-# Then I see "View My Bid" accordion in different color,
-# and if I click on "View My Bid",
-# then I see: My bid information,
-# And I see the "Edit Bid Button".
-# If I click "Edit Bid"
-# then I see a flash message saying "Bid Updated"
-# and the accordion rolls up.
