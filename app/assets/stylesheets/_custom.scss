@@ -198,6 +198,40 @@ button.stripe-button-el span {
   height: 170px;
 }
 
+.log-in-to-bid {
+  @include button-link;
+  font-size: 32px;
+  height: 25px;
+  letter-spacing: 0.5em;
+  margin-bottom: 50px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.bidding-closed {
+  @include job-status-banner;
+  background-color: $red;
+  color: $white;
+}
+
+.job-in-progress {
+  @include job-status-banner;
+  background-color: $base-yellow;
+  color: $black;
+}
+
+.job-completed {
+  @include job-status-banner;
+  background-color: $highlight-cyan;
+  color: $white;
+}
+
+.job-cancelled {
+  @include job-status-banner;
+  background-color: $grey;
+  color: $black;
+}
+
 .job-lister-details {
   margin: 35px 0;
   padding: 15px;
@@ -220,6 +254,33 @@ button.stripe-button-el span {
 
 }
 
+.update-bid-btn {
+  background-color: $base-purple-blue;
+  margin: 5px auto;
+  width: 168px;
+
+  &:hover {
+    background-color: $base-purple-blue-dark;
+  }
+
+}
+
+.btn-delete {
+  background-color: $red;
+  margin: 5px auto;
+  width: 168px;
+
+  &:hover {
+    background-color: $dark-red;
+  }
+
+}
+
+a.btn.btn-delete {
+  color: $white;
+}
+
+
 .lister-info {
   font-size: 18px;
 }
@@ -240,6 +301,32 @@ h3#ui-id-1 {
     .arrow-icon {
       color: $base-green-dark;
     }
+
+  }
+
+}
+
+h3#ui-id-1.my-bid {
+  background: $base-green;
+  color: $white;
+  font-size: 26px;
+  letter-spacing: 0.5em;
+  padding: 5px 0;
+  text-align: center;
+  text-transform: uppercase;
+
+  .arrow-icon {
+    color: $base-light-blue;
+  }
+
+  &:hover {
+    background: $base-light-blue;
+    color: $base-purple-blue-dark;
+
+    .arrow-icon {
+      color: $base-green-dark;
+    }
+
   }
 
 }
@@ -262,6 +349,12 @@ span.ui-accordion-header-icon.ui-icon.ui-icon-triangle-1-s {
   color: $base-green-light;
   margin: 0 10px;
   transform: rotate(180deg);
+}
+
+.bids-table-title {
+  font-weight: 100;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
 }
 
 // -----DURATION TAGS-----
@@ -371,24 +464,9 @@ nav ul a:hover {
 // -----DASHBOARD-----
 
 .user-action-links {
+  @include button-link;
   margin: 10px auto;
   max-width: 200px;
-
-  a {
-    background-color: $base-purple-blue-dark;
-    color: $white;
-    display: block;
-    font-size: 18px;
-    padding: 20px;
-    text-transform: uppercase;
-
-    &:hover {
-      color: $base-purple-blue-dark;
-      background-color: $base-light-blue;
-    }
-
-  }
-
 }
 
 .dashboard-user-image {
@@ -557,24 +635,6 @@ table a {
 
 .error {
   color: rgba(196, 42, 32, 0.8);
-}
-
-.btn-edit {
-  background-color: rgba(115, 127, 149, 1);
-
-  &:hover {
-    background-color: rgba(115, 127, 149, 0.8);
-  }
-
-}
-
-.btn-delete {
-  background-color: rgba(104, 168, 173,1);
-
-  &:hover {
-    background-color: rgba(104, 168, 173,0.8);
-  }
-
 }
 
 .create-acct-button,

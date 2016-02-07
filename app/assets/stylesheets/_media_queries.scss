@@ -47,6 +47,12 @@
     width: 250px;
   }
 
+  .btn-delete,
+  .update-bid-btn {
+    padding: 0;
+    width: 140px;
+  }
+
 }
 
 @media screen and (max-width: 600px) {
@@ -127,6 +133,15 @@
 
   .duration-select {
     width: 250px;
+  }
+
+  .btn-delete,
+  .update-bid-btn {
+    margin: 10px auto;
+  }
+
+  h3#ui-id-1.my-bid {
+    font-size: 18px;
   }
 
 }

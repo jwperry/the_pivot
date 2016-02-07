@@ -1,153 +1,49 @@
 <div class="container">
   <header class="row">
     <div class="col s12 m12 l12 left-align">
-      <%= link_to "« Back to Carpentry", category_path("carpentry"), class: "back-to-category-link" %>
+      <%= link_to "« Back to #{@job.category.name}",
+                  category_path(@job.category),
+                  class: "back-to-category-link" %>
     </div>
   </header>
-  <section class="row flex-s">
-    <div class="col s12 m12 l4 box-a">
-      <div class="row">
-        <div id="google-map" class="google-map-job"></div>
-      </div>
-      <div class="row">
-        <h5 class="job-location">Denver, CO</h5>
-      </div>
-    </div>
-    <div class="col s12 m12 l8 box-b main-job-information">
-      <div class="row valign-wrapper no-bottom-margin">
-        <div class="col s12 m10 l10 left-align">
-          <h5 class="job-show-title">Build A Dining Room Table</h5>
-        </div>
-        <div class="col s12 m2 l2 valign">
-          <div class="duration-tag duration-estimate-medium">Medium</div>
-        </div>
-      </div>
-        <p class="row left-align">
-          Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum"
-        </p>
-        <div class="row center-align no-bottom-margin">
-          <div class="col s6 job-info">
-            5 bids
-          </div>
-          <div class="col s6 job-info">
-            Must Be Completed By: March 20, 2016
-          </div>
-        </div>
-        <hr>
-        <div class="row center-align">
-          <div class="col s6 job-info">
-            Bid Range: $500 - $700
-          </div>
-          <div class="col s6 job-info">
-            Bidding Ends: March 8, 2016 5:00pm
-          </div>
-        </div>
-    </div>
-  </section>
+
+  <%= render partial: "user/jobs/job_details" %>
+
   <div class="row left-align">
-   <div class="col s12 m12 l12">
-     <div id="accordion">
-      <h3><i class="material-icons arrow-icon">navigation</i>Place A Bid<i class="material-icons arrow-icon">navigation</i></h3>
-      <div>
-        <!-- INSIDE THE ACCORDION -->
-        <div class="row no-bottom-margin bid-accordion">
-           <%= form_for(:bid, url: bids_path) do |f| %>
-            <div class="row valign-wrapper">
-              <div class="col s12 m4 valign">
-                <%= f.label "Joseph Perry", class: "bidder-name" %>
-              </div>
-              <div class="col s12 m3 bid-input-field valign">
-                <%= f.number_field :price, min: 1, placeholder: "Price in USD" %>
-              </div>
-              <div class="col s7 m3 bid-input-field valign">
-                <%= f.number_field :duration_estimate, min: 1, placeholder: "Duration Estimate" %>
-              </div>
-              <div class="col s5 m2 bid-input-field valign">
-                <%= label_tag :days %>
-              </div>
-            </div>
-            <div class="row no-bottom-margin center-align valign-wrapper">
-              <div class="col s12 m8 valign">
-                <%= f.text_area :details, placeholder: "Leave a comment for the job lister",
-                                          class: "bid-comment" %>
-              </div>
-              <div class="col s12 m4 valign">
-                <%= f.submit "Submit Bid", class: "btn submit-bid-btn" %>
-              </div>
-            </div>
-           <% end %>
-         </div>
-        <!-- INSIDE THE ACCORDION -->
-      </div>
-    </div>
-   </div>
- </div>
-  <section class="row" style="display:none;">
-    <!-- ^^^ REMOVE DISPLAY NONE FROM HERE IN THE FUTURE ^^^ -->
-    <h4 class="bids-table-title">Current Bids</h4>
-    <table class="striped responsive">
-      <thead>
-        <tr>
-          <th>Bidder Name</th>
-          <th>Price</th>
-          <th>Duration Estimate</th>
-          <th>Comment</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Toni Rib</td>
-          <td>$500</td>
-          <td>2 weeks</td>
-          <td>I can totally build this table because I am super awesome!</td>
-          <td>
-            <a href="#" class="action-link">Edit</a> |
-            <a href="#" class="action-link">Delete</a>
-          </td>
-        </tr>
-        <tr>
-          <td>Aaron Greenspan</td>
-          <td>$700</td>
-          <td>1 week</td>
-          <td>I am an expert craftsman and I will build you a beautiul oak table in no time at all.</td>
-          <td><a href=# class="action-link">Accept</a></td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
-  <section class="row left-align job-lister-details card">
-    <div class="row card-title">
-      <div class="col s12 m12 l12">
-        <h4 class="job-lister-title">Job Lister</h4>
-        <hr>
-      </div>
-    </div>
-    <div class="col s12 m2">
-      <%= image_tag "http://placehold.it/100x100", class: "circle" %>
-    </div>
-    <div class="col s12 m10">
-      <div class="row">
-        <div class="col s12">
-          <h5><%= link_to @user.full_name, @user,
-                  class: "job-lister-name-link" %>
-              <span class="lister-rating">(5 / 5)</span>
-          </h5>
+    <div class="col s12 m12 l12">
+      <% if logged_in? && @job.bids_include_user(current_user.id) && @job.bidding_open?  %>
+        <%= render partial: "user/jobs/my_bid_accordion" %>
+      <% elsif logged_in? && current_user_does_not_own_job(@job.id) && @job.bidding_open?   %>
+        <%= render partial: "user/jobs/place_a_bid_accordion" %>
+      <% elsif logged_out? && @job.bidding_open? %>
+        <div class="log-in-to-bid">
+          <%= link_to "Log In To Place A Bid", login_path %>
         </div>
-      </div>
-      <div class="row lister-info">
-        <div class="col s12 m3">
-          6 Active Jobs
+      <% elsif @job.bidding_closed? %>
+        <div class="bidding-closed">
+          Bidding Is Closed For This Job
         </div>
-        <div class="col s12 m3">
-          3 Completed Jobs
+      <% elsif @job.in_progress? %>
+        <div class="job-in-progress">
+          Job Is In Progress
         </div>
-        <div class="col s12 m6">
-          Active Since June 2013
+      <% elsif @job.completed? %>
+        <div class="job-completed">
+          Job Completed
         </div>
-      </div>
+      <% elsif @job.cancelled? %>
+        <div class="job-cancelled">
+          Job Cancelled
+        </div>
+      <% end %>
     </div>
-  </section>
+  </div>
+
+  <% if logged_in? && current_user_owns_current_job(@job.id) %>
+    <%= render partial: "user/jobs/current_bids_table", locals: { bids: @job.bids } %>
+  <% end %>
+
+  <%= render partial: "user/jobs/lister_details" %>
 </div>
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -171,8 +67,10 @@
       zoom: 13
     });
 
+    var zipcode = <%= @job.zipcode %>;
+
     geocoder = new google.maps.Geocoder();
-    geocoder.geocode( { 'address': '80210' }, function(results, status) {
+    geocoder.geocode( { 'address': 'zipcode' }, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
         map.setCenter(results[0].geometry.location);
         var marker = new google.maps.Marker({

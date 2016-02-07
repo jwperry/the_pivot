@@ -70,8 +70,28 @@ class Job < ActiveRecord::Base
     bidding_close_date.strftime("%b %e, %Y at %l:%M%P")
   end
 
+  def complete_by_date
+    must_complete_by_date.strftime("%b %e, %Y at %l:%M%P")
+  end
+
   def selected_bid
     bids.where(status: 1).first
+  end
+
+  def pending_bids
+    bids.where(status: 0)
+  end
+
+  def bids_still_pending?
+    pending_bids.any?
+  end
+
+  def bids_include_user(id)
+    bids.pluck(:user_id).include?(id)
+  end
+
+  def my_bid(id)
+    bids.find_by(user_id: id)
   end
 
   private

@@ -59,6 +59,18 @@ class User < ActiveRecord::Base
     end
   end
 
+  def number_of_active_jobs
+    jobs.where(status: [0, 1, 2]).count
+  end
+
+  def number_of_completed_jobs
+    jobs.where(status: 3).count
+  end
+
+  def account_created_date
+    created_at.strftime("%B %Y")
+  end
+
   def all_received_comments
     Comment.where(recipient_id: id)
   end
