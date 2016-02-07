@@ -66,7 +66,7 @@ FactoryGirl.define do
     end
 
     factory :platform_admin do
-      username "platform_admin"
+      username
       role 2
     end
   end

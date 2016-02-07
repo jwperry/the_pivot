@@ -74,4 +74,8 @@ class User < ActiveRecord::Base
       comment.job.lister.id != id
     end
   end
+
+  def platform_admin?
+    self.role == 2
+  end
 end
