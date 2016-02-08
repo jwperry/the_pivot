@@ -40,15 +40,23 @@
     </div>
 
     <div id="previous-jobs" class="col s12 tab-content">
-      <% @user.received_comments_for_completed_jobs.each do |comment| %>
-        <%= render partial: "comment", locals: { comment: comment } %>
+      <% if @user.received_comments_for_completed_jobs.any? %>
+        <% @user.received_comments_for_completed_jobs.each do |comment| %>
+          <%= render partial: "comment", locals: { comment: comment } %>
+        <% end %>
+      <% else %>
+        <h5>This user has not completed any jobs</h5>
       <% end %>
     </div>
 
     <% if @user.lister? %>
       <div id="previous-listings" class="col s12">
-        <% @user.received_comments_for_completed_listings.each do |comment| %>
-          <%= render partial: "comment", locals: { comment: comment } %>
+        <% if @user.received_comments_for_completed_listings.any? %>
+          <% @user.received_comments_for_completed_listings.each do |comment| %>
+            <%= render partial: "comment", locals: { comment: comment } %>
+          <% end %>
+        <% else %>
+          <h5>This user has no job listings that are complete</h5>
         <% end %>
       </div>
     <% end %>
