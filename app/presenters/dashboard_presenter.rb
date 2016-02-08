@@ -14,9 +14,9 @@ class DashboardPresenter < SimpleDelegator
     when "bidding_closed"
       choose_bid_link(job) + " / " + cancel_link(job)
     when "in_progress"
-      feedback_link(job, "Complete")
+      complete_link(job)
     when "completed"
-      feedback_link(job, "Leave Feedback")
+      "N/A"
     when "cancelled"
       "N/A"
     end
@@ -30,13 +30,13 @@ class DashboardPresenter < SimpleDelegator
     view.link_to("Cancel", view.user_job_path(model, job, status: 4), method: :put)
   end
 
-  def feedback_link(job, link_text)
-    view.link_to(link_text, view.new_user_job_comment_path(model, job, status: 3), method: :put)
+  def complete_link(job)
+    view.link_to("Complete", view.user_job_path(model, job, status: 3), method: :put)
   end
 
   def sanitize_status(job)
-
     job.status.gsub("_", " ")
+
   end
 
   def chosen_contractor(job)

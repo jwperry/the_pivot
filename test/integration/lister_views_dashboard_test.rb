@@ -86,7 +86,7 @@ class ListerViewsDashboardTest < ActionDispatch::IntegrationTest
       assert page.has_content?(open_bid_job.total_bids)
       assert page.has_content?(open_bid_job.bid_price_range)
       assert page.has_link?("Cancel", href: user_job_path(lister, open_bid_job, status: 4))
-      assert_selector('.contractor', text: '')
+      assert_equal "", find(".contractor").text
     end
 
     within(".listing-#{closed_bid_job.id}") do
@@ -98,7 +98,7 @@ class ListerViewsDashboardTest < ActionDispatch::IntegrationTest
       assert page.has_content?(closed_bid_job.bid_price_range)
       assert page.has_link?("Choose Bid", href: user_job_path(lister, closed_bid_job))
       assert page.has_link?("Cancel", href: user_job_path(lister, closed_bid_job, status: 4))
-      assert_selector('.contractor', text: '')
+      assert_equal "", find(".contractor").text
     end
 
     within(".listing-#{in_progress_job.id}") do
@@ -108,7 +108,7 @@ class ListerViewsDashboardTest < ActionDispatch::IntegrationTest
       assert page.has_content?(in_progress_job.bidding_close_date)
       assert page.has_content?(in_progress_job.total_bids)
       assert page.has_content?(in_progress_job.bid_price_range)
-      assert page.has_link?("Complete", href: new_user_job_comment_path(lister, in_progress_job, status: 3))
+      assert page.has_link?("Complete", href: user_job_path(lister, in_progress_job, status: 3))
       assert page.has_content?(accepted_bid1.user.full_name)
     end
 
@@ -119,22 +119,22 @@ class ListerViewsDashboardTest < ActionDispatch::IntegrationTest
       assert page.has_content?(completed_job.bidding_close_date)
       assert page.has_content?(completed_job.total_bids)
       assert page.has_content?(completed_job.bid_price_range)
-      assert_selector('.action-link', text: '')
+      assert_equal "N/A", find(".action-link").text
       assert page.has_content?(accepted_bid2.user.full_name)
     end
 
+
+
     within(".listing-#{cancelled_job.id}") do
+
       assert page.has_link?(cancelled_job.id, href: user_job_path(cancelled_job.lister, cancelled_job))
       assert page.has_link?(cancelled_job.title, href: user_job_path(cancelled_job.lister, cancelled_job))
       assert page.has_content?("cancelled")
       assert page.has_content?(cancelled_job.bidding_close_date)
       assert page.has_content?(cancelled_job.total_bids)
       assert page.has_content?(cancelled_job.bid_price_range)
-      assert_selector('.action-link', text: '')
-      assert_selector('.contractor', text: '')
+      assert_equal "N/A", find(".action-link").text
+      assert_equal "", find(".contractor").text
     end
-
-
-
   end
 end

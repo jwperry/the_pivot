@@ -100,6 +100,7 @@
               <tr class="listing-<%= listing.id %>">
                 <td><%= link_to listing.id, user_job_path(@user, listing) %></td>
                 <td><%= link_to listing.title, user_job_path(@user, listing) %></td>
+
                 <td class="job-status status-<%= listing.status %>"><%= @user.sanitize_status(listing) %></td>
                 <td><%= listing.bidding_close_date %></td>
                 <td><%= listing.total_bids %></td>
