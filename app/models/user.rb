@@ -6,18 +6,21 @@ class User < ActiveRecord::Base
   has_many :jobs
   has_many :comments
 
-  validates :username, presence: true,
-                       uniqueness: true
-  validates :first_name, presence: true
-  validates :last_name, presence: true
-  validates :email_address, presence: true,
-                            uniqueness: true
+  validates :username,       presence: true,
+                             uniqueness: true
+  validates :first_name,     presence: true
+  validates :last_name,      presence: true
+  validates :email_address,  presence: true,
+                             uniqueness: true
   validates :street_address, presence: true
-  validates :city, presence: true
-  validates :state, presence: true
-  validates :zipcode, presence: true
-  has_many :comments
-  has_many :jobs
+  validates :city,           presence: true
+  validates :state,          presence: true
+  validates :zipcode,        presence: true
+  validates :bio,            presence: true,
+                             length: { in: 35..600 }
+
+  # validate email format
+  # validate password length (8 or more chars?)
 
   has_attached_file :file_upload,
                     styles: { medium: "300x300>", thumb: "100x100>" },

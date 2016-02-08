@@ -58,7 +58,7 @@ FactoryGirl.define do
     city "Denver"
     state "CO"
     zipcode 802_31
-    bio "This sure is a sweet bio"
+    bio "This sure is a sweet bio that has at least 35 characters"
 
     factory :lister, aliases: [:recipient] do
       username

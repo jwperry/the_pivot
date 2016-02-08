@@ -10,6 +10,7 @@ class UserTest < ActiveSupport::TestCase
   should validate_presence_of(:city)
   should validate_presence_of(:state)
   should validate_presence_of(:zipcode)
+  should validate_presence_of(:bio)
 
   test "full address" do
     street_address = "1510 Blake St."
@@ -31,5 +32,25 @@ class UserTest < ActiveSupport::TestCase
                         last_name: "Bluth")
 
     assert_equal "Job Bluth", contractor.full_name
+  end
+
+  test "is invalid with bio less than 35 characters" do
+    user = create(:contractor)
+
+    user.update_attribute(:bio, Faker::Lorem.characters(35))
+    assert user.valid?
+
+    user.update_attribute(:bio, Faker::Lorem.characters(34))
+    refute user.valid?
+  end
+
+  test "is invalid with bio greater than 600 characters" do
+    user = create(:contractor)
+
+    user.update_attribute(:bio, Faker::Lorem.characters(600))
+    assert user.valid?
+
+    user.update_attribute(:bio, Faker::Lorem.characters(601))
+    refute user.valid?
   end
 end
