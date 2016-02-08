@@ -34,7 +34,7 @@ class UserCanEditProfileTest < ActionDispatch::IntegrationTest
     fill_in "City", with: "new_city"
     select "Washington", from: "user_state"
     fill_in "Zipcode", with: 22_222
-    fill_in "Bio", with: "new_bio"
+    fill_in "Bio", with: "This is a long bio that is more than 35 characters"
     fill_in "Password", with: "new_password"
     fill_in "Password confirmation", with: "new_password"
     click_on "Update User"

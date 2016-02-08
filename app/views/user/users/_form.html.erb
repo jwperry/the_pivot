@@ -2,55 +2,56 @@
   <%= render partial: 'shared/errors', locals: {target: @user} %>
 
   <%= f.label :first_name %>
-  <%= f.text_field :first_name %>
+  <%= f.text_field :first_name, required: true %>
   <br>
 
   <%= f.label :last_name %>
-  <%= f.text_field :last_name %>
+  <%= f.text_field :last_name, required: true %>
   <br>
 
   <div class="row">
     <%= f.label :file_upload %>
     <br><br>
-    <%= f.file_field :file_upload, class: "grey-text" %>
+    <%= f.file_field :file_upload, class: "grey-text", required: true %>
   </div>
 
   <%= f.label :email_address %>
-  <%= f.text_field :email_address %>
+  <%= f.text_field :email_address, required: true %>
   <br>
 
   <%= f.label :street_address %>
-  <%= f.text_field :street_address %>
+  <%= f.text_field :street_address, required: true %>
   <br>
 
   <%= f.label :city %>
-  <%= f.text_field :city %>
+  <%= f.text_field :city, required: true %>
   <br>
 
   <%= f.label :state %>
-  <%= f.select(:state, options_for_select(us_states, "MN")) %>
+  <%= f.select(:state, options_for_select(us_states)) %>
   <br>
 
   <%= f.label :zipcode %>
-  <%= f.text_field :zipcode %>
+  <%= f.text_field :zipcode, required: true %>
   <br>
 
   <%= f.label :bio %>
-  <%= f.text_area :bio %>
+  <%= f.text_area :bio, required: true, class: "user-bio",
+                        minlength: 35, maxlength: 600 %>
   <br>
 
   <% unless current_user %>
     <%= f.label :username %>
-    <%= f.text_field :username  %>
+    <%= f.text_field :username, required: true  %>
   <% end %>
   <br>
 
   <%= f.label :password %>
-  <%= f.password_field :password %>
+  <%= f.password_field :password, required: true %>
   <br>
 
   <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation %>
+  <%= f.password_field :password_confirmation, required: true %>
   <br>
 
   <% if current_platform_admin? %>

@@ -29,8 +29,15 @@
 
   .duration-select {
     width: 200px;
+
   }
 
+}
+
+@media screen and (max-width: 900px) {
+  nav .brand-logo {
+    margin-left: 0;
+  }
 }
 
 @media screen and (max-width: 730px) {
@@ -51,6 +58,14 @@
   .update-bid-btn {
     padding: 0;
     width: 140px;
+  }
+
+  .profile-form {
+    width: 80%;
+
+    select {
+      width: 175px;
+    }
   }
 
 }

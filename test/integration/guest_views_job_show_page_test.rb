@@ -17,6 +17,22 @@ class GuestViewsJobShowPageTest < ActionDispatch::IntegrationTest
     verify_lister_info(lister)
   end
 
+  test "guest views job show page while bidding is open - friendly forwarding" do
+    job = create(:job)
+    contractor = create(:contractor)
+
+    visit user_job_path(job.lister, job)
+
+    click_on "Log In To Place A Bid"
+    fill_in "Username", with: contractor.username
+    fill_in "Password", with: contractor.password
+    within ".profile-form" do
+      click_on "Login"
+    end
+
+    assert_equal user_job_path(job.lister, job), current_path
+  end
+
   test "guest views job show page while bidding is closed" do
     job = create(:job)
     job.bidding_closed!
