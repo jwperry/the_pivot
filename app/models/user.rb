@@ -21,8 +21,6 @@ class User < ActiveRecord::Base
   validates :bio,            presence: true,
                              length: { in: 35..600 }
 
-  # random - if you log in from job show page, redirect back to that, otherwise dashboard
-
   has_attached_file :file_upload,
                     styles: { medium: "300x300>", thumb: "100x100>" },
                     default_url: "https://www.weefmgrenada.com/images/na4.jpg"
