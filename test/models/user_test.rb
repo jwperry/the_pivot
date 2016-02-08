@@ -53,4 +53,16 @@ class UserTest < ActiveSupport::TestCase
     user.update_attribute(:bio, Faker::Lorem.characters(601))
     refute user.valid?
   end
+
+  test "email validation" do
+    user = create(:contractor)
+    user.update_attribute(:email_address, "example@gmail.com")
+    assert user.valid?
+
+    user.update_attribute(:email_address, "example@gmail")
+    refute user.valid?
+
+    user.update_attribute(:email_address, "exampleatgmail.com")
+    refute user.valid?
+  end
 end

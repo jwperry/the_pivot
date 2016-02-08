@@ -10,8 +10,10 @@ class User < ActiveRecord::Base
                              uniqueness: true
   validates :first_name,     presence: true
   validates :last_name,      presence: true
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email_address,  presence: true,
-                             uniqueness: true
+                             uniqueness: true,
+                             format: { with: VALID_EMAIL_REGEX }
   validates :street_address, presence: true
   validates :city,           presence: true
   validates :state,          presence: true
@@ -19,8 +21,7 @@ class User < ActiveRecord::Base
   validates :bio,            presence: true,
                              length: { in: 35..600 }
 
-  # validate email format
-  # validate password length (8 or more chars?)
+  # random - if you log in from job show page, redirect back to that, otherwise dashboard
 
   has_attached_file :file_upload,
                     styles: { medium: "300x300>", thumb: "100x100>" },

@@ -53,6 +53,14 @@
     width: 140px;
   }
 
+  .profile-form {
+    width: 80%;
+
+    select {
+      width: 175px;
+    }
+  }
+
 }
 
 @media screen and (max-width: 600px) {
