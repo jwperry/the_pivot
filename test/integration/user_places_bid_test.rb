@@ -93,6 +93,9 @@ class UserPlacesBidTest < ActionDispatch::IntegrationTest
 
     visit user_job_path(lister, job)
 
+    assert page.has_css? "#accordion h3", text: "Place A Bid"
+    refute page.has_css? "#accordion h3", text: "View My Bid"
+
     within "#accordion" do
       refute page.has_content? contractor_1.full_name.capitalize
       refute page.has_field? "bid_price", with: bid.price

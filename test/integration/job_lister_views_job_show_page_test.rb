@@ -15,6 +15,9 @@ class JobListerViewsJobShowPageTest < ActionDispatch::IntegrationTest
     refute page.has_css? "#accordion h3", text: "View My Bid"
     refute page.has_link? "Log In To Place A Bid", login_path
     refute page.has_css? "#current-bids"
+
+    verify_job_info(job)
+    verify_lister_info(lister_1)
   end
 
   test "lister views job show page for their own job before bidding closes" do
