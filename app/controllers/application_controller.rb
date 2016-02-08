@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_lister?
   helper_method :current_contractor?
   helper_method :all_categories
+  helper_method :all_category_names
   helper_method :lister_or_platform_admin?
   helper_method :logged_in?
   helper_method :logged_out?
