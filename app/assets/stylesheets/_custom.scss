@@ -10,6 +10,12 @@ button.stripe-button-el span {
 
 // ------HOMEPAGE------
 
+.create-acct-button,
+.log-in-button {
+  margin-top: 5px;
+  width: 225px;
+}
+
 .category-dropdown {
   background-color: $base-purple-blue;
   margin: 0 auto;
@@ -479,6 +485,11 @@ nav ul a:hover {
   width: 200px;
 }
 
+.user-address {
+  margin: 10px auto 5px;
+  max-width: 80%;
+}
+
 .row.dashboard-user-image.circle {
   margin: 10px auto;
 }
@@ -595,19 +606,8 @@ table a {
 
 /* BUTTONS */
 
-.remove-item-button {
-  font-size: 14px;
-  position: relative;
-  top: -62px;
-  left: 150px;
-}
-
 .img-small {
   max-width: 100%;
-}
-
-.highlight tbody tr:hover td, .table-hover tbody tr:hover th {
-  background-color: $white;
 }
 
 .container {
@@ -616,12 +616,6 @@ table a {
 
 .error {
   color: rgba(196, 42, 32, 0.8);
-}
-
-.create-acct-button,
-.log-in-button {
-  margin-top: 5px;
-  width: 225px;
 }
 
 .inactive-status-text {
@@ -699,13 +693,13 @@ table a {
   margin-top: 2rem;
 }
 
-/* FORM STYLING */
+// -----FORM STYLING-----
+
 .profile-form {
-  width: 80%;
-  margin: 0 auto;
   box-shadow: 1px 1px 53px #C5C5C5;
+  margin: 0 auto 20px;
   padding: 20px;
-  margin-bottom: 20px;
+  width: 50%;
 }
 
 label {
@@ -754,6 +748,10 @@ select {
   margin: 0 auto;
 }
 
+.user-bio {
+  height: 100px;
+}
+
 // -----SIDE NAV-----
 
 .side-nav {
@@ -775,14 +773,6 @@ select {
 
   }
 
-}
-
-/***** USERS SHOW PAGE *****/
-
-
-
-.larger-text {
-  font-size: 18px;
 }
 
 // -----SLIDER-----
