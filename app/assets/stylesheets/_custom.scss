@@ -486,8 +486,8 @@ nav ul a:hover {
 }
 
 .user-address {
-  max-width: 80%;
   margin: 10px auto 5px;
+  max-width: 80%;
 }
 
 .row.dashboard-user-image.circle {
@@ -696,11 +696,10 @@ table a {
 // -----FORM STYLING-----
 
 .profile-form {
-  width: 50%;
-  margin: 0 auto;
   box-shadow: 1px 1px 53px #C5C5C5;
+  margin: 0 auto 20px;
   padding: 20px;
-  margin-bottom: 20px;
+  width: 50%;
 }
 
 label {
