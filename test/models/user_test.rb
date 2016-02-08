@@ -42,4 +42,14 @@ class UserTest < ActiveSupport::TestCase
 
     assert contractor.has_bids?
   end
+
+  test "has jobs" do
+    lister = create(:lister)
+
+    refute lister.has_jobs?
+
+    job = create(:job, user_id: lister.id)
+
+    assert lister.has_jobs?
+  end
 end

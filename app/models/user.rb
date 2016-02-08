@@ -78,4 +78,8 @@ class User < ActiveRecord::Base
   def has_bids?
     !bids.empty?
   end
+
+  def has_jobs?
+    !jobs.empty?
+  end
 end
