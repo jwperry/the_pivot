@@ -7,6 +7,7 @@ Rails.application.routes.draw do
               param: :slug do
       resources :jobs, only: [:show, :new] do
         resources :bids, only: [:create, :update, :destroy]
+        resources :comments, only: [:new, :create]
       end
     end
   end

@@ -71,7 +71,7 @@ class Job < ActiveRecord::Base
   end
 
   def complete_by_date
-    must_complete_by_date.strftime("%b %e, %Y at %l:%M%P")
+    must_complete_by_date.strftime("%b %e, %Y")
   end
 
   def selected_bid

@@ -784,3 +784,17 @@ select {
 .slider .slides li .caption {
   top: -10%;
 }
+
+// -----COMMENT FORM-----
+
+.comment-form {
+  width: 90%;
+
+  select {
+    width: 70px;
+  }
+
+  textarea {
+    height: 120px;
+  }
+}
