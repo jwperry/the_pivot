@@ -29,8 +29,15 @@
 
   .duration-select {
     width: 200px;
+
   }
 
+}
+
+@media screen and (max-width: 900px) {
+  nav .brand-logo {
+    margin-left: 0;
+  }
 }
 
 @media screen and (max-width: 730px) {
