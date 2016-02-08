@@ -15,7 +15,6 @@ class ListerCanCreateAJobTest < ActionDispatch::IntegrationTest
 
     assert_equal dashboard_path, current_path
     click_on "Create Job"
-
     assert_equal new_user_job_path(lister), current_path
     fill_in "Title", with: "new_title"
     select category.name, from: "Category"
@@ -23,9 +22,11 @@ class ListerCanCreateAJobTest < ActionDispatch::IntegrationTest
     fill_in "City", with: "Rome"
     select "Nevada", from: "job_state"
     fill_in "Zipcode", with: 77_777
-    fill_in "job[bidding_close_date]", with: "02/10/2016"
     fill_in "job[must_complete_by_date]", with: "02/15/2016"
-    fill_in "Duration estimate", with: 55
+    fill_in "job[bidding_close_date]", with: "02/10/2016"
+    select "05 PM", from: "bid_close_time_4i"
+    select "30", from: "bid_close_time_5i"
+    fill_in "Duration estimate", with: 2
     click_on "Create Job"
   end
 end

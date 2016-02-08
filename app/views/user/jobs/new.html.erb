@@ -7,7 +7,7 @@
 
   <%= f.label :category_id %>
   <%= f.select :category_id, options_from_collection_for_select(all_categories, :id, :name),
-                 required: true %>
+                             required: true %>
     <br>
 
   <%= f.label :description %>
@@ -28,12 +28,29 @@
   <%= f.text_field :zipcode, required: true %>
   <br>
 
-  <span>Bidding Close Date: <input type="date" name="job[bidding_close_date]"></span>
-  <br>
-
   <span>Job Complete By Date: <input type="date" name="job[must_complete_by_date]"></span>
   <br>
 
+  <span>Bidding Close Date: <input type="date" name="job[bidding_close_date]"></span>
+  <br>
+
+  <%= label_tag :bid_close_time %>
+  <%= time_select "bid_close", "time", 
+                  prompt: {hour: "Hour: ", minute: "Minute: "}, 
+                  ampm: true, 
+                  required: true,
+                  minute_step: 15 %>
+  <br>  
+
+  <%#= f.label :minutes %>
+  <%#= f.select :minutes, options_for_select((0..59).to_a, 0), required: true %>
+  <br>
+
+  <%#= f.label :am_pm %>
+  <%#= f.select :am_pm, options_for_select(us_states, "MN"), required: true %>
+  <br>
+
+  <% #change this to a dropdown %>
   <%= f.label :duration_estimate %>
   <%= f.number_field :duration_estimate, required: true %>
   <br>
