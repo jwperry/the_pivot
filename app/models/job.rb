@@ -94,6 +94,10 @@ class Job < ActiveRecord::Base
     bids.find_by(user_id: id)
   end
 
+  def contractor_for_accepted_bid
+    selected_bid.user
+  end
+
   private
 
   def check_user_type

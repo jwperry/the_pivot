@@ -54,7 +54,7 @@ class Seed
         city: Faker::Address.city,
         state: Faker::Address.state,
         zipcode: Faker::Address.zip,
-        bio: Faker::Lorem.sentence(3)
+        bio: Faker::Lorem.sentence(20)
       )
 
       puts "Created Turing Contractor: #{full_name}"
@@ -77,7 +77,7 @@ class Seed
         city: Faker::Address.city,
         state: Faker::Address.state,
         zipcode: Faker::Address.zip,
-        bio: Faker::Lorem.sentence(3)
+        bio: Faker::Lorem.sentence(20)
       )
 
       puts "Created Contractor: #{first_name} #{last_name}"
@@ -100,7 +100,7 @@ class Seed
         city: Faker::Address.city,
         state: Faker::Address.state,
         zipcode: Faker::Address.zip,
-        bio: Faker::Lorem.sentence(3)
+        bio: Faker::Lorem.sentence(20)
       )
 
       puts "Created Job Lister: #{first_name} #{last_name}"
@@ -122,7 +122,7 @@ class Seed
       city: Faker::Address.city,
       state: Faker::Address.state,
       zipcode: Faker::Address.zip,
-      bio: Faker::Lorem.sentence(3)
+      bio: Faker::Lorem.sentence(20)
     )
 
     puts "Created Turing Job Lister: #{first_name} #{last_name}"
@@ -134,7 +134,7 @@ class Seed
         job_lister.jobs.create!(
           title: Faker::Commerce.product_name,
           category_id: rand(1..10),
-          description: Faker::Lorem.paragraph(2),
+          description: Faker::Lorem.paragraph(6),
           status: rand(0..4),
           city: Faker::Address.city,
           state: Faker::Address.state_abbr,
@@ -157,7 +157,7 @@ class Seed
           job_id: rand(1..100),
           price: (i + 1) * rand(1..100),
           duration_estimate: rand(1..60),
-          details: Faker::Lorem.words(15),
+          details: Faker::Lorem.sentence(10),
           status: 0
         )
 
@@ -198,14 +198,14 @@ class Seed
       job.comments.create!(
         user_id: job.lister.id,
         recipient_id: job.bids.accepted.first.user.id,
-        text: Faker::Lorem.sentence(11),
+        text: Faker::Lorem.sentence(15),
         rating: rand(1..5)
       )
 
       job.comments.create!(
         user_id: job.bids.accepted.first.user.id,
         recipient_id: job.lister.id,
-        text: Faker::Lorem.sentence(11),
+        text: Faker::Lorem.sentence(15),
         rating: rand(1..5)
       )
 

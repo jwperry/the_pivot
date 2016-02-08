@@ -20,7 +20,11 @@
         <%= f.label :comment_for %>
       </div>
       <div class="col s6">
-        <%= f.text_field :recipient_id, disabled: true, value: @user.full_name  %>
+        <% if @job.contractor_for_accepted_bid == current_user %>
+          <%= f.text_field :recipient_id, disabled: true, value: @job.lister  %>
+        <% else %>
+          <%= f.text_field :recipient_id, disabled: true, value: @job.contractor_for_accepted_bid  %>
+        <% end %>
       </div>
     </div>
 
