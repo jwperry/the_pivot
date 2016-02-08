@@ -94,7 +94,7 @@ class Job < ActiveRecord::Base
     bids.find_by(user_id: id)
   end
 
-  def contractor_for_accepted_bid
+  def contractor_for_selected_bid
     selected_bid.user
   end
 
