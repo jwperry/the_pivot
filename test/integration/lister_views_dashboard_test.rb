@@ -58,7 +58,7 @@ class ListerViewsDashboardTest < ActionDispatch::IntegrationTest
                             href: user_job_path(job_lister_bid_on.lister,
                                                 job_lister_bid_on))
       assert page.has_content?(bid1.status)
-      assert page.has_content?(job_lister_bid_on.bidding_close_date)
+      assert page.has_content?(job_lister_bid_on.bidding_closes_on)
       assert page.has_content?(bid1.price)
     end
 
@@ -89,7 +89,7 @@ class ListerViewsDashboardTest < ActionDispatch::IntegrationTest
                             href: user_job_path(open_bid_job.lister,
                                                 open_bid_job))
       assert page.has_content?("bidding open")
-      assert page.has_content?(open_bid_job.bidding_close_date)
+      assert page.has_content?(open_bid_job.bidding_closes_on)
       assert page.has_content?(open_bid_job.total_bids)
       assert page.has_content?(open_bid_job.bid_price_range)
       assert page.has_link?("Cancel",
@@ -107,7 +107,7 @@ class ListerViewsDashboardTest < ActionDispatch::IntegrationTest
                             href: user_job_path(closed_bid_job.lister,
                                                 closed_bid_job))
       assert page.has_content?("bidding closed")
-      assert page.has_content?(closed_bid_job.bidding_close_date)
+      assert page.has_content?(closed_bid_job.bidding_closes_on)
       assert page.has_content?(closed_bid_job.total_bids)
       assert page.has_content?(closed_bid_job.bid_price_range)
       assert page.has_link?("Choose Bid",
@@ -128,7 +128,7 @@ class ListerViewsDashboardTest < ActionDispatch::IntegrationTest
                             href: user_job_path(in_progress_job.lister,
                                                 in_progress_job))
       assert page.has_content?("in progress")
-      assert page.has_content?(in_progress_job.bidding_close_date)
+      assert page.has_content?(in_progress_job.bidding_closes_on)
       assert page.has_content?(in_progress_job.total_bids)
       assert page.has_content?(in_progress_job.bid_price_range)
       assert page.has_link?("Complete",
@@ -146,7 +146,7 @@ class ListerViewsDashboardTest < ActionDispatch::IntegrationTest
                             href: user_job_path(completed_job.lister,
                                                 completed_job))
       assert page.has_content?("completed")
-      assert page.has_content?(completed_job.bidding_close_date)
+      assert page.has_content?(completed_job.bidding_closes_on)
       assert page.has_content?(completed_job.total_bids)
       assert page.has_content?(completed_job.bid_price_range)
       assert page.has_content?(accepted_bid2.user.full_name)
@@ -160,7 +160,7 @@ class ListerViewsDashboardTest < ActionDispatch::IntegrationTest
                             href: user_job_path(cancelled_job.lister,
                                                 cancelled_job))
       assert page.has_content?("cancelled")
-      assert page.has_content?(cancelled_job.bidding_close_date)
+      assert page.has_content?(cancelled_job.bidding_closes_on)
       assert page.has_content?(cancelled_job.total_bids)
       assert page.has_content?(cancelled_job.bid_price_range)
       assert_equal "", find(".contractor").text

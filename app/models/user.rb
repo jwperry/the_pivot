@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
 
   has_attached_file :file_upload,
                     styles: { medium: "300x300>", thumb: "100x100>" },
-                    default_url: "https://www.weefmgrenada.com/images/na4.jpg"
+                    default_url: "http://t2.tagstat.com/im/people/silhouette_m_300.png"
 
   validates_attachment_content_type :file_upload,
                                     content_type: %r{\Aimage\/.*\Z}
