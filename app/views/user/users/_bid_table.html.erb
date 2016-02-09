@@ -16,7 +16,7 @@
   </thead>
   <tbody>
       <% user.bids.each do |bid| %>
-        <tr class="bid-<%= bid.id %>">
+        <tr class="bid">
           <td><%= link_to bid.job.id, user_job_path(bid.job.lister, bid.job) %></td>
           <td><%= link_to bid.job.title, user_job_path(bid.job.lister, bid.job) %></td>
           <td class="bid-status status-<%= bid.status %>"><%= bid.status %></td>

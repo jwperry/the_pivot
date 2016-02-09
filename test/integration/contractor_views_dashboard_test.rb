@@ -32,7 +32,7 @@ class ContractorViewsDashboardTest < ActionDispatch::IntegrationTest
       assert page.has_content?("My Bids")
     end
 
-    within(".bid-#{bid1.id}") do
+    within("tbody tr:nth-child(1)") do
       assert page.has_link?(job1.id, href: user_job_path(job1.lister, job1))
       assert page.has_link?(job1.title, href: user_job_path(job1.lister, job1))
       assert page.has_content?(bid1.status)
