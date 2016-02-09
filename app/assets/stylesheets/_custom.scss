@@ -472,6 +472,11 @@ nav ul a:hover {
   @include button-link;
   margin: 10px auto;
   max-width: 200px;
+
+  a {
+    font-size: 16px;
+  }
+
 }
 
 .dashboard-user-image {
@@ -644,51 +649,6 @@ table a {
   font-size: 1.2em;
 }
 
-/* ORDERS SHOW PAGE */
-
-.order-image.col.s5 {
-  clear: both;
-}
-
-.order-card-title {
-  font-size: 30px;
-  display: block;
-  padding-bottom: 17px;
-  font-weight: 700;
-}
-
-.order-details-top {
-  font-size: 15px;
-  padding: 20px 0px;
-  font-weight: 300;
-  border-bottom: 1px dashed #607D8B;
-}
-
-.order-heading {
-  font-weight: 700;
-  text-decoration: underline;
-  margin-right: 10px;
-}
-
-.order-data {
-  text-align: left;
-  font-size: 17px;
-
-  a {
-    font-size: 20px;
-    color: rgb(64, 136, 171);
-
-    &:hover {
-        color: #0EAF15;
-    }
-
-  }
-
-}
-
-.card-panel {
-  margin-top: 2rem;
-}
 
 // -----FORM STYLING-----
 
@@ -697,6 +657,11 @@ table a {
   margin: 0 auto 20px;
   padding: 20px;
   width: 50%;
+}
+
+.new-category-form textarea {
+  height: 100px;
+  font-size: 18px;
 }
 
 .job-form {
