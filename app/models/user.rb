@@ -21,9 +21,10 @@ class User < ActiveRecord::Base
   validates :bio,            presence: true,
                              length: { in: 35..600 }
 
+  DEFAULT_PHOTO = "http://t2.tagstat.com/im/people/silhouette_m_300.png"
   has_attached_file :file_upload,
                     styles: { medium: "300x300>", thumb: "100x100>" },
-                    default_url: "http://t2.tagstat.com/im/people/silhouette_m_300.png"
+                    default_url: DEFAULT_PHOTO
 
   validates_attachment_content_type :file_upload,
                                     content_type: %r{\Aimage\/.*\Z}
