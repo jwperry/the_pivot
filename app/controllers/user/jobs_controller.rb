@@ -1,4 +1,6 @@
 class User::JobsController < ApplicationController
+  before_action :update_params, only: [:update]
+
   def show
     session[:forwarding_url] = request.url
     @user = User.find_by_slug(params[:user_slug])
@@ -8,7 +10,7 @@ class User::JobsController < ApplicationController
   def update
     @job = Job.find(params[:id])
     if job_params[:status]
-      @job.update_attribute(:status, job_params[:status].to_i)
+      @job.update_attributes(job_params)
       if @job.completed?
         redirect_to new_user_job_comment_path(current_user, @job)
       else
@@ -21,5 +23,9 @@ class User::JobsController < ApplicationController
 
   def job_params
     params.permit(:status)
+  end
+
+  def update_params
+    params[:status] = params[:status].to_i
   end
 end

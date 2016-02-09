@@ -90,10 +90,10 @@ class User < ActiveRecord::Base
   end
 
   def has_bids?
-    !bids.empty?
+    bids.any?
   end
 
   def has_jobs?
-    !jobs.empty?
+    jobs.any?
   end
 end

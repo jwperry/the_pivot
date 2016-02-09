@@ -24,19 +24,19 @@
       </tr>
     </thead>
     <tbody>
-      <% @user.jobs.each do |listing| %>
+      <% user.jobs.each do |listing| %>
         <tr class="listing-<%= listing.id %>">
-          <td><%= link_to listing.id, user_job_path(@user, listing) %></td>
-          <td><%= link_to listing.title, user_job_path(@user, listing) %></td>
+          <td><%= link_to listing.id, user_job_path(user, listing) %></td>
+          <td><%= link_to listing.title, user_job_path(user, listing) %></td>
 
-          <td class="job-status status-<%= listing.status %>"><%= @user.sanitize_status(listing) %></td>
+          <td class="job-status status-<%= listing.status %>"><%= user.sanitize_status(listing) %></td>
           <td><%= listing.bidding_close_date %></td>
           <td><%= listing.total_bids %></td>
           <td><%= listing.bid_price_range %></td>
           <td class="action-link">
-            <%= @user.action_link(listing) %>
+            <%= user.action_link(listing) %>
           </td>
-          <td class="contractor"><%= @user.chosen_contractor(listing) %></td>
+          <td class="contractor"><%= user.chosen_contractor(listing) %></td>
         </tr>
       <% end %>
     </tbody>

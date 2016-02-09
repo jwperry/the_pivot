@@ -47,4 +47,46 @@ class DashboardPresenter < SimpleDelegator
       ""
     end
   end
+
+  def display_bids_table
+    if has_bids?
+      view.render partial: "bid_table", locals: { user: self }
+    else
+      view.content_tag(:div,
+                       view.content_tag(:p,
+                                        "You have not bid on any jobs yet.",
+                                        class: "no-bids"))
+    end
+  end
+
+  def display_listing_table
+    if not_contractor_and_has_jobs
+      view.render partial: "listing_table", locals: { user: self }
+    else
+      view.content_tag(:div,
+                       view.content_tag(:p,
+                                        "You have not listed any jobs yet.",
+                                        class: "no-listings"))
+    end
+  end
+
+  def not_contractor_and_has_jobs
+    !view.current_contractor? && has_jobs?
+  end
+
+  def dashboard_links
+    if view.current_lister? || view.current_platform_admin?
+      view.render partial: "lister_dashboard_links", locals: { user: self }
+    else
+      view.render partial: "contractor_dashboard_links", locals: { user: self }
+    end
+  end
+
+  def listings_tab_header
+    unless view.current_contractor?
+      view.content_tag(:li,
+                       view.link_to("My Listings", "#my-listings"),
+                       class: "tab col s3")
+    end
+  end
 end

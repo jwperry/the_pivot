@@ -39,47 +39,19 @@
       </div>
     </div>
     <div class="links">
-      <% if current_lister? || current_platform_admin? %>
-        <%= render "lister_dashboard_links" %>
-      <% else %>
-        <%= render "contractor_dashboard_links" %>
-      <% end %>
+      <%= @user.dashboard_links %>
     </div>
   </div>
   <div class="row tab-border">
     <div class="col s12">
       <ul class="tabs">
         <li class="tab col s3"><a class="active dashboard-tab" href="#my-bids">My Bids</a></li>
-        <% unless current_contractor? %>
-          <li class="tab col s3"><a href="#my-listings">My Listings</a></li>
-        <% end %>
+        <%= @user.listings_tab_header %>
         <div class="indicator blue" style="z-index:1"></div>
       </ul>
     </div>
-    <!-- Start of My Bids Tab -->
-    <% if @user.has_bids? %>
-      <%= render "bid_table" %>
-    <% else %>
-      <div class="no-bids">
-        <p>
-          You have not bid on any jobs yet.
-        </p>
-      </div>
-    <% end %>
-    <!--  End of My Bids Tab -->
+    <%= @user.display_bids_table %>
 
-    <!-- Start of My Listing Tab -->
-    <% unless current_contractor? %>
-      <% if @user.has_jobs? %>
-        <%= render "listing_table" %>
-      <% else %>
-        <div class="no-listings">
-          <p>
-            You have not listed any jobs yet.
-          </p>
-        </div>
-      <% end %>
-    <% end %>
-    <!-- End of My Listing Tab -->
+    <%= @user.display_listing_table %>
   </div>
 </div>

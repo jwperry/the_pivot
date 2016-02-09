@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
   helper_method :current_lister?
   helper_method :current_contractor?
   helper_method :all_categories
-  helper_method :dashboard_user
   helper_method :lister_or_platform_admin?
   helper_method :logged_in?
   helper_method :logged_out?
@@ -14,10 +13,6 @@ class ApplicationController < ActionController::Base
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
-  end
-
-  def dashboard_user
-    User.includes(:jobs, :bids).find(session[:user_id]) if session[:user_id]
   end
 
   def current_platform_admin?
