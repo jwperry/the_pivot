@@ -3,7 +3,7 @@ class Job < ActiveRecord::Base
 
   belongs_to :category
   belongs_to :user
-  has_many :bids
+  has_many :bids, dependent: :destroy
   has_many :comments
 
   enum status: %w(bidding_open bidding_closed in_progress completed cancelled)
