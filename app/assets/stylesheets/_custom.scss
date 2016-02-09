@@ -700,10 +700,25 @@ table a {
 // -----FORM STYLING-----
 
 .profile-form {
-  box-shadow: 1px 1px 53px #C5C5C5;
+  box-shadow: 1px 1px 53px $box-shadow;
   margin: 0 auto 20px;
   padding: 20px;
   width: 50%;
+}
+
+.job-form {
+  box-shadow: 1px 1px 53px $box-shadow;
+  margin: 0 auto 20px;
+  padding: 20px;
+  width: 80%;
+
+  textarea {
+    height: 150px;
+  }
+
+  select {
+    width: 200px;
+  }
 }
 
 label {
