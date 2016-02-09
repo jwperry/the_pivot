@@ -49,6 +49,15 @@ class Job < ActiveRecord::Base
     end
   end
 
+  def self.update_bidding_status
+    where(status: 0).each do |job|
+      if job.bidding_close_date.past?
+        job.bidding_closed!
+        puts "Updated status of job: #{job.title}"
+      end
+    end
+  end
+
   def lister
     user
   end
