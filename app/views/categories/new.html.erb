@@ -6,7 +6,7 @@
   </div>
 
   <div class="row">
-    <%= form_for @category do |f| %>
+    <%= form_for @category, :html => { class: "profile-form new-category-form" } do |f| %>
       <%= render partial: 'shared/errors', locals: {target: @category } %>
 
       <%= f.label :name %>
