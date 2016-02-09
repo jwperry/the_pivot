@@ -44,7 +44,7 @@ class JobPresenter < SimpleDelegator
     elsif view.logged_in? && user_owns_job_or_is_a_platform_admin
       view.content_tag(:div,
                        "No Bids Yet",
-                       class: "no-bids")
+                       class: "no-bids-banner")
     end
   end
 

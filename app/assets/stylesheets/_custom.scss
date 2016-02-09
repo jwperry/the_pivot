@@ -225,7 +225,7 @@ button.stripe-button-el span {
 }
 
 .job-in-progress,
-.no-bids {
+.no-bids-banner {
   @include job-status-banner;
   background-color: $base-yellow;
   color: $black;
