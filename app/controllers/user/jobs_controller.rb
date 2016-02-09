@@ -1,7 +1,6 @@
 class User::JobsController < ApplicationController
-  before_action :set_duration_tags, only: [:show]
-
   def show
+    session[:forwarding_url] = request.url
     @user = User.find_by_slug(params[:user_slug])
     @job = Job.find(params[:id])
   end
@@ -13,7 +12,7 @@ class User::JobsController < ApplicationController
     @job = Job.find(params[:id])
     if job_params[:status]
       @job.update_attribute(:status, job_params[:status].to_i)
-      # current_user.reload && dashboard_user.reload 
+      # current_user.reload && dashboard_user.reload
       if @job.completed?
         redirect_to new_user_job_comment_path(current_user, @job)
       else
@@ -31,6 +30,7 @@ class User::JobsController < ApplicationController
       ["Long (Longer than 4 weeks)", 2],
       ["Event (Specific date & time)", 3]
     ]
+    @job = JobPresenter.new(Job.find(params[:id]), view_context)
   end
 
   def job_params

@@ -1,7 +1,7 @@
 <article class="row job-partial">
   <div class="row valign-wrapper no-bottom-margin">
     <h5 class="col s12 m10 l10">
-      <a href="/users/toni_user/jobs/1" class="job-title-link"><%= job.title %></a>
+      <%= link_to job.title, user_job_path(job.user, job), class: "job-title-link" %>
     </h5>
     <div class="col s12 m2 l2 center-align valign">
       <div class="duration-tag duration-estimate-<%= job.duration_estimate %>"><%= job.duration_estimate %></div>

@@ -10,6 +10,12 @@ button.stripe-button-el span {
 
 // ------HOMEPAGE------
 
+.create-acct-button,
+.log-in-button {
+  margin-top: 5px;
+  width: 225px;
+}
+
 .category-dropdown {
   background-color: $base-purple-blue;
   margin: 0 auto;
@@ -155,6 +161,10 @@ button.stripe-button-el span {
 
 // -----JOB SHOW-----
 
+#bid_price {
+  width: 100px;
+}
+
 .google-map-job {
   height: 300px;
   margin: 0.90rem auto 0;
@@ -172,20 +182,6 @@ button.stripe-button-el span {
     text-align: justify;
   }
 
-}
-
-.duration-select {
-  margin-bottom: 13px;
-  width: 250px;
-  height: 30px;
-}
-
-#bid_duration_estimate {
-  font-size: 14px;
-}
-
-.duration-label {
-  font-size: 15px;
 }
 
 .back-to-category-link {
@@ -212,6 +208,40 @@ button.stripe-button-el span {
   height: 170px;
 }
 
+.log-in-to-bid {
+  @include button-link;
+  font-size: 32px;
+  height: 25px;
+  letter-spacing: 0.5em;
+  margin-bottom: 50px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.bidding-closed {
+  @include job-status-banner;
+  background-color: $red;
+  color: $white;
+}
+
+.job-in-progress {
+  @include job-status-banner;
+  background-color: $base-yellow;
+  color: $black;
+}
+
+.job-completed {
+  @include job-status-banner;
+  background-color: $highlight-cyan;
+  color: $white;
+}
+
+.job-cancelled {
+  @include job-status-banner;
+  background-color: $grey;
+  color: $black;
+}
+
 .job-lister-details {
   margin: 35px 0;
   padding: 15px;
@@ -234,6 +264,33 @@ button.stripe-button-el span {
 
 }
 
+.update-bid-btn {
+  background-color: $base-purple-blue;
+  margin: 5px auto;
+  width: 168px;
+
+  &:hover {
+    background-color: $base-purple-blue-dark;
+  }
+
+}
+
+.btn-delete {
+  background-color: $red;
+  margin: 5px auto;
+  width: 168px;
+
+  &:hover {
+    background-color: $dark-red;
+  }
+
+}
+
+a.btn.btn-delete {
+  color: $white;
+}
+
+
 .lister-info {
   font-size: 18px;
 }
@@ -254,6 +311,32 @@ h3#ui-id-1 {
     .arrow-icon {
       color: $base-green-dark;
     }
+
+  }
+
+}
+
+h3#ui-id-1.my-bid {
+  background: $base-green;
+  color: $white;
+  font-size: 26px;
+  letter-spacing: 0.5em;
+  padding: 5px 0;
+  text-align: center;
+  text-transform: uppercase;
+
+  .arrow-icon {
+    color: $base-light-blue;
+  }
+
+  &:hover {
+    background: $base-light-blue;
+    color: $base-purple-blue-dark;
+
+    .arrow-icon {
+      color: $base-green-dark;
+    }
+
   }
 
 }
@@ -276,6 +359,12 @@ span.ui-accordion-header-icon.ui-icon.ui-icon-triangle-1-s {
   color: $base-green-light;
   margin: 0 10px;
   transform: rotate(180deg);
+}
+
+.bids-table-title {
+  font-weight: 100;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
 }
 
 // -----DURATION TAGS-----
@@ -385,30 +474,20 @@ nav ul a:hover {
 // -----DASHBOARD-----
 
 .user-action-links {
+  @include button-link;
   margin: 10px auto;
   max-width: 200px;
-
-  a {
-    background-color: $base-purple-blue-dark;
-    color: $white;
-    display: block;
-    font-size: 18px;
-    padding: 20px;
-    text-transform: uppercase;
-
-    &:hover {
-      color: $base-purple-blue-dark;
-      background-color: $base-light-blue;
-    }
-
-  }
-
 }
 
 .dashboard-user-image {
   height: 200px;
   margin: 20px 0 0;
   width: 200px;
+}
+
+.user-address {
+  margin: 10px auto 5px;
+  max-width: 80%;
 }
 
 .row.dashboard-user-image.circle {
@@ -525,44 +604,10 @@ table a {
   text-transform: uppercase;
 }
 
-/* ORDERS */
-
-.status-ordered {
-  color: #ffa000;
-}
-
-.status-paid {
-  color: green;
-}
-
-.status-cancelled {
-  color: red;
-}
-
-.status-completed {
-  color: $black;
-}
-
-.order-status {
-  width: 200px;
-  margin: 5px auto 20px auto;
-}
-
 /* BUTTONS */
-
-.remove-item-button {
-  font-size: 14px;
-  position: relative;
-  top: -62px;
-  left: 150px;
-}
 
 .img-small {
   max-width: 100%;
-}
-
-.highlight tbody tr:hover td, .table-hover tbody tr:hover th {
-  background-color: $white;
 }
 
 .container {
@@ -571,30 +616,6 @@ table a {
 
 .error {
   color: rgba(196, 42, 32, 0.8);
-}
-
-.btn-edit {
-  background-color: rgba(115, 127, 149, 1);
-
-  &:hover {
-    background-color: rgba(115, 127, 149, 0.8);
-  }
-
-}
-
-.btn-delete {
-  background-color: rgba(104, 168, 173,1);
-
-  &:hover {
-    background-color: rgba(104, 168, 173,0.8);
-  }
-
-}
-
-.create-acct-button,
-.log-in-button {
-  margin-top: 5px;
-  width: 225px;
 }
 
 .inactive-status-text {
@@ -672,13 +693,13 @@ table a {
   margin-top: 2rem;
 }
 
-/* FORM STYLING */
+// -----FORM STYLING-----
+
 .profile-form {
-  width: 80%;
-  margin: 0 auto;
   box-shadow: 1px 1px 53px #C5C5C5;
+  margin: 0 auto 20px;
   padding: 20px;
-  margin-bottom: 20px;
+  width: 50%;
 }
 
 label {
@@ -727,6 +748,10 @@ select {
   margin: 0 auto;
 }
 
+.user-bio {
+  height: 100px;
+}
+
 // -----SIDE NAV-----
 
 .side-nav {
@@ -748,14 +773,6 @@ select {
 
   }
 
-}
-
-/***** USERS SHOW PAGE *****/
-
-
-
-.larger-text {
-  font-size: 18px;
 }
 
 // -----SLIDER-----

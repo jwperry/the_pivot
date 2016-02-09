@@ -1,0 +1,39 @@
+<section class="row" id="current-bids">
+  <h4 class="bids-table-title">Current Bids</h4>
+  <table class="striped responsive">
+    <thead>
+      <tr>
+        <th>Bidder Name</th>
+        <th>Price</th>
+        <th>Duration Estimate</th>
+        <th>Comment</th>
+        <th>
+          <% if job.bidding_closed? && job.bids_still_pending? %>
+            Select A Bid
+          <% elsif job.bidding_closed? %>
+            Bid Status
+          <% end %>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% job.bids.each do |bid| %>
+        <tr>
+          <td><%= link_to bid.user.full_name, user_path(bid.user) %></td>
+          <td>$<%= bid.price %></td>
+          <td><%= bid.duration_estimate %> days</td>
+          <td><%= bid.details %></td>
+          <td class="bid-status">
+            <% if job.bidding_closed? && job.bids_still_pending? %>
+              <%= link_to "Accept", user_job_bid_path(bid.user, bid.job, bid, status: 1), method: :put %>
+            <% elsif job.bidding_closed? && bid.accepted? %>
+              Accepted
+            <% elsif job.bidding_closed? && bid.rejected? %>
+              Rejected
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>

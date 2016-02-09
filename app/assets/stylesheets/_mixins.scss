@@ -6,3 +6,34 @@
   }
 
 }
+
+@mixin button-link {
+
+  a {
+    background-color: $base-purple-blue-dark;
+    color: $white;
+    display: block;
+    font-size: 18px;
+    padding: 20px;
+    text-transform: uppercase;
+
+    &:hover {
+      background-color: $base-light-blue;
+      color: $base-purple-blue-dark;
+    }
+
+  }
+
+}
+
+@mixin job-status-banner {
+  border-radius: 5px;
+  display: block;
+  font-size: 20px;
+  height: 35px;
+  letter-spacing: 0.5em;
+  margin-bottom: 30px;
+  padding: 5px 0;
+  text-align: center;
+  text-transform: uppercase;
+}

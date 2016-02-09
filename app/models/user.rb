@@ -6,18 +6,20 @@ class User < ActiveRecord::Base
   has_many :jobs
   has_many :comments
 
-  validates :username, presence: true,
-                       uniqueness: true
-  validates :first_name, presence: true
-  validates :last_name, presence: true
-  validates :email_address, presence: true,
-                            uniqueness: true
+  validates :username,       presence: true,
+                             uniqueness: true
+  validates :first_name,     presence: true
+  validates :last_name,      presence: true
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email_address,  presence: true,
+                             uniqueness: true,
+                             format: { with: VALID_EMAIL_REGEX }
   validates :street_address, presence: true
-  validates :city, presence: true
-  validates :state, presence: true
-  validates :zipcode, presence: true
-  has_many :comments
-  has_many :jobs
+  validates :city,           presence: true
+  validates :state,          presence: true
+  validates :zipcode,        presence: true
+  validates :bio,            presence: true,
+                             length: { in: 35..600 }
 
   has_attached_file :file_upload,
                     styles: { medium: "300x300>", thumb: "100x100>" },
@@ -57,6 +59,18 @@ class User < ActiveRecord::Base
     else
       "No Rating Available"
     end
+  end
+
+  def number_of_active_jobs
+    jobs.where(status: [0, 1, 2]).count
+  end
+
+  def number_of_completed_jobs
+    jobs.where(status: 3).count
+  end
+
+  def account_created_date
+    created_at.strftime("%B %Y")
   end
 
   def all_received_comments

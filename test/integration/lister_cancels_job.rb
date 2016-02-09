@@ -3,7 +3,7 @@ require "test_helper"
 class ListerCancelsJobTest < ActionDispatch::IntegrationTest
   test "lister cancels bidding open job" do
 
-  
+    i_need_javascript do
     lister = create(:lister)
     open_bid_job = create(:job, user_id: lister.id)
     # ApplicationController.any_instance.stubs(:dashboard_user).returns(lister)
@@ -22,6 +22,7 @@ class ListerCancelsJobTest < ActionDispatch::IntegrationTest
     within(".listing-#{open_bid_job.id} .job-status") do
       assert page.has_content?("cancelled")
     end
+  end
   end
 
   test "lister cancels bidding closed job" do

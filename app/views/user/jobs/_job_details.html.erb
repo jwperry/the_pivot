@@ -1,0 +1,36 @@
+<section class="row flex-s" id="job-info">
+  <div class="col s12 m12 l4 box-a">
+    <div class="row">
+      <div id="google-map" class="google-map-job"></div>
+    </div>
+    <div class="row">
+      <h5 class="job-location"><%= @job.location %></h5>
+    </div>
+  </div>
+  <div class="col s12 m12 l8 box-b main-job-information">
+    <div class="row valign-wrapper no-bottom-margin">
+      <div class="col s12 m10 l10 left-align">
+        <h5 class="job-show-title"><%= @job.title %></h5>
+      </div>
+      <div class="col s12 m2 l2 valign">
+        <div class="duration-tag duration-estimate-<%= @job.duration_estimate %>"><%= @job.duration_estimate %></div>
+      </div>
+    </div>
+      <p class="row left-align"><%= @job.description %></p>
+      <div class="row center-align no-bottom-margin">
+        <div class="col s6 job-info"><%= pluralize(@job.total_bids, "bid") %></div>
+        <div class="col s6 job-info">
+          Must Be Completed By: <%= @job.complete_by_date %>
+        </div>
+      </div>
+      <hr>
+      <div class="row center-align">
+        <div class="col s6 job-info">
+          Bid Range: $<%= @job.lowest_bid %> - $<%= @job.highest_bid %>
+        </div>
+        <div class="col s6 job-info">
+          Bidding Ends: <%= @job.bidding_closes_on %>
+        </div>
+      </div>
+  </div>
+</section>

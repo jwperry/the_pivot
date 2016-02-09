@@ -6,8 +6,8 @@ FactoryGirl.define do
 
   factory :bid do
     price
-    duration_estimate 1
-    details Faker::Lorem.characters(40)
+    duration_estimate 3
+    details Faker::Lorem.words(10)
     status "pending"
     association :user, factory: :contractor
     job
@@ -24,7 +24,7 @@ FactoryGirl.define do
   factory :comment do
     association :user, factory: :contractor
     recipient
-    text Faker::Lorem.characters(60)
+    text Faker::Lorem.words(20)
     rating
     job
   end
@@ -58,7 +58,7 @@ FactoryGirl.define do
     city "Denver"
     state "CO"
     zipcode 802_31
-    bio "This sure is a sweet bio"
+    bio "This sure is a sweet bio that has at least 35 characters"
 
     factory :lister, aliases: [:recipient] do
       username

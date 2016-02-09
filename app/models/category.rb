@@ -12,4 +12,8 @@ class Category < ActiveRecord::Base
   def generate_slug
     self.slug = name.parameterize
   end
+
+  def jobs_open_for_bidding
+    jobs.bidding_open
+  end
 end
