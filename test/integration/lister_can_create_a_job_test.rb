@@ -22,11 +22,54 @@ class ListerCanCreateAJobTest < ActionDispatch::IntegrationTest
     fill_in "City", with: "Rome"
     select "Nevada", from: "job_state"
     fill_in "Zipcode", with: 77_777
-    fill_in "job[must_complete_by_date]", with: "02/15/2016"
-    fill_in "job[bidding_close_date]", with: "02/10/2016"
+    fill_in "job[bidding_close_date]", with: "2016-02-10"
+    fill_in "job[must_complete_by_date]", with: "2016-02-15"
     select "05 PM", from: "bid_close_time_4i"
     select "30", from: "bid_close_time_5i"
-    fill_in "Duration estimate", with: 2
+    select "Long", from: "job[duration_estimate]"
     click_on "Create Job"
+
+    job = Job.last
+    assert_equal user_job_path(lister, job), current_path
+    assert page.has_content?(job.title)
+    assert page.has_content?(job.category.name)
+    assert page.has_content?(job.description)
+    assert page.has_content?(job.city)
+    assert page.has_content?(job.state)
+    assert page.has_content?("Must Be Completed By: Feb 14, 2016 at 5:00pm")
+    assert page.has_content?("Bidding Ends: Feb 9, 2016 at 5:30pm")
+    assert page.has_content?(job.duration_estimate)
+  end
+
+  test "contractor cannot create new job" do
+    contractor = create(:contractor)
+    category = create(:category)
+    assert_equal [], contractor.jobs
+    visit login_path
+
+    fill_in "Username", with: contractor.username
+    fill_in "Password", with: contractor.password
+    within ".profile-form" do
+      click_on "Login"
+    end
+
+    visit new_user_job_path(contractor)
+    assert_equal new_user_job_path(contractor), current_path
+    fill_in "Title", with: "new_title"
+    select category.name, from: "Category"
+    fill_in "Description", with: "Test Description"
+    fill_in "City", with: "Rome"
+    select "Nevada", from: "job_state"
+    fill_in "Zipcode", with: 77_777
+    fill_in "job[bidding_close_date]", with: "2016-02-10"
+    fill_in "job[must_complete_by_date]", with: "2016-02-15"
+    select "05 PM", from: "bid_close_time_4i"
+    select "30", from: "bid_close_time_5i"
+    select "Long", from: "job[duration_estimate]"
+    click_on "Create Job"
+
+    assert_equal [], contractor.jobs
+    assert_equal dashboard_path(contractor), current_path
+    assert page.has_content?("Upgrade to a lister account to create jobs.")
   end
 end

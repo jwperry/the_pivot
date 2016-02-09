@@ -28,31 +28,28 @@
   <%= f.text_field :zipcode, required: true %>
   <br>
 
-  <span>Job Complete By Date: <input type="date" name="job[must_complete_by_date]"></span>
+  <%= label_tag "Bidding Close Date" %>
+  <input type="date" name="job[bidding_close_date]">
   <br>
 
-  <span>Bidding Close Date: <input type="date" name="job[bidding_close_date]"></span>
+  <%= label_tag "Must Complete By Date" %>
+  <input type="date" name="job[must_complete_by_date]">
   <br>
 
   <%= label_tag :bid_close_time %>
   <%= time_select "bid_close", "time", 
-                  prompt: {hour: "Hour: ", minute: "Minute: "}, 
                   ampm: true, 
                   required: true,
                   minute_step: 15 %>
-  <br>  
-
-  <%#= f.label :minutes %>
-  <%#= f.select :minutes, options_for_select((0..59).to_a, 0), required: true %>
   <br>
 
-  <%#= f.label :am_pm %>
-  <%#= f.select :am_pm, options_for_select(us_states, "MN"), required: true %>
-  <br>
-
-  <% #change this to a dropdown %>
-  <%= f.label :duration_estimate %>
-  <%= f.number_field :duration_estimate, required: true %>
+  <%= label_tag "Duration Estimate" %>
+  <select name="job[duration_estimate]">
+    <option value="0">Short</option>
+    <option value="1">Medium</option>
+    <option value="2">Long</option>
+    <option value="3">Event</option>
+  </select>
   <br>
 
   <%= f.submit class: "wave-effect waves-light btn" %>

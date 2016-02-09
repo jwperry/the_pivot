@@ -6,11 +6,17 @@ class User::JobsController < ApplicationController
   end
 
   def create
-    @job = current_user.jobs.new(job_params)
-    if @job.save
-      redirect_to dashboard_path
+    if current_contractor?
+      flash[:error] = "Upgrade to a lister account to create jobs."
+      redirect_to dashboard_path(current_user)
     else
-      render :new
+      @job = current_user.jobs.new(job_params)
+      if @job.save
+        redirect_to user_job_path(current_user, @job)
+      else
+        flash.now[:error] = "New job creation failed."
+        render :new
+      end
     end
   end
 
@@ -38,6 +44,7 @@ class User::JobsController < ApplicationController
     params[:job][:duration_estimate] = params[:job][:duration_estimate].to_i
     params[:job][:bidding_close_date] = construct_bidding_close_date
     params[:job][:must_complete_by_date] = construct_must_complete_by_date
+    params[:job][:duration_estimate] = params[:job][:duration_estimate].to_i
   end
 
   def construct_bidding_close_date
@@ -45,11 +52,11 @@ class User::JobsController < ApplicationController
     param_hour = params[:bid_close]["time(4i)"]
     hour, am_pm = Time.parse("#{param_hour}").strftime("%l %P").split(" ")
     minute = params[:bid_close]["time(5i)"]
-    DateTime.strptime("#{bid_close_date} #{hour}:#{minute} #{am_pm}", "%m/%d/%Y %I:%M %P")
+    DateTime.strptime("#{bid_close_date} #{hour}:#{minute} #{am_pm}", "%Y-%m-%d %I:%M %P")
   end
 
   def construct_must_complete_by_date
     complete_by_date = params[:job][:must_complete_by_date]
-    DateTime.strptime("#{complete_by_date}", "%m/%d/%Y")
-  end  
+    DateTime.strptime("#{complete_by_date}", "%Y-%m-%d")
+  end
 end
