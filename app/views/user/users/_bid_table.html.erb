@@ -10,7 +10,7 @@
       <th>Job ID</th>
       <th>Name</th>
       <th>Bid Status</th>
-      <th>Job Listing Expiration Date</th>
+      <th>Bidding Expiration Date</th>
       <th>Bid Price</th>
     </tr>
   </thead>
@@ -20,7 +20,7 @@
           <td><%= link_to bid.job.id, user_job_path(bid.job.lister, bid.job) %></td>
           <td><%= link_to bid.job.title, user_job_path(bid.job.lister, bid.job) %></td>
           <td class="bid-status status-<%= bid.status %>"><%= bid.status %></td>
-          <td><%= bid.job.bidding_close_date %></td>
+          <td><%= bid.job.bidding_closes_on %></td>
           <td>$<%= bid.price %></td>
         </tr>
       <% end %>
