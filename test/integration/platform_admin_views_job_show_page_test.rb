@@ -33,6 +33,7 @@ class PlatformAdminViewsJobShowPageTest < ActionDispatch::IntegrationTest
 
   test "platform admin views job show page when bidding is closed" do
     bid = create(:bid)
+    bidder = bid.user
     job = bid.job
     job.bidding_closed!
     lister = job.lister

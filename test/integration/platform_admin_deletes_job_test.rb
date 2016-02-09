@@ -3,7 +3,6 @@ require "test_helper"
 class PlatformAdminDeletesJobTest < ActionDispatch::IntegrationTest
   test "job and all related bids are deleted" do
     bid = create(:bid)
-    bidder = bid.user
     job = bid.job
     job.bidding_open!
     lister = job.lister
