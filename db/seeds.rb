@@ -228,6 +228,8 @@ class Seed
       zipcode: Faker::Address.zip,
       bio: Faker::Lorem.sentence(20)
     )
+
+    puts "Created Platform Admin"
   end
 end
 

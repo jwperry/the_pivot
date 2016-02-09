@@ -21,7 +21,7 @@
 
         <% if current_platform_admin? %>
           <li class="right-align">
-            <%= link_to "My Dashboard (admin)", admin_dashboard_path(current_user.slug) , class: "login-confirm"%>
+            <%= link_to "My Dashboard (admin)", dashboard_path(current_user.slug) , class: "login-confirm"%>
           </li>
         <% elsif current_lister? %>
           <li class="right-align">
@@ -49,7 +49,7 @@
         <li><strong><%= link_to "Freelancer", root_path %></strong></li>
         <% if current_platform_admin? %>
           <li>
-            <%= link_to "Dashboard (#{current_user.first_name}: admin)", admin_dashboard_path(current_user.slug) , class: "login-confirm"%>
+            <%= link_to "Dashboard (#{current_user.first_name}: admin)", dashboard_path(current_user.slug) , class: "login-confirm"%>
           </li>
         <% elsif current_user %>
           <li>
