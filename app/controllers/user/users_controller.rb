@@ -1,7 +1,7 @@
 class User::UsersController < ApplicationController
   require "states_helper"
   before_action :set_user, only: [:edit, :update]
-  before_action :require_logged_in_user, only: [:show]
+  before_action :require_logged_in_user, only: [:show, :dashboard]
 
   def index
   end
