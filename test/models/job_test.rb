@@ -108,8 +108,8 @@ class JobTest < ActiveSupport::TestCase
 
   test "bid price range" do
     job = create(:job)
-    bid1 = create(:bid, price: 2, job_id: job.id)
-    bid1 = create(:bid, price: 400, job_id: job.id)
+    create(:bid, price: 2, job_id: job.id)
+    create(:bid, price: 400, job_id: job.id)
 
     assert_equal "$2 - $400", job.bid_price_range
   end

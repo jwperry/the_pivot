@@ -27,16 +27,17 @@ class DashboardPresenter < SimpleDelegator
   end
 
   def cancel_link(job)
-    view.link_to("Cancel", view.user_job_path(model, job, status: 4), method: :put)
+    view.link_to("Cancel", view.user_job_path(model, job, status: 4),
+                 method: :put)
   end
 
   def complete_link(job)
-    view.link_to("Complete", view.user_job_path(model, job, status: 3), method: :put)
+    view.link_to("Complete", view.user_job_path(model, job, status: 3),
+                 method: :put)
   end
 
   def sanitize_status(job)
-    job.status.gsub("_", " ")
-
+    job.status.tr("_", " ")
   end
 
   def chosen_contractor(job)

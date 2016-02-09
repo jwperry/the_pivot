@@ -39,7 +39,7 @@ class UserTest < ActiveSupport::TestCase
 
     refute contractor.has_bids?
 
-    bid = create(:bid, user_id: contractor.id)
+    create(:bid, user_id: contractor.id)
 
     assert contractor.has_bids?
   end
@@ -49,7 +49,7 @@ class UserTest < ActiveSupport::TestCase
 
     refute lister.has_jobs?
 
-    job = create(:job, user_id: lister.id)
+    create(:job, user_id: lister.id)
 
     assert lister.has_jobs?
   end

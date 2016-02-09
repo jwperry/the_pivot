@@ -19,7 +19,6 @@ class ListerCancelsJobTest < ActionDispatch::IntegrationTest
     within(".listing-#{open_bid_job.id} .job-status") do
       assert page.has_content?("cancelled")
     end
-
   end
 
   test "lister cancels bidding closed job" do
