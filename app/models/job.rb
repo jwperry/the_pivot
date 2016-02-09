@@ -14,16 +14,19 @@ class Job < ActiveRecord::Base
   scope :bid_selected, -> { where(status: [2, 3]) }
   scope :bidding_open, -> { where(status: 0) }
 
-  validates :title, presence: true
-  validates :category_id, presence: true
-  validates :user_id, presence: true
-  validates :status, presence: true
-  validates :city, presence: true
-  validates :state, presence: true
-  validates :zipcode, presence: true
-  validates :bidding_close_date, presence: true
+  validates :title,                 presence: true
+  validates :category_id,           presence: true
+  validates :user_id,               presence: true
+  validates :status,                presence: true
+  validates :city,                  presence: true
+  validates :state,                 presence: true
+  validates :zipcode,               presence: true
+  validates :bidding_close_date,    presence: true
   validates :must_complete_by_date, presence: true
-  validates :duration_estimate, presence: true
+  validates :duration_estimate,     presence: true
+  validates :description,           presence: true,
+                                    length: { in: 50..600 }
+
   validate :bidding_close_date_cannot_be_in_the_past
   validate :must_complete_by_date_cannot_be_in_the_past
   validate :must_complete_by_date_is_after_bidding_close_date
@@ -71,11 +74,11 @@ class Job < ActiveRecord::Base
   end
 
   def bidding_closes_on
-    bidding_close_date.strftime("%b %e, %Y at %l:%M%P")
+    bidding_close_date.utc.strftime("%b %e, %Y at %l:%M%P")
   end
 
   def complete_by_date
-    must_complete_by_date.strftime("%b %e, %Y")
+    must_complete_by_date.utc.strftime("%b %e, %Y")
   end
 
   def selected_bid
