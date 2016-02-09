@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="row">
+    <div class="col s12">
+      <h2>Leave Feedback</h2>
+    </div>
+  </div>
+
+  <%= form_for(@comment, url: user_job_comments_path(@job.lister, @job), :html => {class: "profile-form comment-form"}) do |f| %>
+    <div class="row">
+      <div class="col s6">
+        <%= f.label :comment_from %>
+      </div>
+      <div class="col s6">
+        <%= f.text_field :user_id, disabled: true, value: @user.full_name  %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s6">
+        <%= f.label :comment_for %>
+      </div>
+      <div class="col s6">
+        <% if @job.contractor_for_selected_bid == current_user %>
+          <%= f.text_field :recipient_id, disabled: true, value: @job.lister.full_name %>
+        <% else %>
+          <%= f.text_field :recipient_id, disabled: true, value: @job.contractor_for_selected_bid.full_name  %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s6">
+        <%= f.label :for_job %>
+      </div>
+      <div class="col s6">
+        <%= f.text_field :job_id, disabled: true, value: @job.title  %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s6">
+        <%= f.label :rating %>
+      </div>
+      <div class="col s6">
+        <%= f.select :rating, options_for_select((1..5).to_a) %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12">
+        <%= f.label :comments %>
+        <%= f.text_area :text, required: true,
+                               placeholder: "Please leave a comment",
+                               minlength: 50, maxlength: 600 %>
+      </div>
+    </div>
+
+    <%= f.submit "Leave Comment", class: "wave-effect waves-light btn" %>
+  <% end %>
+</div>

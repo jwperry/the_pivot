@@ -71,7 +71,7 @@ class Job < ActiveRecord::Base
   end
 
   def complete_by_date
-    must_complete_by_date.strftime("%b %e, %Y at %l:%M%P")
+    must_complete_by_date.strftime("%b %e, %Y")
   end
 
   def selected_bid
@@ -92,6 +92,10 @@ class Job < ActiveRecord::Base
 
   def my_bid(id)
     bids.find_by(user_id: id)
+  end
+
+  def contractor_for_selected_bid
+    selected_bid.user
   end
 
   private

@@ -26,10 +26,10 @@
           <td class="bid-status">
             <% if job.bidding_closed? && job.bids_still_pending? %>
               <%= link_to "Accept", user_job_bid_path(bid.user, bid.job, bid, status: 1), method: :put %>
-            <% elsif job.bidding_closed? && bid.accepted? %>
-              Accepted
-            <% elsif job.bidding_closed? && bid.rejected? %>
-              Rejected
+            <% elsif !job.bidding_open? && bid.accepted? %>
+              <p class="status-accepted">Accepted</p>
+            <% elsif !job.bidding_open? && bid.rejected? %>
+              <p class="status-rejected">Rejected</p>
             <% end %>
           </td>
         </tr>
