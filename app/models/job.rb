@@ -71,11 +71,11 @@ class Job < ActiveRecord::Base
   end
 
   def bidding_closes_on
-    bidding_close_date.in_time_zone("MST").strftime("%b %e, %Y at %l:%M%P")
+    bidding_close_date.utc.strftime("%b %e, %Y at %l:%M%P")
   end
 
   def complete_by_date
-    must_complete_by_date.in_time_zone("MST").strftime("%b %e, %Y")
+    must_complete_by_date.utc.strftime("%b %e, %Y")
   end
 
   def selected_bid

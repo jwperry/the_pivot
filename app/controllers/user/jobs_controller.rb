@@ -76,9 +76,8 @@ class User::JobsController < ApplicationController
   def construct_bidding_close_date
     bid_close_date = params[:job][:bidding_close_date]
     param_hour = params[:bid_close]["time(4i)"]
-    # hour, am_pm = Time.parse("#{param_hour}").strftime("%l %P").split(" ")
     minute = params[:bid_close]["time(5i)"]
-    # DateTime.strptime("#{bid_close_date} #{hour}:#{minute} #{am_pm}", "%Y-%m-%d %I:%M %P")
+
     DateTime.strptime("#{bid_close_date} #{param_hour}:#{minute}", "%Y-%m-%d %k:%M")
   end
 
