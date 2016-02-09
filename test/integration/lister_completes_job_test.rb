@@ -10,7 +10,7 @@ class ListerCompletesJobTest < ActionDispatch::IntegrationTest
     visit dashboard_path
     click_on "My Listings"
 
-    within(".listing-#{job.id}") do
+    within("#my-listings tbody tr:nth-child(1)") do
       click_on "Complete"
     end
 

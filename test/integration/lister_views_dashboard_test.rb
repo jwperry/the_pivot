@@ -50,7 +50,7 @@ class ListerViewsDashboardTest < ActionDispatch::IntegrationTest
       assert page.has_content?("My Bids")
     end
 
-    within(".bid-#{bid1.id}") do
+    within("#my-bids tbody tr:nth-child(1)") do
       assert page.has_link?(job_lister_bid_on.id,
                             href: user_job_path(job_lister_bid_on.lister,
                                                 job_lister_bid_on))
@@ -81,7 +81,7 @@ class ListerViewsDashboardTest < ActionDispatch::IntegrationTest
       assert page.has_select?("job_status", options: job_statuses)
     end
 
-    within(".listing-#{open_bid_job.id}") do
+    within("#my-listings tbody tr:nth-child(1)") do
       assert page.has_link?(open_bid_job.id,
                             href: user_job_path(open_bid_job.lister,
                                                 open_bid_job))
@@ -99,7 +99,7 @@ class ListerViewsDashboardTest < ActionDispatch::IntegrationTest
       assert_equal "", find(".contractor").text
     end
 
-    within(".listing-#{closed_bid_job.id}") do
+    within("#my-listings tbody tr:nth-child(2)") do
       assert page.has_link?(closed_bid_job.id,
                             href: user_job_path(closed_bid_job.lister,
                                                 closed_bid_job))
@@ -120,7 +120,7 @@ class ListerViewsDashboardTest < ActionDispatch::IntegrationTest
       assert_equal "", find(".contractor").text
     end
 
-    within(".listing-#{in_progress_job.id}") do
+    within("#my-listings tbody tr:nth-child(3)") do
       assert page.has_link?(in_progress_job.id,
                             href: user_job_path(in_progress_job.lister,
                                                 in_progress_job))
@@ -138,7 +138,7 @@ class ListerViewsDashboardTest < ActionDispatch::IntegrationTest
       assert page.has_content?(accepted_bid1.user.full_name)
     end
 
-    within(".listing-#{completed_job.id}") do
+    within("#my-listings tbody tr:nth-child(4)") do
       assert page.has_link?(completed_job.id,
                             href: user_job_path(completed_job.lister,
                                                 completed_job))
@@ -152,7 +152,7 @@ class ListerViewsDashboardTest < ActionDispatch::IntegrationTest
       assert page.has_content?(accepted_bid2.user.full_name)
     end
 
-    within(".listing-#{cancelled_job.id}") do
+    within("#my-listings tbody tr:nth-child(5)") do
       assert page.has_link?(cancelled_job.id,
                             href: user_job_path(cancelled_job.lister,
                                                 cancelled_job))
