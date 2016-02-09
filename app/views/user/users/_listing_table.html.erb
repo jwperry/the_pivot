@@ -16,7 +16,7 @@
         <th>Job ID</th>
         <th>Name</th>
         <th>Job Status</th>
-        <th>Listing Expiration Date</th>
+        <th>Biding Expiration Date</th>
         <th>Bids</th>
         <th>Bid Range</th>
         <th>Actions</th>
@@ -30,7 +30,7 @@
           <td><%= link_to listing.title, user_job_path(user, listing) %></td>
 
           <td class="job-status status-<%= listing.status %>"><%= user.sanitize_status(listing) %></td>
-          <td><%= listing.bidding_close_date %></td>
+          <td><%= listing.bidding_closes_on %></td>
           <td><%= listing.total_bids %></td>
           <td><%= listing.bid_price_range %></td>
           <td class="action-link">

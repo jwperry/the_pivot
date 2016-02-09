@@ -36,7 +36,7 @@ class ContractorViewsDashboardTest < ActionDispatch::IntegrationTest
       assert page.has_link?(job1.id, href: user_job_path(job1.lister, job1))
       assert page.has_link?(job1.title, href: user_job_path(job1.lister, job1))
       assert page.has_content?(bid1.status)
-      assert page.has_content?(job1.bidding_close_date)
+      assert page.has_content?(job1.bidding_closes_on)
       assert page.has_content?(bid1.price)
     end
 

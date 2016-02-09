@@ -21,9 +21,10 @@ class User < ActiveRecord::Base
   validates :bio,            presence: true,
                              length: { in: 35..600 }
 
+  DEFAULT_PHOTO = "http://t2.tagstat.com/im/people/silhouette_m_300.png"
   has_attached_file :file_upload,
                     styles: { medium: "300x300>", thumb: "100x100>" },
-                    default_url: "https://www.weefmgrenada.com/images/na4.jpg"
+                    default_url: DEFAULT_PHOTO
 
   validates_attachment_content_type :file_upload,
                                     content_type: %r{\Aimage\/.*\Z}
@@ -55,7 +56,7 @@ class User < ActiveRecord::Base
 
   def rating
     if !all_received_comments.empty?
-      "#{all_received_comments.average(:rating)} / 5.0"
+      "#{all_received_comments.average(:rating).round(1)} / 5.0"
     else
       "No Rating Available"
     end
