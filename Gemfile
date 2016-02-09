@@ -26,6 +26,8 @@ gem 'stripe-ruby-mock', :require => 'stripe_mock'
 
 gem 'faker'
 
+gem 'figaro'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

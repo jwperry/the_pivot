@@ -45,6 +45,7 @@ class User::JobsController < ApplicationController
       @job.update_attributes(update_status_params)
 
       if @job.completed?
+        NotificationMailer.feedback_prompt(@job)
         redirect_to new_user_job_comment_path(current_user, @job)
       else
         redirect_to dashboard_path

@@ -58,5 +58,6 @@ class User::BidsController < ApplicationController
     @bid.job.pending_bids.each(&:rejected!)
 
     @bid.job.in_progress!
+    NotificationMailer.notify_bidders(@bid.job)
   end
 end
