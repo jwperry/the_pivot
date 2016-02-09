@@ -8,9 +8,9 @@ class User::CommentsController < ApplicationController
   end
 
   def create
-    comment = current_user.comments.new(comment_params)
+    @comment = current_user.comments.new(comment_params)
 
-    if comment.save
+    if @comment.save
       flash[:success] = "Comment Saved!"
       redirect_to dashboard_path
     else
