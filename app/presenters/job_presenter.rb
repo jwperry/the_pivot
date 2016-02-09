@@ -45,8 +45,6 @@ class JobPresenter < SimpleDelegator
       view.content_tag(:div,
                        "No Bids Yet",
                        class: "no-bids")
-
-      #  FINISH THIS TONI!!! WRITE A TEST!!!!
     end
   end
 

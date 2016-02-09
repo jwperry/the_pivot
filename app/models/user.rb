@@ -88,4 +88,12 @@ class User < ActiveRecord::Base
       comment.job.lister.id != id
     end
   end
+
+  def has_bids?
+    bids.any?
+  end
+
+  def has_jobs?
+    jobs.any?
+  end
 end

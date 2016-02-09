@@ -33,7 +33,6 @@ class PlatformAdminViewsJobShowPageTest < ActionDispatch::IntegrationTest
 
   test "platform admin views job show page when bidding is closed" do
     bid = create(:bid)
-    bidder = bid.user
     job = bid.job
     job.bidding_closed!
     lister = job.lister
@@ -47,7 +46,6 @@ class PlatformAdminViewsJobShowPageTest < ActionDispatch::IntegrationTest
     refute page.has_link? "Log In To Place A Bid", login_path
     assert page.has_css? ".bidding-closed",
                          text: "Bidding Is Closed For This Job"
-
 
     verify_job_info(job)
     verify_lister_info(lister)

@@ -12,7 +12,6 @@ class User::UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-
     if @user.save
       session[:user_id] = @user.id
       redirect_to dashboard_path
@@ -43,7 +42,8 @@ class User::UsersController < ApplicationController
   end
 
   def dashboard
-    @user = current_user
+    user = current_user
+    @user = DashboardPresenter.new(user, view_context)
   end
 
   private
