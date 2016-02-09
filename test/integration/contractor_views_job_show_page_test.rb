@@ -7,7 +7,6 @@ class ContractorViewsJobShowPageTest < ActionDispatch::IntegrationTest
     lister = job.lister
 
     ApplicationController.any_instance.stubs(:current_user).returns(contractor)
-
     visit user_job_path(lister, job)
 
     assert page.has_css? "#accordion h3", text: "Place A Bid"

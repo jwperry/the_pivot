@@ -43,6 +43,7 @@ group :development, :test do
   gem 'shoulda', '~> 3.5'
   gem 'shoulda-matchers', '~> 2.0'
   gem 'simplecov', :require => false
+  gem 'selenium-webdriver'
 end
 
 group :development do
