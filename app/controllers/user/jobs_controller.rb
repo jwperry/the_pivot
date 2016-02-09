@@ -1,5 +1,7 @@
 class User::JobsController < ApplicationController
   before_action :sanitize_job_params, only: [:create]
+  before_action :require_platform_admin, only: [:destroy]
+  before_action :sanitize_status_params, only: [:update]
 
   def new
     @job = Job.new
@@ -26,6 +28,30 @@ class User::JobsController < ApplicationController
     @job = JobPresenter.new(Job.find(params[:id]), view_context)
   end
 
+  def destroy
+    job = Job.find(params[:id])
+    category = job.category
+
+    job.destroy
+
+    flash[:success] = "Job Deleted"
+    redirect_to category_path(category)
+  end
+
+  def update
+    @job = Job.find(params[:id])
+
+    if update_status_params[:status]
+      @job.update_attributes(update_status_params)
+
+      if @job.completed?
+        redirect_to new_user_job_comment_path(current_user, @job)
+      else
+        redirect_to dashboard_path
+      end
+    end
+  end
+
   private
 
   def job_params
@@ -50,13 +76,26 @@ class User::JobsController < ApplicationController
   def construct_bidding_close_date
     bid_close_date = params[:job][:bidding_close_date]
     param_hour = params[:bid_close]["time(4i)"]
-    hour, am_pm = Time.parse("#{param_hour}").strftime("%l %P").split(" ")
+    # hour, am_pm = Time.parse("#{param_hour}").strftime("%l %P").split(" ")
     minute = params[:bid_close]["time(5i)"]
-    DateTime.strptime("#{bid_close_date} #{hour}:#{minute} #{am_pm}", "%Y-%m-%d %I:%M %P")
+    # DateTime.strptime("#{bid_close_date} #{hour}:#{minute} #{am_pm}", "%Y-%m-%d %I:%M %P")
+    DateTime.strptime("#{bid_close_date} #{param_hour}:#{minute}", "%Y-%m-%d %k:%M")
   end
 
   def construct_must_complete_by_date
     complete_by_date = params[:job][:must_complete_by_date]
     DateTime.strptime("#{complete_by_date}", "%Y-%m-%d")
+  end
+
+  def require_platform_admin
+    render file: "public/404" unless current_platform_admin?
+  end
+
+  def update_status_params
+    params.permit(:status)
+  end
+
+  def sanitize_status_params
+    params[:status] = params[:status].to_i
   end
 end

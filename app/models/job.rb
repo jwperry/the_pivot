@@ -3,7 +3,7 @@ class Job < ActiveRecord::Base
 
   belongs_to :category
   belongs_to :user
-  has_many :bids
+  has_many :bids, dependent: :destroy
   has_many :comments
 
   enum status: %w(bidding_open bidding_closed in_progress completed cancelled)
@@ -66,12 +66,16 @@ class Job < ActiveRecord::Base
     bids.maximum(:price)
   end
 
+  def bid_price_range
+    "$#{lowest_bid} - $#{highest_bid}"
+  end
+
   def bidding_closes_on
-    bidding_close_date.strftime("%b %e, %Y at %l:%M%P")
+    bidding_close_date.in_time_zone("MST").strftime("%b %e, %Y at %l:%M%P")
   end
 
   def complete_by_date
-    must_complete_by_date.strftime("%b %e, %Y at %l:%M%P")
+    must_complete_by_date.in_time_zone("MST").strftime("%b %e, %Y")
   end
 
   def selected_bid
@@ -92,6 +96,10 @@ class Job < ActiveRecord::Base
 
   def my_bid(id)
     bids.find_by(user_id: id)
+  end
+
+  def contractor_for_selected_bid
+    selected_bid.user
   end
 
   private

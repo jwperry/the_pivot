@@ -38,113 +38,22 @@
         </div>
       </div>
     </div>
-    <% if current_lister? || current_platform_admin? %>
-      <%= render "lister_dashboard_links" %>
-    <% else %>
-      <%= render "contractor_dashboard_links" %>
-    <% end %>
+    <div class="links">
+      <%= @user.dashboard_links %>
+    </div>
   </div>
   <div class="row tab-border">
     <div class="col s12">
       <ul class="tabs">
         <li class="tab col s3"><a class="active dashboard-tab" href="#my-bids">My Bids</a></li>
-        <% unless current_contractor? %>
-          <li class="tab col s3"><a href="#my-listings">My Listings</a></li>
-        <% end %>
+        <%= @user.listings_tab_header %>
         <div class="indicator blue" style="z-index:1"></div>
       </ul>
     </div>
-    <!-- Start of My Bids Tab -->
     <div id="my-bids" class="col s12 tab-content">
-      <div class="row">
-        <div class="filter">
-          <label class="filter-label">Filter By Bid Status</label>
-          <%= select_tag :bid_status, options_for_select(%w(all accepted pending rejected)) %>
-        </div>
-      </div>
-      <table class="bordered responsive-table">
-        <thead class="dashboard-table-headers">
-          <tr>
-            <th>Job ID</th>
-            <th>Name</th>
-            <th>Bid Status</th>
-            <th>Job Listing Expiration Date</th>
-            <th>Bid Price</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="bid">
-            <td><%= link_to "12433", "#" %></td>
-            <td><%= link_to "Build a Dining Room Table", "#" %></td>
-            <td class="bid-status status-pending">pending</td>
-            <td>February 13, 2016 5:00 PM</td>
-            <td>$500</td>
-          </tr>
-          <tr class="bid">
-            <td><%= link_to "12433", "#" %></td>
-            <td><%= link_to "Build a Dining Room Table", "#" %></td>
-            <td class="bid-status status-accepted">accepted</td>
-            <td>February 13, 2016 7:00 PM</td>
-            <td>$2500</td>
-          </tr>
-        </tbody>
-      </table>
-
+      <%= @user.display_bids_table %>
     </div>
-    <!--  End of My Bids Tab -->
 
-    <!-- Start of My Listing Tab -->
-    <% unless current_contractor? %>
-      <div id="my-listings" class="col s12">
-        <div class="row">
-          <div class="filter">
-            <label class="filter-label">Filter By Job Status</label>
-            <%= select_tag :job_status, options_for_select(["all",
-                                                            "bidding open",
-                                                            "bidding closed",
-                                                            "in progress",
-                                                            "completed",
-                                                            "cancelled"]) %>
-          </div>
-        </div>
-        <table class="bordered responsive-table">
-          <thead class="dashboard-table-headers">
-            <tr>
-              <th>Job ID</th>
-              <th>Name</th>
-              <th>Job Status</th>
-              <th>Listing Expiration Date</th>
-              <th>Bids</th>
-              <th>Bid Range</th>
-              <th>Actions</th>
-              <th>Contractor Name</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="listing">
-              <td><%= link_to "12433", "#" %></td>
-              <td><%= link_to "Build a Dining Room Table", "#" %></td>
-              <td class="job-status status-pending">bidding open</td>
-              <td>February 13, 2016 5:00 PM</td>
-              <td>13</td>
-              <td>$200-$450</td>
-              <td>Cancel</td>
-              <td></td>
-            </tr>
-            <tr class="listing">
-              <td><%= link_to "12432", "#" %></td>
-              <td><%= link_to "Build A Large Multi-Room Doghouse", "#" %></td>
-              <td class="job-status status-accepted">completed</td>
-              <td>February 13, 2016 7:00 PM</td>
-              <td>13</td>
-              <td>$200-$450</td>
-              <td>Leave Feedback</td>
-              <td>Toni Rib</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    <% end %>
-    <!-- End of My Listing Tab -->
+    <%= @user.display_listing_table %>
   </div>
 </div>

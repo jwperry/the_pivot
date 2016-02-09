@@ -224,7 +224,8 @@ button.stripe-button-el span {
   color: $white;
 }
 
-.job-in-progress {
+.job-in-progress,
+.no-bids-banner {
   @include job-status-banner;
   background-color: $base-yellow;
   color: $black;
@@ -524,10 +525,12 @@ table a {
 
 .status-accepted {
   color: $base-green-dark;
+  font-size: 14px;
 }
 
 .status-rejected {
   color: $red;
+  font-size: 14px;
 }
 
 .container {
@@ -783,4 +786,18 @@ select {
 
 .slider .slides li .caption {
   top: -10%;
+}
+
+// -----COMMENT FORM-----
+
+.comment-form {
+  width: 90%;
+
+  select {
+    width: 70px;
+  }
+
+  textarea {
+    height: 120px;
+  }
 }

@@ -22,8 +22,8 @@ class ListerCanCreateAJobTest < ActionDispatch::IntegrationTest
     fill_in "City", with: "Rome"
     select "Nevada", from: "job_state"
     fill_in "Zipcode", with: 77_777
-    fill_in "job[bidding_close_date]", with: "2016-02-10"
-    fill_in "job[must_complete_by_date]", with: "2016-02-15"
+    fill_in "job[bidding_close_date]", with: "2022-02-10"
+    fill_in "job[must_complete_by_date]", with: "2022-02-15"
     select "05 PM", from: "bid_close_time_4i"
     select "30", from: "bid_close_time_5i"
     select "Long", from: "job[duration_estimate]"
@@ -36,8 +36,9 @@ class ListerCanCreateAJobTest < ActionDispatch::IntegrationTest
     assert page.has_content?(job.description)
     assert page.has_content?(job.city)
     assert page.has_content?(job.state)
-    assert page.has_content?("Must Be Completed By: Feb 14, 2016 at 5:00pm")
-    assert page.has_content?("Bidding Ends: Feb 9, 2016 at 5:30pm")
+    save_and_open_page
+    assert page.has_content?(job.bidding_closes_on)
+    assert page.has_content?(job.complete_by_date)
     assert page.has_content?(job.duration_estimate)
   end
 

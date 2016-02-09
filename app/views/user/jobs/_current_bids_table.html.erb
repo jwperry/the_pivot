@@ -8,11 +8,7 @@
         <th>Duration Estimate</th>
         <th>Comment</th>
         <th>
-          <% if job.bidding_closed? && job.bids_still_pending? %>
-            Select A Bid
-          <% elsif job.bidding_closed? %>
-            Bid Status
-          <% end %>
+          <%= job.bid_action_header %>
         </th>
       </tr>
     </thead>
@@ -24,13 +20,7 @@
           <td><%= bid.duration_estimate %> days</td>
           <td><%= bid.details %></td>
           <td class="bid-status">
-            <% if job.bidding_closed? && job.bids_still_pending? %>
-              <%= link_to "Accept", user_job_bid_path(bid.user, bid.job, bid, status: 1), method: :put %>
-            <% elsif job.bidding_closed? && bid.accepted? %>
-              Accepted
-            <% elsif job.bidding_closed? && bid.rejected? %>
-              Rejected
-            <% end %>
+            <%= job.bid_status_or_accept_bid_link(bid) %>
           </td>
         </tr>
       <% end %>
