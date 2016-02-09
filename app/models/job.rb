@@ -114,6 +114,10 @@ class Job < ActiveRecord::Base
     selected_bid.user
   end
 
+  def feedback_required_from_contractor
+    comments.count == 1
+  end
+
   private
 
   def check_user_type

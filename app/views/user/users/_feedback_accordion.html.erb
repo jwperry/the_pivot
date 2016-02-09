@@ -1,0 +1,18 @@
+<div id="accordion">
+  <h3 class="feedback-required"><i class="material-icons arrow-icon">navigation</i>Feedback Required<i class="material-icons arrow-icon">navigation</i></h3>
+  <div>
+    <div class="row no-bottom-margin feedback-accordion">
+      <div class="col s12">
+        <% user.jobs_that_require_feedback.each do |job| %>
+          <div class="row">
+            <div class="col s12">
+              <%= link_to "Leave Feedback", new_user_job_comment_path(job.lister, job) %>
+              for <%= link_to job.lister.full_name, user_path(job.lister) %>
+              for completing <%= link_to job.title, user_job_path(job.lister, job) %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

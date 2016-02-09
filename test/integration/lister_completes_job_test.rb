@@ -58,7 +58,7 @@ class ListerCompletesJobTest < ActionDispatch::IntegrationTest
 
     select "4", from: "comment_rating"
     fill_in "comment_text", with: text
-
+    click_on "Leave Comment"
 
     assert_equal dashboard_path, current_path
     refute page.has_content? "Feedback Required"
