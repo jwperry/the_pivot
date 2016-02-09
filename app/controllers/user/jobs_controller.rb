@@ -1,4 +1,5 @@
 class User::JobsController < ApplicationController
+  before_action :require_platform_admin, only: [:destroy]
   before_action :update_params, only: [:update]
 
   def show
@@ -7,10 +8,22 @@ class User::JobsController < ApplicationController
     @job = JobPresenter.new(Job.find(params[:id]), view_context)
   end
 
+  def destroy
+    job = Job.find(params[:id])
+    category = job.category
+
+    job.destroy
+
+    flash[:success] = "Job Deleted"
+    redirect_to category_path(category)
+  end
+
   def update
     @job = Job.find(params[:id])
+
     if job_params[:status]
       @job.update_attributes(job_params)
+
       if @job.completed?
         redirect_to new_user_job_comment_path(current_user, @job)
       else
@@ -20,6 +33,10 @@ class User::JobsController < ApplicationController
   end
 
   private
+
+  def require_platform_admin
+    render file: "public/404" unless current_platform_admin?
+  end
 
   def job_params
     params.permit(:status)

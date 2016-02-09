@@ -50,7 +50,9 @@
         <div class="indicator blue" style="z-index:1"></div>
       </ul>
     </div>
-    <%= @user.display_bids_table %>
+    <div id="my-bids" class="col s12 tab-content">
+      <%= @user.display_bids_table %>
+    </div>
 
     <%= @user.display_listing_table %>
   </div>

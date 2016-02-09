@@ -1,30 +1,28 @@
-<div id="my-bids" class="col s12 tab-content">
-  <div class="row">
-    <div class="filter">
-      <label class="filter-label bid-filter">Filter By Bid Status</label>
-      <%= select_tag :bid_status, options_for_select(%w(all accepted pending rejected)) %>
-    </div>
+<div class="row">
+  <div class="filter">
+    <label class="filter-label bid-filter">Filter By Bid Status</label>
+    <%= select_tag :bid_status, options_for_select(%w(all accepted pending rejected)) %>
   </div>
-  <table class="bordered responsive-table">
-    <thead class="dashboard-table-headers">
-      <tr>
-        <th>Job ID</th>
-        <th>Name</th>
-        <th>Bid Status</th>
-        <th>Job Listing Expiration Date</th>
-        <th>Bid Price</th>
-      </tr>
-    </thead>
-    <tbody>
-        <% user.bids.each do |bid| %>
-          <tr class="bid-<%= bid.id %>">
-            <td><%= link_to bid.job.id, user_job_path(bid.job.lister, bid.job) %></td>
-            <td><%= link_to bid.job.title, user_job_path(bid.job.lister, bid.job) %></td>
-            <td class="bid-status status-<%= bid.status %>"><%= bid.status %></td>
-            <td><%= bid.job.bidding_close_date %></td>
-            <td>$<%= bid.price %></td>
-          </tr>
-        <% end %>
-    </tbody>
-  </table>
 </div>
+<table class="bordered responsive-table">
+  <thead class="dashboard-table-headers">
+    <tr>
+      <th>Job ID</th>
+      <th>Name</th>
+      <th>Bid Status</th>
+      <th>Job Listing Expiration Date</th>
+      <th>Bid Price</th>
+    </tr>
+  </thead>
+  <tbody>
+      <% user.bids.each do |bid| %>
+        <tr class="bid-<%= bid.id %>">
+          <td><%= link_to bid.job.id, user_job_path(bid.job.lister, bid.job) %></td>
+          <td><%= link_to bid.job.title, user_job_path(bid.job.lister, bid.job) %></td>
+          <td class="bid-status status-<%= bid.status %>"><%= bid.status %></td>
+          <td><%= bid.job.bidding_close_date %></td>
+          <td>$<%= bid.price %></td>
+        </tr>
+      <% end %>
+  </tbody>
+</table>

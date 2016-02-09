@@ -15,10 +15,6 @@ class DashboardPresenter < SimpleDelegator
       choose_bid_link(job) + " / " + cancel_link(job)
     when "in_progress"
       complete_link(job)
-    when "completed"
-      "N/A"
-    when "cancelled"
-      "N/A"
     end
   end
 
@@ -43,8 +39,6 @@ class DashboardPresenter < SimpleDelegator
   def chosen_contractor(job)
     if !job.bids.accepted.empty?
       job.bids.accepted.first.user.full_name
-    else
-      ""
     end
   end
 

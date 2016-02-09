@@ -149,7 +149,6 @@ class ListerViewsDashboardTest < ActionDispatch::IntegrationTest
       assert page.has_content?(completed_job.bidding_close_date)
       assert page.has_content?(completed_job.total_bids)
       assert page.has_content?(completed_job.bid_price_range)
-      assert_equal "N/A", find(".action-link").text
       assert page.has_content?(accepted_bid2.user.full_name)
     end
 
@@ -164,7 +163,6 @@ class ListerViewsDashboardTest < ActionDispatch::IntegrationTest
       assert page.has_content?(cancelled_job.bidding_close_date)
       assert page.has_content?(cancelled_job.total_bids)
       assert page.has_content?(cancelled_job.bid_price_range)
-      assert_equal "N/A", find(".action-link").text
       assert_equal "", find(".contractor").text
     end
   end
