@@ -25,7 +25,7 @@
     </thead>
     <tbody>
       <% user.jobs.each do |listing| %>
-        <tr class="listing-<%= listing.id %>">
+        <tr class="listing-<%= listing.id %> listing">
           <td><%= link_to listing.id, user_job_path(user, listing) %></td>
           <td><%= link_to listing.title, user_job_path(user, listing) %></td>
 
