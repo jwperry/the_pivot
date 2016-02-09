@@ -34,7 +34,6 @@ class UserTest < ActiveSupport::TestCase
     assert_equal "Job Bluth", contractor.full_name
   end
 
-<<<<<<< HEAD
   test "has bids" do
     contractor = create(:contractor)
 
@@ -53,7 +52,8 @@ class UserTest < ActiveSupport::TestCase
     job = create(:job, user_id: lister.id)
 
     assert lister.has_jobs?
-=======
+  end
+
   test "is invalid with bio less than 35 characters" do
     user = create(:contractor)
 
@@ -84,6 +84,5 @@ class UserTest < ActiveSupport::TestCase
 
     user.update_attribute(:email_address, "exampleatgmail.com")
     refute user.valid?
->>>>>>> master
   end
 end

@@ -2,10 +2,8 @@ class User::JobsController < ApplicationController
   def show
     session[:forwarding_url] = request.url
     @user = User.find_by_slug(params[:user_slug])
-    @job = Job.find(params[:id])
-  end
+    @job = JobPresenter.new(Job.find(params[:id]), view_context)
 
-  def edit
   end
 
   def update
@@ -21,16 +19,6 @@ class User::JobsController < ApplicationController
   end
 
   private
-
-  def set_duration_tags
-    @duration_tags = [
-      ["Short (1 week or less)", 0],
-      ["Medium (1 - 4 weeks)", 1],
-      ["Long (Longer than 4 weeks)", 2],
-      ["Event (Specific date & time)", 3]
-    ]
-    @job = JobPresenter.new(Job.find(params[:id]), view_context)
-  end
 
   def job_params
     params.permit(:status)
