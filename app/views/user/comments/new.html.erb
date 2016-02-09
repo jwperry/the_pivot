@@ -5,7 +5,7 @@
     </div>
   </div>
 
-  <%= form_for([@user, @job, @comment], :html => {class: "profile-form comment-form"}) do |f| %>
+  <%= form_for(@comment, url: user_job_comments_path(@job.lister, @job), :html => {class: "profile-form comment-form"}) do |f| %>
     <div class="row">
       <div class="col s6">
         <%= f.label :comment_from %>
