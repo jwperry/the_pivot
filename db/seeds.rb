@@ -12,7 +12,6 @@ class Seed
     create_job_listings
     create_contractor_bids
     create_comments
-    create_platform_admin
   end
 
   def create_categories
@@ -212,24 +211,6 @@ class Seed
 
       puts "Comments created for job: #{job.title}"
     end
-  end
-
-  def create_platform_admin
-    User.create!(
-      first_name: "Platform",
-      last_name: "Admin",
-      username: "platform_admin",
-      password: "password",
-      role: 2,
-      email_address: "platform_admin@turing.io",
-      street_address: Faker::Address.street_address,
-      city: Faker::Address.city,
-      state: Faker::Address.state,
-      zipcode: Faker::Address.zip,
-      bio: Faker::Lorem.sentence(20)
-    )
-
-    puts "Created Platform Admin"
   end
 end
 
