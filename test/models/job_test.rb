@@ -11,6 +11,7 @@ class JobTest < ActiveSupport::TestCase
   should validate_presence_of(:bidding_close_date)
   should validate_presence_of(:must_complete_by_date)
   should validate_presence_of(:duration_estimate)
+  should validate_presence_of(:description)
 
   test "is valid with valid parameters" do
     job = create(:job)
@@ -103,6 +104,26 @@ class JobTest < ActiveSupport::TestCase
       duration_estimate: 0
     )
 
+    refute job.valid?
+  end
+
+  test "is invalid with description less than 50 characters" do
+    job = create(:job)
+
+    job.update_attribute(:description, Faker::Lorem.characters(50))
+    assert job.valid?
+
+    job.update_attribute(:description, Faker::Lorem.characters(49))
+    refute job.valid?
+  end
+
+  test "is invalid with description greater than 600 characters" do
+    job = create(:job)
+
+    job.update_attribute(:description, Faker::Lorem.characters(600))
+    assert job.valid?
+
+    job.update_attribute(:description, Faker::Lorem.characters(601))
     refute job.valid?
   end
 

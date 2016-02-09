@@ -12,7 +12,7 @@
 
   <%= f.label :description %>
   <%= f.text_area :description, required: true,
-                  maxlength: 500, minlength: 10 %>
+                  maxlength: 600, minlength: 50 %>
   <br>
 
   <%= f.label :city %>
@@ -37,8 +37,8 @@
   <br>
 
   <%= label_tag :bid_close_time %>
-  <%= time_select "bid_close", "time", 
-                  ampm: true, 
+  <%= time_select "bid_close", "time",
+                  ampm: true,
                   required: true,
                   minute_step: 15 %>
   <br>

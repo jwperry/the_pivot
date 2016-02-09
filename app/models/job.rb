@@ -14,16 +14,19 @@ class Job < ActiveRecord::Base
   scope :bid_selected, -> { where(status: [2, 3]) }
   scope :bidding_open, -> { where(status: 0) }
 
-  validates :title, presence: true
-  validates :category_id, presence: true
-  validates :user_id, presence: true
-  validates :status, presence: true
-  validates :city, presence: true
-  validates :state, presence: true
-  validates :zipcode, presence: true
-  validates :bidding_close_date, presence: true
+  validates :title,                 presence: true
+  validates :category_id,           presence: true
+  validates :user_id,               presence: true
+  validates :status,                presence: true
+  validates :city,                  presence: true
+  validates :state,                 presence: true
+  validates :zipcode,               presence: true
+  validates :bidding_close_date,    presence: true
   validates :must_complete_by_date, presence: true
-  validates :duration_estimate, presence: true
+  validates :duration_estimate,     presence: true
+  validates :description,           presence: true,
+                                    length: { in: 50..600 }
+
   validate :bidding_close_date_cannot_be_in_the_past
   validate :must_complete_by_date_cannot_be_in_the_past
   validate :must_complete_by_date_is_after_bidding_close_date

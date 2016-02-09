@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class ListerCanCreateAJobTest < ActionDispatch::IntegrationTest
   test "lister can create a new job" do
@@ -18,7 +18,7 @@ class ListerCanCreateAJobTest < ActionDispatch::IntegrationTest
     assert_equal new_user_job_path(lister), current_path
     fill_in "Title", with: "new_title"
     select category.name, from: "Category"
-    fill_in "Description", with: "Test Description"
+    fill_in "Description", with: Faker::Lorem.sentence(20)
     fill_in "City", with: "Rome"
     select "Nevada", from: "job_state"
     fill_in "Zipcode", with: 77_777
@@ -36,7 +36,6 @@ class ListerCanCreateAJobTest < ActionDispatch::IntegrationTest
     assert page.has_content?(job.description)
     assert page.has_content?(job.city)
     assert page.has_content?(job.state)
-    save_and_open_page
     assert page.has_content?(job.bidding_closes_on)
     assert page.has_content?(job.complete_by_date)
     assert page.has_content?(job.duration_estimate)
@@ -58,7 +57,7 @@ class ListerCanCreateAJobTest < ActionDispatch::IntegrationTest
     assert_equal new_user_job_path(contractor), current_path
     fill_in "Title", with: "new_title"
     select category.name, from: "Category"
-    fill_in "Description", with: "Test Description"
+    fill_in "Description", with: Faker::Lorem.sentence(20)
     fill_in "City", with: "Rome"
     select "Nevada", from: "job_state"
     fill_in "Zipcode", with: 77_777
