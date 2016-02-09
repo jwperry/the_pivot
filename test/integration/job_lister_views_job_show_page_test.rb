@@ -58,6 +58,11 @@ class JobListerViewsJobShowPageTest < ActionDispatch::IntegrationTest
 
     visit user_job_path(lister, job)
 
+    refute page.has_css? "#accordion h3", text: "Place A Bid"
+    refute page.has_link? "Log In To Place A Bid", login_path
+    assert page.has_css? ".bidding-closed",
+                         text: "Bidding Is Closed For This Job"
+
     within "#current-bids" do
       assert page.has_link? bidder.full_name, user_path(bidder)
       assert page.has_content? bid.price

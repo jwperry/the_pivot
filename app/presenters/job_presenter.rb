@@ -50,6 +50,29 @@ class JobPresenter < SimpleDelegator
     end
   end
 
+  def bid_action_header
+    if bidding_closed? && bids_still_pending?
+      "Select A Bid"
+    elsif bidding_closed?
+      "Bid Status"
+    end
+  end
+
+  def bid_status_or_accept_bid_link(bid)
+    if bidding_closed? && bids_still_pending? && view.current_lister?
+      view.link_to "Accept",
+                   view.user_job_bid_path(bid.user,
+                                          bid.job,
+                                          bid,
+                                          status: 1),
+                   method: :put
+    elsif !bidding_open? && bid.accepted?
+      view.content_tag :div, "Accepted", class: "status-accepted"
+    elsif !bidding_open? && bid.rejected?
+      view.content_tag :div, "Rejected", class: "status-rejected"
+    end
+  end
+
   def delete_listing_button
     if view.current_platform_admin?
       view.content_tag(:div,
