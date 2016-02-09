@@ -14,7 +14,8 @@ class UserLeavesFeedbackTest < ActionDispatch::IntegrationTest
     visit new_user_job_comment_path(lister, job)
 
     select "4", from: "comment_rating"
-    fill_in "comment_text", with: "You were the most amazing contractor I have ever worked with!"
+    fill_in "comment_text", with: "You were the most amazing" \
+                                  "contractor I ever ever ever!!!"
 
     click_on "Leave Comment"
 
@@ -46,7 +47,8 @@ class UserLeavesFeedbackTest < ActionDispatch::IntegrationTest
     visit new_user_job_comment_path(lister, job)
 
     select "4", from: "comment_rating"
-    fill_in "comment_text", with: "You were the most amazing lister I have ever worked with!"
+    fill_in "comment_text", with: "You were the most amazing" \
+                                  "lister I ever ever ever!!!"
 
     click_on "Leave Comment"
 

@@ -14,6 +14,8 @@ class User::CommentsController < ApplicationController
       flash[:success] = "Comment Saved!"
       redirect_to dashboard_path
     else
+      flash[:error] = "Comment could not be saved."
+      render :new
     end
   end
 
