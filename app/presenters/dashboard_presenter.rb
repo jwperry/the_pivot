@@ -56,7 +56,7 @@ class DashboardPresenter < SimpleDelegator
   def display_listing_table
     if not_contractor_and_has_jobs
       view.render partial: "listing_table", locals: { user: self }
-    else
+    elsif not_contractor_and_does_not_have_jobs
       view.content_tag(:div,
                        view.content_tag(:p,
                                         "You have not listed any jobs yet.",
@@ -66,6 +66,10 @@ class DashboardPresenter < SimpleDelegator
 
   def not_contractor_and_has_jobs
     !view.current_contractor? && has_jobs?
+  end
+
+  def not_contractor_and_does_not_have_jobs
+    !view.current_contractor? && !has_jobs?
   end
 
   def dashboard_links
