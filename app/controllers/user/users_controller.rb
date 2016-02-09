@@ -43,7 +43,7 @@ class User::UsersController < ApplicationController
   end
 
   def dashboard
-    user = current_user
+    user = dashboard_user
     @user = DashboardPresenter.new(user, view_context)
   end
 

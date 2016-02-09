@@ -13,7 +13,7 @@ class User::JobsController < ApplicationController
     @job = Job.find(params[:id])
     if job_params[:status]
       @job.update_attribute(:status, job_params[:status].to_i)
-      current_user.reload
+      # current_user.reload && dashboard_user.reload 
       if @job.completed?
         redirect_to new_user_job_comment_path(current_user, @job)
       else

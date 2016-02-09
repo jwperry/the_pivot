@@ -2,9 +2,12 @@ require "test_helper"
 
 class ListerCancelsJobTest < ActionDispatch::IntegrationTest
   test "lister cancels bidding open job" do
+
+  
     lister = create(:lister)
     open_bid_job = create(:job, user_id: lister.id)
-    ApplicationController.any_instance.stubs(:current_user).returns(lister)
+    # ApplicationController.any_instance.stubs(:dashboard_user).returns(lister)
+    # ApplicationController.any_instance.stubs(:current_user).returns(lister)
 
     visit dashboard_path
     click_on "My Listings"
@@ -24,6 +27,7 @@ class ListerCancelsJobTest < ActionDispatch::IntegrationTest
   test "lister cancels bidding closed job" do
     lister = create(:lister)
     closed_bid_job = create(:job, user_id: lister.id, status: "bidding_closed")
+    ApplicationController.any_instance.stubs(:dashboard_user).returns(lister)
     ApplicationController.any_instance.stubs(:current_user).returns(lister)
 
     visit dashboard_path
