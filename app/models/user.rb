@@ -55,7 +55,7 @@ class User < ActiveRecord::Base
 
   def rating
     if !all_received_comments.empty?
-      "#{all_received_comments.average(:rating)} / 5.0"
+      "#{all_received_comments.average(:rating).round(1)} / 5.0"
     else
       "No Rating Available"
     end
