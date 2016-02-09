@@ -78,7 +78,8 @@ class User::JobsController < ApplicationController
     param_hour = params[:bid_close]["time(4i)"]
     minute = params[:bid_close]["time(5i)"]
 
-    DateTime.strptime("#{bid_close_date} #{param_hour}:#{minute}", "%Y-%m-%d %k:%M")
+    DateTime.strptime("#{bid_close_date} #{param_hour}:#{minute}",
+                      "%Y-%m-%d %k:%M")
   end
 
   def construct_must_complete_by_date
