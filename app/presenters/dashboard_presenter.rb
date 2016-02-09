@@ -73,7 +73,9 @@ class DashboardPresenter < SimpleDelegator
   end
 
   def dashboard_links
-    if view.current_lister? || view.current_platform_admin?
+    if view.current_platform_admin?
+      view.render partial: "admin_dashboard_links", locals: { user: self }
+    elsif view.current_lister?
       view.render partial: "lister_dashboard_links", locals: { user: self }
     else
       view.render partial: "contractor_dashboard_links", locals: { user: self }
