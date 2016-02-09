@@ -1,44 +1,42 @@
-<div id="my-listings" class="col s12">
-  <div class="row">
-    <div class="filter">
-      <label class="filter-label">Filter By Job Status</label>
-      <%= select_tag :job_status, options_for_select(["all",
-                                                      "bidding open",
-                                                      "bidding closed",
-                                                      "in progress",
-                                                      "completed",
-                                                      "cancelled"]) %>
-    </div>
+<div class="row">
+  <div class="filter">
+    <label class="filter-label">Filter By Job Status</label>
+    <%= select_tag :job_status, options_for_select(["all",
+                                                    "bidding open",
+                                                    "bidding closed",
+                                                    "in progress",
+                                                    "completed",
+                                                    "cancelled"]) %>
   </div>
-  <table class="bordered responsive-table">
-    <thead class="dashboard-table-headers">
-      <tr>
-        <th>Job ID</th>
-        <th>Name</th>
-        <th>Job Status</th>
-        <th>Biding Expiration Date</th>
-        <th>Bids</th>
-        <th>Bid Range</th>
-        <th>Actions</th>
-        <th>Contractor Name</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% user.jobs.each do |listing| %>
-        <tr class="listing">
-          <td><%= link_to listing.id, user_job_path(user, listing) %></td>
-          <td><%= link_to listing.title, user_job_path(user, listing) %></td>
-
-          <td class="job-status status-<%= listing.status %>"><%= user.sanitize_status(listing) %></td>
-          <td><%= listing.bidding_closes_on %></td>
-          <td><%= listing.total_bids %></td>
-          <td><%= listing.bid_price_range %></td>
-          <td class="action-link">
-            <%= user.action_link(listing) %>
-          </td>
-          <td class="contractor"><%= user.chosen_contractor(listing) %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
 </div>
+<table class="bordered responsive-table">
+  <thead class="dashboard-table-headers">
+    <tr>
+      <th>Job ID</th>
+      <th>Name</th>
+      <th>Job Status</th>
+      <th>Biding Expiration Date</th>
+      <th>Bids</th>
+      <th>Bid Range</th>
+      <th>Actions</th>
+      <th>Contractor Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% user.jobs.each do |listing| %>
+      <tr class="listing">
+        <td><%= link_to listing.id, user_job_path(user, listing) %></td>
+        <td><%= link_to listing.title, user_job_path(user, listing) %></td>
+
+        <td class="job-status status-<%= listing.status %>"><%= user.sanitize_status(listing) %></td>
+        <td><%= listing.bidding_closes_on %></td>
+        <td><%= listing.total_bids %></td>
+        <td><%= listing.bid_price_range %></td>
+        <td class="action-link">
+          <%= user.action_link(listing) %>
+        </td>
+        <td class="contractor"><%= user.chosen_contractor(listing) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
