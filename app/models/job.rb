@@ -20,7 +20,8 @@ class Job < ActiveRecord::Base
   validates :status,                presence: true
   validates :city,                  presence: true
   validates :state,                 presence: true
-  validates :zipcode,               presence: true
+  validates :zipcode,               presence: true,
+                                    format: { with: /\A\d{5}\z/}
   validates :bidding_close_date,    presence: true
   validates :must_complete_by_date, presence: true
   validates :duration_estimate,     presence: true
