@@ -20,4 +20,13 @@ class PlatformAdminCreatesCategoryTest < ActionDispatch::IntegrationTest
     assert page.has_content?("Astrophysics")
     assert_equal description, category.description
   end
+
+  test "non-platform admin cannot create a category" do
+    contractor = create(:contractor)
+    ApplicationController.any_instance.stubs(:current_user).returns(contractor)
+
+    visit new_category_path
+    assert page.has_content?("The page you were looking for doesn't exist.")
+    refute page.has_content?("Create a New Category")
+  end
 end
