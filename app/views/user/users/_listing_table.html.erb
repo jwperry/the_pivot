@@ -23,7 +23,7 @@
     </tr>
   </thead>
   <tbody>
-    <% user.jobs.each do |listing| %>
+    <% user.jobs.order(created_at: :desc).each do |listing| %>
       <tr class="listing" id= "listing-<%= listing.id %>">
         <td><%= link_to listing.id, user_job_path(user, listing) %></td>
         <td><%= link_to listing.title, user_job_path(user, listing) %></td>

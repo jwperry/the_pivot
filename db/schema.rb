@@ -17,12 +17,14 @@ ActiveRecord::Schema.define(version: 20160210211016) do
   enable_extension "plpgsql"
 
   create_table "bids", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "job_id"
-    t.integer "price"
-    t.integer "duration_estimate"
-    t.text    "details"
-    t.integer "status",            default: 0
+    t.integer  "user_id"
+    t.integer  "job_id"
+    t.integer  "price"
+    t.integer  "duration_estimate"
+    t.text     "details"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.integer  "status",            default: 0
   end
 
   add_index "bids", ["job_id"], name: "index_bids_on_job_id", using: :btree

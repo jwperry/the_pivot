@@ -79,7 +79,7 @@ class Job < ActiveRecord::Base
   end
 
   def bid_price_range
-    "$#{lowest_bid} - $#{highest_bid}"
+    "Bid Range: $#{lowest_bid} - $#{highest_bid}"
   end
 
   def bidding_closes_on
