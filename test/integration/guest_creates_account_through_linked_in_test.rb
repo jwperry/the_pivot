@@ -12,7 +12,7 @@ class GuestCreatesAccountThroughLinkedInTest < ActionDispatch::IntegrationTest
     assert_equal "john@doe.com", find("#user_email_address").value
     assert_equal "Greater Boston Area", find("#user_city").value
     assert_equal "Senior Developer, Hammertech", find("#user_bio").value
-    assert_equal "http://m.c.lnkd.licdn.com/mpr/mprx/0_aBcD...",
+    assert_equal "http://m.c.lnkd.licdn.com/mpr/mprx/0_aBcD...image",
                  find("#user_image_path").value
 
     fill_in "Street address", with: "123 Maple Drive"
@@ -99,7 +99,10 @@ class GuestCreatesAccountThroughLinkedInTest < ActionDispatch::IntegrationTest
           "location" => { "country" => { "code" => "us" },
                           "name" => "Greater Boston Area" },
           "pictureUrl" => "http://m.c.lnkd.licdn.com/mpr/mprx/0_aBcD...",
-          "publicProfileUrl" => "http://www.linkedin.com/in/johndoe"
+          "publicProfileUrl" => "http://www.linkedin.com/in/johndoe",
+          "pictureUrls" =>
+          { "values" =>
+            [1, "http://m.c.lnkd.licdn.com/mpr/mprx/0_aBcD...image"] }
         }
       }
     }

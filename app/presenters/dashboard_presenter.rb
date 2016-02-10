@@ -102,12 +102,4 @@ class DashboardPresenter < SimpleDelegator
   def feedback_required?
     jobs_that_require_feedback.any?
   end
-
-  def user_picture
-    if image_path.nil? || image_path.empty?
-      file_upload.url
-    else
-      image_path
-    end
-  end
 end

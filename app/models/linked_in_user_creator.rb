@@ -45,7 +45,7 @@ class LinkedInUserCreator
   end
 
   def image_url
-    auth_hash["info"]["image"]
+    auth_hash["extra"]["raw_info"]["pictureUrls"]["values"].last
   end
 
   def description
