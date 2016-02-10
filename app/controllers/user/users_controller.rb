@@ -21,13 +21,6 @@ class User::UsersController < ApplicationController
     end
   end
 
-  def create_authorization_when_from_linkedin
-    if params["provider"] && params["uid"]
-      @user.authorizations.create provider: params["provider"],
-                                  uid: params["uid"]
-    end
-  end
-
   def show
     @user = User.find_by_slug(params[:slug])
   end
@@ -104,5 +97,12 @@ class User::UsersController < ApplicationController
 
   def auth_hash
     request.env["omniauth.auth"]
+  end
+
+  def create_authorization_when_from_linkedin
+    if params["provider"] && params["uid"]
+      @user.authorizations.create provider: params["provider"],
+                                  uid: params["uid"]
+    end
   end
 end
