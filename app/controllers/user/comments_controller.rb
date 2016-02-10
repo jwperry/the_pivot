@@ -1,5 +1,6 @@
 class User::CommentsController < ApplicationController
   before_action :update_params, only: [:create]
+  before_action :require_lister_or_contractor
 
   def new
     @user = current_user
@@ -43,5 +44,17 @@ class User::CommentsController < ApplicationController
     else
       job.lister.id
     end
+  end
+
+  def require_lister_or_contractor
+    render file: "public/404" unless correct_lister || correct_contractor
+  end
+
+  def correct_lister
+    current_user == Job.find(params[:job_id]).lister
+  end
+
+  def correct_contractor
+    current_user == Job.find(params[:job_id]).contractor_for_selected_bid
   end
 end

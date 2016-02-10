@@ -25,7 +25,7 @@
           </li>
         <% elsif current_lister? %>
           <li class="right-align">
-            <%= link_to "My Dashboard (poster)", dashboard_path(current_user.slug) , class: "login-confirm"%>
+            <%= link_to "My Dashboard (lister)", dashboard_path(current_user.slug) , class: "login-confirm"%>
           </li>
         <% elsif current_user %>
           <li class="right-align">
