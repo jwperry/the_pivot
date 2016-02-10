@@ -104,7 +104,7 @@ class User < ActiveRecord::Base
 
   def jobs_that_require_feedback
     accepted_bids.map do |bid|
-      bid.job if  bid.job.feedback_required_from_contractor
+      bid.job if bid.job.feedback_required_from_contractor
     end.compact
   end
 end
