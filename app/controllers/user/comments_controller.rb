@@ -12,6 +12,7 @@ class User::CommentsController < ApplicationController
 
     if @comment.save
       flash[:success] = "Comment Saved!"
+      @comment.job.update_attribute(:status, 3) unless current_contractor?
       redirect_to dashboard_path
     else
       flash[:error] = "Comment could not be saved."
