@@ -7,17 +7,13 @@ class PlatformAdminCreatesCategoryTest < ActionDispatch::IntegrationTest
 
     visit dashboard_path
     click_on "Create Category"
-    description = "Discover the meaning of the universe"
 
     fill_in "Name", with: "Astrophysics"
-    fill_in "Description", with: description
     click_on "Create Category"
 
     category = Category.last
 
     assert_equal category_path(category), current_path
-
     assert page.has_content?("Astrophysics")
-    assert_equal description, category.description
   end
 end

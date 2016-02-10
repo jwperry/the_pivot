@@ -79,15 +79,15 @@ class Job < ActiveRecord::Base
   end
 
   def bid_price_range
-    "$#{lowest_bid} - $#{highest_bid}"
+    "Bid Range: $#{lowest_bid} - $#{highest_bid}"
   end
 
   def bidding_closes_on
-    bidding_close_date.utc.strftime("%b %e, %Y at %l:%M%P")
+    bidding_close_date.strftime("%b %e, %Y at %l:%M%P")
   end
 
   def complete_by_date
-    must_complete_by_date.utc.strftime("%b %e, %Y")
+    must_complete_by_date.strftime("%b %e, %Y")
   end
 
   def selected_bid

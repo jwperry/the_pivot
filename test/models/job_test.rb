@@ -132,7 +132,7 @@ class JobTest < ActiveSupport::TestCase
     create(:bid, price: 2, job_id: job.id)
     create(:bid, price: 400, job_id: job.id)
 
-    assert_equal "$2 - $400", job.bid_price_range
+    assert_equal "Bid Range: $2 - $400", job.bid_price_range
   end
 
   test "updates bidding status for jobs in the past" do

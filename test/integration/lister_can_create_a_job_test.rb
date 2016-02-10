@@ -22,10 +22,8 @@ class ListerCanCreateAJobTest < ActionDispatch::IntegrationTest
     fill_in "City", with: "Rome"
     select "Nevada", from: "job_state"
     fill_in "Zipcode", with: 77_777
-    fill_in "job[bidding_close_date]", with: "2022-02-10"
+    fill_in "job[bidding_close_date]", with: "2022-02-10T08:25"
     fill_in "job[must_complete_by_date]", with: "2022-02-15"
-    select "05 PM", from: "bid_close_time_4i"
-    select "30", from: "bid_close_time_5i"
     select "Long", from: "job[duration_estimate]"
     click_on "Create Job"
 
@@ -37,11 +35,12 @@ class ListerCanCreateAJobTest < ActionDispatch::IntegrationTest
     assert page.has_content?(job.city)
     assert page.has_content?(job.state)
     assert page.has_content?(job.bidding_closes_on)
+    assert page.has_content? "Feb 10, 2022 at 8:25am"
     assert page.has_content?(job.complete_by_date)
     assert page.has_content?(job.duration_estimate)
   end
 
-  test "contractor cannot create new job" do
+  test "contractor cannot visit create new job path" do
     contractor = create(:contractor)
     category = create(:category)
     assert_equal [], contractor.jobs
@@ -54,22 +53,6 @@ class ListerCanCreateAJobTest < ActionDispatch::IntegrationTest
     end
 
     visit new_user_job_path(contractor)
-    assert_equal new_user_job_path(contractor), current_path
-    fill_in "Title", with: "new_title"
-    select category.name, from: "Category"
-    fill_in "Description", with: Faker::Lorem.sentence(20)
-    fill_in "City", with: "Rome"
-    select "Nevada", from: "job_state"
-    fill_in "Zipcode", with: 77_777
-    fill_in "job[bidding_close_date]", with: "2016-02-10"
-    fill_in "job[must_complete_by_date]", with: "2016-02-15"
-    select "05 PM", from: "bid_close_time_4i"
-    select "30", from: "bid_close_time_5i"
-    select "Long", from: "job[duration_estimate]"
-    click_on "Create Job"
-
-    assert_equal [], contractor.jobs
-    assert_equal dashboard_path(contractor), current_path
-    assert page.has_content?("Upgrade to a lister account to create jobs.")
+    assert page.has_content? "404"
   end
 end

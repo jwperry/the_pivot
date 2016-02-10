@@ -6,63 +6,82 @@
   </div>
 
   <div class="row">
-    <%= form_for @job, :html => {class: "job-form"}, :url => user_jobs_path(current_user, @job) do |f| %>
-      <%= render partial: 'shared/errors', locals: {target: @job} %>
+    <div class="col s12">
+      <%= form_for @job, :html => { class: "job-form" },
+                         :url => user_jobs_path(current_user, @job) do |f| %>
+        <%= render partial: "shared/errors", locals: { target: @job } %>
 
-      <%= f.label :title %>
-      <%= f.text_field :title, required: true %>
-      <br>
+        <div class="row">
+          <div class="col s12">
+            <%= f.label :title %>
+            <%= f.text_field :title, required: true %>
+          </div>
+        </div>
 
-      <%= f.label :category_id %>
-      <%= f.select :category_id, options_from_collection_for_select(all_categories, :id, :name),
-                                 required: true %>
-      <br>
+        <div class="row">
+          <div class="col s12">
+            <%= f.label :description %>
+            <%= f.text_area :description, required: true,
+                            maxlength: 600, minlength: 50 %>
+          </div>
+        </div>
 
-      <%= f.label :description %>
-      <%= f.text_area :description, required: true,
-                      maxlength: 600, minlength: 50 %>
-      <br>
+        <div class="row">
+          <div class="col s12">
+            <%= f.label :category_id %>
+            <%= f.select :category_id, options_from_collection_for_select(all_categories, :id, :name),
+                                       required: true %>
+          </div>
+        </div>
 
-      <%= f.label :city %>
-      <%= f.text_field :city, required: true %>
-      <br>
+        <div class="row">
+          <div class="col s12 m12 l6">
+            <%= f.label :city %>
+            <%= f.text_field :city, required: true %>
+          </div>
+          <div class="col s12 m12 l6">
+            <%= f.label :state %>
+            <%= f.select :state, options_for_select(us_states),
+                         required: true %>
+          </div>
+        </div>
 
-      <%= f.label :state %>
-      <%= f.select :state, options_for_select(us_states),
-                   required: true %>
-      <br>
+        <div class="row">
+          <div class="col s12">
+            <%= f.label :zipcode %>
+            <%= f.text_field :zipcode, required: true %>
+          </div>
+        </div>
 
-      <%= f.label :zipcode %>
-      <%= f.text_field :zipcode, required: true %>
-      <br>
+        <div class="row">
+          <div class="col s12 m12 l6">
+            <%= label_tag "Bidding Close Date/Time" %>
+            <input type="datetime-local" name="job[bidding_close_date]">
+          </div>
+          <div class="col s12 m12 l6">
+            <%= label_tag "Must Complete By Date", nil, class: "must-complete-by-label" %>
+            <input type="date" name="job[must_complete_by_date]">
+          </div>
+        </div>
 
-      <%= label_tag "Bidding Close Date" %>
-      <input type="date" name="job[bidding_close_date]">
-      <br>
+        <div class="row">
+          <div class="col s12">
+            <%= label_tag "Duration Estimate" %>
+            <select name="job[duration_estimate]" class="duration-estimate-dropdown">
+              <option value="0">Short (Less Than 1 Week)</option>
+              <option value="1">Medium (1 - 4 Weeks)</option>
+              <option value="2">Long (Longer Than 4 Weeks)</option>
+              <option value="3">Event (Specific Day)</option>
+            </select>
+          </div>
+        </div>
 
-      <%= label_tag :bid_close_time, nil, class: "bid-close-label" %>
-      <%= time_select "bid_close", "time",
-      ampm: true,
-      required: true,
-      minute_step: 15 %>
-      <br>
-      <br>
-
-      <%= label_tag "Must Complete By Date", nil, class: "must-complete-by-label" %>
-      <input type="date" name="job[must_complete_by_date]">
-      <br>
-
-
-      <%= label_tag "Duration Estimate" %>
-      <select name="job[duration_estimate]">
-        <option value="0">Short</option>
-        <option value="1">Medium</option>
-        <option value="2">Long</option>
-        <option value="3">Event</option>
-      </select>
-      <br>
-
-      <%= f.submit class: "wave-effect waves-light btn" %>
-    <% end %>
+        <div class="row">
+          <div class="col s12">
+            <%= f.submit class: "wave-effect waves-light btn" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>

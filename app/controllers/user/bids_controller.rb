@@ -53,10 +53,18 @@ class User::BidsController < ApplicationController
   end
 
   def update_bid_and_job_status
-    @bid.accepted!
+    @bid.update_attribute(:status, 1)
 
-    @bid.job.pending_bids.each(&:rejected!)
+    @bid.job.pending_bids.each do |bid|
+      bid.update_attribute(:status, 2)
+    end
 
-    @bid.job.in_progress!
+    @bid.job.update_attribute(:status, 2)
+
+    email_bidder_notifications
+  end
+
+  def email_bidder_notifications
+    @bid.job.bids.each { |bid| NotificationMailer.notify_bidder(bid).deliver_now }
   end
 end

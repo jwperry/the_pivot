@@ -85,7 +85,9 @@ class DashboardPresenter < SimpleDelegator
   def listings_tab_header
     unless view.current_contractor?
       view.content_tag(:li,
-                       view.link_to("My Listings", "#my-listings"),
+                       view.link_to("My Listings",
+                                    "#my-listings",
+                                    class: "active"),
                        class: "tab col s3")
     end
   end

@@ -1,0 +1,7 @@
+Bidding on the job <%= @bid.job.title %> has now concluded.
+
+<% if @bid.accepted? %>
+  <%= "Congratulations, your bid was successful! Please contact the job lister to make arrangements." %>
+<% else %>
+  <%= "Thank you for your interest! Your bid was not successful, but many more jobs await your talents!" %>
+<% end %>

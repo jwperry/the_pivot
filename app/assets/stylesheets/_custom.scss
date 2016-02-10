@@ -120,7 +120,7 @@
 .job-info {
   border-right: 0.5px solid $black;
   color: $highlight-cyan;
-  font-size: 17px;
+  font-size: 16px;
 
   &:last-child {
     border-right: 0;
@@ -486,6 +486,7 @@ nav ul a:hover {
 }
 
 .user-address {
+  font-size: 18px;
   margin: 10px auto 5px;
   max-width: 80%;
 }
@@ -518,16 +519,27 @@ table a {
   text-align: justify;
 }
 
-.status-pending {
+.status-pending,
+.status-in_progress {
   color: $orange;
 }
 
-.status-accepted {
+.status-completed {
+  color: $grey;
+}
+
+.status-bidding_closed {
+  color: $base-dark-yellow;
+}
+
+.status-accepted,
+.status-bidding_open {
   color: $base-green-dark;
   font-size: 14px;
 }
 
-.status-rejected {
+.status-rejected,
+.status-cancelled {
   color: $red;
   font-size: 14px;
 }
@@ -631,9 +643,15 @@ h3#ui-id-1.feedback-required {
 
 .comments-label {
   color: $grey;
+  font-size: 36px;
   font-weight: 100;
   letter-spacing: 0.4em;
   text-transform: uppercase;
+}
+
+#previous-jobs,
+#previous-listings h5 {
+  padding: 15px 0;
 }
 
 /* BUTTONS */
@@ -714,18 +732,16 @@ h3#ui-id-1.feedback-required {
     display: block;
   }
 
-  #bid_close_time_4i,
-  #bid_close_time_5i {
-    display: inline;
-    margin: 10px;
-    width: 100px;
+  .duration-estimate-dropdown {
+    width: 250px;
   }
+
 }
 
 label {
-  font-size: 1.3rem;
+  color: $grey;
+  font-size: 1.1rem;
   font-weight: 100;
-  color: #9e9e9e;
   text-transform: uppercase;
   letter-spacing: 5px;
 }
@@ -742,9 +758,15 @@ input[type=number],
 input[type=search],
 input[type=file],
 textarea.materialize-textarea {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 300;
+  height: 2rem;
   text-align: center;
+}
+
+input[type=date],
+input[type=datetime-local] {
+  letter-spacing: 3px;
 }
 
 .dropdown-content li {
@@ -763,13 +785,23 @@ textarea.materialize-textarea {
 
 select {
   display: block;
-  font-size: 20px;
-  width: 300px;
+  font-size: 16px;
+  height: 35px;
   margin: 0 auto;
+  width: 250px;
 }
 
 .user-bio {
+  font-size: 18px;
   height: 100px;
+}
+
+#user_state {
+  width: 200px;
+}
+
+#user_file_upload {
+  padding-left: 115px;
 }
 
 // -----SIDE NAV-----
@@ -812,6 +844,7 @@ select {
 
   select {
     width: 70px;
+    font-size: 18px;
   }
 
   textarea {
