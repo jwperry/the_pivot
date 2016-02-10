@@ -741,7 +741,7 @@ h3#ui-id-1.feedback-required {
 }
 
 label {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   font-weight: 100;
   color: #9e9e9e;
   text-transform: uppercase;
@@ -760,8 +760,9 @@ input[type=number],
 input[type=search],
 input[type=file],
 textarea.materialize-textarea {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 300;
+  height: 2rem;
   text-align: center;
 }
 
@@ -781,14 +782,25 @@ textarea.materialize-textarea {
 
 select {
   display: block;
-  font-size: 20px;
-  width: 300px;
+  font-size: 16px;
+  height: 35px;
+  width: 250px;
   margin: 0 auto;
 }
 
 .user-bio {
+  font-size: 18px;
   height: 100px;
 }
+
+#user_state {
+  width: 200px;
+}
+
+#user_file_upload {
+  padding-left: 115px;
+}
+
 
 // -----SIDE NAV-----
 

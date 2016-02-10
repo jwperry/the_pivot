@@ -1,49 +1,65 @@
-<%= form_for @user, :html => {class: "profile-form"} do |f| %>
-  <%= render partial: 'shared/errors', locals: {target: @user} %>
-
-  <%= f.label :first_name %>
-  <%= f.text_field :first_name, required: true %>
-  <br>
-
-  <%= f.label :last_name %>
-  <%= f.text_field :last_name, required: true %>
-  <br>
+<%= form_for @user, :html => { class: "profile-form" } do |f| %>
+  <%= render partial: "shared/errors", locals: { target: @user } %>
 
   <div class="row">
-    <%= f.label :file_upload %>
+    <div class="col s12 m12 l6">
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name, required: true %>
+    </div>
+    <div class="col s12 m12 l6">
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name, required: true %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col s12 m12 l6">
+        <%= f.label :username %>
+      <% if current_user %>
+        <%= f.text_field :username, disabled: true  %>
+      <% else %>
+        <%= f.text_field :username, required: true  %>
+      <% end %>
+    </div>
+    <div class="col s12 m12 l6">
+      <%= f.label :email_address %>
+      <%= f.text_field :email_address, required: true %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col s12">
+      <%= f.label :street_address %>
+      <%= f.text_field :street_address, required: true %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col s12 m12 l6">
+      <%= f.label :city %>
+      <%= f.text_field :city, required: true %>
+    </div>
+    <div class="col s12 m12 l6">
+      <%= f.label :state %>
+      <%= f.select(:state, options_for_select(us_states)) %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col s12 m12 l12">
+      <%= f.label :zipcode %>
+      <%= f.text_field :zipcode, required: true %>
+    </div>
+  </div>
+
+  <div class="row">
+    <%= f.label "Upload User Photo" %>
     <br><br>
     <%= f.file_field :file_upload, class: "grey-text", required: true %>
   </div>
 
-  <%= f.label :email_address %>
-  <%= f.text_field :email_address, required: true %>
-  <br>
-
-  <%= f.label :street_address %>
-  <%= f.text_field :street_address, required: true %>
-  <br>
-
-  <%= f.label :city %>
-  <%= f.text_field :city, required: true %>
-  <br>
-
-  <%= f.label :state %>
-  <%= f.select(:state, options_for_select(us_states)) %>
-  <br>
-
-  <%= f.label :zipcode %>
-  <%= f.text_field :zipcode, required: true %>
-  <br>
-
   <%= f.label :bio %>
   <%= f.text_area :bio, required: true, class: "user-bio",
                         minlength: 35, maxlength: 600 %>
-  <br>
-
-  <% unless current_user %>
-    <%= f.label :username %>
-    <%= f.text_field :username, required: true  %>
-  <% end %>
   <br>
 
   <%= f.label :password %>
