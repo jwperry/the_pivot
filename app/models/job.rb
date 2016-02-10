@@ -33,12 +33,12 @@ class Job < ActiveRecord::Base
 
   def bidding_close_date_cannot_be_in_the_past
     errors.add(:bidding_close_date, "can't be in the past") if
-      !bidding_close_date.blank? && bidding_close_date < Date.today
+      !bidding_close_date.blank? && bidding_close_date.past?
   end
 
   def must_complete_by_date_cannot_be_in_the_past
     errors.add(:must_complete_by_date, "can't be in the past") if
-      !must_complete_by_date.blank? && must_complete_by_date < Date.today
+      !must_complete_by_date.blank? && must_complete_by_date.past?
   end
 
   def must_complete_by_date_is_after_bidding_close_date
