@@ -77,8 +77,7 @@ class JobPresenter < SimpleDelegator
                        view.link_to("Delete Job",
                                     view.user_job_path(self.user, self),
                                     method: :delete,
-                                    class: "btn btn-delete"),
-                       class: "col s12 m12 l8 center-align")
+                                    class: "btn btn-delete"))
     end
   end
 
