@@ -567,6 +567,40 @@ table a {
   }
 }
 
+h3#ui-id-1.feedback-required {
+  background: $very-light-red;
+  color: $black;
+  font-size: 26px;
+  letter-spacing: 0.5em;
+  padding: 5px 0;
+  text-align: center;
+  text-transform: uppercase;
+
+  .arrow-icon {
+    color: $dark-red;
+  }
+
+  &:hover {
+    background: $light-red;
+    color: $black;
+
+    .arrow-icon {
+      color: $red;
+    }
+
+  }
+
+}
+
+.ui-widget-content a {
+  color: $base-purple-blue-dark !important;
+
+  &:hover {
+    color: $base-purple-blue !important;
+  }
+
+}
+
 // -----USER PROFILE-----
 
 .comment-text {

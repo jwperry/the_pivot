@@ -91,7 +91,7 @@ class DashboardPresenter < SimpleDelegator
   end
 
   def feedback_required_accordion
-    if view.current_contractor? && feedback_required?
+    if feedback_required?
       view.render(partial: "user/users/feedback_accordion",
                   locals: { user: self })
     end

@@ -68,17 +68,3 @@ class ListerCompletesJobTest < ActionDispatch::IntegrationTest
     assert_equal 4, comment.rating
   end
 end
-
-# As a logged in contractor,
-# When I visit my dashboard,
-# And I see the "Feedback Required" accordion,
-# And I click to expand the "Feedback Required" accordion,
-# And I click "Leave Feedback" for any given job,
-# Then I am redirected to the feedback form with fields:
-#
-# Rating
-# Comment
-# And when I fill in both fields,
-# And I click "Submit Feedback",
-# Then I am redirected to my dashboard,
-# And I do not see the feedback required accordion.
