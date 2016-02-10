@@ -157,15 +157,4 @@ class JobTest < ActiveSupport::TestCase
     assert bidding_expired_job.bidding_closed?
     assert bidding_not_expired_job.bidding_open?
   end
-
-  test "zipcode is invalid unless 5 digits" do
-    job = create(:job, zipcode: 80231)
-    assert job.valid?
-
-    job.update_attribute(:zipcode, 822)
-    assert job.invalid?
-
-    job.update_attribute(:zipcode, 822334)
-    assert job.invalid?
-  end
 end
