@@ -6,15 +6,28 @@ class GuestCreatesAccountThroughLinkedInTest < ActionDispatch::IntegrationTest
 
     visit linkedin_path
 
-    linked_in_bio = "Senior Developer, Hammertech\nIndustry: Internet\nLinkedIn Profile: http://www.linkedin.com/in/johndoe"
-
     assert page.has_content?("Create a New Account")
     assert_equal "John", find("#user_first_name").value
     assert_equal "Doe", find("#user_last_name").value
     assert_equal "john@doe.com", find("#user_email_address").value
     assert_equal "Greater Boston Area", find("#user_city").value
-    assert_equal linked_in_bio, find("#user_bio").value
-    assert_equal "http://www.linkedin.com/in/johndoe", find("#user_image_path").value
+    assert_equal "Senior Developer, Hammertech", find("#user_bio").value
+    assert_equal "http://m.c.lnkd.licdn.com/mpr/mprx/0_aBcD...", find("#user_image_path").value
+
+    fill_in "Street address", with: "123 Maple Drive"
+    select "Colorado", from: "user_state"
+    fill_in "Zipcode", with: "80231"
+    fill_in "Username", with: "username"
+    fill_in "Password", with: "password"
+    fill_in "Password confirmation", with: "password"
+    select "contractor", from: "user_role"
+    fill_in "Bio", with: "In west Philadelphia born and raised"
+    click_on "Create User"
+
+    user = User.last
+
+    refute user.authorizations.empty?
+
   end
 
   test "guest logs in through linked in" do

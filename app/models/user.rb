@@ -110,5 +110,4 @@ class User < ActiveRecord::Base
   def accepted_bids
     bids.where(status: 1)
   end
-
 end

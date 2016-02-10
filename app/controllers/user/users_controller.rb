@@ -13,10 +13,17 @@ class User::UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      create_authorization_when_from_linkedin
       session[:user_id] = @user.id
       redirect_to dashboard_path
     else
       render :new
+    end
+  end
+
+  def create_authorization_when_from_linkedin
+    if params["provider"] && params["uid"]
+      @user.authorizations.create provider: params["provider"], uid: params["uid"]
     end
   end
 
@@ -52,15 +59,11 @@ class User::UsersController < ApplicationController
       session[:user_id] = @authorization.user.id
       redirect_to dashboard_path
     else
-      first_name = auth_hash["info"]["first_name"]
-      last_name = auth_hash["info"]["last_name"]
-      email = auth_hash["info"]["email"]
-      city = auth_hash["info"]["location"].split(",")[0]
-      linked_in_url = auth_hash["info"]["urls"]["public_profile"]
-      image = auth_hash["info"]["urls"]["public_profile"]
-      bio = "#{auth_hash['info']['description']}\nIndustry: #{auth_hash['info']['industry']}\nLinkedIn Profile: #{linked_in_url}"
-      @user = User.new :first_name => first_name, last_name: last_name, bio: bio, city: city, email_address: email, image_path: image
-      @user.authorizations.build :provider => auth_hash["provider"], :uid => auth_hash["uid"]
+      @user = User.new
+      creator = LinkedInUserCreator.new(@user, auth_hash)
+      creator.update_user
+      @provider = auth_hash["provider"]
+      @uid = auth_hash["uid"]
       render :new
     end
   end
