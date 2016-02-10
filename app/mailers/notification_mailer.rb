@@ -5,7 +5,7 @@ class NotificationMailer < ApplicationMailer
   end
 
   def notify_subject_line(bid)
-    if bid.status == "accepted"
+    if bid.accepted?
       "Your bid for #{bid.job.title} has been accepted!"
     else
       "Your bid for #{bid.job.title} has not succeeded."
@@ -14,7 +14,7 @@ class NotificationMailer < ApplicationMailer
 
   def feedback_prompt(job)
     @job = job
-    contractor_email = job.bids.find_by(status: 1).user.email_address
+    contractor_email = job.contractor_for_selected_bid.email_address
     mail(to: contractor_email, subject: "Feedback Needed: #{job.title}")
   end
 end

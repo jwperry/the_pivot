@@ -60,8 +60,6 @@ class User::BidsController < ApplicationController
   end
 
   def email_bidder_notifications
-    @bid.job.bids.each do |bid|
-      NotificationMailer.notify_bidder(bid)
-    end
+    @bid.job.bids.each { |bid| NotificationMailer.notify_bidder(bid) }
   end
 end
