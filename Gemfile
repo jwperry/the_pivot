@@ -25,6 +25,12 @@ gem 'stripe'
 gem 'stripe-ruby-mock', :require => 'stripe_mock'
 
 gem 'faker'
+# gem 'omniauth-linkedin-oauth2'
+# gem 'omniauth-oauth2', '1.3.1'
+# gem 'linkedin-oauth2', '~> 1.0'
+gem 'omniauth'
+gem 'omniauth-linkedin'
+gem 'figaro'
 
 # Use Unicorn as the app server
 # gem 'unicorn'

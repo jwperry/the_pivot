@@ -1,10 +1,12 @@
 class User < ActiveRecord::Base
   before_create :generate_slug
+  before_save :check_image_path
   has_secure_password
 
   has_many :bids
   has_many :jobs
   has_many :comments
+  has_many :authorizations
 
   validates :username,       presence: true,
                              uniqueness: true
@@ -96,5 +98,22 @@ class User < ActiveRecord::Base
 
   def has_jobs?
     jobs.any?
+  end
+
+  private
+
+  def check_image_path
+  self.image_pgaath = default_image if image_path_is_empty_or_nil
+
+    if default_image? && file_upload_file_name
+      self.image_path = ""
+      self.status = "active" unless status == "inactive"
+    elsif default_image?
+      self.status = "inactive"
+    end
+  end
+
+  def image_path_is_empty_or_nil
+    image_path.nil? || image_path.empty?
   end
 end

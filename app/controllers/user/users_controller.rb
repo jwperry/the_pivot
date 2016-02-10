@@ -46,6 +46,31 @@ class User::UsersController < ApplicationController
     @user = DashboardPresenter.new(user, view_context)
   end
 
+  def linkedin
+      # byebug
+      auth_hash = request.env['omniauth.auth']
+
+    @authorization = Authorization.find_by_provider_and_uid(auth_hash["provider"], auth_hash["uid"])
+    if @authorization
+      session[:user_id] = @authorization.user.id
+      redirect_to dashboard_path
+      # render :text => "Welcome back #{@authorization.user.name}! You have already signed up."
+    else
+      byebug
+      first_name = auth_hash["info"]["first_name"]
+      last_name = auth_hash["info"]["last_name"]
+      email = auth_hash["info"]["email"]
+      city = auth_hash["info"]["location"]
+      linked_in_url = auth_hash["info"]["urls"]["public_profile"]
+      bio = "#{auth_hash['info']['headline']}\n#{auth_hash['info']['industry']}\n#{auth_hash['info']['description']}\nLinked In Profile: #{linked_in_url}"
+      @user = User.new :first_name => first_name, last_name: last_name, bio: bio, city: city, email_address: email
+      @user.authorizations.build :provider => auth_hash["provider"], :uid => auth_hash["uid"]
+      render :new
+
+      # render :text => "Hi #{user.name}! You've signed up."
+    end
+  end
+
   private
 
   def set_user

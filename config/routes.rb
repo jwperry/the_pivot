@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   get "/logout", to: "sessions#destroy"
   get "/dashboard", to: "user/users#dashboard"
   get "/sign_up", to: "user/users#new"
+  get "/linkedin", to: "user/users#linkedin"
+  get "/auth/linkedin/callback", to: "user/users#linkedin"
 
   root "home#index"
 end
