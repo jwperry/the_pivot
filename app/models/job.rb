@@ -53,7 +53,7 @@ class Job < ActiveRecord::Base
     where(status: 0).each do |job|
       if job.bidding_close_date.past?
         job.bidding_closed!
-        puts "Updated status of job: #{job.title}"
+        Rails.logger.debug "Updated status of job: #{job.title}"
       end
     end
   end
