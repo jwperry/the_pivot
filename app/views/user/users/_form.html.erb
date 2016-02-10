@@ -52,41 +52,60 @@
   </div>
 
   <div class="row">
-    <%= f.label "Upload User Photo" %>
-    <br><br>
-    <%= f.file_field :file_upload, class: "grey-text", required: true %>
+    <div class="col s12">
+      <%= f.label "Upload User Photo" %>
+      <br><br>
+      <%= f.file_field :file_upload, class: "grey-text", required: true %>
+    </div>
   </div>
 
-  <%= f.label :bio %>
-  <%= f.text_area :bio, required: true, class: "user-bio",
-                        minlength: 35, maxlength: 600 %>
-  <br>
+  <div class="row">
+    <div class="col s12">
+      <%= f.label :bio %>
+      <%= f.text_area :bio, required: true, class: "user-bio",
+                            minlength: 35, maxlength: 600 %>
+    </div>
+  </div>
 
-  <%= f.label :password %>
-  <%= f.password_field :password, required: true %>
-  <br>
+  <div class="row">
+    <div class="col s12">
+      <%= f.label :password %>
+      <%= f.password_field :password, required: true %>
+    </div>
+  </div>
 
-  <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation, required: true %>
-  <br>
+  <div class="row">
+    <div class="col s12">
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation, required: true %>
+    </div>
+  </div>
 
-  <% if current_platform_admin? %>
-    <%= f.label :role %>
-    <%= f.select :role, options_for_select(["contractor", "lister", "platform_admin"], selected: "platform_admin") %>
-    <br>
-  <% elsif current_lister? %>
-    <%= f.label :role %>
-    <%= f.select :role, options_for_select(["lister"], selected: "lister") %>
-    <br>
-  <% elsif current_user %>
-    <%= f.label :role %>
-    <%= f.select :role, options_for_select(["contractor", "lister"], selected: current_user.role) %>
-    <br>
-  <% else %>
-    <%= f.label :role %>
-    <%= f.select :role, options_for_select(["contractor", "lister"]) %>
-    <br>
-  <% end %>
+  <div class="row">
+    <div class="col s12">
+      <% if current_platform_admin? %>
+        <%= f.label :role %>
+        <%= f.select :role, options_for_select(["contractor", "lister", "platform_admin"], selected: "platform_admin") %>
+        <br>
+      <% elsif current_lister? %>
+        <%= f.label :role %>
+        <%= f.select :role, options_for_select(["lister"], selected: "lister") %>
+        <br>
+      <% elsif current_user %>
+        <%= f.label :role %>
+        <%= f.select :role, options_for_select(["contractor", "lister"], selected: current_user.role) %>
+        <br>
+      <% else %>
+        <%= f.label :role %>
+        <%= f.select :role, options_for_select(["contractor", "lister"]) %>
+        <br>
+      <% end %>
+    </div>
+  </div>
 
-  <%= f.submit class: "wave-effect waves-light btn" %>
+  <div class="row">
+    <div class="col s12">
+      <%= f.submit class: "wave-effect waves-light btn" %>
+    </div>
+  </div>
 <% end  %>

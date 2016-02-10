@@ -1,7 +1,6 @@
 FactoryGirl.define do
   factory :category do
     name
-    description "Awesome Category"
   end
 
   factory :bid do
