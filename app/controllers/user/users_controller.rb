@@ -13,6 +13,7 @@ class User::UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      create_authorization_when_from_linkedin
       session[:user_id] = @user.id
       redirect_to dashboard_path
     else
@@ -42,6 +43,22 @@ class User::UsersController < ApplicationController
     @user = DashboardPresenter.new(user, view_context)
   end
 
+  def linkedin
+    @auth = Authorization.find_by_provider_and_uid(auth_hash["provider"],
+                                                   auth_hash["uid"])
+    if @auth
+      session[:user_id] = @auth.user.id
+      redirect_to dashboard_path
+    else
+      @user = User.new
+      creator = LinkedInUserCreator.new(@user, auth_hash)
+      creator.update_user
+      @provider = auth_hash["provider"]
+      @uid = auth_hash["uid"]
+      render :new
+    end
+  end
+
   private
 
   def set_user
@@ -62,7 +79,8 @@ class User::UsersController < ApplicationController
                                  :role,
                                  :slug,
                                  :file_upload,
-                                 :bio)
+                                 :bio,
+                                 :image_path)
   end
 
   def user_slug_is_current_user
@@ -71,5 +89,16 @@ class User::UsersController < ApplicationController
 
   def require_logged_in_user
     redirect_to login_path unless logged_in?
+  end
+
+  def auth_hash
+    request.env["omniauth.auth"]
+  end
+
+  def create_authorization_when_from_linkedin
+    if params["provider"] && params["uid"]
+      @user.authorizations.create provider: params["provider"],
+                                  uid: params["uid"]
+    end
   end
 end

@@ -89,6 +89,7 @@ GEM
       thor (~> 0.14)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
+    hashie (3.4.3)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
     i18n (0.7.0)
@@ -126,6 +127,15 @@ GEM
     netrc (0.10.3)
     nokogiri (1.6.7.1)
       mini_portile2 (~> 2.0.0.rc2)
+    oauth (0.4.7)
+    omniauth (1.3.1)
+      hashie (>= 1.2, < 4)
+      rack (>= 1.0, < 3)
+    omniauth-linkedin (0.2.0)
+      omniauth-oauth (~> 1.0)
+    omniauth-oauth (1.1.0)
+      oauth
+      omniauth (~> 1.0)
     paperclip (4.3.2)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -255,6 +265,8 @@ DEPENDENCIES
   launchy
   materialize-sass
   mocha
+  omniauth
+  omniauth-linkedin
   paperclip (~> 4.3)
   pg (~> 0.15)
   rails (= 4.2.5)

@@ -11,6 +11,8 @@ class ApplicationController < ActionController::Base
   helper_method :logged_out?
   helper_method :current_user_does_not_own_job
   helper_method :current_user_owns_current_job
+  helper_method :redirect_uri_linked_in
+  helper_method :user_picture
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
@@ -58,5 +60,21 @@ class ApplicationController < ActionController::Base
 
   def logged_out?
     !current_user
+  end
+
+  def redirect_uri_linked_in(env = nil)
+    if env == "dev"
+      "http://localhost:3000/dashboard"
+    else
+      "http://freelancer-for-you.herokuapp.com/dashboard"
+    end
+  end
+
+  def user_picture(user, sizing)
+    if user.image_path.nil? || user.image_path.empty?
+      user.file_upload.url(sizing)
+    else
+      user.image_path
+    end
   end
 end

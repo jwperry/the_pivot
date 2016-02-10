@@ -11,7 +11,7 @@
     <p class="col s12 m10 l10"><%= job.description %></p>
     <div class="col s12 m2 l2 center-align">
       <div class="row job-lister-image">
-        <%= image_tag job.lister.file_upload.url(:thumb), class: "circle"%>
+        <%= image_tag user_picture(job.lister, :thumb), class: "circle"%>
       </div>
       <p class="row job-lister-name">
         <%= link_to job.lister.full_name, user_path(job.lister), class: "job-lister-name-link" %>

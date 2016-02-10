@@ -15,7 +15,7 @@
         <div class="row valign-wrapper user-dashboard-info">
           <div class="col s12 m12 l6">
             <div class="row dashboard-user-image circle">
-              <%= image_tag @user.file_upload.url, class: "circle" %>
+              <%= image_tag user_picture(@user.model, :medium), class: "circle" %>
             </div>
             <div class="row no-bottom-margin">
               <h4><%= @user.full_name %></h4>

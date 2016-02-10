@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_many :bids
   has_many :jobs
   has_many :comments
+  has_many :authorizations
 
   validates :username,       presence: true,
                              uniqueness: true
@@ -98,13 +99,15 @@ class User < ActiveRecord::Base
     jobs.any?
   end
 
-  def accepted_bids
-    bids.where(status: 1)
-  end
-
   def jobs_that_require_feedback
     accepted_bids.map do |bid|
       bid.job if bid.job.feedback_required_from_contractor
     end.compact
+  end
+
+  private
+
+  def accepted_bids
+    bids.where(status: 1)
   end
 end
