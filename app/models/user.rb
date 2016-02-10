@@ -97,4 +97,14 @@ class User < ActiveRecord::Base
   def has_jobs?
     jobs.any?
   end
+
+  def accepted_bids
+    bids.where(status: 1)
+  end
+
+  def jobs_that_require_feedback
+    accepted_bids.map do |bid|
+      bid.job if bid.job.feedback_required_from_contractor
+    end.compact
+  end
 end

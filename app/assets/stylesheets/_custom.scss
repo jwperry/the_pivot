@@ -567,6 +567,36 @@ table a {
   }
 }
 
+h3#ui-id-1.feedback-required {
+  background: $very-light-red;
+  color: $black;
+  font-size: 26px;
+  letter-spacing: 0.5em;
+  padding: 5px 0;
+  text-align: center;
+  text-transform: uppercase;
+
+  .arrow-icon {
+    color: $dark-red;
+  }
+
+  &:hover {
+    background: $light-red;
+    color: $black;
+
+    .arrow-icon {
+      color: $red;
+    }
+
+  }
+
+}
+
+.row.no-bottom-margin.feedback-accordion a {
+  @include main-link;
+}
+
+
 // -----USER PROFILE-----
 
 .comment-text {
@@ -671,11 +701,24 @@ table a {
   width: 80%;
 
   textarea {
+    font-size: 18px;
     height: 150px;
   }
 
   select {
     width: 200px;
+  }
+
+  .bid-close-label,
+  .must-complete-by-label {
+    display: block;
+  }
+
+  #bid_close_time_4i,
+  #bid_close_time_5i {
+    display: inline;
+    margin: 10px;
+    width: 100px;
   }
 }
 

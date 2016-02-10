@@ -9,7 +9,7 @@ class ListerViewsDashboardTest < ActionDispatch::IntegrationTest
     closed_bid_job = create(:job,
                             user_id: lister.id,
                             status: "bidding_closed",
-                            bidding_close_date: Time.now.to_datetime)
+                            bidding_close_date: Time.now + 1)
     accepted_bid1 = create(:bid, status: 1)
     in_progress_job = create(:job,
                              user_id: lister.id,
