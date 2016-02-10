@@ -518,16 +518,27 @@ table a {
   text-align: justify;
 }
 
-.status-pending {
+.status-pending,
+.status-in_progress {
   color: $orange;
 }
 
-.status-accepted {
+.status-completed {
+  color: $grey
+}
+
+.status-bidding_closed {
+  color: $base-dark-yellow;
+}
+
+.status-accepted,
+.status-bidding_open {
   color: $base-green-dark;
   font-size: 14px;
 }
 
-.status-rejected {
+.status-rejected,
+.status-cancelled {
   color: $red;
   font-size: 14px;
 }
