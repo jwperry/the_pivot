@@ -486,6 +486,7 @@ nav ul a:hover {
 }
 
 .user-address {
+  font-size: 18px;
   margin: 10px auto 5px;
   max-width: 80%;
 }
@@ -524,7 +525,7 @@ table a {
 }
 
 .status-completed {
-  color: $grey
+  color: $grey;
 }
 
 .status-bidding_closed {
