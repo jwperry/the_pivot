@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "no-reply@freelancerforyou.com"
+  default from: "turingfreelancerforyou@gmail.com"
   layout "mailer"
 end
