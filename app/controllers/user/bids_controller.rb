@@ -60,5 +60,11 @@ class User::BidsController < ApplicationController
     end
 
     @bid.job.update_attribute(:status, 2)
+
+    email_bidder_notifications
+  end
+
+  def email_bidder_notifications
+    @bid.job.bids.each { |bid| NotificationMailer.notify_bidder(bid) }
   end
 end
