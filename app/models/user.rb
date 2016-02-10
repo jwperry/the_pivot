@@ -21,7 +21,6 @@ class User < ActiveRecord::Base
   validates :zipcode,        presence: true
   validates :bio,            presence: true,
                              length: { in: 35..600 }
-  # validate :at_least_one_picture
 
   DEFAULT_PHOTO = "http://t2.tagstat.com/im/people/silhouette_m_300.png"
   has_attached_file :file_upload,
@@ -100,11 +99,6 @@ class User < ActiveRecord::Base
     jobs.any?
   end
 
-  def at_least_one_picture
-    errors.add(:base, "Please upload a picture or enter an image path.") if
-    both_image_fields_blank?
-  end
-  
   def jobs_that_require_feedback
     accepted_bids.map do |bid|
       bid.job if bid.job.feedback_required_from_contractor
@@ -112,18 +106,6 @@ class User < ActiveRecord::Base
   end
 
   private
-
-  def both_image_fields_blank?
-    image_path_is_empty_or_nil && file_upload_is_empty_or_nil
-  end
-
-  def image_path_is_empty_or_nil
-    image_path.nil? || image_path.empty?
-  end
-
-  def file_upload_is_empty_or_nil
-    file_upload_file_name.nil? || file_upload_file_name.empty?
-  end
 
   def accepted_bids
     bids.where(status: 1)
