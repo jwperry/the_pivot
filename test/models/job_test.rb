@@ -134,4 +134,27 @@ class JobTest < ActiveSupport::TestCase
 
     assert_equal "$2 - $400", job.bid_price_range
   end
+
+  test "updates bidding status for jobs in the past" do
+    bidding_expired_job = create(:job,
+                                 status: 0,
+                                 bidding_close_date: Time.now + 1)
+    bidding_not_expired_job = create(:job,
+                                     status: 0,
+                                     bidding_close_date: Time.now + 45)
+
+    assert bidding_expired_job.bidding_open?
+    assert bidding_not_expired_job.bidding_open?
+
+    sleep(2)
+
+    Job.update_bidding_status
+
+    bidding_expired_job.reload
+    bidding_not_expired_job.reload
+
+    refute bidding_expired_job.bidding_open?
+    assert bidding_expired_job.bidding_closed?
+    assert bidding_not_expired_job.bidding_open?
+  end
 end

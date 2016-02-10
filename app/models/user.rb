@@ -104,6 +104,12 @@ class User < ActiveRecord::Base
     errors.add(:base, "Please upload a picture or enter an image path.") if
     both_image_fields_blank?
   end
+  
+  def jobs_that_require_feedback
+    accepted_bids.map do |bid|
+      bid.job if bid.job.feedback_required_from_contractor
+    end.compact
+  end
 
   private
 
@@ -118,4 +124,9 @@ class User < ActiveRecord::Base
   def file_upload_is_empty_or_nil
     file_upload_file_name.nil? || file_upload_file_name.empty?
   end
+
+  def accepted_bids
+    bids.where(status: 1)
+  end
+
 end

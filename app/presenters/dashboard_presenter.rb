@@ -73,7 +73,9 @@ class DashboardPresenter < SimpleDelegator
   end
 
   def dashboard_links
-    if view.current_lister? || view.current_platform_admin?
+    if view.current_platform_admin?
+      view.render partial: "admin_dashboard_links", locals: { user: self }
+    elsif view.current_lister?
       view.render partial: "lister_dashboard_links", locals: { user: self }
     else
       view.render partial: "contractor_dashboard_links", locals: { user: self }
@@ -86,5 +88,16 @@ class DashboardPresenter < SimpleDelegator
                        view.link_to("My Listings", "#my-listings"),
                        class: "tab col s3")
     end
+  end
+
+  def feedback_required_accordion
+    if feedback_required?
+      view.render(partial: "user/users/feedback_accordion",
+                  locals: { user: self })
+    end
+  end
+
+  def feedback_required?
+    jobs_that_require_feedback.any?
   end
 end

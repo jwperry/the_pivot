@@ -33,12 +33,12 @@ class Job < ActiveRecord::Base
 
   def bidding_close_date_cannot_be_in_the_past
     errors.add(:bidding_close_date, "can't be in the past") if
-      !bidding_close_date.blank? && bidding_close_date < Date.today
+      !bidding_close_date.blank? && bidding_close_date.past?
   end
 
   def must_complete_by_date_cannot_be_in_the_past
     errors.add(:must_complete_by_date, "can't be in the past") if
-      !must_complete_by_date.blank? && must_complete_by_date < Date.today
+      !must_complete_by_date.blank? && must_complete_by_date.past?
   end
 
   def must_complete_by_date_is_after_bidding_close_date
@@ -52,8 +52,8 @@ class Job < ActiveRecord::Base
   def self.update_bidding_status
     where(status: 0).each do |job|
       if job.bidding_close_date.past?
-        job.bidding_closed!
-        puts "Updated status of job: #{job.title}"
+        job.update_attribute(:status, "bidding_closed")
+        Rails.logger.debug "Updated status of job: #{job.title}"
       end
     end
   end
@@ -112,6 +112,10 @@ class Job < ActiveRecord::Base
 
   def contractor_for_selected_bid
     selected_bid.user
+  end
+
+  def feedback_required_from_contractor
+    comments.count == 1
   end
 
   private

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :categories, only: [:show], param: :slug
+  resources :categories, only: [:show, :new, :create], param: :slug
 
   scope module: "user" do
     resources :users,
