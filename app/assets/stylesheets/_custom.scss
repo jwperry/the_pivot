@@ -732,18 +732,16 @@ h3#ui-id-1.feedback-required {
     display: block;
   }
 
-  #bid_close_time_4i,
-  #bid_close_time_5i {
-    display: inline;
-    margin: 10px;
-    width: 100px;
+  .duration-estimate-dropdown {
+    width: 250px;
   }
+
 }
 
 label {
+  color:$grey;
   font-size: 1.1rem;
   font-weight: 100;
-  color: #9e9e9e;
   text-transform: uppercase;
   letter-spacing: 5px;
 }
@@ -764,6 +762,11 @@ textarea.materialize-textarea {
   font-weight: 300;
   height: 2rem;
   text-align: center;
+}
+
+input[type=date],
+input[type=datetime-local] {
+  letter-spacing: 3px;
 }
 
 .dropdown-content li {
@@ -800,7 +803,6 @@ select {
 #user_file_upload {
   padding-left: 115px;
 }
-
 
 // -----SIDE NAV-----
 
