@@ -77,9 +77,9 @@
     <%= f.select :role, options_for_select(["contractor", "lister"]) %>
     <br>
   <% end %>
+  
   <%= hidden_field_tag "provider", (@provider || nil) %>
   <%= hidden_field_tag "uid", (@uid || nil)  %>
-
 
   <%= f.submit class: "wave-effect waves-light btn" %>
 <% end  %>
