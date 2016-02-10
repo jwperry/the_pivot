@@ -1,4 +1,6 @@
 class CategoriesController < ApplicationController
+  before_action :require_platform_admin, only: [:new, :create]
+
   def show
     @category = Category.find_by_slug(params[:slug])
     @categories = Category.all
@@ -21,5 +23,9 @@ class CategoriesController < ApplicationController
 
   def category_params
     params.require(:category).permit(:name, :description)
+  end
+
+  def require_platform_admin
+    render file: "public/404" unless current_platform_admin?
   end
 end

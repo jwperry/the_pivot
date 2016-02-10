@@ -66,4 +66,25 @@ class UserLeavesFeedbackTest < ActionDispatch::IntegrationTest
       assert page.has_content? comment.accepted_bid_price
     end
   end
+
+  test "user cannot leave feedback for a project that is not theirs" do
+    bid = create(:bid)
+    job = bid.job
+    job.completed!
+    bid.accepted!
+    lister = job.lister
+    contractor = bid.user
+    new_user = create(:contractor)
+
+    ApplicationController.any_instance.stubs(:current_user).returns(new_user)
+
+    visit new_user_job_comment_path(lister, job)
+
+    assert page.has_content?("The page you were looking for doesn't exist.")
+    refute page.has_content?(contractor.first_name)
+    refute page.has_content?(contractor.last_name)
+    refute page.has_content?(lister.first_name)
+    refute page.has_content?(lister.last_name)
+    refute page.has_content?(job.title)
+  end
 end
