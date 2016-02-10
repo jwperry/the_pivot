@@ -8,13 +8,16 @@ class LinkedInUserCreator
 
   def update_user
     user.update_attributes attributes_from_linked_in
-    # Authorization.create :provider => auth_hash["provider"], :uid => auth_hash["uid"]
-    # user.update_attributes(uid: uid, provider: provider)
     user.errors.clear
   end
 
   def attributes_from_linked_in
-    {first_name: first_name, last_name: last_name, bio: bio, city: city, email_address: email, image_path: image_url}
+    { first_name: first_name,
+      last_name: last_name,
+      bio: bio,
+      city: city,
+      email_address: email,
+      image_path: image_url }
   end
 
   def provider

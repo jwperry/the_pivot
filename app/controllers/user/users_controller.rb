@@ -23,7 +23,8 @@ class User::UsersController < ApplicationController
 
   def create_authorization_when_from_linkedin
     if params["provider"] && params["uid"]
-      @user.authorizations.create provider: params["provider"], uid: params["uid"]
+      @user.authorizations.create provider: params["provider"],
+                                  uid: params["uid"]
     end
   end
 
@@ -54,9 +55,10 @@ class User::UsersController < ApplicationController
   end
 
   def linkedin
-    @authorization = Authorization.find_by_provider_and_uid(auth_hash["provider"], auth_hash["uid"])
-    if @authorization
-      session[:user_id] = @authorization.user.id
+    @auth = Authorization.find_by_provider_and_uid(auth_hash["provider"],
+                                                   auth_hash["uid"])
+    if @auth
+      session[:user_id] = @auth.user.id
       redirect_to dashboard_path
     else
       @user = User.new
@@ -101,6 +103,6 @@ class User::UsersController < ApplicationController
   end
 
   def auth_hash
-    request.env['omniauth.auth']
+    request.env["omniauth.auth"]
   end
 end

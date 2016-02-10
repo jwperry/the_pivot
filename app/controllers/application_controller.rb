@@ -61,7 +61,7 @@ class ApplicationController < ActionController::Base
     !current_user
   end
 
-  def redirect_uri_linked_in(env=nil)
+  def redirect_uri_linked_in(env = nil)
     if env == "dev"
       "http://localhost:3000/dashboard"
     else
