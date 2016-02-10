@@ -3,6 +3,7 @@ class Category < ActiveRecord::Base
 
   validates :name, presence: true,
                    uniqueness: true
+
   before_create :generate_slug
 
   def to_param
@@ -14,6 +15,6 @@ class Category < ActiveRecord::Base
   end
 
   def jobs_open_for_bidding
-    jobs.bidding_open
+    jobs.bidding_open.order(created_at: :desc)
   end
 end
