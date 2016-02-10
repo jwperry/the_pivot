@@ -592,14 +592,10 @@ h3#ui-id-1.feedback-required {
 
 }
 
-.ui-widget-content a {
-  color: $base-purple-blue-dark !important;
-
-  &:hover {
-    color: $base-purple-blue !important;
-  }
-
+.row.no-bottom-margin.feedback-accordion a {
+  @include main-link;
 }
+
 
 // -----USER PROFILE-----
 
@@ -705,11 +701,24 @@ h3#ui-id-1.feedback-required {
   width: 80%;
 
   textarea {
+    font-size: 18px;
     height: 150px;
   }
 
   select {
     width: 200px;
+  }
+
+  .bid-close-label,
+  .must-complete-by-label {
+    display: block;
+  }
+
+  #bid_close_time_4i,
+  #bid_close_time_5i {
+    display: inline;
+    margin: 10px;
+    width: 100px;
   }
 }
 
