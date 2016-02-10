@@ -100,20 +100,32 @@ class User < ActiveRecord::Base
     jobs.any?
   end
 
+  def only_one_picture
+    errors.add(:base, "Please upload a picture OR enter an image path") if
+    both_image_fields
+  end
+
+  def at_least_one_picture
+    errors.add(:base, "You can only upload a picture OR enter an image path") if
+    neither_image_fields
+  end
+
+
   private
 
-  def check_image_path
-  self.image_pgaath = default_image if image_path_is_empty_or_nil
+  def neither_image_fields
+    image_path_is_empty_or_nil && file_upload_is_empty_or_nil
+  end
 
-    if default_image? && file_upload_file_name
-      self.image_path = ""
-      self.status = "active" unless status == "inactive"
-    elsif default_image?
-      self.status = "inactive"
-    end
+  def both_image_fields
+    image_path && file_upload
   end
 
   def image_path_is_empty_or_nil
     image_path.nil? || image_path.empty?
+  end
+
+  def file_upload_is_empty_or_nil
+    file_upload.nil? || file_upload.empty?
   end
 end
