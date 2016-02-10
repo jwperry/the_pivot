@@ -11,7 +11,7 @@ class NotificationMailerTest < ActionMailer::TestCase
       NotificationMailer.notify_bidder(bid).deliver_later
     end
 
-    assert_equal ActionMailer::Base.deliveries.count, 2
+    assert_equal 2, ActionMailer::Base.deliveries.count
     winning_email = ActionMailer::Base.deliveries.first
     losing_email = ActionMailer::Base.deliveries.last
     bid_end_message   = "Bidding on the job #{job.title} has now concluded."
@@ -45,7 +45,7 @@ class NotificationMailerTest < ActionMailer::TestCase
     job.bids << losing_bid
     NotificationMailer.feedback_prompt(job).deliver_later
 
-    assert_equal ActionMailer::Base.deliveries.count, 1
+    assert_equal 1, ActionMailer::Base.deliveries.count
     email = ActionMailer::Base.deliveries.first
     complete_message   = "The job #{job.title} has been marked as complete "\
                          "by the lister. Well done!"
