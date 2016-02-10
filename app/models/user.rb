@@ -1,6 +1,5 @@
 class User < ActiveRecord::Base
   before_create :generate_slug
-  before_save :check_image_path
   has_secure_password
 
   has_many :bids
@@ -22,6 +21,7 @@ class User < ActiveRecord::Base
   validates :zipcode,        presence: true
   validates :bio,            presence: true,
                              length: { in: 35..600 }
+  # validate :at_least_one_picture
 
   DEFAULT_PHOTO = "http://t2.tagstat.com/im/people/silhouette_m_300.png"
   has_attached_file :file_upload,
@@ -100,25 +100,15 @@ class User < ActiveRecord::Base
     jobs.any?
   end
 
-  def only_one_picture
-    errors.add(:base, "Please upload a picture OR enter an image path") if
-    both_image_fields
-  end
-
   def at_least_one_picture
-    errors.add(:base, "You can only upload a picture OR enter an image path") if
-    neither_image_fields
+    errors.add(:base, "Please upload a picture or enter an image path.") if
+    both_image_fields_blank?
   end
-
 
   private
 
-  def neither_image_fields
+  def both_image_fields_blank?
     image_path_is_empty_or_nil && file_upload_is_empty_or_nil
-  end
-
-  def both_image_fields
-    image_path && file_upload
   end
 
   def image_path_is_empty_or_nil
@@ -126,6 +116,6 @@ class User < ActiveRecord::Base
   end
 
   def file_upload_is_empty_or_nil
-    file_upload.nil? || file_upload.empty?
+    file_upload_file_name.nil? || file_upload_file_name.empty?
   end
 end

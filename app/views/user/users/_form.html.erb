@@ -12,7 +12,13 @@
   <div class="row">
     <%= f.label :file_upload %>
     <br><br>
-    <%= f.file_field :file_upload, class: "grey-text", required: true %>
+    <%= f.file_field :file_upload, class: "grey-text" %>
+    <br><br>
+    OR
+    <br><br>
+    <%= f.label :image_path %>
+    <%= f.text_field :image_path %>
+    <br>
   </div>
 
   <%= f.label :email_address %>

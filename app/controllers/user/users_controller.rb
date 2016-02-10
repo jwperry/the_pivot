@@ -47,14 +47,11 @@ class User::UsersController < ApplicationController
   end
 
   def linkedin
-      # byebug
-      auth_hash = request.env['omniauth.auth']
-
+      # auth_hash = request.env['omniauth.auth']
     @authorization = Authorization.find_by_provider_and_uid(auth_hash["provider"], auth_hash["uid"])
     if @authorization
       session[:user_id] = @authorization.user.id
       redirect_to dashboard_path
-      # render :text => "Welcome back #{@authorization.user.name}! You have already signed up."
     else
       byebug
       first_name = auth_hash["info"]["first_name"]
@@ -66,8 +63,6 @@ class User::UsersController < ApplicationController
       @user = User.new :first_name => first_name, last_name: last_name, bio: bio, city: city, email_address: email
       @user.authorizations.build :provider => auth_hash["provider"], :uid => auth_hash["uid"]
       render :new
-
-      # render :text => "Hi #{user.name}! You've signed up."
     end
   end
 
@@ -91,7 +86,8 @@ class User::UsersController < ApplicationController
                                  :role,
                                  :slug,
                                  :file_upload,
-                                 :bio)
+                                 :bio,
+                                 :image_path)
   end
 
   def user_slug_is_current_user
@@ -100,5 +96,9 @@ class User::UsersController < ApplicationController
 
   def require_logged_in_user
     redirect_to login_path unless logged_in?
+  end
+
+  def auth_hash
+    request.env['omniauth.auth']
   end
 end
