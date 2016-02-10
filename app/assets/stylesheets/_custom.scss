@@ -643,9 +643,15 @@ h3#ui-id-1.feedback-required {
 
 .comments-label {
   color: $grey;
+  font-size: 36px;
   font-weight: 100;
   letter-spacing: 0.4em;
   text-transform: uppercase;
+}
+
+#previous-jobs,
+#previous-listings h5 {
+  padding: 15px 0;
 }
 
 /* BUTTONS */
