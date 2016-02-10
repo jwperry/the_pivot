@@ -26,10 +26,15 @@
       <hr>
       <div class="row center-align">
         <div class="col s6 job-info">
-          Bid Range: $<%= @job.lowest_bid %> - $<%= @job.highest_bid %>
+          <%= @job.bid_price_range %>
         </div>
         <div class="col s6 job-info">
           Bidding Ends: <%= @job.bidding_closes_on %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12">
+          <%= @job.delete_listing_button %>
         </div>
       </div>
   </div>

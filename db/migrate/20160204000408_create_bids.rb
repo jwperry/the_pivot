@@ -7,6 +7,8 @@ class CreateBids < ActiveRecord::Migration
       t.integer :duration_estimate
       t.text :details
       t.string :status
+
+      t.timestamps null: false
     end
   end
 end
