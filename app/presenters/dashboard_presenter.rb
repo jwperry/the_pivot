@@ -89,4 +89,15 @@ class DashboardPresenter < SimpleDelegator
                        class: "tab col s3")
     end
   end
+
+  def feedback_required_accordion
+    if feedback_required?
+      view.render(partial: "user/users/feedback_accordion",
+                  locals: { user: self })
+    end
+  end
+
+  def feedback_required?
+    jobs_that_require_feedback.any?
+  end
 end

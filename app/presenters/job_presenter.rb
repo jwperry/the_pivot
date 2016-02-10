@@ -59,7 +59,7 @@ class JobPresenter < SimpleDelegator
   def bid_status_or_accept_bid_link(bid)
     if bidding_closed? && bids_still_pending? && view.current_lister?
       view.link_to "Accept",
-                   view.user_job_bid_path(bid.user,
+                   view.user_job_bid_path(bid.job.lister,
                                           bid.job,
                                           bid,
                                           status: 1),

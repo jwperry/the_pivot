@@ -20,6 +20,7 @@ $black: #000;
 $orange: #ffa500;
 $light-red: #f26363;
 $red: #af0c0c;
+$very-light-red: lighten($red, 40%);
 $dark-red: darken($red, 10%);
 $grey: rgba(#a7a7a7, 0.8);
 $light-grey: #eee;

@@ -5,6 +5,11 @@
     </div>
   </div>
   <div class="row">
+    <div class="col s12">
+      <%= @user.feedback_required_accordion %>
+    </div>
+  </div>
+  <div class="row">
     <div class="col s12 m12 l12">
       <div class="card">
         <div class="row valign-wrapper user-dashboard-info">
@@ -59,3 +64,5 @@
     </div>
   </div>
 </div>
+
+<%= render partial: "user/jobs/accordion_javascript" %>
