@@ -1,9 +1,10 @@
-require 'test_helper'
+require "test_helper"
 
 class NotificationMailerTest < ActionMailer::TestCase
   test "notify_bidders sends correct emails to winning and losing bidders" do
     job = create(:job)
-    winning_bid, losing_bid = create(:bid), create(:bid)
+    winning_bid = create(:bid)
+    losing_bid = create(:bid)
     winning_bid.update_attribute(:status, 1)
     losing_bid.update_attribute(:status, 2)
     job.bids << winning_bid
@@ -21,14 +22,16 @@ class NotificationMailerTest < ActionMailer::TestCase
     rejection_message = "Thank you for your interest! Your bid was not "\
                         "successful, but many more jobs await your talents!"
 
-    assert_equal "Your bid for #{job.title} has been accepted!", winning_email.subject
+    assert_equal "Your bid for #{job.title} has been accepted!",
+                  winning_email.subject
     assert_equal ["#{winning_bid.user.email_address}"], winning_email.to
     assert_equal ["no-reply@freelancerforyou.com"], winning_email.from
     assert winning_email.body.encoded.include?(bid_end_message)
     assert winning_email.body.encoded.include?(success_message)
     refute winning_email.body.encoded.include?(rejection_message)
-    
-    assert_equal "Your bid for #{job.title} has not succeeded.", losing_email.subject
+
+    assert_equal "Your bid for #{job.title} has not succeeded.",
+                 losing_email.subject
     assert_equal ["#{losing_bid.user.email_address}"], losing_email.to
     assert_equal ["no-reply@freelancerforyou.com"], losing_email.from
     assert losing_email.body.encoded.include?(bid_end_message)
@@ -38,17 +41,18 @@ class NotificationMailerTest < ActionMailer::TestCase
 
   test "feedback_prompt sends correct email only to job's winning contractor" do
     job = create(:job)
-    winning_bid, losing_bid = create(:bid), create(:bid)
+    winning_bid = create(:bid)
+    losing_bid = create(:bid)
     winning_bid.update_attribute(:status, 1)
     losing_bid.update_attribute(:status, 2)
     job.bids << winning_bid
     job.bids << losing_bid
     NotificationMailer.feedback_prompt(job).deliver_later
-    assert_equal ActionMailer::Base.deliveries.count, 1
 
+    assert_equal ActionMailer::Base.deliveries.count, 1
     email = ActionMailer::Base.deliveries.first
-    complete_message   = "The job #{job.title} has been marked as complete by the "\
-                         "lister. Well done!"
+    complete_message   = "The job #{job.title} has been marked as complete "\
+                         "by the lister. Well done!"
     feedback_message   = "Please log into your account to leave feedback."
 
     assert_equal "Feedback Needed: #{job.title}", email.subject
