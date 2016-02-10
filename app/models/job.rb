@@ -91,7 +91,7 @@ class Job < ActiveRecord::Base
   end
 
   def selected_bid
-    bids.where(status: 1).first
+    bids.find_by(status: 1)
   end
 
   def pending_bids
