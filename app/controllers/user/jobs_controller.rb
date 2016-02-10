@@ -81,14 +81,7 @@ class User::JobsController < ApplicationController
     hour = params[:job][:bidding_close_date].split("T")[1].split(":")[0].to_i
     minute = params[:job][:bidding_close_date].split("T")[1].split(":")[1].to_i
 
-    # bid_close_date = params[:job][:bidding_close_date]
-    # param_hour = params[:bid_close]["time(4i)"]
-    # minute = params[:bid_close]["time(5i)"]
-    #
-    # DateTime.strptime("#{bid_close_date} #{param_hour}:#{minute}",
-    #                   "%Y-%m-%d %k:%M")
     Time.new(year, month, day, hour, minute)
-    # Time.new(params[:job][:bidding_close_date])
   end
 
   def construct_must_complete_by_date
@@ -96,9 +89,7 @@ class User::JobsController < ApplicationController
     month = params[:job][:must_complete_by_date].split("-")[1].to_i
     day = params[:job][:must_complete_by_date].split("-")[2].to_i
 
-    # DateTime.strptime("#{complete_by_date}", "%Y-%m-%d")
     Time.new(year, month, day)
-    # Time.new(params[:job][:must_complete_by_date])
   end
 
   def require_platform_admin
