@@ -83,11 +83,13 @@ class Job < ActiveRecord::Base
   end
 
   def bidding_closes_on
-    bidding_close_date.utc.strftime("%b %e, %Y at %l:%M%P")
+    # THIS IS CORRECT IN HEROKU AND LOCAL IF CREATING IN CONSOLE
+    bidding_close_date.strftime("%b %e, %Y at %l:%M%P")
   end
 
   def complete_by_date
-    must_complete_by_date.utc.strftime("%b %e, %Y")
+    # THIS IS CORRECT IN HEROKU AND LOCAL IF CREATING IN CONSOLE
+    must_complete_by_date.strftime("%b %e, %Y")
   end
 
   def selected_bid

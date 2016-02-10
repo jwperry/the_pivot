@@ -36,16 +36,8 @@
       <%= f.text_field :zipcode, required: true %>
       <br>
 
-      <%= label_tag "Bidding Close Date" %>
-      <input type="date" name="job[bidding_close_date]">
-      <br>
-
-      <%= label_tag :bid_close_time, nil, class: "bid-close-label" %>
-      <%= time_select "bid_close", "time",
-      ampm: true,
-      required: true,
-      minute_step: 15 %>
-      <br>
+      <%= label_tag "Bidding Close Date/Time" %>
+      <input type="datetime-local" name="job[bidding_close_date]">
       <br>
 
       <%= label_tag "Must Complete By Date", nil, class: "must-complete-by-label" %>

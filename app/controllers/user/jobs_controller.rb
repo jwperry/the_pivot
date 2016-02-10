@@ -2,6 +2,7 @@ class User::JobsController < ApplicationController
   before_action :sanitize_job_params, only: [:create]
   before_action :require_platform_admin, only: [:destroy]
   before_action :sanitize_status_params, only: [:update]
+  before_action :require_non_contractor, only: [:new, :create, :update]
 
   def new
     @job = Job.new
@@ -13,6 +14,7 @@ class User::JobsController < ApplicationController
       redirect_to dashboard_path(current_user)
     else
       @job = current_user.jobs.new(job_params)
+
       if @job.save
         redirect_to user_job_path(current_user, @job)
       else
@@ -70,21 +72,33 @@ class User::JobsController < ApplicationController
     params[:job][:duration_estimate] = params[:job][:duration_estimate].to_i
     params[:job][:bidding_close_date] = construct_bidding_close_date
     params[:job][:must_complete_by_date] = construct_must_complete_by_date
-    params[:job][:duration_estimate] = params[:job][:duration_estimate].to_i
   end
 
   def construct_bidding_close_date
-    bid_close_date = params[:job][:bidding_close_date]
-    param_hour = params[:bid_close]["time(4i)"]
-    minute = params[:bid_close]["time(5i)"]
+    year = params[:job][:bidding_close_date].split("-")[0].to_i
+    month = params[:job][:bidding_close_date].split("-")[1].to_i
+    day = params[:job][:bidding_close_date].split("-")[2].split("T")[0].to_i
+    hour = params[:job][:bidding_close_date].split("T")[1].split(":")[0].to_i
+    minute = params[:job][:bidding_close_date].split("T")[1].split(":")[1].to_i
 
-    DateTime.strptime("#{bid_close_date} #{param_hour}:#{minute}",
-                      "%Y-%m-%d %k:%M")
+    # bid_close_date = params[:job][:bidding_close_date]
+    # param_hour = params[:bid_close]["time(4i)"]
+    # minute = params[:bid_close]["time(5i)"]
+    #
+    # DateTime.strptime("#{bid_close_date} #{param_hour}:#{minute}",
+    #                   "%Y-%m-%d %k:%M")
+    Time.new(year, month, day, hour, minute)
+    # Time.new(params[:job][:bidding_close_date])
   end
 
   def construct_must_complete_by_date
-    complete_by_date = params[:job][:must_complete_by_date]
-    DateTime.strptime("#{complete_by_date}", "%Y-%m-%d")
+    year = params[:job][:must_complete_by_date].split("-")[0].to_i
+    month = params[:job][:must_complete_by_date].split("-")[1].to_i
+    day = params[:job][:must_complete_by_date].split("-")[2].to_i
+
+    # DateTime.strptime("#{complete_by_date}", "%Y-%m-%d")
+    Time.new(year, month, day)
+    # Time.new(params[:job][:must_complete_by_date])
   end
 
   def require_platform_admin
@@ -97,5 +111,9 @@ class User::JobsController < ApplicationController
 
   def sanitize_status_params
     params[:status] = params[:status].to_i
+  end
+
+  def require_non_contractor
+    render file: "public/404" if current_contractor?
   end
 end
