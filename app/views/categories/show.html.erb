@@ -4,7 +4,7 @@
       <h3 class="choose-category-title">Choose a Category</h3>
       <div class="input-field">
         <%= select_tag :categories,
-                       options_from_collection_for_select(@categories,
+                       options_from_collection_for_select(@category.categories,
                                                           "id",
                                                           "name",
                                                           selected: @category.id),
@@ -12,7 +12,7 @@
       </div>
     </div>
     <ul class="category-list">
-      <% @categories.each do |category| %>
+      <% @category.categories.each do |category| %>
         <a href="/categories/<%= category.slug %>">
           <li class="category-list-item"><%= category.name %></li>
         </a>
@@ -27,13 +27,7 @@
     </header>
     <section class="row">
       <div class="col s12 m12 l12 left-align">
-        <% if @category.jobs_open_for_bidding.empty? %>
-          <h5>No Jobs Open For Bidding In This Category</h5>
-        <% else %>
-          <% @category.jobs_open_for_bidding.each do |job| %>
-            <%= render partial: "job", locals: { job: job } %>
-          <% end %>
-        <% end %>
+        <%= @category.show_jobs %>
       </div>
     </section>
   </div>

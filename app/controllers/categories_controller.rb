@@ -2,8 +2,10 @@ class CategoriesController < ApplicationController
   before_action :require_platform_admin, only: [:new, :create]
 
   def show
-    @category = Category.includes(jobs: :user).find_by_slug(params[:slug])
-    @categories = Category.all
+    category = Category.includes(jobs: :user).find_by_slug(params[:slug])
+    jobs = category.jobs.bidding_open.paginate(page: params[:page])
+    categories = Category.all
+    @category = CategoryPresenter.new(category, jobs, categories, view_context)
   end
 
   def new
