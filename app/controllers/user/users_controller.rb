@@ -12,6 +12,7 @@ class User::UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+
     if @user.save
       create_authorization_when_from_linkedin
       session[:user_id] = @user.id

@@ -804,6 +804,19 @@ select {
   padding-left: 115px;
 }
 
+.red-text {
+  color: $red;
+  letter-spacing: 3px;
+}
+
+.user-photo-section {
+  background: lighten($light-grey, 3%);
+}
+
+.col.s12.user-photo-section {
+  padding-top: 15px;
+}
+
 // -----SIDE NAV-----
 
 .side-nav {
