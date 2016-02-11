@@ -20,7 +20,6 @@ gem 'faker'
 gem 'omniauth'
 gem 'omniauth-linkedin'
 gem 'figaro'
-gem 'figaro'
 gem 'rails_12factor', group: :production
 
 group :development, :test do
