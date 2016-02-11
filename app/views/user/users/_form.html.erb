@@ -41,7 +41,11 @@
     </div>
     <div class="col s12 m12 l6">
       <%= f.label :state %>
-      <%= f.select(:state, options_for_select(us_states)) %>
+      <% if current_user %>
+        <%= f.select(:state, options_for_select(us_states, current_user.state)) %>
+      <% else %>
+        <%= f.select(:state, options_for_select(us_states)) %>
+      <% end %>
     </div>
   </div>
   <div class="row">

@@ -95,7 +95,6 @@ class ContractorViewsJobShowPageTest < ActionDispatch::IntegrationTest
     contractor = create(:contractor)
     job = create(:job)
     job.cancelled!
-    lister = job.lister
 
     ApplicationController.any_instance.stubs(:current_user).returns(contractor)
 
