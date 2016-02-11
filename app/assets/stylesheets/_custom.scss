@@ -152,6 +152,25 @@
   text-align: left;
 }
 
+.pagination {
+  margin-bottom: 16px;
+
+  a,
+  em,
+  span {
+    background: $base-light-blue-light;
+    margin: 0 3px;
+    padding: 7px;
+
+    &:hover {
+      background: $base-light-blue;
+    }
+
+  }
+
+}
+
+
 // -----JOB SHOW-----
 
 #bid_price {
