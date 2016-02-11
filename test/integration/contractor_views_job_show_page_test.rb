@@ -90,4 +90,16 @@ class ContractorViewsJobShowPageTest < ActionDispatch::IntegrationTest
     assert page.has_css? ".job-cancelled",
                          text: "Job Cancelled"
   end
+
+  test "contractor cannot view job show for a nonexistant job" do
+    contractor = create(:contractor)
+    job = create(:job)
+    job.cancelled!
+
+    ApplicationController.any_instance.stubs(:current_user).returns(contractor)
+
+    visit user_job_path(contractor, job)
+
+    assert page.has_content? "The page you were looking for doesn't exist."
+  end
 end

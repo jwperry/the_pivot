@@ -72,6 +72,10 @@
 
 @media screen and (max-width: 600px) {
 
+  .comment-form select {
+    width: 70px;
+  }
+
   .category-list {
     display: none;
   }

@@ -12,6 +12,7 @@
           </div>
           <div class="col s12 m12 l3 bid-input-field valign">
             $  <%= f.number_field :price, min: 1,
+                                          max: 1000000000,
                                           value: job.my_bid(current_user.id).price,
                                           required: true,
                                           class: "price-input" %>
@@ -19,6 +20,7 @@
           <div class="col s7 m12 l3 bid-input-field valign">
             <%= f.number_field :duration_estimate,
                                min: 1,
+                               max: 365,
                                value: job.my_bid(current_user.id).duration_estimate,
                                required: true %>
           </div>
