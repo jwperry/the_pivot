@@ -52,13 +52,14 @@
   </div>
 
   <div class="row">
-    <div class="col s12">
+    <div class="col s12 user-photo-section">
       <%= f.label "Upload User Photo" %>
-      <br><br>
+      <br>
       <%= f.file_field :file_upload, class: "grey-text" %>
-      OR
-      <br><br>
-      <%= f.label :image_path %>
+      <br>
+      <span class="red-text">OR</span>
+      <br>
+      <%= f.label "Specify Image Path" %>
       <%= f.text_field :image_path %>
       <br>
     </div>
