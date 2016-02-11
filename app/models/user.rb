@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
   validates :zipcode,        presence: true
   validates :bio,            presence: true,
                              length: { in: 35..600 }
+  validates :zipcode, presence: true, length: { is: 5 }, numericality: true
 
   DEFAULT_PHOTO = "http://t2.tagstat.com/im/people/silhouette_m_300.png"
   has_attached_file :file_upload,

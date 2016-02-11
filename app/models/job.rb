@@ -26,6 +26,7 @@ class Job < ActiveRecord::Base
   validates :duration_estimate,     presence: true
   validates :description,           presence: true,
                                     length: { in: 50..600 }
+  validates :zipcode, presence: true, length: { is: 5 }, numericality: true
 
   validate :bidding_close_date_cannot_be_in_the_past
   validate :must_complete_by_date_cannot_be_in_the_past

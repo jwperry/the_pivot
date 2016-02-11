@@ -34,7 +34,7 @@ FactoryGirl.define do
     status 0
     city "Denver"
     state "CO"
-    zipcode 802_31
+    zipcode "80231"
     bidding_close_date
     must_complete_by_date
     category
@@ -56,7 +56,7 @@ FactoryGirl.define do
     street_address "123 Maple Drive"
     city "Denver"
     state "CO"
-    zipcode 802_31
+    zipcode "80231"
     bio "This sure is a sweet bio that has at least 35 characters"
 
     factory :lister, aliases: [:recipient] do
