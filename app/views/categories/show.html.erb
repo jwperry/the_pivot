@@ -30,9 +30,11 @@
         <% if @category.jobs_open_for_bidding.empty? %>
           <h5>No Jobs Open For Bidding In This Category</h5>
         <% else %>
-          <% @category.jobs_open_for_bidding.each do |job| %>
-            <%= render partial: "job", locals: { job: job } %>
-          <% end %>
+          <%= will_paginate @jobs %>
+            <% @jobs.each do |job| %>
+              <%= render partial: "job", locals: { job: job } %>
+            <% end %>
+          <%= will_paginate @jobs %>
         <% end %>
       </div>
     </section>

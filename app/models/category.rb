@@ -1,4 +1,5 @@
 class Category < ActiveRecord::Base
+
   has_many :jobs
 
   validates :name, presence: true,
@@ -17,4 +18,5 @@ class Category < ActiveRecord::Base
   def jobs_open_for_bidding
     jobs.bidding_open.order(created_at: :desc)
   end
+
 end

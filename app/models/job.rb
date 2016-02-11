@@ -1,4 +1,5 @@
 class Job < ActiveRecord::Base
+    self.per_page = 2
   before_save :check_user_type
 
   belongs_to :category

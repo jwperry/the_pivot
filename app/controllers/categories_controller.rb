@@ -3,6 +3,7 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.includes(jobs: :user).find_by_slug(params[:slug])
+    @jobs = @category.jobs.bidding_open.paginate(page: params[:page])
     @categories = Category.all
   end
 
