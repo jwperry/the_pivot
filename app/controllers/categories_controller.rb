@@ -3,7 +3,7 @@ class CategoriesController < ApplicationController
 
   def show
     category = Category.includes(jobs: :user).find_by_slug(params[:slug])
-    jobs = category.jobs.bidding_open.paginate(page: params[:page])
+    jobs = category.jobs.bidding_open.order(created_at: :desc).paginate(page: params[:page])
     categories = Category.all
     @category = CategoryPresenter.new(category, jobs, categories, view_context)
   end
