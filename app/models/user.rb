@@ -78,7 +78,7 @@ class User < ActiveRecord::Base
   end
 
   def all_received_comments
-    Comment.where(recipient_id: id)
+    Comment.includes(:user, job: :user).where(recipient_id: id)
   end
 
   def received_comments_for_completed_listings
@@ -88,7 +88,7 @@ class User < ActiveRecord::Base
   end
 
   def received_comments_for_completed_jobs
-    all_received_comments.select do |comment|
+    all_received_comments.includes(job: :user).select do |comment|
       comment.job.lister.id != id
     end
   end
@@ -102,7 +102,7 @@ class User < ActiveRecord::Base
   end
 
   def jobs_that_require_feedback
-    accepted_bids.map do |bid|
+    accepted_bids.includes(:job).map do |bid|
       bid.job if bid.job.feedback_required_from_contractor
     end.compact
   end

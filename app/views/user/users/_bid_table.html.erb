@@ -15,7 +15,7 @@
     </tr>
   </thead>
   <tbody>
-      <% user.bids.order(created_at: :desc).each do |bid| %>
+      <% user.bids.includes(job: :user).order(created_at: :desc).each do |bid| %>
         <tr class="bid" id="bid-<%= bid.id %>">
           <td><%= link_to bid.job.id, user_job_path(bid.job.lister, bid.job) %></td>
           <td><%= link_to bid.job.title, user_job_path(bid.job.lister, bid.job) %></td>
