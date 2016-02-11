@@ -2,7 +2,7 @@ class CategoriesController < ApplicationController
   before_action :require_platform_admin, only: [:new, :create]
 
   def show
-    @category = Category.find_by_slug(params[:slug])
+    @category = Category.includes(jobs: :user).find_by_slug(params[:slug])
     @categories = Category.all
   end
 
