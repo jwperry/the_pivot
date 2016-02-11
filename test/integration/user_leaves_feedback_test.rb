@@ -87,4 +87,50 @@ class UserLeavesFeedbackTest < ActionDispatch::IntegrationTest
     refute page.has_content?(lister.last_name)
     refute page.has_content?(job.title)
   end
+
+  test "a contractor cannot leave feedback for a job twice" do
+    bid = create(:bid)
+    job = bid.job
+    job.completed!
+    bid.accepted!
+    lister = job.lister
+    contractor = bid.user
+
+    ApplicationController.any_instance.stubs(:current_user).returns(contractor)
+
+    visit new_user_job_comment_path(lister, job)
+    select "4", from: "comment_rating"
+    fill_in "comment_text", with: "You were the most amazing" \
+                                  "lister I ever ever ever!!!"
+    click_on "Leave Comment"
+
+    visit new_user_job_comment_path(lister, job)
+    assert page.has_content?("The page you were looking for doesn't exist.")
+    refute page.has_content?(lister.first_name)
+    refute page.has_content?(lister.last_name)
+    refute page.has_content?(job.title)
+  end
+
+  test "a lister cannot leave feedback for a job twice" do
+    bid = create(:bid)
+    job = bid.job
+    job.completed!
+    bid.accepted!
+    lister = job.lister
+    contractor = bid.user
+
+    ApplicationController.any_instance.stubs(:current_user).returns(lister)
+
+    visit new_user_job_comment_path(lister, job)
+    select "4", from: "comment_rating"
+    fill_in "comment_text", with: "You were the most amazing" \
+                                  "lister I ever ever ever!!!"
+    click_on "Leave Comment"
+
+    visit new_user_job_comment_path(lister, job)
+    assert page.has_content?("The page you were looking for doesn't exist.")
+    refute page.has_content?(contractor.first_name)
+    refute page.has_content?(contractor.last_name)
+    refute page.has_content?(job.title)
+  end
 end
