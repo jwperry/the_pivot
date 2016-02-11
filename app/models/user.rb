@@ -7,11 +7,11 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :authorizations
 
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :username,       presence: true,
                              uniqueness: true
   validates :first_name,     presence: true
   validates :last_name,      presence: true
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email_address,  presence: true,
                              uniqueness: true,
                              format: { with: VALID_EMAIL_REGEX }
@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :file_upload,
                                     content_type: %r{\Aimage\/.*\Z}
 
-  scope :listers, -> { where(role: 1) }
+  scope :listers,     -> { where(role: 1) }
   scope :contractors, -> { where(role: 0) }
 
   enum role: %w(contractor lister platform_admin)

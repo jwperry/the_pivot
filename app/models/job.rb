@@ -10,8 +10,8 @@ class Job < ActiveRecord::Base
   enum status: %w(bidding_open bidding_closed in_progress completed cancelled)
   enum duration_estimate: %w(short medium long event)
 
-  scope :completed, -> { where(status: 3) }
-  scope :in_progress, -> { where(status: 2) }
+  scope :completed,    -> { where(status: 3) }
+  scope :in_progress,  -> { where(status: 2) }
   scope :bid_selected, -> { where(status: [2, 3]) }
   scope :bidding_open, -> { where(status: 0) }
 

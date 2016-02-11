@@ -4,20 +4,21 @@ class Comment < ActiveRecord::Base
   belongs_to :user
   belongs_to :job
   belongs_to :recipient,
-             class_name: "User",
+             class_name:  "User",
              foreign_key: :recipient_id
 
   SECOND_COMMENT_MESSAGE = "Cannot leave more than one comment per job".freeze
-  validates :user_id, presence: true,
-                      uniqueness: { scope: :job_id,
-                                    message: SECOND_COMMENT_MESSAGE }
+  validates :user_id,      presence: true,
+                           uniqueness: { scope: :job_id,
+                                         message: SECOND_COMMENT_MESSAGE }
   validates :recipient_id, presence: true
-  validates :text, presence: true,
-                   length: { in: 50..600 }
-  validates :rating, presence: true,
-                     inclusion: { in: 0..5 },
-                     numericality: { only_integer: true }
-  validates :job_id, presence: true
+  validates :text,         presence: true,
+                           length: { in: 50..600 }
+  validates :rating,       presence: true,
+                           inclusion: { in: 0..5 },
+                           numericality: { only_integer: true }
+  validates :job_id,       presence: true
+
   validate  :user_and_recipient_are_different_people
   validate  :less_than_two_comments_exist_for_job
 
