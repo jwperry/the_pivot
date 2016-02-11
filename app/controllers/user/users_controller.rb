@@ -1,10 +1,8 @@
 class User::UsersController < ApplicationController
   require "states_helper"
+
   before_action :set_user, only: [:edit, :update]
   before_action :require_logged_in_user, only: [:show, :dashboard]
-
-  def index
-  end
 
   def new
     @user = User.new
@@ -52,10 +50,10 @@ class User::UsersController < ApplicationController
       redirect_to dashboard_path
     else
       @user = User.new
-      creator = LinkedInUserCreator.new(@user, auth_hash)
-      creator.update_user
+      creator = LinkedInUserCreator.new(@user, auth_hash).update_user
       @provider = auth_hash["provider"]
       @uid = auth_hash["uid"]
+
       render :new
     end
   end

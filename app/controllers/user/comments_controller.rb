@@ -1,11 +1,11 @@
 class User::CommentsController < ApplicationController
+  before_action :set_job
   before_action :update_params, only: [:create]
   before_action :require_lister_or_contractor
   before_action :feedback_is_not_duplicate
 
   def new
     @user = current_user
-    @job = Job.find(params[:job_id])
     @comment = Comment.new
   end
 
@@ -37,13 +37,15 @@ class User::CommentsController < ApplicationController
     params[:comment][:recipient_id] = find_recipient_id
   end
 
-  def find_recipient_id
-    job = Job.find(params[:job_id])
+  def set_job
+    @job = Job.find(params[:job_id])
+  end
 
-    if job.lister == current_user
-      job.contractor_for_selected_bid.id
+  def find_recipient_id
+    if @job.lister == current_user
+      @job.contractor_for_selected_bid.id
     else
-      job.lister.id
+      @job.lister.id
     end
   end
 
@@ -52,16 +54,16 @@ class User::CommentsController < ApplicationController
   end
 
   def correct_lister
-    current_user == Job.find(params[:job_id]).lister
+    current_user == @job.lister
   end
 
   def correct_contractor
-    current_user == Job.find(params[:job_id]).contractor_for_selected_bid
+    current_user == @job.contractor_for_selected_bid
   end
 
   def feedback_is_not_duplicate
-    job = Job.find(params[:job_id])
-    previous_comment = job.comments.where(user_id: current_user.id)
+    previous_comment = @job.comments.where(user_id: current_user.id)
+
     render file: "public/404" unless previous_comment.empty?
   end
 end

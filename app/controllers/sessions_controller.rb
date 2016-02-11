@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
 
     if user && user.authenticate(params[:session][:password])
       session[:user_id] = user.id
-        redirect_to session[:forwarding_url] || dashboard_path
+      redirect_to session[:forwarding_url] || dashboard_path
     else
       account_link = "#{view_context.link_to('Create new account?',
                                               new_user_path)}"

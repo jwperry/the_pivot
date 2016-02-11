@@ -5,6 +5,7 @@ class CategoriesController < ApplicationController
     category = Category.includes(jobs: :user).find_by_slug(params[:slug])
     jobs = category.jobs.bidding_open.order(created_at: :desc).paginate(page: params[:page])
     categories = Category.all
+
     @category = CategoryPresenter.new(category, jobs, categories, view_context)
   end
 
@@ -14,6 +15,7 @@ class CategoriesController < ApplicationController
 
   def create
     @category = Category.new(category_params)
+
     if @category.save
       redirect_to category_path(@category)
     else
