@@ -13,7 +13,7 @@ class JobTest < ActiveSupport::TestCase
   should validate_presence_of(:duration_estimate)
   should validate_presence_of(:description)
   should validate_numericality_of(:zipcode)
-  should validate_length_of(:zipcode).is_equal_to(5)
+  should validate_length_of(:zipcode).is_at_least(5)
 
   test "is valid with valid parameters" do
     job = create(:job)

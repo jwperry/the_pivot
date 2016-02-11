@@ -53,7 +53,7 @@ class Seed
         street_address: Faker::Address.street_address,
         city: Faker::Address.city,
         state: Faker::Address.state,
-        zipcode: Faker::Address.zip,
+        zipcode: "80202",
         bio: Faker::Lorem.sentence(20)
       )
 
@@ -76,7 +76,7 @@ class Seed
         street_address: Faker::Address.street_address,
         city: Faker::Address.city,
         state: Faker::Address.state,
-        zipcode: Faker::Address.zip,
+        zipcode: "80202",
         bio: Faker::Lorem.sentence(20)
       )
 
@@ -99,7 +99,7 @@ class Seed
         street_address: Faker::Address.street_address,
         city: Faker::Address.city,
         state: Faker::Address.state,
-        zipcode: Faker::Address.zip,
+        zipcode: "80202",
         bio: Faker::Lorem.sentence(20)
       )
 
@@ -121,7 +121,7 @@ class Seed
       street_address: Faker::Address.street_address,
       city: Faker::Address.city,
       state: Faker::Address.state,
-      zipcode: Faker::Address.zip,
+      zipcode: "80202",
       bio: Faker::Lorem.sentence(20)
     )
 
@@ -138,7 +138,7 @@ class Seed
           status: rand(0..4),
           city: Faker::Address.city,
           state: Faker::Address.state_abbr,
-          zipcode: Faker::Address.zip,
+          zipcode: "80202",
           bidding_close_date: Faker::Time.forward(14, :morning),
           must_complete_by_date: Faker::Time.between(DateTime.now + 15,
                                                      DateTime.now + 21),
