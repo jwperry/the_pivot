@@ -3,6 +3,7 @@ class User::JobsController < ApplicationController
   before_action :require_platform_admin, only: [:destroy]
   before_action :sanitize_status_params, only: [:update]
   before_action :require_non_contractor, only: [:new, :create, :update]
+  before_action :job_corresponds_to_user_slug, only: [:show]
 
   def new
     @job = Job.new
@@ -26,13 +27,8 @@ class User::JobsController < ApplicationController
 
   def show
     session[:forwarding_url] = request.url
-    @user = User.find_by_slug(params[:user_slug])
 
-    if @user.jobs.find(params[:id])
-      @job = JobPresenter.new(@user.jobs.find(params[:id]), view_context)
-    else
-      render file: "public/404"
-    end
+    @job = JobPresenter.new(@user.jobs.find(params[:id]), view_context)
   end
 
   def destroy
@@ -112,5 +108,13 @@ class User::JobsController < ApplicationController
 
   def require_non_contractor
     render file: "public/404" if current_contractor?
+  end
+
+  def job_corresponds_to_user_slug
+    @user = User.find_by_slug(params[:user_slug])
+
+    unless @user.jobs.pluck(:id).include?(params[:id].to_i)
+      render file: "public/404"
+    end
   end
 end
