@@ -18,9 +18,11 @@ class User < ActiveRecord::Base
   validates :street_address, presence: true
   validates :city,           presence: true
   validates :state,          presence: true
-  validates :zipcode,        presence: true
   validates :bio,            presence: true,
                              length: { in: 35..600 }
+  validates :zipcode,        presence: true,
+                             length: { minimum: 5 },
+                             numericality: true
 
   DEFAULT_PHOTO = "http://t2.tagstat.com/im/people/silhouette_m_300.png"
   has_attached_file :file_upload,

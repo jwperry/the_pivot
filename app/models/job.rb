@@ -20,12 +20,14 @@ class Job < ActiveRecord::Base
   validates :status,                presence: true
   validates :city,                  presence: true
   validates :state,                 presence: true
-  validates :zipcode,               presence: true
   validates :bidding_close_date,    presence: true
   validates :must_complete_by_date, presence: true
   validates :duration_estimate,     presence: true
   validates :description,           presence: true,
                                     length: { in: 50..600 }
+  validates :zipcode,               presence: true,
+                                    length: { minimum: 5 },
+                                    numericality: true
 
   validate :bidding_close_date_cannot_be_in_the_past
   validate :must_complete_by_date_cannot_be_in_the_past

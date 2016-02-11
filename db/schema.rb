@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160210211016) do
+ActiveRecord::Schema.define(version: 20160211001937) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,10 +69,10 @@ ActiveRecord::Schema.define(version: 20160210211016) do
     t.integer  "status",                default: 0
     t.string   "city"
     t.string   "state"
-    t.integer  "zipcode"
     t.datetime "bidding_close_date"
     t.datetime "must_complete_by_date"
     t.integer  "duration_estimate"
+    t.string   "zipcode"
   end
 
   add_index "jobs", ["category_id"], name: "index_jobs_on_category_id", using: :btree
@@ -90,7 +90,6 @@ ActiveRecord::Schema.define(version: 20160210211016) do
     t.string   "street_address"
     t.string   "city"
     t.string   "state"
-    t.integer  "zipcode"
     t.string   "slug"
     t.string   "file_upload_file_name"
     t.string   "file_upload_content_type"
@@ -98,6 +97,7 @@ ActiveRecord::Schema.define(version: 20160210211016) do
     t.datetime "file_upload_updated_at"
     t.text     "bio"
     t.string   "image_path"
+    t.string   "zipcode"
   end
 
   add_foreign_key "bids", "jobs"

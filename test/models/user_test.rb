@@ -11,6 +11,8 @@ class UserTest < ActiveSupport::TestCase
   should validate_presence_of(:state)
   should validate_presence_of(:zipcode)
   should validate_presence_of(:bio)
+  should validate_numericality_of(:zipcode)
+  should validate_length_of(:zipcode).is_at_least(5)
 
   test "full address" do
     street_address = "1510 Blake St."
