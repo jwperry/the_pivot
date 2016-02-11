@@ -14,7 +14,9 @@
   <div class="category-dropdown">
     <h3 class="choose-category-title">Choose a Category</h3>
     <div class="input-field select-wrapper">
-      <%= select_tag :categories, options_from_collection_for_select(@categories, "id", "name"), class: "category-select" %>
+      <%= select_tag :categories, options_from_collection_for_select(@categories, "id", "name"),
+                                  prompt: "Select a Category",
+                                  class: "category-select" %>
     </div>
   </div>
 </div>
