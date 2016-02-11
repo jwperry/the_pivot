@@ -10,18 +10,13 @@ class User::JobsController < ApplicationController
   end
 
   def create
-    if current_contractor?
-      flash[:error] = "Upgrade to a lister account to create jobs."
-      redirect_to dashboard_path(current_user)
-    else
-      @job = current_user.jobs.new(job_params)
+    @job = current_user.jobs.new(job_params)
 
-      if @job.save
-        redirect_to user_job_path(current_user, @job)
-      else
-        flash.now[:error] = "New job creation failed."
-        render :new
-      end
+    if @job.save
+      redirect_to user_job_path(current_user, @job)
+    else
+      flash.now[:error] = "New job creation failed."
+      render :new
     end
   end
 
@@ -44,15 +39,13 @@ class User::JobsController < ApplicationController
   def update
     @job = Job.find(params[:id])
 
-    if update_status_params[:status]
-      @job.update_attributes(update_status_params)
+    @job.update_attributes(update_status_params)
 
-      if @job.completed?
-        NotificationMailer.feedback_prompt(@job).deliver_now
-        redirect_to new_user_job_comment_path(current_user, @job)
-      else
-        redirect_to dashboard_path
-      end
+    if @job.completed?
+      NotificationMailer.feedback_prompt(@job).deliver_now
+      redirect_to new_user_job_comment_path(current_user, @job)
+    else
+      redirect_to dashboard_path
     end
   end
 

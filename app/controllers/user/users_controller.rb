@@ -89,6 +89,7 @@ class User::UsersController < ApplicationController
   end
 
   def require_logged_in_user
+    flash[:error] = "Must be logged in to view user profiles"
     redirect_to login_path unless logged_in?
   end
 

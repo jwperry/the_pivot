@@ -10,6 +10,7 @@ class UserViewsPublicUserProfilesTest < ActionDispatch::IntegrationTest
     click_on job.lister.full_name
 
     assert_equal login_path, current_path
+    assert page.has_content? "Must be logged in to view user profiles"
   end
 
   test "guest is redirected to login page if trying to visit user show" do
@@ -18,6 +19,7 @@ class UserViewsPublicUserProfilesTest < ActionDispatch::IntegrationTest
     visit user_path(lister)
 
     assert_equal login_path, current_path
+    assert page.has_content? "Must be logged in to view user profiles"
   end
 
   test "logged in contractor can view their public profile" do
