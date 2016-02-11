@@ -4,47 +4,49 @@
 ### Authors
 [Toni Rib](http://github.com/tonirib), [Dan Winter](https://github.com/danjwinter), [Joe Perry](https://github.com/jwperry)
 
-This project was created as a part of the curriculum for the [Turing School of Software & Design](http://turing.io).
+This project was created as a part of the curriculum for the [Turing School of Software & Design](http://turing.io) to complete the "Pivot" project.
+
+The original version of this project, from which this version was pivoted, can be found at: [https://github.com/martensonbj/little_shop](https://github.com/martensonbj/little_shop)
 
 ### Overview
 
-This Rails application is a marketplace for artists. An artist can register an account and add art pieces to sell. Users can register accounts to purchase the available art pieces. An admin can regulate the process by transitioning order status and managing art for artists.
+This Rails application is a marketplace for posting jobs to hire freelance contractors. A user can sign up as a job lister to post jobs that they would like others to complete. Contractors can then bid on the job until the bidding expires. Once bidding has expired, the job lister selects a contractor to complete the job. All contractors who placed a bid are notified via email of the decision. Once the job is completed, the job lister and the contractor who completed the job are able to give feedback to each other.
 
 ### Live Version
 
-You can find a live version of this application on Heroku at: [https://rough-sketch.herokuapp.com/](https://rough-sketch.herokuapp.com/)
+You can find a live version of this application on Heroku at: [https://freelancer-for-you.herokuapp.com/](https://freelancer-for-you.herokuapp.com/)
 
 ### Setup
 
 To set up a local copy of this project, perform the following:
 
-  1. Clone the repository: `git clone https://github.com/martensonbj/little_shop.git`
+  1. Clone the repository: `git clone https://github.com/jwperry/the_pivot.git`
   2. `cd` into the project's directory
   3. Run `bundle install`
-  4. Run `rake db:create db:migrate db:seed` to set up the postgres database and seed it with users, artists, categories, and items.
-    - If you would like to create your own users, artist, items, and categories do not run `db:seed`
-    - The seed file does not include any setup for admins, so those must be created manually by running `rails c` and adding a user to the database with role = 2
+  4. Run `rake db:create db:migrate db:seed` to set up the postgres database and seed it with users, jobs, bids, and comments.
+    - If you would like to create your own users, jobs, bids, and comments do not run `db:seed`
+    - The seed file does not include any setup for a platform administrator, so those must be created manually by running `rails c` and adding a user to the database with role = 2
   5. Run the application in the dev environment by running `rails s`
 
 ### App Features
 
 The app is designed for both the mobile and desktop experience. Some of the main features of the app include:
 
-#### Users
+#### Contractors
 
-Users can browse the art inventory by both artist and category and filter based on a particular category or artist name. Each item has an image, title, price, artist name, and description associated with it. Users can add any items that are active to their cart. Users do not need to be signed in to browse items or add them to their cart. However, upon checkout, if a user is not signed in they will be asked to create an account or login before being allowed to check out. A user cannot add any items, but can choose to change their account to an "artist" account at any point. However, once they are signed up as an artist, they cannot change back to a default user. Users can also view any of their past orders and the order status.
+Registered contractors can browse jobs by category and place bids on any job. They are only allowed to place a single bid on a job, but they can update or delete they bid. Contractors do not have a public view of the other bids placed on a job, but they can see the total number of bids and the bid price range. Contractors are not allowed to create job listings, but they can upgrade their account to a job lister if desired. Contractors can give feedback to listers if they complete a job.
 
-#### Artists
+#### Job Listers
 
-Users can also sign up as an "artist" which allows them to add items to sell. Each item must include either an uploaded photo or a link to an online image path before it is allowed to be active. Artists can only add art for themselves, and they are allowed to both edit and delete any art that they own. Artists can also upload a profile photo that shows up next to their name in the art index. Artist also have all of the same priviledges as default users.
+Registered job listers can post jobs to the site. They can select both a bidding close date/time and a "must complete by" date for each job. Contractors can view all of the bids for their own job, but not for another lister's job. They are not able to select a bid until the bidding expiration date and time have past. Once the bidding is closed, the lister selects a the bid they want to accept which moves the job state to "in progress". Once the job has been completed, they can move the job to "complete" on their dashboard. This prompts them to leave feedback for the contractor. Once the lister has left feedback for the contractor, the contractor is notified via email and their dashboard to leave a comment for the lister.
 
-#### Admins
+#### Platform Admins
 
-Admins are the 'master user' of the site. An admin can add art for any registered artist and also has the ability to edit and delete art from any artist. They are also able to view and change the status of any order that has been placed through the site. Like a default user, they are also able to shop and place orders of their own.
+Admins are the 'master user' of the site. An admin is the only user who can delete a job or create a new category. Additionally, admins have all the functionality of a job lister and a contractor. They are also able to see the current bids on any job for any lister.
 
 #### Other Features
 
-The app is integrated with a test version of Stripe for mock-processing of payment at checkout. In addition, it uses Amazon Web Services S3 to store and host any image uploads. It also utilizes the jQuery library for live filtering of content.
+The app uses Amazon Web Services S3 to store and host any image uploads. It also utilizes the jQuery library for live filtering of content and jQuery UI for the accordion effect for bidding and feedback notifications. It uses oauth to connect to LinkedIn in case a user wants to import some of their information like name, email, and image when creating an account. It can also authenticate users logging in via LinkedIn. Additionally, it uses the Heroku Scheduler Add-On to check for jobs that have expired bidding every 10 minutes, and moves those jobs from a status of "Bidding Open" to "Bidding Closed." The project utilizes Sass for organization of CSS.
 
 ### Test Suite
 
