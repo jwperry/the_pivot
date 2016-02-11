@@ -27,7 +27,12 @@ class User::JobsController < ApplicationController
   def show
     session[:forwarding_url] = request.url
     @user = User.find_by_slug(params[:user_slug])
-    @job = JobPresenter.new(Job.find(params[:id]), view_context)
+
+    if @user.jobs.find(params[:id])
+      @job = JobPresenter.new(@user.jobs.find(params[:id]), view_context)
+    else
+      render file: "public/404"
+    end
   end
 
   def destroy
