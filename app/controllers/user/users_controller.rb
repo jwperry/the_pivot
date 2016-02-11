@@ -8,7 +8,6 @@ class User::UsersController < ApplicationController
 
   def new
     @user = User.new
-    Rails.logger.debug @user.inspect
   end
 
   def create
