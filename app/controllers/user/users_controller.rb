@@ -8,10 +8,12 @@ class User::UsersController < ApplicationController
 
   def new
     @user = User.new
+    Rails.logger.debug @user.inspect
   end
 
   def create
     @user = User.new(user_params)
+
     if @user.save
       create_authorization_when_from_linkedin
       session[:user_id] = @user.id
