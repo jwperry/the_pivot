@@ -162,10 +162,11 @@
     margin: 0 3px;
     padding: 7px;
 
-    &:hover {
-      background: $base-light-blue;
-    }
+  }
 
+  a:hover {
+    background: $base-light-blue;
+    color: $black;
   }
 
 }
