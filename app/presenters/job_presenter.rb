@@ -57,7 +57,7 @@ class JobPresenter < SimpleDelegator
   end
 
   def bid_status_or_accept_bid_link(bid)
-    if bidding_closed? && bids_still_pending? && view.current_lister?
+    if bidding_is_closed_and_user_own_current_job
       view.link_to "Accept",
                    view.user_job_bid_path(bid.job.lister,
                                           bid.job,
@@ -82,6 +82,12 @@ class JobPresenter < SimpleDelegator
   end
 
   private
+
+  def bidding_is_closed_and_user_own_current_job
+    bidding_closed?       &&
+      bids_still_pending? &&
+      view.current_user_owns_current_job(id)
+  end
 
   def user_owns_job_or_is_a_platform_admin
     view.current_user_owns_current_job(id) || view.current_platform_admin?

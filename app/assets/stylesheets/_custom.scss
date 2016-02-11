@@ -624,6 +624,10 @@ h3#ui-id-1.feedback-required {
 
 }
 
+.comment {
+  margin: 15px;
+}
+
 .no-top-margin {
   margin-top: 0;
 }
@@ -677,13 +681,13 @@ h3#ui-id-1.feedback-required {
   color: #F17D80;
 }
 
-/* CARDS */
+// -----CARDS-----
 
 .card .card-action a:not(.btn):not(.btn-large):not(.btn-floating) {
   margin-right: 0;
 }
 
-/* FLASH MESSAGES */
+// -----FLASH MESSAGES-----
 
 .flash-success {
   background-color: #ccff90;
@@ -736,6 +740,11 @@ h3#ui-id-1.feedback-required {
     width: 250px;
   }
 
+}
+
+.comment-text {
+  font-size: 18px;
+  max-width: 600px;
 }
 
 label {

@@ -14,6 +14,7 @@ class GuestVisitsHomepageTest < ActionDispatch::IntegrationTest
     end
 
     category_names = Category.pluck(:name)
+    category_names.unshift("Select a Category")
 
     within first(:div, ".category-dropdown") do
       assert page.has_select?("categories", options: category_names)
