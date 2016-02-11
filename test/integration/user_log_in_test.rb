@@ -18,6 +18,12 @@ class UserLogInTest < ActionDispatch::IntegrationTest
 
     refute page.has_content?("Login")
     assert page.has_content?("Logout")
+
+    within(".nav-wrapper #nav-mobile") do
+      click_on "Logout"
+    end
+
+    refute page.has_content?("My Dashboard (contractor)")
   end
 
   test "unregistered user cannot log in" do
