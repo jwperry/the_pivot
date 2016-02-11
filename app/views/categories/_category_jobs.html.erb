@@ -1,0 +1,5 @@
+<%= will_paginate category.jobs %>
+  <% category.jobs.each do |job| %>
+    <%= render partial: "job", locals: { job: job } %>
+  <% end %>
+<%= will_paginate category.jobs %>
